@@ -1,0 +1,42 @@
+.r-text-field {
+  @apply transition outline-none bg-transparent;
+}
+
+.r-text-field-wrapper {
+  @apply px-2 py-1 rounded-lg;
+  @apply dark:border-zinc-600 border-zinc-400;
+  @apply dark:text-zinc-100;
+  @apply inline-flex;
+}
+
+.r-text-field-border {
+  @apply border;
+}
+
+.r-text-field-wrapper:focus-within {
+  @apply dark:border-zinc-400 border-zinc-800;
+}
+
+.r-text-field-dash {
+  @apply border-dashed;
+}
+
+.r-text-field-dot {
+  @apply border-dotted;
+}
+
+.r-text-field-soild {
+  @apply border-solid;
+}
+
+.r-text-field-transparent {
+  @apply border-transparent;
+}
+
+.dark ::-ms-reveal {
+  filter: invert(90%);
+}
+
+.dark input[type="number"]::-webkit-inner-spin-button {
+  filter: invert(90%);
+}

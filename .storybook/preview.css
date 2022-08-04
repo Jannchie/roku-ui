@@ -1,0 +1,12 @@
+.dark,
+.dark .docs-story {
+  @apply bg-zinc-900;
+}
+
+.light {
+  background: "#ffffff";
+}
+
+body {
+  font-family: sans-serif !important;
+}

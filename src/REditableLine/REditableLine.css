@@ -1,0 +1,16 @@
+.r-editable-line > .r-text-field-wrapper {
+  @apply transition;
+  @apply focus-within:!bg-transparent hover:bg-zinc-500/10;
+}
+.r-editable-line:not(.r-editable-line-editing) > .r-text-field-wrapper {
+  @apply !border-transparent;
+}
+.r-editable-line:not(.r-editable-line-editing) .r-text-field {
+  @apply hover:cursor-pointer;
+}
+.r-editable-line.r-editable-line-editing > .r-text-field-wrapper {
+  @apply bg-zinc-500/5;
+}
+.r-editable-line.r-editable-line-editing > .r-text-field {
+  @apply cursor-text;
+}

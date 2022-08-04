@@ -1,0 +1,4 @@
+.r-modal {
+  @apply absolute w-full h-full inset-0  min-h-full;
+  @apply flex justify-center items-center;
+}

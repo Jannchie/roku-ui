@@ -1,0 +1,73 @@
+.r-btn {
+  @apply min-w-max w-12;
+  @apply h-fit transition-all;
+  @apply text-xs border;
+  @apply disabled:grayscale disabled:contrast-50;
+  @apply outline-offset-2 enabled:active:outline outline-2;
+}
+
+.r-btn-small {
+  @apply py-1 px-1 rounded;
+}
+
+.r-btn-large {
+  @apply py-2 px-3 text-base rounded-lg;
+}
+
+.r-btn-medium {
+  @apply py-2 px-3 rounded-md;
+}
+
+.r-btn-block {
+  @apply w-full;
+}
+
+.r-btn-dash {
+  @apply border-dashed;
+}
+
+.r-btn-fill {
+  @apply text-white bg-zinc-600;
+  @apply bg-blend-lighten;
+}
+
+.r-btn-default.r-btn-fill {
+  @apply text-white dark:bg-zinc-800 border-zinc-700 enabled:hover:bg-zinc-700 outline-zinc-700;
+  @apply bg-zinc-600;
+}
+.r-btn-default.r-btn-outline {
+  @apply text-zinc-600 border-zinc-600 enabled:hover:border-zinc-400 enabled:hover:text-zinc-400 outline-zinc-400;
+}
+.r-btn-primary.r-btn-fill {
+  @apply text-white dark:bg-primary-800 border-primary-700 enabled:hover:bg-primary-700 outline-primary-700;
+  @apply bg-primary-600;
+}
+.r-btn-primary.r-btn-outline {
+  @apply text-primary-600 border-primary-600 enabled:hover:border-primary-400 enabled:hover:text-primary-400 outline-primary-400;
+}
+.r-btn-success.r-btn-fill {
+  @apply text-white dark:bg-success-800 border-success-700 enabled:hover:bg-success-700 outline-success-700;
+  @apply bg-success-600;
+}
+.r-btn-success.r-btn-outline {
+  @apply text-success-600 border-success-600 enabled:hover:border-success-400 enabled:hover:text-success-400 outline-success-400;
+}
+.r-btn-warning.r-btn-fill {
+  @apply text-white dark:bg-warning-800 border-warning-700 enabled:hover:bg-warning-700 outline-warning-700;
+  @apply bg-warning-600;
+}
+.r-btn-warning.r-btn-outline {
+  @apply text-warning-600 border-warning-600 enabled:hover:border-warning-400 enabled:hover:text-warning-400 outline-warning-400;
+}
+.r-btn-danger.r-btn-fill {
+  @apply text-white dark:bg-danger-800 border-danger-700 enabled:hover:bg-danger-700 outline-danger-700;
+  @apply bg-danger-600;
+}
+.r-btn-danger.r-btn-outline {
+  @apply text-danger-600 border-danger-600 enabled:hover:border-danger-400 enabled:hover:text-danger-400 outline-danger-400;
+}
+
+.r-btn-outline {
+  @apply border-zinc-400;
+  @apply text-zinc-400;
+}

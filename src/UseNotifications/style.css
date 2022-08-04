@@ -1,0 +1,29 @@
+.r-notification {
+  @apply absolute top-0;
+}
+
+.r-notification.r-center {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+.r-notification.r-top {
+  @apply top-0;
+}
+
+.r-notification.r-bottom {
+  @apply bottom-0;
+}
+
+.r-notification.r-left {
+  @apply left-0;
+}
+
+.r-notification.r-right {
+  @apply right-0;
+}
+
+.r-notification.r-center {
+  @apply justify-center;
+}
