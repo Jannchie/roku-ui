@@ -1,8 +1,8 @@
 import classnames from "classnames";
 import { FC, ReactNode } from "react";
 import "./RBtn.css";
-
-type ButtonProps = {
+export { RBtn } from "./RBtn";
+export type ButtonProps = {
   label?: string;
   size?: "small" | "medium" | "large";
   color?: "primary" | "success" | "danger" | "warning" | "default";
@@ -13,50 +13,9 @@ type ButtonProps = {
   loading?: boolean;
   children?: ReactNode;
   className?: string;
+  icon?: boolean;
 };
-export const RBtn: FC<ButtonProps> = ({
-  label,
-  size = "medium",
-  color = "default",
-  outline = false,
-  dash = false,
-  loading = false,
-  disabled = false,
-  children,
-  onClick,
-  className,
-}: ButtonProps) => {
-  const btnClass = classnames(
-    "r-btn",
-    `r-btn-${size}`,
-    `r-btn-${color}`,
-    { "r-btn-dash": dash },
-    { "r-btn-outline": outline },
-    { "r-btn-fill": !outline },
-    className
-  );
-  const body = children ? children : label;
-  return (
-    <button
-      onClick={onClick}
-      type="button"
-      className={btnClass}
-      disabled={disabled}
-    >
-      {loading ? (
-        <div className="flex items-center">
-          <div className="mr-2 transition-all">
-            <Loading size={size} />
-          </div>
-          {body}
-        </div>
-      ) : (
-        body
-      )}
-    </button>
-  );
-};
-function Loading({ size }: { size: string }) {
+export function Loading({ size }: { size: string }) {
   const loadingClass = classnames({
     "w-4 h-4": size === "small",
     "w-5 h-5": size === "medium",

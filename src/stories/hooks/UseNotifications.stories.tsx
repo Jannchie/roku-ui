@@ -1,31 +1,29 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useRef } from "react";
-import { Notifications, push } from "../../hooks/UseNotifications";
-import { RBtn } from "../../components/RBtn";
+import { Notifications, customPush, push } from "../../hooks/UseNotifications";
 import { RNotice } from "../../components/RNotice";
+import { RBtn } from "../..";
 export default {
   title: "Hook/UseNotifications",
   component: RBtn,
 } as ComponentMeta<typeof RBtn>;
 
 const Template: ComponentStory<typeof RBtn> = () => {
-  const id = useRef(0);
   return (
     <>
       <RBtn
         onClick={() => {
-          push(
-            RNotice({
-              title: `Title ${id.current++}`,
-              desc: "Des cDesc Desc DescDescDD escDesc DescDescDes cDDescDescD escDescDescDDescDescDescDescDescD",
-            })
-          );
+          push({
+            title: "This is the title",
+            desc: "This is the description",
+            type: "success",
+            existsMS: 300000,
+          });
         }}
       >
         Show Notification
       </RBtn>
-      <Notifications className="mt-2 w-full" bottom />
-      <Notifications className="mt-2 w-64" />
+      <Notifications className="mt-2 w-96" />
     </>
   );
 };

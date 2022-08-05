@@ -1,7 +1,8 @@
 import { Flipper, Flipped } from "react-flip-toolkit";
-import { ReactNode, useRef, useState, useEffect } from "react";
+import { ReactNode, useRef, useState, useEffect, useMemo } from "react";
 import "./style.css";
 import classNames from "classnames";
+import { RNotice } from "../../components/RNotice/RNotice";
 
 export function animate(
   el: HTMLElement,
@@ -24,13 +25,23 @@ type NotificationConfig = {
   className?: string;
   defaultExistsMS?: number;
   maxCount?: number;
+  close?: () => void;
 };
 type NoticeData = { key: number; value: ReactNode };
 type PushConfig = {
   existsMS?: number;
 };
 
-export const push = (notice: ReactNode, config?: PushConfig): void => {
+export type NoticeConfig = {
+  title: string;
+  desc?: string;
+  type?: "success" | "danger" | "warning" | "info";
+  existsMS?: number;
+  progressBar?: boolean;
+  closable?: boolean;
+};
+
+export const customPush = (notice: ReactNode, config?: PushConfig): void => {
   if (nEventMgr.onPush.length === 0) {
     throw new Error(
       "No notification event listener, you should add at least one Notifications Component to your app."
@@ -39,12 +50,58 @@ export const push = (notice: ReactNode, config?: PushConfig): void => {
   nEventMgr.onPush.forEach((cb) => cb(notice, config));
 };
 
+export const push = (config: PushConfig & NoticeConfig) => {
+  let { title, desc, type, existsMS, progressBar, closable } = config;
+  if (!existsMS) existsMS = 3000;
+  if (!progressBar) progressBar = false;
+  if (!closable) closable = true;
+  let mainColor: string = "";
+  let subColor: string = "";
+  let icon: ReactNode = "";
+  switch (type) {
+    case "success": {
+      mainColor = "text-success-500";
+      icon = <span className="material-symbols-outlined">check_circle</span>;
+      break;
+    }
+    case "danger": {
+      mainColor = "text-danger-500";
+      icon = <span className="material-symbols-outlined">error</span>;
+      break;
+    }
+    case "warning": {
+      mainColor = "text-warning-500";
+      icon = <span className="material-symbols-outlined">warning</span>;
+      break;
+    }
+    default: {
+      mainColor = "text-primary-500";
+      icon = <span className="material-symbols-outlined">info</span>;
+    }
+  }
+
+  const notice = RNotice({
+    title,
+    desc,
+    mainColor,
+    subColor,
+    close: closable
+      ? () => {
+          nEventMgr.onRemove.forEach((cb) => cb(notice));
+        }
+      : undefined,
+  });
+  customPush(notice, { existsMS });
+};
+
 interface NotificationsEventManager {
   onPush: ((notice: ReactNode, config?: PushConfig) => void)[];
+  onRemove: ((notice: ReactNode) => void)[];
 }
 
 const nEventMgr: NotificationsEventManager = {
   onPush: [],
+  onRemove: [],
 };
 
 export const Notifications = (props: NotificationConfig) => {
@@ -63,11 +120,11 @@ export const Notifications = (props: NotificationConfig) => {
   const id = useRef(1);
   const pushCallback = (notice: ReactNode, config: PushConfig = {}) => {
     let existsMS;
-    if (!config.existsMS) {
+    if (config.existsMS) {
       existsMS = config.existsMS;
     }
     if (!existsMS) {
-      existsMS = props.defaultExistsMS || 3000 * 1000;
+      existsMS = props.defaultExistsMS || 3000;
     }
     if (notices.length >= (props.maxCount ?? 5)) {
       notices.pop();
@@ -80,11 +137,21 @@ export const Notifications = (props: NotificationConfig) => {
     }, existsMS);
   };
 
-  // resiger push callback, notice that it is a effect.
+  const removeCallback = (notice: ReactNode) => {
+    setNotices((val) => val.filter((n) => n.value !== notice));
+  };
+
+  // resiger callback, notice that it is a effect.
   useEffect(() => {
     nEventMgr.onPush.unshift(pushCallback);
     return () => {
       nEventMgr.onPush.splice(nEventMgr.onPush.indexOf(pushCallback), 1);
+    };
+  });
+  useEffect(() => {
+    nEventMgr.onRemove.unshift(removeCallback);
+    return () => {
+      nEventMgr.onRemove.splice(nEventMgr.onRemove.indexOf(removeCallback), 1);
     };
   });
   const noticesWrapper = useRef<HTMLDivElement>(null);
@@ -152,4 +219,4 @@ export const Notifications = (props: NotificationConfig) => {
       </Flipper>
     </div>
   );
-};
+};;;;;;

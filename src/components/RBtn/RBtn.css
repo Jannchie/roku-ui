@@ -6,6 +6,25 @@
   @apply outline-offset-2 enabled:active:outline outline-2;
 }
 
+.r-icon-btn {
+  line-height: 0px;
+  border: none;
+  width: 0px;
+}
+
+.r-icon-btn.r-btn-small {
+  @apply p-1;
+}
+
+.r-icon-btn.r-btn-medium {
+  @apply p-2;
+}
+
+.r-icon-btn.r-btn-large {
+  @apply p-2;
+}
+
+
 .r-btn-small {
   @apply py-1 px-1 rounded;
 }

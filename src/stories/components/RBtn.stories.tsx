@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { RBtn } from "../../components/RBtn";
+import { RBtn } from "../..";
 export default {
   title: "Example/RBtn",
   component: RBtn,
