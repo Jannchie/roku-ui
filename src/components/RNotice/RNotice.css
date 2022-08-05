@@ -1,11 +1,7 @@
 .r-notice-wrapper {
   @apply dark:bg-zinc-800 dark:text-zinc-200 dark:border-zinc-700;
   @apply bg-zinc-100 text-zinc-800 border-zinc-200;
-  @apply p-4 text-sm rounded;
-}
-
-.r-notice-wrapper.dense {
-  @apply p-2;
+  @apply text-sm rounded;
 }
 
 .r-notice-desc {

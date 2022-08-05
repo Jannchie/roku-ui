@@ -49,49 +49,79 @@ export const customPush = (notice: ReactNode, config?: PushConfig): void => {
   }
   nEventMgr.onPush.forEach((cb) => cb(notice, config));
 };
-
+let currentID = 1;
 export const push = (config: PushConfig & NoticeConfig) => {
   let { title, desc, type, existsMS, progressBar, closable } = config;
   if (!existsMS) existsMS = 3000;
   if (!progressBar) progressBar = false;
   if (!closable) closable = true;
-  let mainColor: string = "";
+  let mainTextColor: string = "";
+  let mainBgColor: string = "";
   let subColor: string = "";
   let icon: ReactNode = "";
   switch (type) {
     case "success": {
-      mainColor = "text-success-500";
+      mainTextColor = "text-success-500";
+      mainBgColor = "bg-success-500";
       icon = <span className="material-symbols-outlined">check_circle</span>;
       break;
     }
     case "danger": {
-      mainColor = "text-danger-500";
-      icon = <span className="material-symbols-outlined">error</span>;
+      mainTextColor = "text-danger-500";
+      mainBgColor = "bg-danger-500";
+      icon = <span className="material-symbols-outlined">cancel</span>;
       break;
     }
     case "warning": {
-      mainColor = "text-warning-500";
-      icon = <span className="material-symbols-outlined">warning</span>;
+      mainTextColor = "text-warning-500";
+      mainBgColor = "bg-warning-500";
+      icon = <span className="material-symbols-outlined">error</span>;
       break;
     }
     default: {
-      mainColor = "text-primary-500";
-      icon = <span className="material-symbols-outlined">info</span>;
+      mainTextColor = "text-primary-500";
+      mainBgColor = "bg-primary-500";
+      icon = (
+        <span className="material-symbols-outlined">circle_notifications</span>
+      );
     }
   }
-
-  const notice = RNotice({
-    title,
-    desc,
-    mainColor,
-    subColor,
-    close: closable
-      ? () => {
-          nEventMgr.onRemove.forEach((cb) => cb(notice));
+  if (closable) {
+    const n = (
+      <RNotice
+        title={title}
+        desc={desc}
+        mainTextColor={mainTextColor}
+        mainBgColor={mainBgColor}
+        subColor={subColor}
+        progress={true}
+        icon={icon}
+        existMS={existsMS}
+        close={
+          closable
+            ? () => {
+                nEventMgr.onRemove.forEach((cb) => cb(n));
+              }
+            : undefined
         }
-      : undefined,
-  });
-  customPush(notice, { existsMS });
+      />
+    );
+    customPush(n, { existsMS });
+  } else {
+    const n = (
+      <RNotice
+        title={title}
+        desc={desc}
+        mainTextColor={mainTextColor}
+        mainBgColor={mainBgColor}
+        subColor={subColor}
+        progress={true}
+        icon={icon}
+        existMS={existsMS}
+      />
+    );
+    customPush(n, { existsMS });
+  }
 };
 
 interface NotificationsEventManager {
@@ -136,7 +166,6 @@ export const Notifications = (props: NotificationConfig) => {
       setNotices((val) => val.filter((n) => n.key !== currentId));
     }, existsMS);
   };
-
   const removeCallback = (notice: ReactNode) => {
     setNotices((val) => val.filter((n) => n.value !== notice));
   };
@@ -211,7 +240,7 @@ export const Notifications = (props: NotificationConfig) => {
                   });
                 }}
               >
-                {notice.value}
+                <div>{notice.value}</div>
               </Flipped>
             );
           })}
@@ -219,4 +248,4 @@ export const Notifications = (props: NotificationConfig) => {
       </Flipper>
     </div>
   );
-};;;;;;
+};

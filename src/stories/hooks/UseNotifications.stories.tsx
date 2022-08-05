@@ -9,15 +9,19 @@ export default {
 } as ComponentMeta<typeof RBtn>;
 
 const Template: ComponentStory<typeof RBtn> = () => {
+  const idx = useRef(0);
   return (
     <>
       <RBtn
         onClick={() => {
+          const type = ["success", "info", "warning", "danger"][
+            idx.current++ % 4
+          ] as "success" | "info" | "warning" | "danger";
           push({
             title: "This is the title",
             desc: "This is the description",
-            type: "success",
-            existsMS: 300000,
+            type: type,
+            existsMS: 5000,
           });
         }}
       >
