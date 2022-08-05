@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { RTemp } from ".";
+import { RTemp } from "../../components/RTemp";
 export default {
   title: "Example/RTemp",
   component: RTemp,

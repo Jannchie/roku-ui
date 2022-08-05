@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { RNotice } from "./RNotice";
+import { RNotice } from "../../components/RNotice/RNotice";
 export default {
   title: "Example/RNotice",
   component: RNotice,

@@ -33,14 +33,14 @@ export function RNotice({
     textColor,
     wrapperClass
   );
-  const descCls = classNames("r-notice-desc", subColor, descClass);
-  const titleCls = classNames("r-notice-title", mainColor, titleClass);
+  const descCls = classNames("r-notice-desc truncate", subColor, descClass);
+  const titleCls = classNames("r-notice-title truncate", mainColor, titleClass);
   const iconCls = classNames("r-notice-icon", mainColor);
   return (
     <div className={wrapperCls}>
       <div className="flex">
         <div className={iconCls}>{icon}</div>
-        <div>
+        <div className="truncate">
           <div className={titleCls}>{title}</div>
           <div className={descCls}>{desc}</div>
         </div>

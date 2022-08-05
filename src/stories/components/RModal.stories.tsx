@@ -1,8 +1,8 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
-import { RModal } from ".";
-import { RBtn } from "../RBtn";
-import { RCard } from "../RCard";
+import { RModal } from "../../components/RModal";
+import { RBtn } from "../../components/RBtn";
+import { RCard } from "../../components/RCard";
 export default {
   title: "Example/RModal",
   component: RModal,

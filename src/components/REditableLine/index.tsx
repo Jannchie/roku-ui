@@ -1,10 +1,10 @@
 import "./REditableLine.css";
 import classnames from "classnames";
-import { FC, useState, Fragment, useRef, ReactNode } from "react";
-import { RTextField } from "../RTextField";
+import { FC, useState, useRef, ReactNode } from "react";
 import { RBtn } from "../RBtn";
 import { Transition } from "@headlessui/react";
-import { FadeTransition } from "../Transitions";
+import { FadeTransition } from "../../Transitions";
+import { RTextField } from "../RTextField";
 export const REditableLine: FC<{
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;

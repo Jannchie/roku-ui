@@ -1,8 +1,7 @@
 import "./RModal.css";
 import { FC, ReactNode } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { FadeTransition } from "../Transitions";
-import { ScaleTransition } from "../Transitions/ScaleTransition";
+import { FadeTransition, ScaleTransition } from "../..";
 export const RModal: FC<{
   children?: ReactNode;
   show?: boolean;

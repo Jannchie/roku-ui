@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { RCombobox } from ".";
+import { RCombobox } from "../../components/RCombobox";
 export default {
   title: "Example/RCombobox",
   component: RCombobox,

@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
-import { REditableLine } from ".";
-import { RBtn } from "../RBtn";
+import { REditableLine } from "../../components/REditableLine";
 export default {
   title: "Example/REditableLine",
   component: REditableLine,

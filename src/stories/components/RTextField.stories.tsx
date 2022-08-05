@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
-import { RTextField } from ".";
+import { RTextField } from "../..";
 export default {
   title: "Example/RTextField",
   component: RTextField,

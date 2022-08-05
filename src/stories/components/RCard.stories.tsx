@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { RCard } from ".";
-import { RBtn } from "../RBtn";
+import { RCard } from "../../components/RCard";
+import { RBtn } from "../../components/RBtn";
 export default {
   title: "Example/RCard",
   component: RCard,
