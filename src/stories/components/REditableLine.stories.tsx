@@ -10,7 +10,12 @@ const Template: ComponentStory<typeof REditableLine> = (args) => {
   const [value, setValue] = useState(args.value || "");
   return (
     <div className="flex gap-1">
-      <REditableLine {...args} value={value} setValue={setValue} />
+      <REditableLine
+        {...args}
+        value={value}
+        setValue={setValue}
+        onOK={console.log}
+      />
     </div>
   );
 };

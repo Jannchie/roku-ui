@@ -6,3 +6,4 @@ export { RTextField } from "./components/RTextField";
 export { RCard } from "./components/RCard";
 export { RModal } from "./components/RModal";
 export { RNotice } from "./components/RNotice";
+export { RCombobox } from "./components/RCombobox";
