@@ -27,7 +27,6 @@
   },
   "include": [
     "src",
-    "src/RCombobox/.stories.tsx"
   ],
   "references": [
     {
