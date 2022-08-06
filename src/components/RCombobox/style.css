@@ -1,0 +1,17 @@
+.r-combobox-options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md;
+  @apply py-1 text-base shadow-lg focus:outline-none sm:text-sm;
+  @apply dark:bg-zinc-800;
+}
+
+.r-combobox-btn {
+  @apply absolute inset-y-0 right-0 flex items-center pr-2;
+}
+
+.r-combobox-not-found {
+  @apply relative cursor-default select-none py-2 px-4 text-zinc-700 dark:text-zinc-400;
+}
+
+.r-combobox {
+  @apply relative h-min;
+}
