@@ -95,6 +95,7 @@ export const push = (config: PushConfig & NoticeConfig) => {
         mainBgColor={mainBgColor}
         subColor={subColor}
         progress={true}
+        outlined={true}
         icon={icon}
         existMS={existsMS}
         close={
@@ -117,6 +118,7 @@ export const push = (config: PushConfig & NoticeConfig) => {
         subColor={subColor}
         progress={true}
         icon={icon}
+        outlined={true}
         existMS={existsMS}
       />
     );

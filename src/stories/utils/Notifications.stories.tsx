@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useRef } from "react";
-import { Notifications, customPush, push } from "../../hooks/UseNotifications";
+import { Notifications, push } from "../../utils/Notifications";
 import { RNotice } from "../../components/RNotice";
 import { RBtn } from "../..";
 export default {
-  title: "Hook/UseNotifications",
+  title: "Utils/Notifications",
   component: RBtn,
 } as ComponentMeta<typeof RBtn>;
 

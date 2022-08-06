@@ -40,6 +40,7 @@ export function RNotice({
 }: RNoticeConfig) {
   const wrapperCls = classNames(
     "r-notice-wrapper",
+    "overflow-hidden",
     { dense: dense },
     { border: outlined },
     textColor,
