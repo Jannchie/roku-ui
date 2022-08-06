@@ -1,4 +1,5 @@
 import "./index.css";
+export { colorClass } from "./utils/colors";
 export { FadeTransition, ScaleTransition } from "./Transitions";
 export { RBtn } from "./components/RBtn";
 export { REditableLine } from "./components/REditableLine";
@@ -7,3 +8,4 @@ export { RCard } from "./components/RCard";
 export { RModal } from "./components/RModal";
 export { RNotice } from "./components/RNotice";
 export { RCombobox } from "./components/RCombobox";
+export { RChip } from "./components/RChip";
