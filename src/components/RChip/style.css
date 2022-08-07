@@ -1,5 +1,5 @@
 .r-chip {
-  @apply bg-opacity-25 dark:bg-opacity-25 rounded-full inline-flex transition items-stretch;
+  @apply rounded-full inline-flex transition items-stretch;
 }
 
 .r-chip-xs {
@@ -20,5 +20,5 @@
 .r-chip-clickable {
   cursor: pointer;
   @apply active:bg-opacity-100 dark:active:bg-opacity-100 hover:bg-opacity-50 dark:hover:bg-opacity-50;
-  @apply active:text-white active:dark:text-zinc-800;
+  @apply active:dark:text-zinc-800;
 }

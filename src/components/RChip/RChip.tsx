@@ -8,7 +8,7 @@ type RChipProps = {
   children?: ReactNode;
   color?: Colors;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
-  outlined?: boolean;
+  border?: boolean;
   onClick?: (e: MouseEvent<HTMLSpanElement>) => void;
   leading?: ReactNode;
 };
@@ -17,7 +17,7 @@ export function RChip({
   className,
   children,
   size = "sm",
-  outlined = false,
+  border = false,
   onClick,
   leading,
 }: RChipProps) {
@@ -25,18 +25,18 @@ export function RChip({
     color = "primary";
   }
   const colorCls = colorClass({
-    color,
-    bg: true,
-    text: true,
-    outlined,
-    hoverable: onClick !== undefined,
+    bg: color,
+    text: color,
+    border: border ? color : undefined,
+    hoverable: onClick !== undefined ? color : undefined,
   });
   const chipClass = classNames(
     "r-chip",
     { "r-chip-clickable": onClick !== undefined },
     `r-chip-${size}`,
     className,
-    colorCls
+    colorCls,
+    "bg-opacity-25 dark:bg-opacity-25"
   );
   return (
     <span className={chipClass} onClick={onClick}>
