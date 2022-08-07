@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { RChip } from "../..";
 import { RChipGroup } from "../../components/RChipGroup";
-import { Colors } from "../../utils/colors";
 export default {
   title: "Example/RChipGroup",
   component: RChipGroup,

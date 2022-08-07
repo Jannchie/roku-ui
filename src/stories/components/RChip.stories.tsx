@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { RChip } from "../..";
 import { Colors } from "../../utils/colors";
+import { RChip } from "../..";
 export default {
   title: "Example/RChip",
   component: RChip,
@@ -13,12 +13,14 @@ const Template: ComponentStory<typeof RChip> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
   children: "Default Chip",
+  onClick: undefined,
 };
 
 export const WithLeading = Template.bind({});
 WithLeading.args = {
   children: "Chip With Leading",
   leading: <span className="mr-1">●</span>,
+  onClick: undefined,
 };
 
 export const WithAction = Template.bind({});
