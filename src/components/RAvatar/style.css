@@ -1,0 +1,24 @@
+.r-avatar {
+  @apply rounded-full overflow-clip;
+}
+
+.r-avatar-xs {
+  @apply w-4 h-4;
+}
+.r-avatar-sm {
+  @apply w-8 h-8;
+}
+.r-avatar-md {
+  @apply w-12 h-12;
+}
+.r-avatar-lg {
+  @apply w-16 h-16;
+}
+.r-avatar-xl {
+  @apply w-20 h-20;
+}
+.r-avatar-clickable {
+  cursor: pointer;
+  @apply active:bg-opacity-100 dark:active:bg-opacity-100 hover:bg-opacity-50 dark:hover:bg-opacity-50;
+  @apply active:dark:text-zinc-800;
+}
