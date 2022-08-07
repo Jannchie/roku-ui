@@ -1,2 +1,2 @@
-export { FadeTransition } from "./FadeTransition";
-export { ScaleTransition } from "./ScaleTransition";
+export { FadeTransitionChild } from "./FadeTransition";
+export { ScaleTransitionChild, ScaleTransition } from "./ScaleTransition";

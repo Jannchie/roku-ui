@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Transition } from "@headlessui/react";
 
-export function FadeTransition({
+export function FadeTransitionChild({
   children,
   appear = false,
 }: {
