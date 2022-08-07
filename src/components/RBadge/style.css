@@ -1,0 +1,31 @@
+.r-badge-point {
+  @apply absolute rounded-full;
+  @apply w-4 h-4;
+}
+
+.r-badge-wrapper {
+  @apply flex;
+}
+
+.r-badge-point-dot {
+  @apply w-2 h-2;
+}
+
+.r-badge-point-top-left {
+  @apply top-0 left-0;
+  transform: translate(-50%, -50%) !important;
+}
+
+.r-badge-point-top-right {
+  @apply top-0 right-0;
+  transform: translate(50%, -50%) !important;
+}
+
+.r-badge-point-bottom-left {
+  @apply bottom-0 left-0;
+  transform: translate(-50%, 0%) !important;
+}
+.r-badge-point-bottom-right {
+  @apply bottom-0 right-0;
+  transform: translate(50%, 0%) !important;
+}
