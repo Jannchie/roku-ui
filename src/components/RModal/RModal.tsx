@@ -1,6 +1,6 @@
 import "./RModal.css";
 import { Dialog, Transition } from "@headlessui/react";
-import { FadeTransition, ScaleTransition } from "../..";
+import { FadeTransitionChild, ScaleTransitionChild } from "../..";
 import { RModalProps } from "./RModalProps";
 
 export function RModal({
@@ -18,15 +18,15 @@ export function RModal({
         }}
       >
         {background && (
-          <FadeTransition>
+          <FadeTransitionChild>
             <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </FadeTransition>
+          </FadeTransitionChild>
         )}
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
-            <ScaleTransition>
+            <ScaleTransitionChild>
               <Dialog.Panel>{children}</Dialog.Panel>
-            </ScaleTransition>
+            </ScaleTransitionChild>
           </div>
         </div>
       </Dialog>

@@ -2,7 +2,7 @@ import "./REditableLine.css";
 import classnames from "classnames";
 import { useState, useRef } from "react";
 import { Transition } from "@headlessui/react";
-import { FadeTransition } from "../../Transitions";
+import { FadeTransitionChild } from "../../Transitions";
 import { RTextField } from "../RTextField";
 import { RBtn } from "../..";
 import { REditableLineProps } from "./REditableLineProps";
@@ -39,7 +39,7 @@ export function REditableLine({
         }}
       />
       <Transition show={editing}>
-        <FadeTransition>
+        <FadeTransitionChild>
           <div className="flex gap-2">
             <RBtn
               className="r-editable-line-ok-btn"
@@ -63,7 +63,7 @@ export function REditableLine({
               {cancelBtnContent}
             </RBtn>
           </div>
-        </FadeTransition>
+        </FadeTransitionChild>
       </Transition>
     </div>
   );
