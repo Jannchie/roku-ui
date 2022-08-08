@@ -86,44 +86,27 @@ export const push = (config: PushConfig & NoticeConfig) => {
       );
     }
   }
-  if (closable) {
-    const n = (
-      <RNotice
-        title={title}
-        desc={desc}
-        mainTextColor={mainTextColor}
-        mainBgColor={mainBgColor}
-        subColor={subColor}
-        progress={true}
-        outlined={true}
-        icon={icon}
-        existMS={existsMS}
-        close={
-          closable
-            ? () => {
-                nEventMgr.onRemove.forEach((cb) => cb(n));
-              }
-            : undefined
-        }
-      />
-    );
-    customPush(n, { existsMS });
-  } else {
-    const n = (
-      <RNotice
-        title={title}
-        desc={desc}
-        mainTextColor={mainTextColor}
-        mainBgColor={mainBgColor}
-        subColor={subColor}
-        progress={true}
-        icon={icon}
-        outlined={true}
-        existMS={existsMS}
-      />
-    );
-    customPush(n, { existsMS });
-  }
+  const n = (
+    <RNotice
+      title={title}
+      desc={desc}
+      mainTextColor={mainTextColor}
+      mainBgColor={mainBgColor}
+      subColor={subColor}
+      progress={true}
+      outlined={true}
+      icon={icon}
+      existMS={existsMS}
+      close={
+        closable
+          ? () => {
+              nEventMgr.onRemove.forEach((cb) => cb(n));
+            }
+          : undefined
+      }
+    />
+  );
+  customPush(n, { existsMS });
 };
 
 interface NotificationsEventManager {
