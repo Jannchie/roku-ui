@@ -91,7 +91,12 @@ export function RNotice({
             </div>
           </div>
           {close && (
-            <RBtn icon onClick={close} className="!rounded-full">
+            <RBtn
+              icon
+              text
+              onClick={close}
+              className="!rounded-full dark:!text-zinc-400 hover:!bg-opacity-10 hover:!text-zinc-900 dark:hover:!text-zinc-200"
+            >
               <span className="material-symbols-outlined">close</span>
             </RBtn>
           )}
