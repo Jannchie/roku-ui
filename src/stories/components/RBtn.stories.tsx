@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { useState } from "react";
 import { RBtn } from "../..";
 export default {
   title: "Example/RBtn",
@@ -8,9 +9,9 @@ export default {
 const Template: ComponentStory<typeof RBtn> = (args) => <RBtn {...args} />;
 const SizeTemplate: ComponentStory<typeof RBtn> = (args) => (
   <div className="flex gap-2 items-center">
-    <RBtn label="Small Button" size="small" />
-    <RBtn label="Medium Button" size="medium" />
-    <RBtn label="Large Button" size="large" />
+    <RBtn label="Small Button" size="sm" />
+    <RBtn label="Medium Button" size="md" />
+    <RBtn label="Large Button" size="lg" />
   </div>
 );
 
@@ -24,18 +25,18 @@ const AllTemplate: ComponentStory<typeof RBtn> = (args) => (
       <RBtn label="Default" />
     </div>
     <div className="flex gap-2">
-      <RBtn outline label="Primary" color="primary" />
-      <RBtn outline label="Success" color="success" />
-      <RBtn outline label="Danger" color="danger" />
-      <RBtn outline label="Warning" color="warning" />
-      <RBtn outline label="Default" />
+      <RBtn text label="Primary" color="primary" />
+      <RBtn text label="Success" color="success" />
+      <RBtn text label="Danger" color="danger" />
+      <RBtn text label="Warning" color="warning" />
+      <RBtn text label="Default" />
     </div>
     <div className="flex gap-2">
-      <RBtn outline dash label="Primary" color="primary" />
-      <RBtn outline dash label="Success" color="success" />
-      <RBtn outline dash label="Danger" color="danger" />
-      <RBtn outline dash label="Warning" color="warning" />
-      <RBtn outline dash label="Default" />
+      <RBtn text dash label="Primary" color="primary" />
+      <RBtn text dash label="Success" color="success" />
+      <RBtn text dash label="Danger" color="danger" />
+      <RBtn text dash label="Warning" color="warning" />
+      <RBtn text dash label="Default" />
     </div>
     <div className="flex gap-2">
       <RBtn disabled outline dash label="Primary" color="primary" />
@@ -62,9 +63,45 @@ Default.args = {
   },
 };
 export const Size = SizeTemplate.bind({});
-export const Loading = Template.bind({});
-Loading.args = {
-  loading: true,
-  label: "Loading Button",
+
+const LoadingTemplate = () => {
+  const [loading, setLoading] = useState(true);
+  return (
+    <div className="flex flex-col gap-2">
+      <RBtn
+        loading={loading}
+        color="fuchsia"
+        size="sm"
+        onClick={() => {
+          setLoading((val) => !val);
+        }}
+      >
+        Loading Button Small
+      </RBtn>
+      <RBtn
+        loading={loading}
+        color="pink"
+        size="md"
+        onClick={() => {
+          setLoading((val) => !val);
+        }}
+      >
+        Loading Button Medium
+      </RBtn>
+      <RBtn
+        loading={loading}
+        color="red"
+        size="lg"
+        leadingIcon={<span className="material-symbols-outlined">error</span>}
+        onClick={() => {
+          setLoading((val) => !val);
+        }}
+      >
+        Loading Button Large
+      </RBtn>
+    </div>
+  );
 };
+
+export const Loading = LoadingTemplate.bind({});
 export const All = AllTemplate.bind({});
