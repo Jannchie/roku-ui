@@ -1,7 +1,6 @@
 {
   "name": "roku-ui",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "types": "dist/types/index.d.ts",
   "main": "./dist/roku-ui.umd.js",
   "module": "./dist/roku-ui.mjs",
