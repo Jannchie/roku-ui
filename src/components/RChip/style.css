@@ -19,6 +19,6 @@
 }
 .r-chip-clickable {
   cursor: pointer;
-  @apply active:bg-opacity-100 dark:active:bg-opacity-100 hover:bg-opacity-50 dark:hover:bg-opacity-50;
+  @apply active:bg-opacity-100 dark:active:bg-opacity-100 hover:text-white;
   @apply active:dark:text-zinc-800;
 }

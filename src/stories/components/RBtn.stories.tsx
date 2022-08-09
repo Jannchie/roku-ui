@@ -25,11 +25,11 @@ const AllTemplate: ComponentStory<typeof RBtn> = (args) => (
       <RBtn label="Default" />
     </div>
     <div className="flex gap-2">
-      <RBtn text label="Primary" color="primary" />
-      <RBtn text label="Success" color="success" />
-      <RBtn text label="Danger" color="danger" />
-      <RBtn text label="Warning" color="warning" />
-      <RBtn text label="Default" />
+      <RBtn border label="Primary" color="primary" />
+      <RBtn border label="Success" color="success" />
+      <RBtn border label="Danger" color="danger" />
+      <RBtn border label="Warning" color="warning" />
+      <RBtn border label="Default" />
     </div>
     <div className="flex gap-2">
       <RBtn text dash label="Primary" color="primary" />
@@ -39,11 +39,11 @@ const AllTemplate: ComponentStory<typeof RBtn> = (args) => (
       <RBtn text dash label="Default" />
     </div>
     <div className="flex gap-2">
-      <RBtn disabled outline dash label="Primary" color="primary" />
-      <RBtn disabled outline dash label="Success" color="success" />
-      <RBtn disabled outline dash label="Danger" color="danger" />
-      <RBtn disabled outline dash label="Warning" color="warning" />
-      <RBtn disabled outline dash label="Default" />
+      <RBtn border text dash label="Primary" color="primary" />
+      <RBtn border text dash label="Success" color="success" />
+      <RBtn border text dash label="Danger" color="danger" />
+      <RBtn border text dash label="Warning" color="warning" />
+      <RBtn border text dash label="Default" />
     </div>
     <div className="flex gap-2">
       <RBtn disabled dash label="Primary" color="primary" />
@@ -98,6 +98,17 @@ const LoadingTemplate = () => {
         }}
       >
         Loading Button Large
+      </RBtn>
+      <RBtn
+        loading={loading}
+        color="green"
+        icon
+        size="lg"
+        onClick={() => {
+          setLoading((val) => !val);
+        }}
+      >
+        <span className="material-symbols-outlined">check_circle</span>
       </RBtn>
     </div>
   );

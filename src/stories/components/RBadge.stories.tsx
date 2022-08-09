@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof RBadge> = (args) => {
       show={show}
       position={args.position}
       color={args.color}
-      className="outline dark:outline-zinc-900 outline-white"
+      className="outline dark:!outline-zinc-900 !outline-white"
     >
       <RChip onClick={() => setShow((val) => !val)}>Click Me</RChip>
     </RBadge>

@@ -12,3 +12,4 @@ export { RCombobox } from "./components/RCombobox";
 export { RChip } from "./components/RChip";
 export { RBadge } from "./components/RBadge";
 export { RAvatar } from "./components/RAvatar";
+export { RTab } from "./components/RTab";

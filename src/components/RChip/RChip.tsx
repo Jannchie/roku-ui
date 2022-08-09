@@ -2,7 +2,6 @@ import "./style.css";
 import { MouseEvent, ReactNode } from "react";
 import classNames from "classnames";
 import { colorClass, Colors } from "../../utils/colors";
-import { RBtn } from "../RBtn";
 type RChipProps = {
   className?: string;
   children?: ReactNode;

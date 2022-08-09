@@ -3,11 +3,15 @@
   @apply h-fit transition-all;
   @apply text-xs border;
   @apply disabled:grayscale disabled:contrast-50;
-  @apply hover:text-white;
 }
 
 .r-btn.r-btn-filled {
+  @apply hover:text-white;
   @apply text-white dark:text-white;
+}
+
+.r-btn.r-btn-text {
+  @apply !bg-opacity-5 active:!bg-opacity-20;
 }
 
 .r-btn.r-btn-outlined {

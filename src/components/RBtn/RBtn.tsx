@@ -11,6 +11,7 @@ export type ButtonProps = {
   label?: string;
   size?: "sm" | "md" | "lg";
   style?: React.CSSProperties;
+  rounded?: boolean;
   color?: Colors;
   filled?: boolean;
   border?: boolean;
@@ -34,8 +35,9 @@ export function RBtn({
   dash = false,
   loading = false,
   disabled = false,
-  border = true,
+  border = false,
   outline = false,
+  rounded = false,
   filled = true,
   text = false,
   style,
@@ -59,28 +61,17 @@ export function RBtn({
     { "r-btn-dash": dash },
     { "r-btn-outlined": outline },
     { "r-btn-filled": filled && !text },
+    { "r-btn-text": text },
     className,
     colorCls
   );
   const body = children ? children : label;
-  const loadingEl = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (loadingEl.current) {
-      setTimeout(() => {
-        if (loadingEl.current) {
-          if (loading) {
-            loadingEl.current.classList.remove("w-0");
-            loadingEl.current.classList.add("mr-2", "w-10");
-          }
-        }
-      });
-    }
-  }, [loading]);
+
   const loadingFinalClass = classNames("leading-[0] opacity-100 scale-100", {
     "w-4": size === "sm" || size === "md",
-    "mr-1": size === "sm",
-    "mr-2": size === "md",
-    "w-6 mr-2": size === "lg",
+    "mr-1": size === "sm" && !icon,
+    "mr-2": (size === "md" || size === "lg") && !icon,
+    "w-6": size === "lg",
   });
   if (icon) {
     return (

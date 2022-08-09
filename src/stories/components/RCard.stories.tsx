@@ -37,9 +37,7 @@ Dense.args = {
   title: "Card Title",
   subtitle: "Card Subtitle Text",
   body: "Here is the body of the card, which may contain some rather long text. Therefore the example text is also longer.",
-  actions: [
-    <RBtn key="ok" color="primary" size="small" label="OK, I Got it!" />,
-  ],
+  actions: [<RBtn key="ok" color="primary" size="sm" label="OK, I Got it!" />],
   dense: true,
   className: "w-96",
 };

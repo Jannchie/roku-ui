@@ -1,6 +1,12 @@
 import classnames from "classnames";
 
-export function Loading({}: {}) {
+export function Loading({
+  mainColor,
+  subColor,
+}: {
+  mainColor?: string;
+  subColor?: string;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,11 +14,12 @@ export function Loading({}: {}) {
       preserveAspectRatio="xMidYMid"
     >
       <circle
+        className={mainColor}
         cx="50"
         cy="50"
         r="32"
         strokeWidth="8"
-        stroke="rgba(255, 255, 255, 0.25)"
+        stroke="rgba(255, 255, 255, 0.5)"
         strokeDasharray="50.26548245743669 50.26548245743669"
         fill="none"
         strokeLinecap="round"
@@ -27,11 +34,12 @@ export function Loading({}: {}) {
         ></animateTransform>
       </circle>
       <circle
+        className={subColor}
         cx="50"
         cy="50"
         r="23"
         strokeWidth="8"
-        stroke="rgba(255, 255, 255, 0.50)"
+        stroke="rgba(255, 255, 255, 0.75)"
         strokeDasharray="36.12831551628262 36.12831551628262"
         strokeDashoffset="36.12831551628262"
         fill="none"
