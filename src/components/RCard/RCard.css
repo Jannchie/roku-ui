@@ -1,5 +1,5 @@
 .r-card {
-  @apply flex flex-col gap-2 rounded-2xl border;
+  @apply flex flex-col gap-2 rounded border;
   @apply text-zinc-800 bg-zinc-50;
   @apply dark:text-zinc-200 dark:bg-zinc-900 dark:border-zinc-800;
   @apply dark:divide-zinc-800;
@@ -10,7 +10,7 @@
 }
 
 .r-card-dense {
-  @apply gap-1 rounded-2xl;
+  @apply gap-1 rounded;
 }
 
 .r-card-title {

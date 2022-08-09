@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useRef } from "react";
-import { Notifications, push } from "../../utils/Notifications";
-import { RNotice } from "../../components/RNotice";
+import { RNotifications, pushNotice } from "../..";
 import { RBtn } from "../..";
 export default {
   title: "Utils/Notifications",
@@ -17,7 +16,7 @@ const Template: ComponentStory<typeof RBtn> = () => {
           const type = ["success", "info", "warning", "danger"][
             idx.current++ % 4
           ] as "success" | "info" | "warning" | "danger";
-          push({
+          pushNotice({
             title: "This is the title",
             desc: "This is the description",
             type: type,
@@ -27,7 +26,7 @@ const Template: ComponentStory<typeof RBtn> = () => {
       >
         Show Notification
       </RBtn>
-      <Notifications className="mt-2 w-96" />
+      <RNotifications className="mt-2 w-96" />
     </>
   );
 };

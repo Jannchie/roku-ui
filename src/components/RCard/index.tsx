@@ -1,7 +1,7 @@
 import "./RCard.css";
 import classnames from "classnames";
 import { FC, ReactNode } from "react";
-export const RCard: FC<{
+type RCardProps = {
   title?: ReactNode;
   subtitle?: ReactNode;
   body?: ReactNode;
@@ -11,7 +11,8 @@ export const RCard: FC<{
   shadow?: boolean;
   divider?: boolean;
   className?: string;
-}> = ({
+};
+export function RCard({
   className,
   title,
   subtitle,
@@ -20,8 +21,8 @@ export const RCard: FC<{
   children,
   dense,
   divider,
-  shadow: shadow = true,
-}) => {
+  shadow = false,
+}: RCardProps) {
   const cardClass = classnames(
     "r-card",
     {
@@ -47,4 +48,4 @@ export const RCard: FC<{
       </div>
     );
   }
-};
+}

@@ -50,7 +50,7 @@ export const customPush = (notice: ReactNode, config?: PushConfig): void => {
   nEventMgr.onPush.forEach((cb) => cb(notice, config));
 };
 let currentID = 1;
-export const push = (config: PushConfig & NoticeConfig) => {
+export const pushNotice = (config: PushConfig & NoticeConfig) => {
   let { title, desc, type, existsMS, progressBar, closable } = config;
   if (!existsMS) existsMS = 3000;
   if (!progressBar) progressBar = false;
@@ -119,7 +119,7 @@ const nEventMgr: NotificationsEventManager = {
   onRemove: [],
 };
 
-export const Notifications = (props: NotificationConfig) => {
+export const RNotifications = (props: NotificationConfig) => {
   let align = "top";
   if (props.bottom) {
     align = "bottom";

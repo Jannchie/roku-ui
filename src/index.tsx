@@ -1,6 +1,5 @@
 import "./index.css";
 export { colorClass } from "./utils/colors";
-export { FadeTransitionChild, ScaleTransitionChild } from "./Transitions";
 export { RBtn } from "./components/RBtn";
 export { RBtnGroup } from "./components/RBtnGroup";
 export { REditableLine } from "./components/REditableLine";
@@ -12,4 +11,12 @@ export { RCombobox } from "./components/RCombobox";
 export { RChip } from "./components/RChip";
 export { RBadge } from "./components/RBadge";
 export { RAvatar } from "./components/RAvatar";
-export { RTab } from "./components/RTab";
+export { RTabs } from "./components/RTab";
+
+export { RNotifications, pushNotice, customPush } from "./utils/Notifications";
+export {
+  FadeTransitionChild,
+  ScaleTransitionChild,
+  ScaleTransition,
+} from "./Transitions";
+export { Transition } from "@headlessui/react";

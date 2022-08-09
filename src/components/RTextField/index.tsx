@@ -1,21 +1,21 @@
 import "./RTextField.css";
 import classnames from "classnames";
 import { ChangeEvent, FC, ReactNode, useEffect, useState } from "react";
-export const RTextField: FC<
-  {
-    className?: string;
-    prefix?: ReactNode;
-    suffix?: ReactNode;
-    placeholder?: string;
-    borderType?: "dash" | "solid" | "dot";
-    border?: boolean;
-    value: string;
-    setValue?: React.Dispatch<React.SetStateAction<string>>;
-    type?: "text" | "password" | "email" | "number" | "tel" | "url";
-    textAlign?: "left" | "center" | "right";
-    format?: (value: string) => string;
-  } & React.InputHTMLAttributes<HTMLInputElement>
-> = ({
+type RTextFieldProps = {
+  className?: string;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  placeholder?: string;
+  borderType?: "dash" | "solid" | "dot";
+  border?: boolean;
+  value: string;
+  setValue?: React.Dispatch<React.SetStateAction<string>>;
+  type?: "text" | "password" | "email" | "number" | "tel" | "url";
+  textAlign?: "left" | "center" | "right";
+  format?: (value: string) => string;
+};
+
+export function RTextField({
   className,
   prefix,
   suffix,
@@ -28,7 +28,7 @@ export const RTextField: FC<
   setValue,
   format = (value) => value,
   ...inputProps
-}) => {
+}: RTextFieldProps & React.InputHTMLAttributes<HTMLInputElement>) {
   const onChange = inputProps.onChange
     ? inputProps.onChange
     : setValue
@@ -67,4 +67,4 @@ export const RTextField: FC<
       {suffix && <div className="r-text-field-suffix">{suffix}</div>}
     </span>
   );
-};
+}

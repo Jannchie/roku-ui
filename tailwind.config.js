@@ -13,7 +13,12 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant("child", "& > *");
+      addVariant("child-hover", "& > *:hover");
+    },
+  ],
   variants: {
     extend: {
       backdropBrightness: ["hover", "focus"],

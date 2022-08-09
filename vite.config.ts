@@ -2,9 +2,10 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
+import { visualizer } from "rollup-plugin-visualizer";
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), dts({ outputDir: "dist/types" })],
+  plugins: [react(), dts({ outputDir: "dist/types" }), visualizer()],
   build: {
     target: "modules",
     lib: {

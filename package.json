@@ -8,7 +8,8 @@
     ".": {
       "require": "./dist/roku-ui.umd.js",
       "import": "./dist/roku-ui.mjs"
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "files": [
     "dist"
@@ -35,13 +36,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-interactions": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/addons": "^6.5.9",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/addons": "^6.5.10",
     "@storybook/builder-vite": "^0.2.2",
-    "@storybook/react": "^6.5.9",
+    "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
@@ -51,6 +52,7 @@
     "postcss": "^8.4.14",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^18.2.0",
+    "rollup-plugin-visualizer": "^5.7.1",
     "storybook-dark-mode": "^1.1.0",
     "tailwindcss": "^3.1.6",
     "typescript": "^4.6.4",

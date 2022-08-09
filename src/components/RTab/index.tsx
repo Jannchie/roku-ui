@@ -1,1 +1,0 @@
-export { RTab } from "./RTab";
