@@ -1,0 +1,7 @@
+.r-tab-container {
+  @apply flex;
+}
+
+.r-tab-item {
+  @apply dark:text-white py-1 px-2 rounded-none border-transparent;
+}
