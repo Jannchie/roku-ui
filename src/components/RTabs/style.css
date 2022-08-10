@@ -1,3 +1,7 @@
 .r-tab-list {
   @apply text-sm child:transition-all dark:text-white child:rounded child:px-2 child:py-1 child:!outline-none;
 }
+
+.r-tab-indicator {
+  @apply transition-all absolute h-1 rounded-md;
+}
