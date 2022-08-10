@@ -11,7 +11,7 @@ export { RCombobox } from "./components/RCombobox";
 export { RChip } from "./components/RChip";
 export { RBadge } from "./components/RBadge";
 export { RAvatar } from "./components/RAvatar";
-export { RTabs } from "./components/RTab";
+export { RTabs } from "./components/RTabs";
 
 export { RNotifications, pushNotice, customPush } from "./utils/Notifications";
 export {

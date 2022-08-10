@@ -1,43 +1,27 @@
-// import "./style.css";
+import "./style.css";
 import { ReactNode, useEffect, useRef, useState } from "react";
+import { colorClass, Colors } from "../../utils/colors";
+import { Tab, Transition } from "@headlessui/react";
 import classNames from "classnames";
-import { colorClass } from "../../utils/colors";
-import { RBtn } from "../RBtn";
-import { Tab } from "@headlessui/react";
-type RTabContainerProps = {
-  className?: string;
-  children?: ReactNode;
-  activeIndex?: number;
-};
-type RTabItemProps = {
-  className?: string;
-  children?: ReactNode;
-  onClick?: () => void;
-};
-function Container({ className, children, activeIndex }: RTabContainerProps) {
-  return (
-    <div className={classNames("r-tab-container", className)}>{children}</div>
-  );
-}
-
-function Item({ className, children, onClick }: RTabItemProps) {
-  return <RBtn className="r-tab-item">{children}</RBtn>;
-}
 
 export function RTabs({
   data,
+  selectedIndex,
+  onChange,
   type = "indicator",
+  color = "primary",
   className,
 }: {
   data: {
     key: ReactNode;
     value: ReactNode;
-    selected?: boolean;
   }[];
+  selectedIndex: number;
+  onChange: (index: number) => void;
   className?: string;
   type?: "fill" | "indicator";
+  color?: Colors;
 }) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const tabList = useRef<HTMLDivElement>(null);
   const [indicatorStyle, setIndicatorStyle] = useState<{
     width: number;
@@ -54,21 +38,24 @@ export function RTabs({
       }));
     }
   }, [selectedIndex]);
+  const indicatorColor = colorClass({
+    bg: color,
+  });
+  const textColor = colorClass({
+    text: color,
+  });
   return (
     <div className={className}>
-      <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List
-          ref={tabList}
-          className="r-tab-list text-sm child:transition-all dark:text-white child:rounded child:px-2 child:py-1 child:outline-none"
-        >
+      <Tab.Group selectedIndex={selectedIndex} onChange={onChange}>
+        <Tab.List ref={tabList} className="r-tab-list">
           {data.map((d, i) => (
             <Tab
               key={i}
               className={({ selected }) =>
                 selected
                   ? type === "indicator"
-                    ? "text-primary-500"
-                    : "bg-primary-500 text-white"
+                    ? classNames(textColor)
+                    : classNames("text-white", indicatorColor)
                   : ""
               }
               children={d.key}
@@ -77,21 +64,30 @@ export function RTabs({
         </Tab.List>
         {type === "indicator" && (
           <div
-            className="transition-all absolute h-1 rounded-md bg-primary-500"
+            className={classNames(
+              "transition-all absolute h-1 rounded-md bg-primary-500",
+              indicatorColor
+            )}
             style={indicatorStyle}
           ></div>
         )}
         <Tab.Panels className="r-tab-panels dark:text-white mt-2">
           {data.map((d, i) => (
-            <Tab.Panel key={i} children={d.value}></Tab.Panel>
+            <Tab.Panel key={i}>
+              <Transition
+                key={i}
+                show={i === selectedIndex}
+                appear
+                enter="transition-all ease-out duration-300"
+                enterFrom="opacity-0 mt-4"
+                enterTo="opacity-100 mt-0"
+              >
+                {d.value}
+              </Transition>
+            </Tab.Panel>
           ))}
         </Tab.Panels>
       </Tab.Group>
     </div>
   );
 }
-
-export const RTab = {
-  Container,
-  Item,
-};

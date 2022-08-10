@@ -53,6 +53,7 @@ export function RBtn({
     hoverable: color,
     border: border ? color : undefined,
     text: text ? color : undefined,
+    outline: outline ? color : undefined,
   });
   const btnClass = classnames(
     "r-btn",

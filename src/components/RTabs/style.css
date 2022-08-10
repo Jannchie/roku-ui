@@ -1,7 +1,3 @@
-.r-tab-container {
-  @apply flex;
-}
-
-.r-tab-item {
-  @apply dark:text-white py-1 px-2 rounded-none border-transparent;
+.r-tab-list {
+  @apply text-sm child:transition-all dark:text-white child:rounded child:px-2 child:py-1 child:!outline-none;
 }
