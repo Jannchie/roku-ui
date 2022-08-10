@@ -4,6 +4,7 @@ import { colorClass, Colors } from "../../utils/colors";
 import { Transition } from "@headlessui/react";
 import classNames from "classnames";
 import { TransitionMotion, spring } from "react-motion";
+import { Flipped, Flipper } from "react-flip-toolkit";
 
 function Item({ children }: { label: ReactNode; children?: ReactNode }) {
   return <>{children}</>;
@@ -54,10 +55,37 @@ function List({
       <div ref={tabList} className="r-tab-list">
         {data.map((d, i) => (
           <button
+            onKeyDown={(e) => {
+              switch (e.key) {
+                case "ArrowLeft":
+                  onChange(
+                    selectedIndex - 1 < 0 ? data.length - 1 : selectedIndex - 1
+                  );
+                  break;
+                case "ArrowRight":
+                  onChange(
+                    selectedIndex + 1 > data.length - 1 ? 0 : selectedIndex + 1
+                  );
+                  break;
+                case "ArrowUp":
+                  onChange(
+                    selectedIndex - 1 < 0 ? data.length - 1 : selectedIndex - 1
+                  );
+                  break;
+                case "ArrowDown":
+                  onChange(
+                    selectedIndex + 1 > data.length - 1 ? 0 : selectedIndex + 1
+                  );
+                  break;
+              }
+            }}
+            key={i}
+            aria-selected={selectedIndex === i}
+            tabIndex={-1}
+            role="tab"
             onClick={() => {
               onChange(i);
             }}
-            key={i}
             className={
               i === selectedIndex
                 ? type === "indicator"
@@ -106,22 +134,18 @@ export function RTabRoot(props: RTabsProps) {
         selectedIndex={selectedIndex}
         onChange={onChange}
       />
-      <div className="r-tab-panels dark:text-white mt-2 h-32">
-        {data.map((d, i) => (
-          <Transition
-            key={i}
-            show={i === selectedIndex}
-            appear
-            enter="transition-all ease-out duration-300 absolute delay-300"
-            enterFrom="opacity-0 mt-4"
-            enterTo="opacity-100 mt-0"
-            leave="transition-all ease-in duration-300 absolute"
-            leaveFrom="opacity-100 mt-0"
-            leaveTo="opacity-0 mt-4"
-          >
-            {d.value}
-          </Transition>
-        ))}
+      <div className="r-tab-panels dark:text-white mt-2">
+        <Flipper flipKey={`${selectedIndex}`}>
+          <Flipped flipId="1">
+            <div>
+              {data
+                .filter((d, i) => i === selectedIndex)
+                .map((d, i) => (
+                  <>{d.value}</>
+                ))}
+            </div>
+          </Flipped>
+        </Flipper>
       </div>
     </div>
   );
