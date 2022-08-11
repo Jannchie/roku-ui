@@ -1,23 +1,23 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useState } from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { TextField } from "../..";
+import { useState } from "react";
 export default {
-  title: "Example/TextField",
   component: TextField,
+  title: "Inputs/TextField",
 } as ComponentMeta<typeof TextField>;
 
 const Template: ComponentStory<typeof TextField> = (args) => {
   const [value, setValue] = useState(args.value || "");
   return (
     <>
-      <TextField {...args} value={value} setValue={setValue} />
+      <TextField {...args} setValue={setValue} value={value} />
     </>
   );
 };
 export const Default = Template.bind({});
 Default.args = {
-  type: "text",
   placeholder: "Placeholder",
+  type: "text",
 };
 
 export const Password = Template.bind({});
@@ -75,21 +75,21 @@ const TextAlignTemplate: ComponentStory<typeof TextField> = (args) => {
     <div className="flex gap-2">
       <TextField
         {...args}
-        value={valueLeft}
         setValue={setValueLeft}
         textAlign="left"
+        value={valueLeft}
       />
       <TextField
         {...args}
-        value={valueCenter}
         setValue={setValueCenter}
         textAlign="center"
+        value={valueCenter}
       />
       <TextField
         {...args}
-        value={valueRight}
         setValue={setValueRight}
         textAlign="right"
+        value={valueRight}
       />
     </div>
   );
@@ -112,28 +112,28 @@ const BorderTypeTemplate: ComponentStory<typeof TextField> = () => {
   return (
     <div className="flex gap-2">
       <TextField
-        className="bg-zinc-500/10"
-        value={solidValue}
         borderType="solid"
+        className="bg-zinc-500/10"
         setValue={setSolidValue}
+        value={solidValue}
       />
       <TextField
-        className="bg-zinc-500/10"
-        value={dashedValue}
         borderType="dash"
+        className="bg-zinc-500/10"
         setValue={setDashedValue}
+        value={dashedValue}
       />
       <TextField
-        className="bg-zinc-500/10"
-        value={dottedValue}
         borderType="dot"
+        className="bg-zinc-500/10"
         setValue={setDottedValue}
+        value={dottedValue}
       />
       <TextField
-        className="bg-zinc-500/10"
-        value={noneValue}
         border={false}
+        className="bg-zinc-500/10"
         setValue={setNoneValue}
+        value={noneValue}
       />
     </div>
   );
@@ -146,10 +146,10 @@ const DifferentTextSizeTemplate: ComponentStory<typeof TextField> = (args) => {
   const [value, setValue] = useState(args.value || "");
   return (
     <div className="flex gap-2">
-      <TextField value={value} className="text-sm" setValue={setValue} />
-      <TextField value={value} className="text-lg" setValue={setValue} />
-      <TextField value={value} className="text-xl" setValue={setValue} />
-      <TextField value={value} className="text-2xl" setValue={setValue} />
+      <TextField className="text-sm" setValue={setValue} value={value} />
+      <TextField className="text-lg" setValue={setValue} value={value} />
+      <TextField className="text-xl" setValue={setValue} value={value} />
+      <TextField className="text-2xl" setValue={setValue} value={value} />
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import "./Badge.css";
 import { ReactNode } from "react";
 import classNames from "classnames";
-import { colorClass, Colors } from "../..";
-import { motion, AnimatePresence } from "framer-motion";
+import { Colors, colorClass } from "../..";
+import { AnimatePresence, motion } from "framer-motion";
 
 type RBadgeProps = {
   className?: string;
@@ -41,11 +41,11 @@ export function Badge({
         <AnimatePresence>
           {show && (
             <motion.span
-              initial={{ width: 0, height: 0 }}
-              animate={{ width: 8, height: 8 }}
-              exit={{ width: 0, height: 0 }}
-              transition={{ type: "spring", damping: 8 }}
+              animate={{ height: 8, width: 8 }}
               className={badgePointCls}
+              exit={{ height: 0, width: 0 }}
+              initial={{ height: 0, width: 0 }}
+              transition={{ damping: 8, type: "spring" }}
             ></motion.span>
           )}
         </AnimatePresence>

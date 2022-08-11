@@ -96,8 +96,8 @@ export function Notice({
             <Btn
               icon
               text
-              onClick={close}
               className="!rounded-full dark:!text-zinc-400 hover:!bg-opacity-10 hover:!text-zinc-900 dark:hover:!text-zinc-200"
+              onClick={close}
             >
               <span className="material-symbols-outlined">close</span>
             </Btn>

@@ -1,9 +1,9 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Colors } from "../../utils/colors";
 import { Chip } from "../..";
 export default {
-  title: "Example/Chip",
   component: Chip,
+  title: "Display/Chip",
 } as ComponentMeta<typeof Chip>;
 
 const Template: ComponentStory<typeof Chip> = (args) => {

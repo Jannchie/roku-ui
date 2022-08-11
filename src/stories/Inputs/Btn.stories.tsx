@@ -1,9 +1,9 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useState } from "react";
 import { Btn, Colors } from "../..";
 export default {
-  title: "Example/Btn",
   component: Btn,
+  title: "Inputs/Btn",
 } as ComponentMeta<typeof Btn>;
 
 const Template: ComponentStory<typeof Btn> = (args) => <Btn {...args} />;
@@ -18,39 +18,39 @@ const SizeTemplate: ComponentStory<typeof Btn> = () => (
 const AllTemplate: ComponentStory<typeof Btn> = () => (
   <div className="flex flex-col gap-2">
     <div className="flex gap-2">
-      <Btn label="Primary" color="primary" />
-      <Btn label="Success" color="success" />
-      <Btn label="Danger" color="danger" />
-      <Btn label="Warning" color="warning" />
+      <Btn color="primary" label="Primary" />
+      <Btn color="success" label="Success" />
+      <Btn color="danger" label="Danger" />
+      <Btn color="warning" label="Warning" />
       <Btn label="Default" />
     </div>
     <div className="flex gap-2">
-      <Btn border label="Primary" color="primary" />
-      <Btn border label="Success" color="success" />
-      <Btn border label="Danger" color="danger" />
-      <Btn border label="Warning" color="warning" />
+      <Btn border color="primary" label="Primary" />
+      <Btn border color="success" label="Success" />
+      <Btn border color="danger" label="Danger" />
+      <Btn border color="warning" label="Warning" />
       <Btn border label="Default" />
     </div>
     <div className="flex gap-2">
-      <Btn text dash label="Primary" color="primary" />
-      <Btn text dash label="Success" color="success" />
-      <Btn text dash label="Danger" color="danger" />
-      <Btn text dash label="Warning" color="warning" />
-      <Btn text dash label="Default" />
+      <Btn dash text color="primary" label="Primary" />
+      <Btn dash text color="success" label="Success" />
+      <Btn dash text color="danger" label="Danger" />
+      <Btn dash text color="warning" label="Warning" />
+      <Btn dash text label="Default" />
     </div>
     <div className="flex gap-2">
-      <Btn border text dash label="Primary" color="primary" />
-      <Btn border text dash label="Success" color="success" />
-      <Btn border text dash label="Danger" color="danger" />
-      <Btn border text dash label="Warning" color="warning" />
-      <Btn border text dash label="Default" />
+      <Btn border dash text color="primary" label="Primary" />
+      <Btn border dash text color="success" label="Success" />
+      <Btn border dash text color="danger" label="Danger" />
+      <Btn border dash text color="warning" label="Warning" />
+      <Btn border dash text label="Default" />
     </div>
     <div className="flex gap-2">
-      <Btn disabled dash label="Primary" color="primary" />
-      <Btn disabled dash label="Success" color="success" />
-      <Btn disabled dash label="Danger" color="danger" />
-      <Btn disabled dash label="Warning" color="warning" />
-      <Btn disabled dash label="Default" />
+      <Btn dash disabled color="primary" label="Primary" />
+      <Btn dash disabled color="success" label="Success" />
+      <Btn dash disabled color="danger" label="Danger" />
+      <Btn dash disabled color="warning" label="Warning" />
+      <Btn dash disabled label="Default" />
     </div>
   </div>
 );
@@ -70,10 +70,10 @@ const LoadingTemplate = () => {
   return (
     <div className="flex flex-col gap-2">
       <Btn
-        loading={loading}
         color={color}
-        style={{ width: 128 }}
+        loading={loading}
         size="sm"
+        style={{ width: 128 }}
         onClick={() => {
           setColor((val) => (val === "primary" ? "success" : "primary"));
           setLoading((val) => !val);
@@ -82,8 +82,8 @@ const LoadingTemplate = () => {
         {loading ? "Loading" : "Click"}
       </Btn>
       <Btn
-        loading={loading}
         color="fuchsia"
+        loading={loading}
         size="sm"
         onClick={() => {
           setLoading((val) => !val);
@@ -92,8 +92,8 @@ const LoadingTemplate = () => {
         Loading Button Small
       </Btn>
       <Btn
-        loading={loading}
         color="pink"
+        loading={loading}
         size="md"
         onClick={() => {
           setLoading((val) => !val);
@@ -102,8 +102,8 @@ const LoadingTemplate = () => {
         Loading Button Medium
       </Btn>
       <Btn
-        loading={loading}
         color="pink"
+        loading={loading}
         size="lg"
         onClick={() => {
           setLoading((val) => !val);
@@ -112,10 +112,10 @@ const LoadingTemplate = () => {
         Loading Button Large
       </Btn>
       <Btn
-        loading={loading}
         color="red"
-        size="lg"
         leadingIcon={<span className="material-symbols-outlined">error</span>}
+        loading={loading}
+        size="lg"
         onClick={() => {
           setLoading((val) => !val);
         }}
@@ -123,9 +123,9 @@ const LoadingTemplate = () => {
         Loading Button Large
       </Btn>
       <Btn
-        loading={loading}
-        color="green"
         icon
+        color="green"
+        loading={loading}
         size="lg"
         onClick={() => {
           setLoading((val) => !val);

@@ -18,9 +18,9 @@ export function Card({
   const cardClass = classnames(
     "r-card",
     {
+      "divide-y": divider,
       "r-card-dense": dense,
       "r-card-shadow": shadow,
-      "divide-y": divider,
     },
     className
   );

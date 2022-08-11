@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { ReactNode } from "react";
-import { colorClass, Colors } from "../../utils/colors";
+import { Colors, colorClass } from "../../utils/colors";
 import { Loading } from "../other/Loading";
 import "./Btn.css";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export type ButtonProps = {
   label?: string;
@@ -48,10 +48,10 @@ function BtnRoot({
 }: ButtonProps) {
   const colorCls = colorClass({
     bg: filled && !text ? color : undefined,
-    hoverable: color,
     border: border ? color : undefined,
-    text: text ? color : undefined,
+    hoverable: color,
     outline: outline ? color : undefined,
+    text: text ? color : undefined,
   });
   const btnClass = classNames(
     "r-btn",
@@ -68,19 +68,19 @@ function BtnRoot({
   const body = children ? children : label;
 
   const loadingFinalClass = classNames("leading-[0]", {
-    "w-4": size === "sm" || size === "md",
     "mr-1": size === "sm" && !icon,
     "mr-2": (size === "md" || size === "lg") && !icon,
+    "w-4": size === "sm" || size === "md",
     "w-6": size === "lg",
   });
   if (icon) {
     return (
       <button
-        onClick={onClick}
-        type="button"
         className={btnClass}
-        style={style}
         disabled={disabled}
+        style={style}
+        type="button"
+        onClick={onClick}
       >
         <div className={loadingFinalClass}>
           {loading ? loadingIcon : children}
@@ -90,13 +90,13 @@ function BtnRoot({
   } else {
     return (
       <motion.button
-        layout
         key="btn-main"
-        onClick={onClick}
-        type="button"
+        layout
         className={btnClass}
-        style={style}
         disabled={disabled}
+        style={style}
+        type="button"
+        onClick={onClick}
       >
         <div className="flex items-center justify-center">
           {leadingIcon ? (
@@ -108,20 +108,20 @@ function BtnRoot({
               {loading && (
                 <motion.div
                   layout
-                  className={loadingFinalClass}
-                  initial={{
-                    width: 0,
-                    marginRight: 0,
-                  }}
                   animate={{
-                    width: size === "lg" ? 24 : 16,
                     marginRight: size === "sm" ? 4 : 8,
+                    width: size === "lg" ? 24 : 16,
                   }}
-                  exit={{ width: 0, marginRight: 0 }}
+                  className={loadingFinalClass}
+                  exit={{ marginRight: 0, width: 0 }}
+                  initial={{
+                    marginRight: 0,
+                    width: 0,
+                  }}
                   transition={{
-                    type: "spring",
                     bounce: 0,
                     duration: 0.15,
+                    type: "spring",
                   }}
                 >
                   {loadingIcon}
@@ -131,13 +131,13 @@ function BtnRoot({
           )}
           <AnimatePresence exitBeforeEnter>
             <motion.div
-              layout
-              style={{ whiteSpace: "nowrap", overflow: "hidden" }}
               key="btn-body"
+              layout
+              style={{ overflow: "hidden", whiteSpace: "nowrap" }}
               transition={{
-                type: "spring",
                 bounce: 0,
                 duration: 0.15,
+                type: "spring",
               }}
             >
               {body}

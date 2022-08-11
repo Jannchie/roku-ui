@@ -1,10 +1,5 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
   env: {
     browser: true,
     es2021: true,
@@ -24,11 +19,23 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "sort-keys-fix"],
   rules: {
     indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
+    "no-multiple-empty-lines": ["warn", { max: 1, maxEOF: 0 }],
+    "object-curly-spacing": ["error", "always"],
     quotes: ["error", "double"],
+    "react/jsx-sort-props": [
+      "warn",
+      { callbacksLast: true, reservedFirst: true, shorthandFirst: true },
+    ],
     semi: ["error", "always"],
+    "sort-keys-fix/sort-keys-fix": "warn",
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
   },
 };

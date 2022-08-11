@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Btn } from "../..";
 export default {
-  title: "Example/Btn Group",
   component: Btn.Group,
+  title: "Inputs/Btn Group",
 } as ComponentMeta<typeof Btn.Group>;
 
 const Template: ComponentStory<typeof Btn.Group> = () => {

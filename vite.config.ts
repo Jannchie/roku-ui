@@ -5,13 +5,11 @@ import dts from "vite-plugin-dts";
 import { visualizer } from "rollup-plugin-visualizer";
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), dts({ outputDir: "dist/types" }), visualizer()],
   build: {
-    target: "modules",
     lib: {
       entry: resolve(__dirname, "src/index.tsx"),
-      name: "RokuUI",
       fileName: "roku-ui",
+      name: "RokuUI",
     },
     rollupOptions: {
       external: ["react", "react-dom"],
@@ -22,5 +20,7 @@ export default defineConfig({
         },
       },
     },
+    target: "modules",
   },
+  plugins: [react(), dts({ outputDir: "dist/types" }), visualizer()],
 });

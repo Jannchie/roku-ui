@@ -1,7 +1,8 @@
-import "./RTextField.css";
+import "./TextField.css";
 import classnames from "classnames";
-import { ChangeEvent, ReactNode } from "react";
-type RTextFieldProps = {
+import { ChangeEvent } from "react";
+import { ReactNode } from "react";
+export type TextField = {
   className?: string;
   prefix?: ReactNode;
   suffix?: ReactNode;
@@ -16,18 +17,8 @@ type RTextFieldProps = {
 };
 
 export function TextField({
-  className,
-  prefix,
-  suffix,
-  placeholder,
-  type = "text",
-  textAlign = "left",
-  border = true,
-  borderType = "solid",
-  value,
-  setValue,
-  ...inputProps
-}: RTextFieldProps & React.InputHTMLAttributes<HTMLInputElement>) {
+  className, prefix, suffix, placeholder, type = "text", textAlign = "left", border = true, borderType = "solid", value, setValue, ...inputProps
+}: TextField & React.InputHTMLAttributes<HTMLInputElement>) {
   const onChange = inputProps.onChange
     ? inputProps.onChange
     : setValue
@@ -52,12 +43,12 @@ export function TextField({
     >
       {prefix && <div className="r-text-field-prefix">{prefix}</div>}
       <input
-        placeholder={placeholder}
         className={classnames("r-text-field", {
-          "text-left": textAlign === "left",
           "text-center": textAlign === "center",
+          "text-left": textAlign === "left",
           "text-right": textAlign === "right",
         })}
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
         {...inputProps}

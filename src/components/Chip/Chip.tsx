@@ -1,7 +1,7 @@
 import "./Chip.css";
 import { MouseEvent, ReactNode } from "react";
 import classNames from "classnames";
-import { colorClass, Colors } from "../../utils/colors";
+import { Colors, colorClass } from "../../utils/colors";
 type Chip = {
   className?: string;
   children?: ReactNode;
@@ -25,9 +25,9 @@ export function ChipRoot({
   }
   const colorCls = colorClass({
     bg: color,
-    text: color,
     border: border ? color : undefined,
     hoverable: onClick !== undefined ? color : undefined,
+    text: color,
   });
   const chipClass = classNames(
     "r-chip",
@@ -55,4 +55,4 @@ export function Group({ className, children }: Group) {
   );
 }
 
-export const Chip = Object.assign(ChipRoot, {Group});
+export const Chip = Object.assign(ChipRoot, { Group });

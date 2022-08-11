@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { RTemp } from "../../components/RTemp";
 export default {
-  title: "Example/RTemp",
   component: RTemp,
+  title: "Example/RTemp",
 } as ComponentMeta<typeof RTemp>;
 
 const Template: ComponentStory<typeof RTemp> = (args) => (

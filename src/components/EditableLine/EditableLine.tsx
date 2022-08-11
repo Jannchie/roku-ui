@@ -1,7 +1,7 @@
 import "./EditableLine.css";
 import classnames from "classnames";
-import { useState, useRef } from "react";
-import { TextField, Btn } from "../..";
+import { useRef, useState } from "react";
+import { Btn, TextField } from "../..";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
@@ -35,11 +35,11 @@ export function EditableLine({
       })}
     >
       <TextField
-        className={className}
         borderType={borderType}
-        value={value}
+        className={className}
         setValue={setValue}
         textAlign={textAligin}
+        value={value}
         onFocus={() => {
           if (editing === false) {
             tempValue.current = value;
@@ -49,12 +49,12 @@ export function EditableLine({
       />
       {editing && (
         <motion.div
-          initial={{ opacity: 0 }}
           animate={{
             opacity: 1,
           }}
-          transition={{ duration: 0.15 }}
           className="flex gap-2"
+          initial={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
         >
           <Btn
             border

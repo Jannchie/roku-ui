@@ -1,8 +1,8 @@
 import "./Tabs.css";
 import { ReactNode, useEffect, useRef, useState } from "react";
-import { colorClass, Colors } from "../..";
+import { Colors, colorClass } from "../..";
 import classNames from "classnames";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 function Item({ children }: { label: ReactNode; children?: ReactNode }) {
   return <>{children}</>;
 }
@@ -27,7 +27,7 @@ function List({
   const [indicatorStyle, setIndicatorStyle] = useState<{
     width: number;
     left: number;
-  }>({ width: 0, left: 0 });
+  }>({ left: 0, width: 0 });
   const indicatorColor = colorClass({
     bg: color,
   });
@@ -41,8 +41,8 @@ function List({
       ] as HTMLButtonElement;
       if (tabBtn) {
         setIndicatorStyle(() => ({
-          width: tabBtn.offsetWidth,
           left: tabBtn.offsetLeft,
+          width: tabBtn.offsetWidth,
         }));
       }
     }
@@ -52,6 +52,20 @@ function List({
       <div ref={tabList} className="r-tab-list">
         {data.map((d, i) => (
           <button
+            key={i}
+            aria-selected={selectedIndex === i}
+            className={
+              i === selectedIndex
+                ? type === "indicator"
+                  ? classNames(textColor)
+                  : classNames("text-white", indicatorColor)
+                : ""
+            }
+            role="tab"
+            tabIndex={-1}
+            onClick={() => {
+              onChange(i);
+            }}
             onKeyDown={(e) => {
               switch (e.key) {
               case "ArrowLeft":
@@ -76,20 +90,6 @@ function List({
                 break;
               }
             }}
-            key={i}
-            aria-selected={selectedIndex === i}
-            tabIndex={-1}
-            role="tab"
-            onClick={() => {
-              onChange(i);
-            }}
-            className={
-              i === selectedIndex
-                ? type === "indicator"
-                  ? classNames(textColor)
-                  : classNames("text-white", indicatorColor)
-                : ""
-            }
           >{ d.key}</button>
         ))}
       </div>
@@ -125,10 +125,10 @@ export function TabsRoot(props: RTabsProps) {
   return (
     <div className={classNames(className, "relative")}>
       <List
-        data={data}
-        type={type}
         color={color}
+        data={data}
         selectedIndex={selectedIndex}
+        type={type}
         onChange={onChange}
       />
       <div className="r-tab-panels dark:text-white mt-2">
@@ -137,9 +137,9 @@ export function TabsRoot(props: RTabsProps) {
             <AnimatePresence key={`${i}`} exitBeforeEnter>
               <motion.div
                 key={`${i}`}
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.15 }}
               >
                 {d.value}

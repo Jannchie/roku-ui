@@ -1,9 +1,9 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useState } from "react";
 import { EditableLine } from "../..";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { useState } from "react";
 export default {
-  title: "Example/EditableLine",
   component: EditableLine,
+  title: "Inputs/EditableLine",
 } as ComponentMeta<typeof EditableLine>;
 
 const Template: ComponentStory<typeof EditableLine> = (args) => {
@@ -12,8 +12,8 @@ const Template: ComponentStory<typeof EditableLine> = (args) => {
     <div className="flex gap-1">
       <EditableLine
         {...args}
-        value={value}
         setValue={setValue}
+        value={value}
         onOK={console.log}
       />
     </div>

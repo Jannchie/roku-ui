@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Notice, Tabs } from "../..";
 import { useState } from "react";
-import { Tabs, Notice } from "../..";
 export default {
-  title: "Example/Tabs",
+  title: "Navigation/Tabs",
 } as ComponentMeta<typeof Tabs>;
 
 const Template: ComponentStory<typeof Tabs> = () => {
@@ -10,14 +10,14 @@ const Template: ComponentStory<typeof Tabs> = () => {
   return (
     <>
       <Tabs
-        type={"indicator"}
         color={"teal"}
         selectedIndex={selectedIndex}
+        type={"indicator"}
         onChange={setSelectedIndex}
       >
         <Tabs.Item label="Tab 1">Content 1</Tabs.Item>
         <Tabs.Item label="Tab 2">
-          <Notice title="Test" outlined></Notice>
+          <Notice outlined title="Test"></Notice>
         </Tabs.Item>
         <Tabs.Item label="Tab 3">
           <div className="p-2">Content 3</div>
@@ -27,7 +27,6 @@ const Template: ComponentStory<typeof Tabs> = () => {
           <div className="p-2">Content 3</div>
         </Tabs.Item>
       </Tabs>
-      <div className="dark:text-white">123</div>
     </>
   );
 };

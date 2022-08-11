@@ -1,8 +1,8 @@
 import "./style.css";
-import { ReactNode, useRef, useState, useEffect, useCallback } from "react";
-import classNames from "classnames";
+import { AnimatePresence, motion, } from "framer-motion";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { Notice } from "../..";
-import { motion, AnimatePresence, } from "framer-motion";
+import classNames from "classnames";
 
 export function animate(
   el: HTMLElement,
@@ -91,16 +91,6 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
   }
   const n = (
     <Notice
-      title={title}
-      desc={desc}
-      mainTextColor={mainTextColor}
-      mainBgColor={mainBgColor}
-      subColor={subColor}
-      shadow={true}
-      progress={true}
-      outlined={true}
-      icon={icon}
-      existMS={existsMS}
       close={
         closable
           ? () => {
@@ -108,6 +98,16 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
           }
           : undefined
       }
+      desc={desc}
+      existMS={existsMS}
+      icon={icon}
+      mainBgColor={mainBgColor}
+      mainTextColor={mainTextColor}
+      outlined={true}
+      progress={true}
+      shadow={true}
+      subColor={subColor}
+      title={title}
     />
   );
   customPush(n, { existsMS });
@@ -199,20 +199,20 @@ export const RNotifications = (props: NotificationConfig) => {
   const noticesWrapper = useRef<HTMLDivElement>(null);
   return (
     <div
+      key="r-notification"
       className={classNames(
         "r-notification",
         `r-${justify}`,
         `r-${align}`,
         props.className
       )}
-      key="r-notification"
     >
       <div
+        ref={noticesWrapper}
         className={classNames("flex gap-2 h-0 r-notices-wrapper", {
           "flex-col": align === "top",
           "flex-col-reverse": align === "bottom",
         })}
-        ref={noticesWrapper}
       >
         <AnimatePresence>
           {notices
@@ -220,13 +220,8 @@ export const RNotifications = (props: NotificationConfig) => {
             .map((notice) => {
               return (
                 <motion.div
-                  layout
-                  style={{ order: -notice.key }} // fix order bug
                   key={notice.key}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.8,
-                  }}
+                  layout // fix order bug
                   animate={{
                     opacity: 1,
                     scale: 1,
@@ -234,6 +229,11 @@ export const RNotifications = (props: NotificationConfig) => {
                   exit={{
                     opacity: 0,
                   }}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.8,
+                  }}
+                  style={{ order: -notice.key }}
                   transition={{ duration: 0.3 }}
                 >
                   {notice.value}

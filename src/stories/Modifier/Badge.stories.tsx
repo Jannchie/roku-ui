@@ -1,9 +1,9 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useState } from "react";
 import { Avatar, Badge, Chip } from "../..";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { useState } from "react";
 export default {
-  title: "Example/Badge",
   component: Badge,
+  title: "Modifier/Badge",
 } as ComponentMeta<typeof Badge>;
 
 const Template: ComponentStory<typeof Badge> = (args) => {
@@ -11,10 +11,10 @@ const Template: ComponentStory<typeof Badge> = (args) => {
   return (
     <Badge
       dot
-      show={show}
-      position={args.position}
-      color={args.color}
       className="outline dark:!outline-zinc-900 !outline-white"
+      color={args.color}
+      position={args.position}
+      show={show}
     >
       <Chip onClick={() => setShow((val) => !val)}>Click Me</Chip>
     </Badge>
@@ -23,8 +23,8 @@ const Template: ComponentStory<typeof Badge> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  position: "top-right",
   color: "red",
+  position: "top-right",
 };
 
 const TemplateAvatar: ComponentStory<typeof Badge> = () => {
@@ -33,8 +33,8 @@ const TemplateAvatar: ComponentStory<typeof Badge> = () => {
     <div>
       <Badge
         dot
-        show={show}
         className="outline dark:outline-zinc-900 outline-white"
+        show={show}
       >
         <Avatar size="sm">
           <img src="https://placehold.jp/80x80.png" />

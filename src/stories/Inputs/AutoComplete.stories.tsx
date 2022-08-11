@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { AutoComplete } from "../..";
 export default {
-  title: "Example/AutoComplete",
   component: AutoComplete,
+  title: "Inputs/AutoComplete",
 } as ComponentMeta<typeof AutoComplete>;
 
 const Template: ComponentStory<typeof AutoComplete> = (args) => (

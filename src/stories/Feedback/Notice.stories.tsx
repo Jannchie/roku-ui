@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Notice } from "../..";
 export default {
-  title: "Example/Notice",
   component: Notice,
+  title: "Feedback/Notice",
 } as ComponentMeta<typeof Notice>;
 
 const Template: ComponentStory<typeof Notice> = (args) => {
@@ -11,9 +11,9 @@ const Template: ComponentStory<typeof Notice> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  title: "Default Notice",
+  dense: false,
   desc: "Default Notice Description",
   mainTextColor: "text-primary-500",
-  dense: false,
   outlined: true,
+  title: "Default Notice",
 };
