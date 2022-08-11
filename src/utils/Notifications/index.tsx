@@ -1,8 +1,8 @@
-import { Flipper, Flipped } from "react-flip-toolkit";
-import { ReactNode, useRef, useState, useEffect, useMemo } from "react";
 import "./style.css";
+import { Flipper, Flipped } from "react-flip-toolkit";
+import { ReactNode, useRef, useState, useEffect } from "react";
 import classNames from "classnames";
-import { RNotice } from "../../components/RNotice/RNotice";
+import { RNotice } from "../..";
 
 export function animate(
   el: HTMLElement,
@@ -49,7 +49,6 @@ export const customPush = (notice: ReactNode, config?: PushConfig): void => {
   }
   nEventMgr.onPush.forEach((cb) => cb(notice, config));
 };
-let currentID = 1;
 export const pushNotice = (config: PushConfig & NoticeConfig) => {
   let { title, desc, type, existsMS, progressBar, closable } = config;
   if (!existsMS) existsMS = 3000;
@@ -93,6 +92,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       mainTextColor={mainTextColor}
       mainBgColor={mainBgColor}
       subColor={subColor}
+      shadow={true}
       progress={true}
       outlined={true}
       icon={icon}

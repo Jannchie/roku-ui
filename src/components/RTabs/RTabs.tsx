@@ -1,10 +1,7 @@
 import "./style.css";
-import { FC, forwardRef, ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { colorClass, Colors } from "../../utils/colors";
-import { Transition } from "@headlessui/react";
 import classNames from "classnames";
-import { TransitionMotion, spring } from "react-motion";
-import { Flipped, Flipper } from "react-flip-toolkit";
 
 function Item({ children }: { label: ReactNode; children?: ReactNode }) {
   return <>{children}</>;
@@ -107,6 +104,7 @@ function List({
   );
 }
 type RTabsProps = {
+  id?: string;
   selectedIndex: number;
   onChange: (index: number) => void;
   className?: string;
@@ -117,6 +115,7 @@ type RTabsProps = {
 
 export function RTabRoot(props: RTabsProps) {
   const {
+    id: string,
     selectedIndex,
     onChange,
     type = "indicator",
@@ -135,17 +134,11 @@ export function RTabRoot(props: RTabsProps) {
         onChange={onChange}
       />
       <div className="r-tab-panels dark:text-white mt-2">
-        <Flipper flipKey={`${selectedIndex}`}>
-          <Flipped flipId="1">
-            <div>
-              {data
-                .filter((d, i) => i === selectedIndex)
-                .map((d, i) => (
-                  <>{d.value}</>
-                ))}
-            </div>
-          </Flipped>
-        </Flipper>
+        {data
+          .filter((_, i) => i === selectedIndex)
+          .map((d) => (
+            <>{d.value}</>
+          ))}
       </div>
     </div>
   );

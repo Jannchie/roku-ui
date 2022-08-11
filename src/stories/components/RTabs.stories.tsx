@@ -16,11 +16,9 @@ const Template: ComponentStory<typeof RTabs> = () => {
         selectedIndex={selectedIndex}
         onChange={setSelectedIndex}
       >
-        <RTabs.Item label="Tab 1">
-          <div className="p-2">Content 1</div>
-        </RTabs.Item>
+        <RTabs.Item label="Tab 1">Content 1</RTabs.Item>
         <RTabs.Item label="Tab 2">
-          <RNotice title="Test"></RNotice>
+          <RNotice title="Test" outlined></RNotice>
         </RTabs.Item>
         <RTabs.Item label="Tab 3">
           <div className="p-2">Content 3</div>
@@ -30,6 +28,7 @@ const Template: ComponentStory<typeof RTabs> = () => {
           <div className="p-2">Content 3</div>
         </RTabs.Item>
       </RTabs>
+      <div className="dark:text-white">123</div>
     </>
   );
 };

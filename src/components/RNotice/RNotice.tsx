@@ -17,6 +17,7 @@ export type RNoticeConfig = {
   outlined?: boolean;
   dense?: boolean;
   progress?: boolean;
+  shadow?: boolean;
   close?: () => void;
   existMS?: number;
 };
@@ -31,6 +32,7 @@ export function RNotice({
   desc,
   titleClass,
   descClass,
+  shadow = false,
   progress = false,
   outlined = false,
   dense = false,
@@ -40,6 +42,7 @@ export function RNotice({
 }: RNoticeConfig) {
   const wrapperCls = classNames(
     "r-notice-wrapper",
+    { "shadow-lg shadow-black/5": shadow },
     "overflow-hidden",
     { dense: dense },
     { border: outlined },
