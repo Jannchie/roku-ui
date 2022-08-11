@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
 import { RBtn } from "../..";
+import { Colors } from "../../utils/colors";
 export default {
   title: "Example/RBtn",
   component: RBtn,
@@ -66,18 +67,20 @@ export const Size = SizeTemplate.bind({});
 
 const LoadingTemplate = () => {
   const [loading, setLoading] = useState(true);
-  const [text, setText] = useState("Not Loading");
+  const [color, setColor] = useState<Colors>("primary");
   return (
     <div className="flex flex-col gap-2">
       <RBtn
         loading={loading}
-        color="fuchsia"
+        color={color}
+        style={{ width: 128 }}
         size="sm"
         onClick={() => {
-          setText((val) => (val === "Not Loading" ? "Loading" : "Not Loading"));
+          setColor((val) => (val === "primary" ? "success" : "primary"));
+          setLoading((val) => !val);
         }}
       >
-        {text}
+        {loading ? "Loading" : "Click"}
       </RBtn>
       <RBtn
         loading={loading}

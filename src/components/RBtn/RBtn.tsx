@@ -1,12 +1,10 @@
-import { Transition } from "@headlessui/react";
 import classNames from "classnames";
 import classnames from "classnames";
-import { ReactNode, useEffect, useRef } from "react";
-import { Flipped, Flipper, spring } from "react-flip-toolkit";
+import { ReactNode } from "react";
 import { colorClass, Colors } from "../../utils/colors";
 import { Loading } from "../other/Loading";
 import "./RBtn.css";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 export type ButtonProps = {
   label?: string;
   size?: "sm" | "md" | "lg";
@@ -90,7 +88,9 @@ export function RBtn({
     );
   } else {
     return (
-      <button
+      <motion.button
+        layout
+        key="btn-main"
         onClick={onClick}
         type="button"
         className={btnClass}
@@ -128,9 +128,22 @@ export function RBtn({
               )}
             </AnimatePresence>
           )}
-          {body}
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+              layout
+              style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+              key="btn-body"
+              transition={{
+                type: "spring",
+                bounce: 0,
+                duration: 0.15,
+              }}
+            >
+              {body}
+            </motion.div>
+          </AnimatePresence>
         </div>
-      </button>
+      </motion.button>
     );
   }
 }

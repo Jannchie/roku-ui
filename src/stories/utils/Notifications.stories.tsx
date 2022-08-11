@@ -20,13 +20,13 @@ const Template: ComponentStory<typeof RBtn> = () => {
             title: "This is the title",
             desc: "This is the description",
             type: type,
-            existsMS: 50000,
+            existsMS: 300000,
           });
         }}
       >
         Show Notification
       </RBtn>
-      <RNotifications className="mt-2 w-96" />
+      <RNotifications maxCount={3} bottom className="mt-2 w-96" />
     </>
   );
 };

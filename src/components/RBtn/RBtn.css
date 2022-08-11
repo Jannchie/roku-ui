@@ -1,8 +1,8 @@
 .r-btn {
-  @apply min-w-max w-12;
+  @apply min-w-max w-0;
   @apply h-fit transition-all;
   @apply text-xs border;
-  @apply disabled:grayscale disabled:contrast-50;
+  @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
 }
 
 .r-btn.r-btn-filled {

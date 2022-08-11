@@ -14,9 +14,5 @@ export { RAvatar } from "./components/RAvatar";
 export { RTabs } from "./components/RTabs";
 
 export { RNotifications, pushNotice, customPush } from "./utils/Notifications";
-export {
-  FadeTransitionChild,
-  ScaleTransitionChild,
-  ScaleTransition,
-} from "./Transitions";
-export { Transition } from "@headlessui/react";
+
+export type { Colors } from "./utils/colors";

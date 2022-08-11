@@ -3,7 +3,7 @@ import { Flipper, Flipped } from "react-flip-toolkit";
 import { ReactNode, useRef, useState, useEffect } from "react";
 import classNames from "classnames";
 import { RNotice } from "../..";
-
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 export function animate(
   el: HTMLElement,
   keyframes: Keyframe[] | PropertyIndexedKeyframes,
@@ -26,6 +26,7 @@ type NotificationConfig = {
   defaultExistsMS?: number;
   maxCount?: number;
   close?: () => void;
+  wait?: boolean;
 };
 type NoticeData = { key: number; value: ReactNode };
 type PushConfig = {
@@ -133,6 +134,7 @@ export const RNotifications = (props: NotificationConfig) => {
   }
   const [notices, setNotices] = useState<NoticeData[]>([]);
   const id = useRef(1);
+  const waitList = useRef<[ReactNode, PushConfig][]>([]);
   const pushCallback = (notice: ReactNode, config: PushConfig = {}) => {
     let existsMS;
     if (config.existsMS) {
@@ -141,8 +143,15 @@ export const RNotifications = (props: NotificationConfig) => {
     if (!existsMS) {
       existsMS = props.defaultExistsMS || 3000;
     }
-    if (notices.length >= (props.maxCount ?? 5)) {
-      notices.pop();
+    if (props.maxCount) {
+      if (notices.length >= props.maxCount) {
+        if (props.wait) {
+          waitList.current.push([notice, config]);
+          return;
+        } else {
+          notices.pop();
+        }
+      }
     }
     let currentId = id.current;
     id.current += 1;
@@ -151,6 +160,20 @@ export const RNotifications = (props: NotificationConfig) => {
       setNotices((val) => val.filter((n) => n.key !== currentId));
     }, existsMS);
   };
+
+  useEffect(() => {
+    if (props.wait) {
+      if (props.maxCount) {
+        if (waitList.current.length > 0 && notices.length < props.maxCount) {
+          let current = waitList.current.shift();
+          if (current) {
+            pushCallback(...current);
+          }
+        }
+      }
+    }
+  }, [notices]);
+
   const removeCallback = (notice: ReactNode) => {
     setNotices((val) => val.filter((n) => n.value !== notice));
   };
@@ -179,58 +202,41 @@ export const RNotifications = (props: NotificationConfig) => {
       )}
       key="r-notification"
     >
-      <Flipper
-        flipKey={`r-notification-${notices.map((d) => `${d.key}`).join("")}`}
+      <div
+        className={classNames("flex gap-2 h-0 r-notices-wrapper", {
+          "flex-col": align === "top",
+          "flex-col-reverse": align === "bottom",
+        })}
+        ref={noticesWrapper}
       >
-        <div
-          className={classNames("flex gap-2 h-0 r-notices-wrapper", {
-            "flex-col": align === "top",
-            "flex-col-reverse": align === "bottom",
-          })}
-          ref={noticesWrapper}
-        >
-          {notices.map((notice) => {
-            return (
-              <Flipped
-                flipId={notice.key}
-                key={notice.key}
-                onExit={(el, _, removeEl) => {
-                  animate(
-                    el,
-                    {
-                      opacity: [1, 0],
-                      width: ["100%", "0"],
-                    },
-                    {
-                      duration: 200,
-                      easing: "ease-in",
-                    }
-                  ).then(() => {
-                    removeEl();
-                  });
-                }}
-                onAppear={(el) => {
-                  animate(
-                    el,
-                    {
-                      opacity: [0, 1],
-                      width: ["0", "100%"],
-                    },
-                    {
-                      duration: 200,
-                      easing: "ease-out",
-                    }
-                  ).then(() => {
-                    el.style.opacity = "1";
-                  });
-                }}
-              >
-                <div>{notice.value}</div>
-              </Flipped>
-            );
-          })}
-        </div>
-      </Flipper>
+        <AnimatePresence>
+          {notices
+            .sort((a, b) => b.key - a.key)
+            .map((notice, i) => {
+              return (
+                <motion.div
+                  layout
+                  style={{ order: -notice.key }} // fix order bug
+                  key={notice.key}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.8,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  exit={{
+                    opacity: 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {notice.value}
+                </motion.div>
+              );
+            })}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

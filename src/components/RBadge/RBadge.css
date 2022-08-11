@@ -13,19 +13,19 @@
 
 .r-badge-point-top-left {
   @apply top-0 left-0;
-  transform: translate(-50%, -50%) !important;
+  transform: translate(-50%, -50%);
 }
 
 .r-badge-point-top-right {
   @apply top-0 right-0;
-  transform: translate(50%, -50%) !important;
+  transform: translate(50%, -50%);
 }
 
 .r-badge-point-bottom-left {
   @apply bottom-0 left-0;
-  transform: translate(-50%, 0%) !important;
+  transform: translate(-50%, 0%);
 }
 .r-badge-point-bottom-right {
   @apply bottom-0 right-0;
-  transform: translate(50%, 0%) !important;
+  transform: translate(50%, 0%);
 }

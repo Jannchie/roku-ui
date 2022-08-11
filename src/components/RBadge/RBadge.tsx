@@ -1,8 +1,8 @@
-import "./style.css";
-import { Fragment, ReactNode } from "react";
+import "./RBadge.css";
+import { ReactNode } from "react";
 import classNames from "classnames";
-import { colorClass, Colors } from "../../utils/colors";
-import { ScaleTransition } from "../../Transitions";
+import { colorClass, Colors } from "../..";
+import { motion, AnimatePresence } from "framer-motion";
 
 type RBadgeProps = {
   className?: string;
@@ -38,9 +38,17 @@ export function RBadge({
     <span className="r-badge-wrapper">
       <div className="relative">
         {children}
-        <ScaleTransition as={Fragment} show={show}>
-          <span className={badgePointCls}></span>
-        </ScaleTransition>
+        <AnimatePresence>
+          {show && (
+            <motion.span
+              initial={{ width: 0, height: 0 }}
+              animate={{ width: 8, height: 8 }}
+              exit={{ width: 0, height: 0 }}
+              transition={{ type: "spring", damping: 8 }}
+              className={badgePointCls}
+            ></motion.span>
+          )}
+        </AnimatePresence>
       </div>
     </span>
   );
