@@ -1,1 +1,0 @@
-export { RBadge } from "./RBadge";

@@ -1,1 +1,0 @@
-export { RNotice } from "./RNotice";

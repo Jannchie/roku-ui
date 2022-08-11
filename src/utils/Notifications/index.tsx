@@ -1,7 +1,7 @@
 import "./style.css";
 import { ReactNode, useRef, useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
-import { RNotice } from "../..";
+import { Notice } from "../..";
 import { motion, AnimatePresence, } from "framer-motion";
 
 export function animate(
@@ -90,7 +90,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
   }
   }
   const n = (
-    <RNotice
+    <Notice
       title={title}
       desc={desc}
       mainTextColor={mainTextColor}

@@ -1,0 +1,71 @@
+.r-btn {
+  @apply min-w-max w-0;
+  @apply h-fit transition-all;
+  @apply text-xs border;
+  @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
+}
+
+.r-btn-rounded {
+  @apply rounded-full
+}
+
+.r-btn.r-btn-filled {
+  @apply hover:text-white;
+  @apply text-white dark:text-white;
+}
+
+.r-btn.r-btn-text {
+  @apply !bg-opacity-5 active:!bg-opacity-20;
+}
+
+.r-btn.r-btn-outlined {
+  @apply outline-offset-2 enabled:active:outline outline-2;
+}
+
+.r-btn-icon {
+  line-height: 0px;
+  border: none;
+  width: 0px;
+}
+
+.r-btn-icon.r-btn-sm {
+  @apply p-1;
+}
+
+.r-btn-icon.r-btn-md {
+  @apply p-2;
+}
+
+.r-btn-icon.r-btn-lg {
+  @apply p-2;
+}
+
+.r-btn-sm {
+  @apply py-1 px-1 rounded;
+}
+
+.r-btn-md {
+  @apply py-2 px-3 rounded-md;
+}
+
+.r-btn-lg {
+  @apply py-2 px-3 text-base rounded-lg;
+}
+.r-btn-block {
+  @apply w-full;
+}
+
+.r-btn-dash {
+  @apply border-dashed;
+}
+
+.r-btn-group {
+  @apply flex divide-zinc-100/20 !divide-x border rounded-full;
+}
+
+.r-btn-group .r-btn {
+  @apply outline-none border-none;
+  @apply rounded-none;
+  @apply first:rounded-l-full;
+  @apply last:rounded-r-full;
+}

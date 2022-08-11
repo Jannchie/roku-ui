@@ -15,7 +15,7 @@ type RTextFieldProps = {
   format?: (value: string) => string;
 };
 
-export function RTextField({
+export function TextField({
   className,
   prefix,
   suffix,

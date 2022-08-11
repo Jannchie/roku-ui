@@ -1,17 +1,16 @@
 import "./index.css";
 export { colorClass } from "./utils/colors";
-export { RBtn } from "./components/RBtn";
-export { RBtnGroup } from "./components/RBtnGroup";
-export { REditableLine } from "./components/REditableLine";
-export { RTextField } from "./components/RTextField";
-export { RCard } from "./components/RCard";
-export { RModal } from "./components/RModal";
-export { RNotice } from "./components/RNotice";
-export { RCombobox } from "./components/RCombobox";
-export { RChip } from "./components/RChip";
-export { RBadge } from "./components/RBadge";
-export { RAvatar } from "./components/RAvatar";
-export { RTabs } from "./components/RTabs";
+export { Btn } from "./components/Btn";
+export { EditableLine } from "./components/EditableLine";
+export { TextField } from "./components/RTextField";
+export { Card } from "./components/Card";
+export { Modal } from "./components/Modal";
+export { Notice } from "./components/Notice";
+export { AutoComplete } from "./components/AutoComplete";
+export { Chip } from "./components/Chip";
+export { Badge } from "./components/Badge";
+export { Avatar } from "./components/Avatar";
+export { Tabs } from "./components/Tabs";
 
 export { RNotifications, pushNotice, customPush } from "./utils/Notifications";
 

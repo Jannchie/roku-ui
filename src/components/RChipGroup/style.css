@@ -1,8 +1,0 @@
-.r-chip-group {
-  @apply flex divide-x divide-zinc-500/10;
-}
-.r-chip-group .r-chip {
-  @apply rounded-none;
-  @apply first:rounded-l-full;
-  @apply last:rounded-r-full;
-}

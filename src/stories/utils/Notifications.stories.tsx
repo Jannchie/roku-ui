@@ -1,17 +1,17 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useRef } from "react";
 import { RNotifications, pushNotice } from "../..";
-import { RBtn } from "../..";
+import { Btn } from "../..";
 export default {
   title: "Utils/Notifications",
-  component: RBtn,
-} as ComponentMeta<typeof RBtn>;
+  component: Btn,
+} as ComponentMeta<typeof Btn>;
 
-const Template: ComponentStory<typeof RBtn> = () => {
+const Template: ComponentStory<typeof Btn> = () => {
   const idx = useRef(0);
   return (
     <>
-      <RBtn
+      <Btn
         onClick={() => {
           const type = ["success", "info", "warning", "danger"][
             idx.current++ % 4
@@ -25,7 +25,7 @@ const Template: ComponentStory<typeof RBtn> = () => {
         }}
       >
         Show Notification
-      </RBtn>
+      </Btn>
       <RNotifications maxCount={3} bottom className="mt-2 w-96" />
     </>
   );

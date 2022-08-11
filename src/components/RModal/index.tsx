@@ -1,1 +1,0 @@
-export { RModal } from "./RModal";

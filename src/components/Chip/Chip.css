@@ -1,0 +1,33 @@
+.r-chip {
+  @apply rounded-full inline-flex transition items-stretch;
+}
+
+.r-chip-xs {
+  @apply py-0 px-1 text-xs;
+}
+.r-chip-sm {
+  @apply py-1 px-2 text-xs;
+}
+.r-chip-md {
+  @apply py-1 px-3 text-sm;
+}
+.r-chip-lg {
+  @apply py-1 px-4 text-base;
+}
+.r-chip-xl {
+  @apply py-1 px-5 text-lg;
+}
+.r-chip-clickable {
+  cursor: pointer;
+  @apply active:bg-opacity-100 dark:active:bg-opacity-100 hover:text-white;
+  @apply active:dark:text-zinc-800;
+}
+
+.r-chip-group {
+  @apply flex divide-x divide-zinc-500/10;
+}
+.r-chip-group .r-chip {
+  @apply rounded-none;
+  @apply first:rounded-l-full;
+  @apply last:rounded-r-full;
+}
