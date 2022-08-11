@@ -2,3 +2,15 @@
   @apply absolute w-full h-full inset-0  min-h-full;
   @apply flex justify-center items-center;
 }
+
+.r-modal-bg {
+  @apply fixed inset-0 bg-black bg-opacity-25;
+}
+
+.r-modal-panel-wrapper {
+  @apply fixed inset-0 overflow-y-auto;
+}
+
+.r-modal-panel {
+  @apply flex min-h-full items-center justify-center;
+}

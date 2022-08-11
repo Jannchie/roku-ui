@@ -2,7 +2,7 @@ import "./style.css";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { colorClass, Colors } from "../../utils/colors";
 import classNames from "classnames";
-
+import { motion, AnimatePresence } from "framer-motion";
 function Item({ children }: { label: ReactNode; children?: ReactNode }) {
   return <>{children}</>;
 }
@@ -135,10 +135,20 @@ export function RTabRoot(props: RTabsProps) {
       />
       <div className="r-tab-panels dark:text-white mt-2">
         {data
-          .filter((_, i) => i === selectedIndex)
-          .map((d) => (
-            <>{d.value}</>
-          ))}
+          .map((d, i) => (
+            <AnimatePresence exitBeforeEnter>
+              <motion.div
+                key={`${i}`}
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                {d.value}
+              </motion.div>
+            </AnimatePresence>
+          ))
+          .filter((_, i) => i === selectedIndex)}
       </div>
     </div>
   );

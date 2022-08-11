@@ -3,10 +3,10 @@ import classNames from "classnames";
 import classnames from "classnames";
 import { ReactNode, useEffect, useRef } from "react";
 import { Flipped, Flipper, spring } from "react-flip-toolkit";
-import { ScaleTransition } from "../../Transitions";
 import { colorClass, Colors } from "../../utils/colors";
 import { Loading } from "../other/Loading";
 import "./RBtn.css";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 export type ButtonProps = {
   label?: string;
   size?: "sm" | "md" | "lg";
@@ -68,7 +68,7 @@ export function RBtn({
   );
   const body = children ? children : label;
 
-  const loadingFinalClass = classNames("leading-[0] opacity-100 scale-100", {
+  const loadingFinalClass = classNames("leading-[0]", {
     "w-4": size === "sm" || size === "md",
     "mr-1": size === "sm" && !icon,
     "mr-2": (size === "md" || size === "lg") && !icon,
@@ -103,18 +103,30 @@ export function RBtn({
               {loading ? loadingIcon : leadingIcon}
             </div>
           ) : (
-            <Transition
-              appear
-              show={loading}
-              enter="ease-out duration-100"
-              enterFrom="opacity-0 scale-0 w-0 mr-0"
-              enterTo={loadingFinalClass}
-              leave="ease-in duration-100"
-              leaveFrom={loadingFinalClass}
-              leaveTo="opacity-0 scale-0 w-0 mr-0"
-            >
-              {loadingIcon}
-            </Transition>
+            <AnimatePresence>
+              {loading && (
+                <motion.div
+                  layout
+                  className={loadingFinalClass}
+                  initial={{
+                    width: 0,
+                    marginRight: 0,
+                  }}
+                  animate={{
+                    width: size === "lg" ? 24 : 16,
+                    marginRight: size === "sm" ? 4 : 8,
+                  }}
+                  exit={{ width: 0, marginRight: 0 }}
+                  transition={{
+                    type: "spring",
+                    bounce: 0,
+                    duration: 0.15,
+                  }}
+                >
+                  {loadingIcon}
+                </motion.div>
+              )}
+            </AnimatePresence>
           )}
           {body}
         </div>

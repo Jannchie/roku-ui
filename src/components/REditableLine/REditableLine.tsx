@@ -1,12 +1,10 @@
 import "./REditableLine.css";
 import classnames from "classnames";
 import { useState, useRef } from "react";
-import { Transition } from "@headlessui/react";
-import { FadeTransitionChild } from "../../Transitions";
 import { RTextField } from "../RTextField";
 import { RBtn } from "../..";
 import { REditableLineProps } from "./REditableLineProps";
-
+import { motion } from "framer-motion";
 export function REditableLine({
   value,
   setValue,
@@ -38,33 +36,40 @@ export function REditableLine({
           setEditing(true);
         }}
       />
-      <Transition show={editing}>
-        <FadeTransitionChild>
-          <div className="flex gap-2">
-            <RBtn
-              className="r-editable-line-ok-btn"
-              color="success"
-              onClick={() => {
-                setEditing(false);
-                if (typeof onOK === "function") {
-                  onOK(value);
-                }
-              }}
-            >
-              {okBtnContent}
-            </RBtn>
-            <RBtn
-              className="r-editable-line-cancel-btn"
-              onClick={() => {
-                setEditing(false);
-                setValue(tempValue.current);
-              }}
-            >
-              {cancelBtnContent}
-            </RBtn>
-          </div>
-        </FadeTransitionChild>
-      </Transition>
+      {editing && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{ duration: 0.15 }}
+          className="flex gap-2"
+        >
+          <RBtn
+            border
+            className="r-editable-line-ok-btn"
+            color="success"
+            onClick={() => {
+              setEditing(false);
+              if (typeof onOK === "function") {
+                onOK(value);
+              }
+            }}
+          >
+            {okBtnContent}
+          </RBtn>
+          <RBtn
+            border
+            className="r-editable-line-cancel-btn"
+            onClick={() => {
+              setEditing(false);
+              setValue(tempValue.current);
+            }}
+          >
+            {cancelBtnContent}
+          </RBtn>
+        </motion.div>
+      )}
     </div>
   );
 }

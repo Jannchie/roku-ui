@@ -66,8 +66,19 @@ export const Size = SizeTemplate.bind({});
 
 const LoadingTemplate = () => {
   const [loading, setLoading] = useState(true);
+  const [text, setText] = useState("Not Loading");
   return (
     <div className="flex flex-col gap-2">
+      <RBtn
+        loading={loading}
+        color="fuchsia"
+        size="sm"
+        onClick={() => {
+          setText((val) => (val === "Not Loading" ? "Loading" : "Not Loading"));
+        }}
+      >
+        {text}
+      </RBtn>
       <RBtn
         loading={loading}
         color="fuchsia"
@@ -87,6 +98,16 @@ const LoadingTemplate = () => {
         }}
       >
         Loading Button Medium
+      </RBtn>
+      <RBtn
+        loading={loading}
+        color="pink"
+        size="lg"
+        onClick={() => {
+          setLoading((val) => !val);
+        }}
+      >
+        Loading Button Large
       </RBtn>
       <RBtn
         loading={loading}
