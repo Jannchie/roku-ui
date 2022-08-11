@@ -5,6 +5,10 @@
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
 }
 
+.r-btn-rounded {
+  @apply rounded-full
+}
+
 .r-btn.r-btn-filled {
   @apply hover:text-white;
   @apply text-white dark:text-white;

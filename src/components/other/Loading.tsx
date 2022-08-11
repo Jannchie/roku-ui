@@ -1,5 +1,3 @@
-import classnames from "classnames";
-
 export function Loading({
   mainColor,
   subColor,

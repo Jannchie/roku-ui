@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof RBtn>;
 
 const Template: ComponentStory<typeof RBtn> = (args) => <RBtn {...args} />;
-const SizeTemplate: ComponentStory<typeof RBtn> = (args) => (
+const SizeTemplate: ComponentStory<typeof RBtn> = () => (
   <div className="flex gap-2 items-center">
     <RBtn label="Small Button" size="sm" />
     <RBtn label="Medium Button" size="md" />
@@ -16,7 +16,7 @@ const SizeTemplate: ComponentStory<typeof RBtn> = (args) => (
   </div>
 );
 
-const AllTemplate: ComponentStory<typeof RBtn> = (args) => (
+const AllTemplate: ComponentStory<typeof RBtn> = () => (
   <div className="flex flex-col gap-2">
     <div className="flex gap-2">
       <RBtn label="Primary" color="primary" />

@@ -7,7 +7,7 @@ export function RModal({
   background,
   children,
   show,
-  hide: hide = () => {},
+  hide: hide = () =>{return;},
 }: RModalProps) {
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, hide);

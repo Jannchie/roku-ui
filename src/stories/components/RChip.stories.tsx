@@ -26,10 +26,10 @@ WithLeading.args = {
 export const WithAction = Template.bind({});
 WithAction.args = {
   children: "Clickable Chip",
-  onClick: () => {},
+  onClick: () => {return;},
 };
 
-const WithColorTemplate: ComponentStory<typeof RChip> = (args) => {
+const WithColorTemplate: ComponentStory<typeof RChip> = () => {
   const colors: Colors[] = [
     "primary",
     "success",
@@ -61,8 +61,8 @@ const WithColorTemplate: ComponentStory<typeof RChip> = (args) => {
 export const WithColor = WithColorTemplate.bind({});
 WithColor.args = {};
 
-const WithSizeTemplate: ComponentStory<typeof RChip> = (args) => {
-  const sizes: any[] = ["xs", "sm", "md", "lg", "xl"];
+const WithSizeTemplate: ComponentStory<typeof RChip> = () => {
+  const sizes : ("xs" | "sm" | "md" | "lg" | "xl")[] = ["xs", "sm", "md", "lg", "xl"];
   return (
     <div className="flex gap-1 flex-wrap items-center">
       {sizes.map((size) => (

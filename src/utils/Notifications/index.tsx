@@ -1,9 +1,9 @@
 import "./style.css";
-import { Flipper, Flipped } from "react-flip-toolkit";
-import { ReactNode, useRef, useState, useEffect } from "react";
+import { ReactNode, useRef, useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import { RNotice } from "../..";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion, AnimatePresence, } from "framer-motion";
+
 export function animate(
   el: HTMLElement,
   keyframes: Keyframe[] | PropertyIndexedKeyframes,
@@ -51,40 +51,43 @@ export const customPush = (notice: ReactNode, config?: PushConfig): void => {
   nEventMgr.onPush.forEach((cb) => cb(notice, config));
 };
 export const pushNotice = (config: PushConfig & NoticeConfig) => {
-  let { title, desc, type, existsMS, progressBar, closable } = config;
+  let { existsMS, progressBar, closable } = config;
+  const { title, desc, type } = config;
+
   if (!existsMS) existsMS = 3000;
   if (!progressBar) progressBar = false;
   if (!closable) closable = true;
-  let mainTextColor: string = "";
-  let mainBgColor: string = "";
-  let subColor: string = "";
+  let mainTextColor = "";
+  let mainBgColor = "";
+  const subColor = "";
+
   let icon: ReactNode = "";
   switch (type) {
-    case "success": {
-      mainTextColor = "text-success-500";
-      mainBgColor = "bg-success-500";
-      icon = <span className="material-symbols-outlined">check_circle</span>;
-      break;
-    }
-    case "danger": {
-      mainTextColor = "text-danger-500";
-      mainBgColor = "bg-danger-500";
-      icon = <span className="material-symbols-outlined">cancel</span>;
-      break;
-    }
-    case "warning": {
-      mainTextColor = "text-warning-500";
-      mainBgColor = "bg-warning-500";
-      icon = <span className="material-symbols-outlined">error</span>;
-      break;
-    }
-    default: {
-      mainTextColor = "text-primary-500";
-      mainBgColor = "bg-primary-500";
-      icon = (
-        <span className="material-symbols-outlined">circle_notifications</span>
-      );
-    }
+  case "success": {
+    mainTextColor = "text-success-500";
+    mainBgColor = "bg-success-500";
+    icon = <span className="material-symbols-outlined">check_circle</span>;
+    break;
+  }
+  case "danger": {
+    mainTextColor = "text-danger-500";
+    mainBgColor = "bg-danger-500";
+    icon = <span className="material-symbols-outlined">cancel</span>;
+    break;
+  }
+  case "warning": {
+    mainTextColor = "text-warning-500";
+    mainBgColor = "bg-warning-500";
+    icon = <span className="material-symbols-outlined">error</span>;
+    break;
+  }
+  default: {
+    mainTextColor = "text-primary-500";
+    mainBgColor = "bg-primary-500";
+    icon = (
+      <span className="material-symbols-outlined">circle_notifications</span>
+    );
+  }
   }
   const n = (
     <RNotice
@@ -101,8 +104,8 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       close={
         closable
           ? () => {
-              nEventMgr.onRemove.forEach((cb) => cb(n));
-            }
+            nEventMgr.onRemove.forEach((cb) => cb(n));
+          }
           : undefined
       }
     />
@@ -135,7 +138,7 @@ export const RNotifications = (props: NotificationConfig) => {
   const [notices, setNotices] = useState<NoticeData[]>([]);
   const id = useRef(1);
   const waitList = useRef<[ReactNode, PushConfig][]>([]);
-  const pushCallback = (notice: ReactNode, config: PushConfig = {}) => {
+  const pushCallback = useCallback((notice: ReactNode, config: PushConfig = {}) => {
     let existsMS;
     if (config.existsMS) {
       existsMS = config.existsMS;
@@ -153,26 +156,28 @@ export const RNotifications = (props: NotificationConfig) => {
         }
       }
     }
-    let currentId = id.current;
+    const currentId = id.current;
+
     id.current += 1;
     setNotices([{ key: currentId, value: notice }, ...notices]);
     setTimeout(() => {
       setNotices((val) => val.filter((n) => n.key !== currentId));
     }, existsMS);
-  };
+  },[notices, props.defaultExistsMS, props.maxCount, props.wait]);
 
   useEffect(() => {
     if (props.wait) {
       if (props.maxCount) {
         if (waitList.current.length > 0 && notices.length < props.maxCount) {
-          let current = waitList.current.shift();
+          const current = waitList.current.shift();
+
           if (current) {
             pushCallback(...current);
           }
         }
       }
     }
-  }, [notices]);
+  }, [notices, props.maxCount, props.wait, pushCallback]);
 
   const removeCallback = (notice: ReactNode) => {
     setNotices((val) => val.filter((n) => n.value !== notice));
@@ -212,7 +217,7 @@ export const RNotifications = (props: NotificationConfig) => {
         <AnimatePresence>
           {notices
             .sort((a, b) => b.key - a.key)
-            .map((notice, i) => {
+            .map((notice) => {
               return (
                 <motion.div
                   layout

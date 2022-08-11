@@ -1,8 +1,6 @@
 import "./style.css";
 import { MouseEvent, ReactNode } from "react";
 import classNames from "classnames";
-import { colorClass, Colors } from "../../utils/colors";
-import { RBtn } from "../RBtn";
 type RAvatarProps = {
   className?: string;
   children?: ReactNode;

@@ -104,7 +104,7 @@ TextAlign.parameters = {
 };
 TextAlign.args = {};
 
-const BorderTypeTemplate: ComponentStory<typeof RTextField> = (args) => {
+const BorderTypeTemplate: ComponentStory<typeof RTextField> = () => {
   const [solidValue, setSolidValue] = useState("Solid Border Text");
   const [dashedValue, setDashedValue] = useState("Dashed Border Text");
   const [dottedValue, setDottedValue] = useState("Dotted Border Text");

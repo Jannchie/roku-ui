@@ -6,12 +6,12 @@ export default {
   component: RChipGroup,
 } as ComponentMeta<typeof RChipGroup>;
 
-const Template: ComponentStory<typeof RChip> = (args) => {
+const Template: ComponentStory<typeof RChip> = () => {
   return (
     <RChipGroup>
       <RChip>First</RChip>
       <RChip>B</RChip>
-      <RChip className="px-0" onClick={() => {}}>
+      <RChip className="px-0" onClick={() => { return; }}>
         ✘
       </RChip>
     </RChipGroup>

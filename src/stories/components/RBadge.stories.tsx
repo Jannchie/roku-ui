@@ -27,8 +27,8 @@ Default.args = {
   color: "red",
 };
 
-const TemplateAvatar: ComponentStory<typeof RBadge> = (args) => {
-  const [show, setShow] = useState(true);
+const TemplateAvatar: ComponentStory<typeof RBadge> = () => {
+  const [show] = useState(true);
   return (
     <div>
       <RBadge

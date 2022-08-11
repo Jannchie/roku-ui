@@ -1,6 +1,6 @@
 import "./RCard.css";
 import classnames from "classnames";
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 type RCardProps = {
   title?: ReactNode;
   subtitle?: ReactNode;

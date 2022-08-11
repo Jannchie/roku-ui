@@ -1,6 +1,6 @@
 import "./RTextField.css";
 import classnames from "classnames";
-import { ChangeEvent, FC, ReactNode, useEffect, useState } from "react";
+import { ChangeEvent, ReactNode } from "react";
 type RTextFieldProps = {
   className?: string;
   prefix?: ReactNode;
@@ -26,16 +26,15 @@ export function RTextField({
   borderType = "solid",
   value,
   setValue,
-  format = (value) => value,
   ...inputProps
 }: RTextFieldProps & React.InputHTMLAttributes<HTMLInputElement>) {
   const onChange = inputProps.onChange
     ? inputProps.onChange
     : setValue
-    ? (e: ChangeEvent<HTMLInputElement>) => {
+      ? (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
       }
-    : undefined;
+      : undefined;
   // const [displayVal, setDisplayVal] = useState(value);
   // useEffect(() => {
   //   setDisplayVal(value);

@@ -20,7 +20,7 @@ const Template: ComponentStory<typeof RBtn> = () => {
             title: "This is the title",
             desc: "This is the description",
             type: type,
-            existsMS: 300000,
+            existsMS: 3000,
           });
         }}
       >

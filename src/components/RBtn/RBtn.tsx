@@ -55,8 +55,9 @@ export function RBtn({
   });
   const btnClass = classnames(
     "r-btn",
-    { "r-btn-icon": icon },
     `r-btn-${size}`,
+    { "r-btn-icon": icon },
+    { "r-btn-rounded": rounded },
     { "r-btn-dash": dash },
     { "r-btn-outlined": outline },
     { "r-btn-filled": filled && !text },

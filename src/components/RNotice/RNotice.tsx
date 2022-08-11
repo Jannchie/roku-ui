@@ -1,7 +1,6 @@
 import classNames from "classnames";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { RBtn } from "../..";
-import { Flipper, Flipped } from "react-flip-toolkit";
 import "./RNotice.css";
 export type RNoticeConfig = {
   textColor?: string;
@@ -67,7 +66,7 @@ export function RNotice({
             width: "0%",
           },
           {
-            width: `100%`,
+            width: "100%",
           },
         ],
         {
@@ -81,7 +80,7 @@ export function RNotice({
         }
       });
     }
-  }, []);
+  }, [close, existMS]);
   return (
     <div className={wrapperCls}>
       <div className={classNames(dense ? "p-2" : "p-4")}>

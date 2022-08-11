@@ -54,26 +54,26 @@ function List({
           <button
             onKeyDown={(e) => {
               switch (e.key) {
-                case "ArrowLeft":
-                  onChange(
-                    selectedIndex - 1 < 0 ? data.length - 1 : selectedIndex - 1
-                  );
-                  break;
-                case "ArrowRight":
-                  onChange(
-                    selectedIndex + 1 > data.length - 1 ? 0 : selectedIndex + 1
-                  );
-                  break;
-                case "ArrowUp":
-                  onChange(
-                    selectedIndex - 1 < 0 ? data.length - 1 : selectedIndex - 1
-                  );
-                  break;
-                case "ArrowDown":
-                  onChange(
-                    selectedIndex + 1 > data.length - 1 ? 0 : selectedIndex + 1
-                  );
-                  break;
+              case "ArrowLeft":
+                onChange(
+                  selectedIndex - 1 < 0 ? data.length - 1 : selectedIndex - 1
+                );
+                break;
+              case "ArrowRight":
+                onChange(
+                  selectedIndex + 1 > data.length - 1 ? 0 : selectedIndex + 1
+                );
+                break;
+              case "ArrowUp":
+                onChange(
+                  selectedIndex - 1 < 0 ? data.length - 1 : selectedIndex - 1
+                );
+                break;
+              case "ArrowDown":
+                onChange(
+                  selectedIndex + 1 > data.length - 1 ? 0 : selectedIndex + 1
+                );
+                break;
               }
             }}
             key={i}
@@ -90,8 +90,7 @@ function List({
                   : classNames("text-white", indicatorColor)
                 : ""
             }
-            children={d.key}
-          ></button>
+          >{ d.key}</button>
         ))}
       </div>
       {type === "indicator" && (
@@ -115,7 +114,6 @@ type RTabsProps = {
 
 export function RTabRoot(props: RTabsProps) {
   const {
-    id: string,
     selectedIndex,
     onChange,
     type = "indicator",
@@ -136,7 +134,7 @@ export function RTabRoot(props: RTabsProps) {
       <div className="r-tab-panels dark:text-white mt-2">
         {data
           .map((d, i) => (
-            <AnimatePresence exitBeforeEnter>
+            <AnimatePresence key={`${i}`} exitBeforeEnter>
               <motion.div
                 key={`${i}`}
                 initial={{ y: 10, opacity: 0 }}
