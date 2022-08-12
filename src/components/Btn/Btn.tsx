@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { CSSProperties, ReactNode } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Colors, colorClass } from '../../utils/colors';
-import { Loading } from '../other/Loading';
+import { Loading } from '../../icons/Loading';
 import './Btn.css';
 
 export type ButtonProps = {
