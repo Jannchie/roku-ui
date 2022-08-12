@@ -33,6 +33,7 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    "import/no-extraneous-dependencies": ["off", { "devDependencies": ["**/*.stories.tsx"] }],
     'no-unused-vars': 'off',
     'no-undef': 'off',
     'react/jsx-props-no-spreading': 'off',

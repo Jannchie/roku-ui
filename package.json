@@ -30,8 +30,6 @@
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@headlessui/react": "^1.6.6",
-    "@storybook/react": "^6.5.10",
     "classnames": "^2.3.1",
     "framer-motion": "^7.0.1"
   },
@@ -43,6 +41,7 @@
     "@storybook/addon-links": "^6.5.10",
     "@storybook/addons": "^6.5.10",
     "@storybook/builder-vite": "^0.2.2",
+    "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",

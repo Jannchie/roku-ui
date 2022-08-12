@@ -13,7 +13,7 @@ export { Notice } from './components/Notice';
 export { Tabs } from './components/Tabs';
 export { TextField } from './components/TextField';
 
-export { RNotifications, pushNotice, customPush } from './utils/Notifications';
+export { Notifications, pushNotice, customPush } from './utils/Notifications';
 
 export { colorClass, isColor } from './utils/colors';
 export type { Colors } from './utils/colors';
