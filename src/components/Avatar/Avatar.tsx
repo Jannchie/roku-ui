@@ -24,20 +24,26 @@ export function Avatar({
     className,
   );
   return (
-    <div
-      className={avatarClass}
-      role="button"
-      tabIndex={-1}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          if (onClick) {
-            onClick(e);
+    onClick ? (
+      <div
+        className={avatarClass}
+        role="button"
+        tabIndex={-1}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            if (onClick) {
+              onClick(e);
+            }
           }
-        }
-      }}
-      onClick={onClick}
-    >
-      {children}
-    </div>
+        }}
+        onClick={onClick}
+      >
+        {children}
+      </div>
+    ) : (
+      <div className={avatarClass}>
+        {children}
+      </div>
+    )
   );
 }
