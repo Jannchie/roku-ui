@@ -17,12 +17,13 @@ const Template: ComponentStory<typeof Progress> = (args) => {
             setVal(val + 10);
           }}
         >
-          {' '}
           Add Val
-          {' '}
         </Btn>
       </div>
-      <Progress blur={args.blur} infinite={args.infinite} value={val} />
+      <Progress
+        {...args}
+        value={val}
+      />
     </div>
   );
 };
@@ -31,4 +32,7 @@ export const Default = Template.bind({});
 Default.args = {
   blur: true,
   infinite: false,
+  fake: false,
+  durationMS: 0,
+  total: 100,
 };
