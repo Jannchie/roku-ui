@@ -47,7 +47,7 @@ function BtnRoot({
   leadingIcon = null,
 }: ButtonProps) {
   const colorCls = colorClass({
-    bg: filled && !text ? color : undefined,
+    bg: (filled && !text) ? color : undefined,
     border: border ? color : undefined,
     hoverable: color,
     outline: outline ? color : undefined,
@@ -147,19 +147,6 @@ function BtnRoot({
     </motion.button>
   );
 }
-
-BtnRoot.defaultProps = {
-  size: 'md',
-  color: 'primary',
-  filled: false,
-  border: false,
-  dash: false,
-  text: false,
-  disabled: false,
-  outline: false,
-  loading: false,
-  icon: false,
-};
 
 type BtnGroup = {
   className?: string;

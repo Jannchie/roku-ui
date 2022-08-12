@@ -25,7 +25,7 @@ export function Progress({
   if (isColor(color)) {
     colorCls = colorClass({ bg: color });
   }
-  const wrapperCls = classNames(className, colorCls, 'r-progress-wrapper dark:bg-zinc-800 bg-zinc-50');
+  const wrapperCls = classNames(className, 'r-progress-wrapper dark:bg-zinc-800 bg-zinc-50');
   let precent = 25;
   if (!infinite) {
     precent = Math.min((value / total) * 100, 100);

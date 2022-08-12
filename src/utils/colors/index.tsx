@@ -87,8 +87,8 @@ export function colorClass({
   );
   const borderCls = classNames(`border border-${border}-700`); // border-primary-700 border-success-700 border-danger-700 border-warning-700 border-slate-700 border-gray-700 border-zinc-700 border-neutral-700 border-stone-700 border-red-700 border-orange-700 border-amber-700 border-yellow-700 border-lime-700 border-green-700 border-emerald-700 border-teal-700 border-cyan-700 border-sky-700 border-blue-700 border-indigo-700 border-violet-700 border-purple-700 border-fuchsia-700 border-pink-700 border-rose-700
   return classNames({
-    [bgCls]: bg,
     'border-transparent': !border,
+    [bgCls]: bg,
     [borderCls]: border,
     [hoverableCls]: hoverable,
     [outlineCls]: outline,
