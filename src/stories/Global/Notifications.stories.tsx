@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useRef } from 'react';
-import { RNotifications, pushNotice, Btn } from '../..';
+import { Notifications, pushNotice, Btn } from '../..';
 
 export default {
   component: Btn,
@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Btn> = () => {
       >
         Show Notification
       </Btn>
-      <RNotifications bottom className="mt-2 w-96" maxCount={3} />
+      <Notifications bottom className="mt-2 w-96" maxCount={3} />
     </>
   );
 };

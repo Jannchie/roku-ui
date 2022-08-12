@@ -1,5 +1,7 @@
 import './Avatar.css';
-import { MouseEvent, KeyboardEvent, ReactNode } from 'react';
+import {
+  MouseEvent, KeyboardEvent, ReactNode, ImgHTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 
 type AvatarProps = {
@@ -8,13 +10,14 @@ type AvatarProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   outlined?: boolean;
   onClick?: (e: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>) => void;
-};
+} & ImgHTMLAttributes<HTMLImageElement>;
 export function Avatar({
   className,
   children,
   outlined,
   size = 'md',
   onClick,
+  ...others
 }: AvatarProps) {
   const avatarClass = classNames(
     'r-avatar',
@@ -23,6 +26,7 @@ export function Avatar({
     `r-avatar-${size}`,
     className,
   );
+  const image = others.src ? <img {...others} alt={others.alt ?? 'Avatar'} /> : children;
   return (
     onClick ? (
       <div
@@ -31,18 +35,16 @@ export function Avatar({
         tabIndex={-1}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            if (onClick) {
-              onClick(e);
-            }
+            if (onClick) { onClick(e); }
           }
         }}
         onClick={onClick}
       >
-        {children}
+        {image}
       </div>
     ) : (
       <div className={avatarClass}>
-        {children}
+        {image}
       </div>
     )
   );

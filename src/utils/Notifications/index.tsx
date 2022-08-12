@@ -114,7 +114,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
   customPush(n, { existsMS });
 };
 
-export function RNotifications({
+export function Notifications({
   bottom, left, right, defaultExistsMS, maxCount, wait, className,
 }: NotificationConfig) {
   let align = 'top';
