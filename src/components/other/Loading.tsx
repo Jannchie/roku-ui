@@ -29,7 +29,7 @@ export function Loading({
           repeatCount="indefinite"
           type="rotate"
           values="0 50 50;360 50 50"
-        ></animateTransform>
+        />
       </circle>
       <circle
         className={subColor}
@@ -50,7 +50,7 @@ export function Loading({
           repeatCount="indefinite"
           type="rotate"
           values="0 50 50;-360 50 50"
-        ></animateTransform>
+        />
       </circle>
     </svg>
   );

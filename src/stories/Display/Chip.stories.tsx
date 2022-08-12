@@ -1,58 +1,59 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Colors } from "../../utils/colors";
-import { Chip } from "../..";
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Colors } from '../../utils/colors';
+import { Chip } from '../..';
+
 export default {
   component: Chip,
-  title: "Display/Chip",
+  title: 'Display/Chip',
 } as ComponentMeta<typeof Chip>;
 
-const Template: ComponentStory<typeof Chip> = (args) => {
-  return <Chip {...args}>{args.children}</Chip>;
-};
+const Template: ComponentStory<typeof Chip> = (args) => <Chip {...args}>{args.children}</Chip>;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: "Default Chip",
+  children: 'Default Chip',
   onClick: undefined,
 };
 
 export const WithLeading = Template.bind({});
 WithLeading.args = {
-  children: "Chip With Leading",
+  children: 'Chip With Leading',
   leading: <span className="mr-1">●</span>,
   onClick: undefined,
 };
 
 export const WithAction = Template.bind({});
 WithAction.args = {
-  children: "Clickable Chip",
-  onClick: () => {return;},
+  children: 'Clickable Chip',
+  onClick: () => {},
 };
 
 const WithColorTemplate: ComponentStory<typeof Chip> = () => {
   const colors: Colors[] = [
-    "primary",
-    "success",
-    "danger",
-    "warning",
-    "amber",
-    "blue",
-    "cyan",
-    "green",
-    "indigo",
-    "lime",
-    "orange",
-    "pink",
-    "purple",
-    "red",
-    "teal",
-    "yellow",
+    'primary',
+    'success',
+    'danger',
+    'warning',
+    'amber',
+    'blue',
+    'cyan',
+    'green',
+    'indigo',
+    'lime',
+    'orange',
+    'pink',
+    'purple',
+    'red',
+    'teal',
+    'yellow',
   ];
   return (
     <div className="flex gap-1 flex-wrap">
       {colors.map((color) => (
         <Chip key={color} color={color}>
-          {color.toUpperCase()} CHIP
+          {color.toUpperCase()}
+          {' '}
+          CHIP
         </Chip>
       ))}
     </div>
@@ -62,12 +63,14 @@ export const WithColor = WithColorTemplate.bind({});
 WithColor.args = {};
 
 const WithSizeTemplate: ComponentStory<typeof Chip> = () => {
-  const sizes : ("xs" | "sm" | "md" | "lg" | "xl")[] = ["xs", "sm", "md", "lg", "xl"];
+  const sizes : ('xs' | 'sm' | 'md' | 'lg' | 'xl')[] = ['xs', 'sm', 'md', 'lg', 'xl'];
   return (
     <div className="flex gap-1 flex-wrap items-center">
       {sizes.map((size) => (
         <Chip key={size} size={size}>
-          {size} chip
+          {size}
+          {' '}
+          chip
         </Chip>
       ))}
     </div>

@@ -1,8 +1,9 @@
-import classNames from "classnames";
-import { ReactNode, useEffect, useRef } from "react";
-import { Btn } from "../..";
-import "./Notice.css";
-export type Notice = {
+import classNames from 'classnames';
+import { ReactNode, useEffect, useRef } from 'react';
+import { Btn } from '../..';
+import './Notice.css';
+
+export type NoticeProps = {
   textColor?: string;
   mainTextColor?: string;
   mainBgColor?: string;
@@ -20,6 +21,17 @@ export type Notice = {
   close?: () => void;
   existMS?: number;
 };
+export function animate(
+  el: HTMLElement,
+  keyframes: Keyframe[] | PropertyIndexedKeyframes,
+  options?: number | KeyframeAnimationOptions,
+): Promise<void> {
+  return new Promise((resolve) => {
+    const anim = el.animate(keyframes, options);
+    anim.addEventListener('finish', () => resolve());
+    anim.addEventListener('cancel', () => resolve());
+  });
+}
 
 export function Notice({
   wrapperClass,
@@ -38,23 +50,23 @@ export function Notice({
   icon = <span className="material-symbols-outlined">check_circle</span>,
   existMS = 3000,
   close,
-}: Notice) {
+}: NoticeProps) {
   const wrapperCls = classNames(
-    "r-notice-wrapper",
-    { "shadow-lg shadow-black/5": shadow },
-    "overflow-hidden",
-    { dense: dense },
+    'r-notice-wrapper',
+    { 'shadow-lg shadow-black/5': shadow },
+    'overflow-hidden',
+    { dense },
     { border: outlined },
     textColor,
-    wrapperClass
+    wrapperClass,
   );
-  const descCls = classNames("r-notice-desc truncate", subColor, descClass);
+  const descCls = classNames('r-notice-desc truncate', subColor, descClass);
   const titleCls = classNames(
-    "r-notice-title truncate",
+    'r-notice-title truncate',
     mainTextColor,
-    titleClass
+    titleClass,
   );
-  const iconCls = classNames("r-notice-icon", mainTextColor);
+  const iconCls = classNames('r-notice-icon', mainTextColor);
   const pVal = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (pVal.current) {
@@ -63,18 +75,18 @@ export function Notice({
         pv,
         [
           {
-            width: "0%",
+            width: '0%',
           },
           {
-            width: "100%",
+            width: '100%',
           },
         ],
         {
           duration: existMS,
-          easing: "linear",
-        }
+          easing: 'linear',
+        },
       ).then(() => {
-        pv.style.width = "100%";
+        pv.style.width = '100%';
         if (close) {
           close();
         }
@@ -83,7 +95,7 @@ export function Notice({
   }, [close, existMS]);
   return (
     <div className={wrapperCls}>
-      <div className={classNames(dense ? "p-2" : "p-4")}>
+      <div className={classNames(dense ? 'p-2' : 'p-4')}>
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className={iconCls}>{icon}</div>
@@ -106,20 +118,9 @@ export function Notice({
       </div>
       {progress && (
         <div className="h-1 flex">
-          <div ref={pVal} className={classNames(mainBgColor)}></div>
+          <div ref={pVal} className={classNames(mainBgColor)} />
         </div>
       )}
     </div>
   );
-}
-export function animate(
-  el: HTMLElement,
-  keyframes: Keyframe[] | PropertyIndexedKeyframes,
-  options?: number | KeyframeAnimationOptions
-): Promise<void> {
-  return new Promise((resolve) => {
-    const anim = el.animate(keyframes, options);
-    anim.addEventListener("finish", () => resolve());
-    anim.addEventListener("cancel", () => resolve());
-  });
 }

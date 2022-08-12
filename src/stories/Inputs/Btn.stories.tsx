@@ -1,9 +1,10 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useState } from "react";
-import { Btn, Colors } from "../..";
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useState } from 'react';
+import { Btn, Colors } from '../..';
+
 export default {
   component: Btn,
-  title: "Inputs/Btn",
+  title: 'Inputs/Btn',
 } as ComponentMeta<typeof Btn>;
 
 const Template: ComponentStory<typeof Btn> = (args) => <Btn {...args} />;
@@ -57,16 +58,17 @@ const AllTemplate: ComponentStory<typeof Btn> = () => (
 
 export const Default = Template.bind({});
 Default.args = {
-  label: "Default Button",
+  label: 'Default Button',
   onClick() {
-    alert("Clicked");
+    // eslint-disable-next-line no-console
+    console.log('Clicked');
   },
 };
 export const Size = SizeTemplate.bind({});
 
-const LoadingTemplate = () => {
+function LoadingTemplate() {
   const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState<Colors>("primary");
+  const [color, setColor] = useState<Colors>('primary');
   return (
     <div className="flex flex-col gap-2">
       <Btn
@@ -75,11 +77,11 @@ const LoadingTemplate = () => {
         size="sm"
         style={{ width: 128 }}
         onClick={() => {
-          setColor((val) => (val === "primary" ? "success" : "primary"));
+          setColor((val) => (val === 'primary' ? 'success' : 'primary'));
           setLoading((val) => !val);
         }}
       >
-        {loading ? "Loading" : "Click"}
+        {loading ? 'Loading' : 'Click'}
       </Btn>
       <Btn
         color="fuchsia"
@@ -135,7 +137,7 @@ const LoadingTemplate = () => {
       </Btn>
     </div>
   );
-};
+}
 
 export const Loading = LoadingTemplate.bind({});
 export const All = AllTemplate.bind({});

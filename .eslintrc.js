@@ -1,41 +1,56 @@
-// eslint-disable-next-line no-undef
 module.exports = {
   env: {
     browser: true,
     es2021: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended",
+    'airbnb',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:react/jsx-runtime',
   ],
-  parser: "@typescript-eslint/parser",
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.ts', '.tsx'],
+      },
+    },
+    react: {
+      version: 'detect',
+    },
+  },
+  parser: '@typescript-eslint/parser',
+  ignorePatterns: ['*.ts', '*.js'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["react", "@typescript-eslint", "sort-keys-fix"],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+  ],
   rules: {
-    indent: ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "no-multiple-empty-lines": ["warn", { max: 1, maxEOF: 0 }],
-    "object-curly-spacing": ["error", "always"],
-    quotes: ["error", "double"],
-    "react/jsx-sort-props": [
-      "warn",
-      { callbacksLast: true, reservedFirst: true, shorthandFirst: true },
+    'no-unused-vars': 'off',
+    'no-undef': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/destructuring-assignment': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'import/prefer-default-export': 'off',
+    'react/require-default-props': 'off',
+    'react/function-component-definition': 'off',
+    'import/extensions': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
+    'react/jsx-sort-props': [
+      'warn',
+      {
+        noSortAlphabetically: true,
+        callbacksLast: true,
+        reservedFirst: true,
+        shorthandFirst: true
+      },
     ],
-    semi: ["error", "always"],
-    "sort-keys-fix/sort-keys-fix": "warn",
-  },
-  settings: {
-    react: {
-      version: "detect",
-    },
   },
 };

@@ -1,2 +1,3 @@
-import "./Card.css";
-export { Card } from "./Card";
+import './Card.css';
+
+export { Card } from './Card';

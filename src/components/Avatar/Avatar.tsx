@@ -1,28 +1,42 @@
-import "./avatar.css";
-import { MouseEvent, ReactNode } from "react";
-import classNames from "classnames";
-type Avatar = {
+import './Avatar.css';
+import { MouseEvent, KeyboardEvent, ReactNode } from 'react';
+import classNames from 'classnames';
+
+type AvatarProps = {
   className?: string;
   children?: ReactNode;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   outlined?: boolean;
-  onClick?: (e: MouseEvent<HTMLSpanElement>) => void;
-  leading?: ReactNode;
+  onClick?: (e: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>) => void;
 };
 export function Avatar({
   className,
   children,
-  size = "md",
+  outlined,
+  size = 'md',
   onClick,
-}: Avatar) {
+}: AvatarProps) {
   const avatarClass = classNames(
-    "r-avatar",
-    { "r-avatar-clickable": onClick !== undefined },
+    'r-avatar',
+    { 'r-avatar-clickable': onClick !== undefined },
+    { 'r-avatar-outlined': outlined },
     `r-avatar-${size}`,
-    className
+    className,
   );
   return (
-    <div className={avatarClass} onClick={onClick}>
+    <div
+      className={avatarClass}
+      role="button"
+      tabIndex={-1}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          if (onClick) {
+            onClick(e);
+          }
+        }
+      }}
+      onClick={onClick}
+    >
       {children}
     </div>
   );

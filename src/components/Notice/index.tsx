@@ -1,1 +1,1 @@
-export { Notice } from "./Notice";
+export { Notice } from './Notice';

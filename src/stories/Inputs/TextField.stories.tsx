@@ -1,56 +1,55 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { TextField } from "../..";
-import { useState } from "react";
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useState } from 'react';
+import { TextField } from '../..';
+
 export default {
   component: TextField,
-  title: "Inputs/TextField",
+  title: 'Inputs/TextField',
 } as ComponentMeta<typeof TextField>;
 
 const Template: ComponentStory<typeof TextField> = (args) => {
-  const [value, setValue] = useState(args.value || "");
+  const [val, setVal] = useState(args.value || '');
   return (
-    <>
-      <TextField {...args} setValue={setValue} value={value} />
-    </>
+    <TextField {...args} setValue={setVal} value={val} />
   );
 };
 export const Default = Template.bind({});
 Default.args = {
-  placeholder: "Placeholder",
-  type: "text",
+  placeholder: 'Placeholder',
+  type: 'text',
 };
 
 export const Password = Template.bind({});
 Password.parameters = {
   docs: {
     storyDescription:
-      "We support the style of input boxes displayed as passwords. In some browsers - such as Edge - there is also a toggle button that displays whether or not the password content is displayed. This button will change depending on the theme color.",
+      'We support the style of input boxes displayed as passwords. In some browsers - such as Edge - there is also a toggle button that displays whether or not the password content is displayed. This button will change depending on the theme color.',
   },
 };
 Password.args = {
-  type: "password",
-  value: "123456",
+  type: 'password',
+  value: '123456',
 };
 
 export const WithPrefix = Template.bind({});
 WithPrefix.parameters = {
   docs: {
-    storyDescription: "We can add some prefixes to the input.",
+    storyDescription: 'We can add some prefixes to the input.',
   },
 };
 WithPrefix.args = {
-  prefix: "No.",
-  value: "1850091",
+  prefix: 'No.',
+  value: '1850091',
 };
 export const WithSuffix = Template.bind({});
 WithSuffix.parameters = {
   docs: {
-    storyDescription: "Suffixes can also be added.",
+    storyDescription: 'Suffixes can also be added.',
   },
 };
 WithSuffix.args = {
-  suffix: "$",
-  value: "100",
+  suffix: '$',
+  value: '100',
 };
 
 // export const WithFormat = Template.bind({});
@@ -68,9 +67,9 @@ WithSuffix.args = {
 // };
 
 const TextAlignTemplate: ComponentStory<typeof TextField> = (args) => {
-  const [valueLeft, setValueLeft] = useState("Left Align Text");
-  const [valueCenter, setValueCenter] = useState("Center Align Text");
-  const [valueRight, setValueRight] = useState("Right Align Text");
+  const [valueLeft, setValueLeft] = useState('Left Align Text');
+  const [valueCenter, setValueCenter] = useState('Center Align Text');
+  const [valueRight, setValueRight] = useState('Right Align Text');
   return (
     <div className="flex gap-2">
       <TextField
@@ -99,16 +98,16 @@ export const TextAlign = TextAlignTemplate.bind({});
 TextAlign.parameters = {
   docs: {
     storyDescription:
-      "Using className allows for deep customization. Note that className is applied to the input element.",
+      'Using className allows for deep customization. Note that className is applied to the input element.',
   },
 };
 TextAlign.args = {};
 
 const BorderTypeTemplate: ComponentStory<typeof TextField> = () => {
-  const [solidValue, setSolidValue] = useState("Solid Border Text");
-  const [dashedValue, setDashedValue] = useState("Dashed Border Text");
-  const [dottedValue, setDottedValue] = useState("Dotted Border Text");
-  const [noneValue, setNoneValue] = useState("No Border Text");
+  const [solidValue, setSolidValue] = useState('Solid Border Text');
+  const [dashedValue, setDashedValue] = useState('Dashed Border Text');
+  const [dottedValue, setDottedValue] = useState('Dotted Border Text');
+  const [noneValue, setNoneValue] = useState('No Border Text');
   return (
     <div className="flex gap-2">
       <TextField
@@ -143,7 +142,7 @@ export const BorderType = BorderTypeTemplate.bind({});
 BorderType.parameters = {};
 
 const DifferentTextSizeTemplate: ComponentStory<typeof TextField> = (args) => {
-  const [value, setValue] = useState(args.value || "");
+  const [value, setValue] = useState(args.value || '');
   return (
     <div className="flex gap-2">
       <TextField className="text-sm" setValue={setValue} value={value} />
@@ -157,9 +156,9 @@ export const DifferentTextSize = DifferentTextSizeTemplate.bind({});
 DifferentTextSize.parameters = {
   docs: {
     storyDescription:
-      "Using className allows for deep customization. Note that className is applied to the input element.",
+      'Using className allows for deep customization. Note that className is applied to the input element.',
   },
 };
 DifferentTextSize.args = {
-  value: "Test 123",
+  value: 'Test 123',
 };

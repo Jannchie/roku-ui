@@ -1,37 +1,36 @@
-import "./EditableLine.css";
-import classnames from "classnames";
-import { useRef, useState } from "react";
-import { Btn, TextField } from "../..";
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import './EditableLine.css';
+import classnames from 'classnames';
+import { useRef, useState, ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import { Btn, TextField } from '../..';
 
-export type EditableLine = {
+export type EditableLineProps = {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   okBtnContent?: ReactNode;
   cancelBtnContent?: ReactNode;
   className?: string;
-  textAligin?: "left" | "center" | "right";
-  borderType?: "dash" | "solid" | "dot";
+  textAligin?: 'left' | 'center' | 'right';
+  borderType?: 'dash' | 'solid' | 'dot';
   onOK?: (value: string) => void;
 };
 
 export function EditableLine({
   value,
   setValue,
-  okBtnContent = "✔",
-  cancelBtnContent = "✘",
-  borderType = "dash",
-  textAligin = "left",
+  okBtnContent = '✔',
+  cancelBtnContent = '✘',
+  borderType = 'dash',
+  textAligin = 'left',
   className,
   onOK,
-}: EditableLine) {
+}: EditableLineProps) {
   const [editing, setEditing] = useState(false);
   const tempValue = useRef(value);
   return (
     <div
-      className={classnames("r-editable-line", "flex", "gap-2", {
-        "r-editable-line-editing": editing,
+      className={classnames('r-editable-line', 'flex', 'gap-2', {
+        'r-editable-line-editing': editing,
       })}
     >
       <TextField
@@ -62,7 +61,7 @@ export function EditableLine({
             color="success"
             onClick={() => {
               setEditing(false);
-              if (typeof onOK === "function") {
+              if (typeof onOK === 'function') {
                 onOK(value);
               }
             }}

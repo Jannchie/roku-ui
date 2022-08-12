@@ -1,0 +1,7 @@
+.r-progress-wrapper {
+  @apply h-1 relative;
+}
+
+.r-progress-bar {
+  @apply h-full absolute;
+}

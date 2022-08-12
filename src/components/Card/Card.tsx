@@ -1,6 +1,7 @@
-import classnames from "classnames";
-import { ReactNode } from "react";
-export type Card = {
+import classnames from 'classnames';
+import { ReactNode } from 'react';
+
+type CardProps = {
   title?: ReactNode;
   subtitle?: ReactNode;
   body?: ReactNode;
@@ -14,30 +15,29 @@ export type Card = {
 
 export function Card({
   className, title, subtitle, body, actions, children, dense, divider, shadow = false,
-}: Card) {
+}: CardProps) {
   const cardClass = classnames(
-    "r-card",
+    'r-card',
     {
-      "divide-y": divider,
-      "r-card-dense": dense,
-      "r-card-shadow": shadow,
+      'divide-y': divider,
+      'r-card-dense': dense,
+      'r-card-shadow': shadow,
     },
-    className
+    className,
   );
   if (children) {
     return <div className={cardClass}>{children}</div>;
-  } else {
-    return (
-      <div className={cardClass}>
-        {title && (
-          <div className="r-card-title">
-            <div className="title-line">{title}</div>
-            <div className="subtitle-line">{subtitle}</div>
-          </div>
-        )}
-        {body && <div className="r-card-body">{body}</div>}
-        {actions && <div className="r-card-actions">{actions}</div>}
-      </div>
-    );
   }
+  return (
+    <div className={cardClass}>
+      {title && (
+      <div className="r-card-title">
+        <div className="title-line">{title}</div>
+        <div className="subtitle-line">{subtitle}</div>
+      </div>
+      )}
+      {body && <div className="r-card-body">{body}</div>}
+      {actions && <div className="r-card-actions">{actions}</div>}
+    </div>
+  );
 }

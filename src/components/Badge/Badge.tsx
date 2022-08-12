@@ -1,37 +1,37 @@
-import "./Badge.css";
-import { ReactNode } from "react";
-import classNames from "classnames";
-import { Colors, colorClass } from "../..";
-import { AnimatePresence, motion } from "framer-motion";
+import './Badge.css';
+import { ReactNode } from 'react';
+import classNames from 'classnames';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Colors, colorClass } from '../..';
 
-type RBadgeProps = {
+type BadgeProps = {
   className?: string;
   color?: Colors;
   children?: ReactNode;
   dot?: boolean;
   show?: boolean;
-  position?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 };
 export function Badge({
-  color = "red",
+  color = 'red',
   className,
   children,
   show = true,
   dot = false,
-  position = "top-right",
-}: RBadgeProps) {
+  position = 'top-right',
+}: BadgeProps) {
   const colorCls = colorClass({
     bg: color,
   });
   const badgePointCls = classNames(
-    "r-badge-point",
-    { "r-badge-point-dot": dot },
-    { "r-badge-point-top-left": position === "top-left" },
-    { "r-badge-point-top-right": position === "top-right" },
-    { "r-badge-point-bottom-left": position === "bottom-left" },
-    { "r-badge-point-bottom-right": position === "bottom-right" },
+    'r-badge-point',
+    { 'r-badge-point-dot': dot },
+    { 'r-badge-point-top-left': position === 'top-left' },
+    { 'r-badge-point-top-right': position === 'top-right' },
+    { 'r-badge-point-bottom-left': position === 'bottom-left' },
+    { 'r-badge-point-bottom-right': position === 'bottom-right' },
     colorCls,
-    className
+    className,
   );
 
   return (
@@ -45,8 +45,8 @@ export function Badge({
               className={badgePointCls}
               exit={{ height: 0, width: 0 }}
               initial={{ height: 0, width: 0 }}
-              transition={{ damping: 8, type: "spring" }}
-            ></motion.span>
+              transition={{ damping: 8, type: 'spring' }}
+            />
           )}
         </AnimatePresence>
       </div>

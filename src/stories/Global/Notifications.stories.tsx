@@ -1,10 +1,10 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useRef } from "react";
-import { RNotifications, pushNotice } from "../..";
-import { Btn } from "../..";
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useRef } from 'react';
+import { RNotifications, pushNotice, Btn } from '../..';
+
 export default {
   component: Btn,
-  title: "Global/Notifications",
+  title: 'Global/Notifications',
 } as ComponentMeta<typeof Btn>;
 
 const Template: ComponentStory<typeof Btn> = () => {
@@ -13,14 +13,15 @@ const Template: ComponentStory<typeof Btn> = () => {
     <>
       <Btn
         onClick={() => {
-          const type = ["success", "info", "warning", "danger"][
-            idx.current++ % 4
-          ] as "success" | "info" | "warning" | "danger";
+          const type = ['success', 'info', 'warning', 'danger'][
+            idx.current % 4
+          ] as 'success' | 'info' | 'warning' | 'danger';
+          idx.current += 1;
           pushNotice({
-            desc: "This is the description",
+            desc: 'This is the description',
             existsMS: 3000,
-            title: "This is the title",
-            type: type,
+            title: 'This is the title',
+            type,
           });
         }}
       >
