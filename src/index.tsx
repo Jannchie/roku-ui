@@ -12,6 +12,7 @@ export { Modal } from './components/Modal';
 export { Notice } from './components/Notice';
 export { Tabs } from './components/Tabs';
 export { TextField } from './components/TextField';
+export { Popover } from './components/Popover';
 
 export { Notifications, pushNotice, customPush } from './utils/Notifications';
 

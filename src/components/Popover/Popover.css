@@ -1,0 +1,9 @@
+.r-popover-main-underline {
+  @apply underline underline-offset-2 decoration-primary-500 decoration-dotted decoration-2;
+}
+
+.r-popover-content {
+  @apply absolute bottom-full text-white text-xs;
+  left: 50%;
+  transform: translate(-50%, -8px);
+}
