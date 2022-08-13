@@ -10,7 +10,7 @@ export default {
 const Template: ComponentStory<typeof Btn> = () => {
   const idx = useRef(0);
   return (
-    <>
+    <div style={{ height: 500, position: 'relative', inset: 5 }}>
       <Btn
         onClick={() => {
           const type = ['success', 'info', 'warning', 'danger'][
@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof Btn> = () => {
         Show Notification
       </Btn>
       <Notifications bottom className="mt-2 w-96" maxCount={3} />
-    </>
+    </div>
   );
 };
 export const Default = Template.bind({});

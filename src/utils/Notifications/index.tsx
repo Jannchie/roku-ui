@@ -4,7 +4,7 @@ import {
   ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
 import classNames from 'classnames';
-import { Notice } from '../..';
+import { Colors, Notice } from '../..';
 
 type NotificationConfig = {
   left?: boolean;
@@ -58,33 +58,27 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
   if (!existsMS) existsMS = 3000;
   if (!progressBar) progressBar = false;
   if (!closable) closable = true;
-  let mainTextColor = '';
-  let mainBgColor = '';
-  const subColor = '';
+  let mainColor: Colors = 'primary';
 
   let icon: ReactNode = '';
   switch (type) {
     case 'success': {
-      mainTextColor = 'text-success-500';
-      mainBgColor = 'bg-success-500';
+      mainColor = 'success';
       icon = <span className="material-symbols-outlined">check_circle</span>;
       break;
     }
     case 'danger': {
-      mainTextColor = 'text-danger-500';
-      mainBgColor = 'bg-danger-500';
+      mainColor = 'danger';
       icon = <span className="material-symbols-outlined">cancel</span>;
       break;
     }
     case 'warning': {
-      mainTextColor = 'text-warning-500';
-      mainBgColor = 'bg-warning-500';
+      mainColor = 'warning';
       icon = <span className="material-symbols-outlined">error</span>;
       break;
     }
     default: {
-      mainTextColor = 'text-primary-500';
-      mainBgColor = 'bg-primary-500';
+      mainColor = 'primary';
       icon = (
         <span className="material-symbols-outlined">circle_notifications</span>
       );
@@ -105,9 +99,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       desc={desc}
       existMS={existsMS}
       icon={icon}
-      mainBgColor={mainBgColor}
-      mainTextColor={mainTextColor}
-      subColor={subColor}
+      color={mainColor}
       title={title}
     />
   );

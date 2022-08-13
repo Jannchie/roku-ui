@@ -12,7 +12,7 @@ export const Default = Template.bind({});
 Default.args = {
   dense: false,
   desc: 'Default Notice Description',
-  mainTextColor: 'text-primary-500',
+  color: 'primary',
   outlined: true,
   title: 'Default Notice',
 };

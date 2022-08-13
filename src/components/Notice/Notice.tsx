@@ -1,13 +1,12 @@
 import classNames from 'classnames';
 import { ReactNode, useEffect, useRef } from 'react';
-import { Btn } from '../..';
+import {
+  Btn, colorClass, Colors, Progress,
+} from '../..';
 import './Notice.css';
 
 export type NoticeProps = {
-  textColor?: string;
-  mainTextColor?: string;
-  mainBgColor?: string;
-  subColor?: string;
+  color?: Colors;
   title?: string;
   desc?: string;
   wrapperClass?: string;
@@ -35,10 +34,7 @@ export function animate(
 
 export function Notice({
   wrapperClass,
-  textColor,
-  mainTextColor,
-  mainBgColor,
-  subColor,
+  color = 'primary',
   title,
   desc,
   titleClass,
@@ -57,16 +53,16 @@ export function Notice({
     'overflow-hidden',
     { dense },
     { border: outlined },
-    textColor,
     wrapperClass,
   );
-  const descCls = classNames('r-notice-desc truncate', subColor, descClass);
+  const mainTextColorCls = colorClass({ text: color });
+  const descCls = classNames('r-notice-desc truncate', descClass);
   const titleCls = classNames(
     'r-notice-title truncate',
-    mainTextColor,
+    mainTextColorCls,
     titleClass,
   );
-  const iconCls = classNames('r-notice-icon', mainTextColor);
+  const iconCls = classNames('r-notice-icon', mainTextColorCls);
   const pVal = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (pVal.current) {
@@ -117,9 +113,7 @@ export function Notice({
         </div>
       </div>
       {progress && (
-        <div className="h-1 flex">
-          <div ref={pVal} className={classNames(mainBgColor)} />
-        </div>
+        <Progress blur durationMS={existMS} color={color} />
       )}
     </div>
   );
