@@ -70,7 +70,7 @@ function LoadingTemplate() {
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState<Colors>('primary');
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col items-start gap-2">
       <Btn
         color={color}
         loading={loading}

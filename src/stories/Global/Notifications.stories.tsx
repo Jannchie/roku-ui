@@ -32,4 +32,29 @@ const Template: ComponentStory<typeof Btn> = () => {
   );
 };
 export const Default = Template.bind({});
-Default.args = {};
+
+const StackTemplate: ComponentStory<typeof Btn> = () => {
+  const idx = useRef(0);
+  return (
+    <div style={{ height: 500, position: 'relative', inset: 5 }}>
+      <Btn
+        onClick={() => {
+          const type = ['success', 'info', 'warning', 'danger'][
+            idx.current % 4
+          ] as 'success' | 'info' | 'warning' | 'danger';
+          idx.current += 1;
+          pushNotice({
+            desc: 'This is the description',
+            existsMS: 3000,
+            title: 'This is the title',
+            type,
+          });
+        }}
+      >
+        Show Notification
+      </Btn>
+      <Notifications stack className="mt-2 w-96" maxCount={3} />
+    </div>
+  );
+};
+export const Stack = StackTemplate.bind({});

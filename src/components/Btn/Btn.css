@@ -1,5 +1,5 @@
 .r-btn {
-  @apply min-w-max w-0;
+  @apply min-w-max;
   @apply h-fit transition;
   @apply text-xs border;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;

@@ -6,7 +6,7 @@ export default {
   title: 'Feedback/Notice',
 } as ComponentMeta<typeof Notice>;
 
-const Template: ComponentStory<typeof Notice> = (args) => <Notice {...args} />;
+const Template: ComponentStory<typeof Notice> = (args) => <Notice {...args} close={() => {}} />;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -69,8 +69,8 @@ function BtnRoot({
   const loadingFinalClass = classNames('leading-[0]', {
     'mr-1': size === 'sm' && !icon,
     'mr-2': (size === 'md' || size === 'lg') && !icon,
-    'w-4': size === 'sm' || size === 'md',
-    'w-6': size === 'lg',
+    'w-4': size === 'sm',
+    'w-6': size === 'lg' || size === 'md',
   });
   if (icon) {
     return (

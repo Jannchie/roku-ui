@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode } from 'react';
 import {
   Btn, colorClass, Colors, Progress,
 } from '../..';
@@ -63,32 +63,6 @@ export function Notice({
     titleClass,
   );
   const iconCls = classNames('r-notice-icon', mainTextColorCls);
-  const pVal = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (pVal.current) {
-      const pv = pVal.current;
-      animate(
-        pv,
-        [
-          {
-            width: '0%',
-          },
-          {
-            width: '100%',
-          },
-        ],
-        {
-          duration: existMS,
-          easing: 'linear',
-        },
-      ).then(() => {
-        pv.style.width = '100%';
-        if (close) {
-          close();
-        }
-      });
-    }
-  }, [close, existMS]);
   return (
     <div className={wrapperCls}>
       <div className={classNames(dense ? 'p-2' : 'p-4')}>

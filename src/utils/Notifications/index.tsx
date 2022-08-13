@@ -13,6 +13,7 @@ type NotificationConfig = {
   className?: string;
   defaultExistsMS?: number;
   maxCount?: number;
+  stack?: boolean,
   wait?: boolean;
 };
 
@@ -107,7 +108,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
 };
 
 export function Notifications({
-  bottom, left, right, defaultExistsMS, maxCount, wait, className,
+  bottom, left, right, defaultExistsMS, maxCount, wait, className, stack,
 }: NotificationConfig) {
   let align = 'top';
   if (bottom) {
@@ -181,6 +182,65 @@ export function Notifications({
     };
   });
   const noticesWrapper = useRef<HTMLDivElement>(null);
+  function getNoticeAnimate(i: number) {
+    if (!stack) {
+      return {
+        animate: {
+          opacity: 1,
+          scale: 1,
+        },
+        exit: {
+          opacity: 0,
+        },
+        initial: {
+          opacity: 0,
+          scale: 0.8,
+        },
+      };
+    }
+    switch (align) {
+      case 'bottom': {
+        return {
+          animate: {
+            opacity: 1,
+            zIndex: -i,
+            y: i * 70,
+            height: 0,
+            scale: 1 - i * 0.075,
+          },
+          exit: {
+            opacity: 0,
+            scale: 0,
+            y: i * 70,
+          },
+          initial: {
+            opacity: 0,
+            scale: 1.2,
+          },
+        };
+      }
+      default: {
+        return {
+          animate: {
+            opacity: 1,
+            zIndex: -i,
+            y: -i * 70,
+            scale: 1 - i * 0.075,
+          },
+          exit: {
+            opacity: 0,
+            scale: 0,
+            height: 0,
+            y: -i * 70,
+          },
+          initial: {
+            opacity: 0,
+            scale: 1.2,
+          },
+        };
+      }
+    }
+  }
   return (
     <div
       key="r-notification"
@@ -201,21 +261,11 @@ export function Notifications({
         <AnimatePresence>
           {notices
             .sort((a, b) => b.key - a.key)
-            .map((notice) => (
+            .map((notice, i) => (
               <motion.div
                 key={notice.key}
-                layout // fix order bug
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                exit={{
-                  opacity: 0,
-                }}
-                initial={{
-                  opacity: 0,
-                  scale: 0.8,
-                }}
+                layout
+                {...getNoticeAnimate(i)}
                 style={{ order: -notice.key }}
                 transition={{ duration: 0.3 }}
               >
