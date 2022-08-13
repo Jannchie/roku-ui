@@ -34,11 +34,12 @@ module.exports = {
   ],
   rules: {
     "import/no-extraneous-dependencies": ["off", { "devDependencies": ["**/*.stories.tsx"] }],
+    "@typescript-eslint/type-annotation-spacing": ["warn", { "after": true }],
     'no-unused-vars': 'off',
     'no-undef': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/destructuring-assignment': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
     'react/function-component-definition': 'off',
