@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import { ReactNode } from 'react';
+import { BaseProps } from '../../utils/type';
 
 type CardProps = {
   title?: ReactNode;
@@ -7,14 +8,23 @@ type CardProps = {
   body?: ReactNode;
   actions?: ReactNode[] | ReactNode;
   dense?: boolean;
-  children?: ReactNode;
   shadow?: boolean;
+  border?: boolean;
   divider?: boolean;
-  className?: string;
-};
+} & BaseProps & React.HTMLAttributes<HTMLDivElement>;
 
 export function Card({
-  className, title, subtitle, body, actions, children, dense, divider, shadow = false,
+  className,
+  title,
+  subtitle,
+  body,
+  actions,
+  children,
+  dense,
+  divider,
+  shadow,
+  border = true,
+  ...other
 }: CardProps) {
   const cardClass = classnames(
     'r-card',
@@ -22,6 +32,7 @@ export function Card({
       'divide-y': divider,
       'r-card-dense': dense,
       'r-card-shadow': shadow,
+      'r-card-border': border,
     },
     className,
   );
@@ -29,7 +40,7 @@ export function Card({
     return <div className={cardClass}>{children}</div>;
   }
   return (
-    <div className={cardClass}>
+    <div className={cardClass} {...other}>
       {title && (
       <div className="r-card-title">
         <div className="title-line">{title}</div>

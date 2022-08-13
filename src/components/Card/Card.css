@@ -1,8 +1,13 @@
 .r-card {
-  @apply flex flex-col gap-2 rounded border;
-  @apply text-zinc-800 bg-zinc-50;
-  @apply dark:text-zinc-200 dark:bg-zinc-900 dark:border-zinc-800;
+  @apply flex flex-col gap-2 rounded-lg;
+  @apply text-zinc-800;
+  @apply dark:text-zinc-200 dark:border-zinc-800;
   @apply dark:divide-zinc-800;
+  @apply dark:bg-zinc-900 bg-zinc-50;
+}
+
+.r-card-border {
+  @apply border;
 }
 
 .r-card-shadow {
@@ -16,7 +21,7 @@
 .r-card-title {
   @apply dark:text-zinc-200;
   @apply p-6 pb-0;
-  @apply text-lg;
+  @apply text-base;
 }
 
 .r-card-title > .title-line {
@@ -33,7 +38,6 @@
   @apply text-base dark:text-zinc-400;
 }
 .r-card-dense > .r-card-body {
-  @apply dark:text-zinc-200;
   @apply p-4 py-1 text-sm;
 }
 

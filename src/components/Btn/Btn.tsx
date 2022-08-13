@@ -17,8 +17,8 @@ export type ButtonProps = {
   text?: boolean;
   disabled?: boolean;
   onClick?: () => void;
-  outline?: boolean;
   loading?: boolean;
+  ring?: boolean;
   children?: ReactNode;
   className?: string;
   icon?: boolean;
@@ -34,8 +34,8 @@ function BtnRoot({
   loading = false,
   disabled = false,
   border = false,
-  outline = false,
   rounded = false,
+  ring = false,
   filled = true,
   text = false,
   style,
@@ -50,7 +50,6 @@ function BtnRoot({
     bg: (filled && !text) ? color : undefined,
     border: border ? color : undefined,
     hoverable: color,
-    outline: outline ? color : undefined,
     text: text ? color : undefined,
   });
   const btnClass = classNames(
@@ -59,7 +58,7 @@ function BtnRoot({
     { 'r-btn-icon': icon },
     { 'r-btn-rounded': rounded },
     { 'r-btn-dash': dash },
-    { 'r-btn-outlined': outline },
+    { 'r-btn-ring': ring },
     { 'r-btn-filled': filled && !text },
     { 'r-btn-text': text },
     className,

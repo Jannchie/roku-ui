@@ -1,12 +1,17 @@
 .r-btn {
   @apply min-w-max w-0;
-  @apply h-fit transition-all;
+  @apply h-fit transition;
   @apply text-xs border;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
+  @apply outline-none;
 }
 
 .r-btn-rounded {
-  @apply rounded-full
+  @apply rounded-full;
+}
+
+.r-btn-ring {
+  @apply focus:ring;
 }
 
 .r-btn.r-btn-filled {
@@ -15,11 +20,7 @@
 }
 
 .r-btn.r-btn-text {
-  @apply !bg-opacity-5 active:!bg-opacity-20;
-}
-
-.r-btn.r-btn-outlined {
-  @apply outline-offset-2 enabled:active:outline outline-2;
+  @apply !bg-opacity-10 active:!bg-opacity-25;
 }
 
 .r-btn-icon {
