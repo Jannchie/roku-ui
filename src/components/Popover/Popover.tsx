@@ -22,10 +22,10 @@ function Content({ children }: { children: ReactNode }) {
 export function PopoverRoot({
   content, underline, children, ...other
 }: {
-    content: ReactNode;
-    underline?: boolean;
-    children?: ReactNode;
-    style?: BaseProps['style'];
+  content: ReactNode;
+  underline?: boolean;
+  children?: ReactNode;
+  style?: BaseProps['style'];
 } & BaseProps) {
   const [show, setShow] = useState(false);
   return (
@@ -36,18 +36,18 @@ export function PopoverRoot({
     >
       <AnimatePresence>
         {show && (
-        <motion.div
-          className={classNames('r-popover-content', other.className)}
-          style={{
-            ...other.style,
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          {...other}
-        >
-          {content}
-        </motion.div>
+          <motion.div
+            className={classNames('r-popover-content', other.className)}
+            style={{
+              ...other.style,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            {...other}
+          >
+            {content}
+          </motion.div>
         )}
       </AnimatePresence>
       <span className={classNames(

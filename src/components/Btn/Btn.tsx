@@ -105,26 +105,26 @@ function BtnRoot({
         ) : (
           <AnimatePresence>
             {loading && (
-            <motion.div
-              layout
-              animate={{
-                marginRight: size === 'sm' ? 4 : 8,
-                width: size === 'lg' ? 24 : 16,
-              }}
-              className={loadingFinalClass}
-              exit={{ marginRight: 0, width: 0 }}
-              initial={{
-                marginRight: 0,
-                width: 0,
-              }}
-              transition={{
-                bounce: 0,
-                duration: 0.15,
-                type: 'spring',
-              }}
-            >
-              {loadingIcon}
-            </motion.div>
+              <motion.div
+                layout
+                animate={{
+                  marginRight: size === 'sm' ? 4 : 8,
+                  width: size === 'lg' ? 24 : 16,
+                }}
+                className={loadingFinalClass}
+                exit={{ marginRight: 0, width: 0 }}
+                initial={{
+                  marginRight: 0,
+                  width: 0,
+                }}
+                transition={{
+                  bounce: 0,
+                  duration: 0.15,
+                  type: 'spring',
+                }}
+              >
+                {loadingIcon}
+              </motion.div>
             )}
           </AnimatePresence>
         )}

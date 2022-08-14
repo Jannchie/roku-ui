@@ -33,6 +33,8 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2],
     "import/no-extraneous-dependencies": ["off", { "devDependencies": ["**/*.stories.tsx"] }],
     "@typescript-eslint/type-annotation-spacing": ["warn", { "after": true }],
     'no-unused-vars': 'off',

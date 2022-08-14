@@ -42,14 +42,14 @@ export function ChipRoot({
       tabIndex={-1}
       onClick={onClick}
       onKeyDown={
-      (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          if (onClick) {
-            onClick(e);
+        (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            if (onClick) {
+              onClick(e);
+            }
           }
         }
       }
-    }
     >
       <span>{leading}</span>
       <span>{children}</span>
