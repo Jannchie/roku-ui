@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark :root {
+body {
+  @apply text-sm;
+}
+
+.dark {
   color-scheme: dark;
-  @apply text-sm
 }
 .dark > * {
   @apply text-zinc-200;

@@ -6,10 +6,10 @@
   @apply w-4 h-4;
 }
 .r-avatar-sm {
-  @apply w-8 h-8;
+  @apply w-5 h-5;
 }
 .r-avatar-md {
-  @apply w-12 h-12;
+  @apply w-10 h-10;
 }
 .r-avatar-lg {
   @apply w-16 h-16;
