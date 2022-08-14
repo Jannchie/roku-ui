@@ -1,0 +1,1 @@
+export { MaterialSymbolIcon } from './MaterialSymbolIcon';

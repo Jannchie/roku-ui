@@ -24,6 +24,8 @@ export type ButtonProps = {
   icon?: boolean;
   loadingIcon?: ReactNode;
   leadingIcon?: ReactNode;
+  left?: boolean;
+  right?: boolean;
 };
 
 function BtnRoot({
@@ -45,6 +47,8 @@ function BtnRoot({
   icon = false,
   loadingIcon = <Loading />,
   leadingIcon = null,
+  left,
+  right,
 }: ButtonProps) {
   const colorCls = colorClass({
     bg: (filled && !text) ? color : undefined,
@@ -81,7 +85,9 @@ function BtnRoot({
         type="button"
         onClick={onClick}
       >
-        <div className={loadingFinalClass}>
+        <div
+          className={loadingFinalClass}
+        >
           {loading ? loadingIcon : children}
         </div>
       </button>
@@ -89,7 +95,7 @@ function BtnRoot({
   }
   return (
     <motion.button
-      key="btn-main"
+      key="r-btn-wrapper"
       layout
       className={btnClass}
       disabled={disabled}
@@ -97,9 +103,20 @@ function BtnRoot({
       type="button"
       onClick={onClick}
     >
-      <div className="flex items-center justify-center">
+      <div className={classNames(
+        'r-btn-main',
+        { 'r-btn-left': left },
+        { 'r-btn-right': right },
+        { 'r-btn-center': !left && !right },
+      )}
+      >
         {leadingIcon ? (
-          <div className={loadingFinalClass}>
+          <div
+            className={loadingFinalClass}
+            style={{
+              fontSize: size === 'sm' ? '1rem' : '1.5rem',
+            }}
+          >
             {loading ? loadingIcon : leadingIcon}
           </div>
         ) : (
@@ -132,7 +149,6 @@ function BtnRoot({
           <motion.div
             key="btn-body"
             layout
-            style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}
             transition={{
               bounce: 0,
               duration: 0.15,

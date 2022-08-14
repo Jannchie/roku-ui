@@ -1,22 +1,19 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import classNames from 'classnames';
 import {
-  AnchorHTMLAttributes, ReactNode, useRef, useState,
+  ReactNode, useRef, useState,
 } from 'react';
 import {
   motion, AnimatePresence, LayoutGroup,
 } from 'framer-motion';
 import {
-  Avatar, Btn, useOnClickOutside,
+  Avatar,
+  Btn,
+  useOnClickOutside,
+  Anchor,
+  MaterialSymbolIcon,
+  Textarea,
 } from '../..';
-
-function Anchor({ children, className, ...props }: any & AnchorHTMLAttributes<HTMLAnchorElement>) {
-  return (
-    <a {...props} className={classNames('r-anchor', 'decoration', className)}>
-      {children}
-    </a>
-  );
-}
 
 type CommentDataUser = {
   name: ReactNode;
@@ -29,6 +26,7 @@ type CommentData = {
   user: CommentDataUser;
   content: ReactNode;
   time?: ReactNode;
+  [key: string]: any;
 }
 
 type CommentDataWithReplies = CommentData & {
@@ -36,11 +34,9 @@ type CommentDataWithReplies = CommentData & {
 }
 
 type CommentOptions = {
-  // likeBtn?: ReactNode;
-  // dislikeBtn?: ReactNode;
-  // replyBtn?: ReactNode;
   maxReplies?: number;
   getMoreRepliesBtnText?: (cnt: number) => string;
+  refoldable?: boolean;
 }
 
 function SimpleComment({ data }: { data: CommentData }) {
@@ -64,18 +60,30 @@ function Comment({
   data,
   replies,
   maxReplies = 2,
+  actions,
+  refoldable,
   getMoreRepliesBtnText = (cnt: number) => `${cnt} more replies`,
 }: {
   data: CommentData;
+  actions?: ReactNode;
   replies?: CommentData[];
 } & CommentOptions) {
   const [showMore, setShowMore] = useState(false);
   const repliesDetail = useRef(null);
   const { id } = data;
   useOnClickOutside(repliesDetail, () => {
-    setShowMore(false);
+    if (refoldable) {
+      setShowMore(false);
+    }
   });
-  let { avatar } = data.user;
+  let { avatar, name } = data.user;
+  if (typeof name === 'string') {
+    if (data.user.link) {
+      name = <Anchor href={data.user.link} target="_blank">{name}</Anchor>;
+    } else {
+      name = <Anchor>{name}</Anchor>;
+    }
+  }
   if (typeof avatar === 'string') {
     if (data.user.link) {
       avatar = (
@@ -120,7 +128,7 @@ function Comment({
           )}
           <div className="text-sm text-ellipsis overflow-hidden">
             <div className="flex gap-1">
-              <motion.div layoutId={`${id}-name`}><Anchor>{data.user.name}</Anchor></motion.div>
+              <motion.div layoutId={`${id}-name`}>{name}</motion.div>
               {data.time && <div className="text-zinc-400">{data.time}</div>}
             </div>
             <motion.div layoutId={`${id}-content`} className="dark:text-zinc-400 text-zinc-700">
@@ -128,8 +136,8 @@ function Comment({
             </motion.div>
           </div>
         </div>
-        <div className="flex justify-between gap-1 mx-2 mt-1">
-          <div />
+        <div className="flex gap-2 mx-2 mt-1">
+          {actions}
         </div>
       </motion.div>
       {replies && (
@@ -162,7 +170,10 @@ function Comment({
                   layoutId={`${reply.id}a`}
                   initial={{ opacity: i < maxReplies ? 1 : 0 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { delay: (replies.length - 1 - i) * 0.1 } }}
+                  exit={{
+                    opacity: 0,
+                    transition: { delay: (replies.length - 1 - i) * 0.1 },
+                  }}
                   transition={{ delay: i * 0.1 }}
                 >
                   <Comment
@@ -198,15 +209,20 @@ function Comment({
 
 export default {
   // component: Chip.Group,
-  title: 'Display/Comment',
+  title: 'Hyper/Comment',
 } as ComponentMeta<typeof Comment>;
 
 const CommentList = ({
   data,
+  refoldable,
+  generateActions,
   ...commentOptions
-}: { data: CommentDataWithReplies[] } & CommentOptions) => (
-  <div className="relative flex flex-col gap-4 m-auto max-w-lg">
-    <LayoutGroup>
+}: {
+  data: CommentDataWithReplies[]
+  generateActions?: (target: CommentDataWithReplies) => ReactNode;
+} & CommentOptions) => (
+  <LayoutGroup>
+    <div className="flex flex-col gap-2">
       {data.map((item, i) => (
         <motion.div
           key={item.id}
@@ -214,15 +230,21 @@ const CommentList = ({
           animate={{ opacity: 1 }}
           transition={{ delay: i * 0.05 }}
         >
-          <Comment data={item} replies={item.replies} {...commentOptions} />
+          <Comment
+            refoldable={refoldable}
+            data={item}
+            replies={item.replies}
+            actions={generateActions ? generateActions(item) : null}
+            {...commentOptions}
+          />
         </motion.div>
       ))}
-    </LayoutGroup>
-  </div>
+    </div>
+  </LayoutGroup>
 );
 
 const Template: ComponentStory<typeof Comment> = () => {
-  const data: CommentDataWithReplies[] = [
+  const raw: CommentDataWithReplies[] = [
     {
       id: '1',
       user: {
@@ -320,9 +342,131 @@ const Template: ComponentStory<typeof Comment> = () => {
       ],
     },
   ];
-
+  const [data, setData] = useState(raw);
+  const [input, setInput] = useState('');
+  const [replyTo, setReplyTo] = useState<CommentData|null>(null);
   return (
-    <CommentList data={data} />
+    <div className="relative flex flex-col gap-4 m-auto max-w-lg">
+      <CommentList
+        // eslint-disable-next-line react/no-unstable-nested-components
+        generateActions={(target) => (
+          [
+            <Btn
+              key="like"
+              text
+              left
+              color="rose"
+              className="w-[4rem]"
+              size="sm"
+              onClick={() => {
+                // eslint-disable-next-line no-console
+                console.log('like', target);
+                if (target.liked) {
+                  // eslint-disable-next-line no-param-reassign
+                  target.like = 0;
+                  // eslint-disable-next-line no-param-reassign
+                  target.liked = false;
+                } else {
+                  // eslint-disable-next-line no-param-reassign
+                  target.like = 1;
+                  // eslint-disable-next-line no-param-reassign
+                  target.liked = true;
+                }
+                setData([...data]);
+              }}
+            >
+              {
+                target.liked
+                  ? <MaterialSymbolIcon fill size="sm" icon="favorite" />
+                  : <MaterialSymbolIcon size="sm" icon="favorite" />
+              }
+              <span className="ml-1">
+                { target.like ?? 0}
+              </span>
+            </Btn>,
+            <Btn
+              key="reply"
+              text
+              left
+              color="green"
+              size="sm"
+              className="w-[4rem]"
+              onClick={() => {
+                if (replyTo === target) {
+                  setReplyTo(null);
+                } else {
+                  setReplyTo(target);
+                }
+              }}
+            >
+              <MaterialSymbolIcon size="sm" icon="reply" />
+              {
+                target.replies && (
+                  <span className="ml-1">
+                    { target.replies.length}
+                  </span>
+                )
+              }
+            </Btn>,
+          ]
+        )}
+        data={data}
+        getMoreRepliesBtnText={(cnt) => `Other ${cnt} replies`}
+      />
+      <div>
+        <div>
+          {replyTo ? (
+            <span>
+              To
+              {' '}
+              {replyTo.user.name }
+            </span>
+          ) : <span>Jannchie</span>}
+          :
+        </div>
+        <div className="flex gap-2 items-center">
+          <Textarea
+            value={input}
+            setValue={setInput}
+            className="w-full"
+            placeholder="Please Input The Comment"
+          />
+          <Btn
+            border
+            label="Send"
+            color="primary"
+            onClick={() => {
+            // eslint-disable-next-line no-console
+              const newComment = {
+                id: `${data.length + 10000 * Math.random()}`,
+                user: {
+                  name: 'Jannchie',
+                  avatar: 'https://i.pravatar.cc/80?img=2',
+                },
+                content: input,
+              };
+              if (!replyTo) {
+                setData([...data, newComment]);
+              } else {
+                setData([...data.map((d) => {
+                  if (d === replyTo) {
+                    const c = { ...d };
+                    if (!c.replies) {
+                      c.replies = [];
+                    }
+                    c.replies = [...c.replies, newComment];
+                    return c;
+                  }
+                  return d;
+                })]);
+                setReplyTo(null);
+              }
+              setInput('');
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

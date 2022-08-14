@@ -1,0 +1,7 @@
+.r-anchor {
+  @apply decoration-primary-500 decoration-dashed transition-all underline-offset-2 cursor-default;
+}
+
+.r-anchor-clickable {
+  @apply hover:text-primary-500 hover:underline cursor-pointer;
+}

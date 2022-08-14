@@ -1,12 +1,15 @@
-# Roku UI 组件库
+# Roku UI
 
 > **Warning**
+>
 > 这是一个开发中的组件库。所有 API 可能会有非常大的变化。
 
-## 组件库特色
+## 组件库目标
 
-- 美观的弹簧动画：我基于 [framer-motion](https://www.framer.com/motion/) 动画库，尽可能地使用了更为流畅的弹簧动画，而不是基于持续时间的 CSS 动画。
-- 组件丰富：虽然现在还不够丰富，但我设计/将会设计一些其他组件库没有的，但对我很常用的组件，比如[数字动画组件](https://roku-ui.vercel.app/?path=/story/display-digital--default)。
+相对于现有的组件库，Ruku UI 试图实现以下目标：
+
+- 内置丰富而不造作的动画。
+- 内置开箱即用的高级组件。
 
 ## 为什么要做一个新的的组件库？
 

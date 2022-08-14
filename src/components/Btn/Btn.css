@@ -6,6 +6,22 @@
   @apply outline-none;
 }
 
+.r-btn-main {
+  @apply flex items-center;
+}
+
+.r-btn-center {
+  @apply justify-center;
+}
+
+.r-btn-left {
+  @apply justify-start;
+}
+
+.r-btn-right {
+  @apply justify-end;
+}
+
 .r-btn-rounded {
   @apply rounded-full;
 }
