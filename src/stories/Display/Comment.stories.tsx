@@ -377,8 +377,8 @@ const Template: ComponentStory<typeof Comment> = () => {
             >
               {
                 target.liked
-                  ? <MaterialSymbolIcon fill size="sm" icon="favorite" />
-                  : <MaterialSymbolIcon size="sm" icon="favorite" />
+                  ? <MaterialSymbolIcon fill icon="favorite" />
+                  : <MaterialSymbolIcon icon="favorite" />
               }
               <span className="ml-1">
                 { target.like ?? 0}
@@ -399,7 +399,7 @@ const Template: ComponentStory<typeof Comment> = () => {
                 }
               }}
             >
-              <MaterialSymbolIcon size="sm" icon="reply" />
+              <MaterialSymbolIcon icon="reply" />
               {
                 target.replies && (
                   <span className="ml-1">

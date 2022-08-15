@@ -9,21 +9,21 @@
 }
 
 .r-icon-xs {
-  font-size: 0.75rem;
+  font-size: 0.5rem;
 }
 
 .r-icon-sm {
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 .r-icon-md {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .r-icon-lg {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .r-icon-xl {
-  font-size: 3rem;
+  font-size: 2rem;
 }

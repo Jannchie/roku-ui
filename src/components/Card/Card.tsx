@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import { BaseProps } from '../../utils/type';
 
 type CardProps = {
@@ -11,7 +11,7 @@ type CardProps = {
   shadow?: boolean;
   border?: boolean;
   divider?: boolean;
-} & BaseProps & React.HTMLAttributes<HTMLDivElement>;
+} & BaseProps & HTMLAttributes<HTMLDivElement>;
 
 export function Card({
   className,
@@ -42,10 +42,10 @@ export function Card({
   return (
     <div className={cardClass} {...other}>
       {title && (
-      <div className="r-card-title">
-        <div className="title-line">{title}</div>
-        <div className="subtitle-line">{subtitle}</div>
-      </div>
+        <div className="r-card-title">
+          <div className="title-line">{title}</div>
+          <div className="subtitle-line">{subtitle}</div>
+        </div>
       )}
       {body && <div className="r-card-body">{body}</div>}
       {actions && <div className="r-card-actions">{actions}</div>}

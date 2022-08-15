@@ -15,11 +15,12 @@ export type TextFieldProps = {
   setValue?: Dispatch<SetStateAction<string>>;
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
   textAlign?: 'left' | 'center' | 'right';
+  ring?: boolean;
   format?: (value: string) => string;
 };
 
 export function TextField({
-  className, prefix, suffix, placeholder, type = 'text', textAlign = 'left', border = true, borderType = 'solid', value, setValue, ...inputProps
+  className, prefix, suffix, ring = true, placeholder, type = 'text', textAlign = 'left', border = true, borderType = 'solid', value, setValue, ...inputProps
 }: TextFieldProps & InputHTMLAttributes<HTMLInputElement>) {
   let onChange;
   if (inputProps.onChange) {
@@ -39,6 +40,7 @@ export function TextField({
         `r-text-field-${borderType}`,
         {
           'r-text-field-border': border,
+          'r-text-field-ring': ring,
         },
       )}
     >

@@ -3,14 +3,23 @@
 }
 
 .r-text-field-wrapper {
-  @apply px-2 py-1 rounded-lg;
-  @apply dark:border-zinc-600 border-zinc-400;
-  @apply dark:text-zinc-100;
+  @apply p-[6px];
+  @apply rounded-lg;
   @apply inline-flex;
+  @apply outline-none rounded transition;
+  @apply dark:text-zinc-100;
+  @apply dark:bg-zinc-900;
+  @apply border border-transparent;
 }
 
 .r-text-field-border {
-  @apply border;
+  @apply dark:border-zinc-600;
+  @apply border-zinc-400;
+}
+
+.r-text-field-ring {
+  @apply focus-within:!border-transparent focus-within:ring;
+  @apply ring-primary-500;
 }
 
 .r-text-field-wrapper:focus-within {

@@ -10,6 +10,29 @@ export default {
 
 const Template: ComponentStory<typeof Digital> = () => {
   const [value, setValue] = useState('');
+  const formater1 = new Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 0,
+  });
+  const formater2 = new Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 0,
+    notation: 'compact',
+    compactDisplay: 'short',
+  });
+  const formater3 = new Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 0,
+    notation: 'compact',
+    compactDisplay: 'long',
+  });
+  const formater4 = new Intl.NumberFormat('zh-Hans-CN-u-nu-hanidec');
+  const formater5 = new Intl.NumberFormat('ar-EG');
+  const formater6 = new Intl.NumberFormat('zh-CN', {
+    style: 'currency',
+    currency: 'JPY',
+    maximumFractionDigits: 0,
+  });
+  const formater7 = new Intl.NumberFormat('zh-CN', {
+    style: 'percent',
+  });
   return (
     <div className="text-center">
       <TextField
@@ -20,55 +43,40 @@ const Template: ComponentStory<typeof Digital> = () => {
       />
       <div className="flex gap-4 flex-col justify-between flex-wrap">
         <Digital
-          className="text-6xl dark:text-primary-500"
+          className="text-xl dark:text-primary-500"
           value={Number(value)}
-          format={(v) => new Intl.NumberFormat('en-US', {
-            maximumFractionDigits: 0,
-          }).format(v)}
+          format={(v) => formater1.format(v)}
         />
         <Digital
-          className="text-6xl dark:text-primary-500"
+          className="text-xl dark:text-primary-500"
           value={Number(value)}
-          format={(v) => new Intl.NumberFormat('en-US', {
-            maximumFractionDigits: 0,
-            notation: 'compact',
-            compactDisplay: 'short',
-          }).format(v)}
+          format={(v) => formater2.format(v)}
         />
         <Digital
-          className="text-6xl dark:text-primary-500"
+          className="text-xl dark:text-primary-500"
           value={Number(value)}
-          format={(v) => new Intl.NumberFormat('zh-Hans-CN-u-nu-hanidec').format(v)}
+          format={(v) => formater3.format(v)}
         />
         <Digital
-          className="text-6xl dark:text-primary-500"
+          className="text-xl dark:text-primary-500"
           value={Number(value)}
-          format={(v) => new Intl.NumberFormat('ar-EG').format(v)}
+          format={(v) => formater4.format(v)}
         />
         <Digital
-          className="text-6xl dark:text-primary-500"
+          className="text-xl dark:text-primary-500"
           value={Number(value)}
-          format={(v) => new Intl.NumberFormat('zh-CN', {
-            style: 'currency',
-            currency: 'JPY',
-            maximumFractionDigits: 0,
-          }).format(v)}
+          format={(v) => formater5.format(v)}
         />
         <Digital
-          className="text-6xl dark:text-primary-500"
+          className="text-xl dark:text-primary-500"
           value={Number(value)}
-          format={(v) => new Intl.NumberFormat('zh-CN', {
-            style: 'currency',
-            currency: 'USD',
-            maximumFractionDigits: 0,
-          }).format(v)}
+          format={(v) => formater6.format(v)}
         />
+
         <Digital
-          className="text-6xl dark:text-primary-500"
+          className="text-xl dark:text-primary-500"
           value={Number(value)}
-          format={(v) => new Intl.NumberFormat('zh-CN', {
-            style: 'percent',
-          }).format(v)}
+          format={(v) => formater7.format(v)}
         />
       </div>
     </div>

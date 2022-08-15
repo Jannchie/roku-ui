@@ -2,7 +2,7 @@ import './EditableLine.css';
 import classnames from 'classnames';
 import { useRef, useState, ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Btn, TextField } from '../..';
+import { Btn, MaterialSymbolIcon, TextField } from '../..';
 
 export type EditableLineProps = {
   value: string;
@@ -18,8 +18,8 @@ export type EditableLineProps = {
 export function EditableLine({
   value,
   setValue,
-  okBtnContent = '✔',
-  cancelBtnContent = '✘',
+  okBtnContent = <MaterialSymbolIcon icon="check" />,
+  cancelBtnContent = <MaterialSymbolIcon icon="close" />,
   borderType = 'dash',
   textAligin = 'left',
   className,
