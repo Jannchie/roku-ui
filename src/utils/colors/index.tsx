@@ -61,6 +61,7 @@ export function colorClass({
   bg,
   text,
   hoverable,
+  outline,
   border,
 }: {
   bg?: Colors;
@@ -89,11 +90,18 @@ export function colorClass({
     `border-${border}-600`, // border-primary-600 border-success-600 border-danger-600 border-warning-600 border-slate-600 border-gray-600 border-zinc-600 border-neutral-600 border-stone-600 border-red-600 border-orange-600 border-amber-600 border-yellow-600 border-lime-600 border-green-600 border-emerald-600 border-teal-600 border-cyan-600 border-sky-600 border-blue-600 border-indigo-600 border-violet-600 border-purple-600 border-fuchsia-600 border-pink-600 border-rose-600
   );
 
+  const outlineCls = classNames(
+    'outline',
+    `dark:outline-${outline}-700`, // dark:outline-primary-700 dark:outline-success-700 dark:outline-danger-700 dark:outline-warning-700 dark:outline-slate-700 dark:outline-gray-700 dark:outline-zinc-700 dark:outline-neutral-700 dark:outline-stone-700 dark:outline-red-700 dark:outline-orange-700 dark:outline-amber-700 dark:outline-yellow-700 dark:outline-lime-700 dark:outline-green-700 dark:outline-emerald-700 dark:outline-teal-700 dark:outline-cyan-700 dark:outline-sky-700 dark:outline-blue-700 dark:outline-indigo-700 dark:outline-violet-700 dark:outline-purple-700 dark:outline-fuchsia-700 dark:outline-pink-700 dark:outline-rose-700
+    `outline-${outline}-600`, // outline-primary-600 outline-success-600 outline-danger-600 outline-warning-600 outline-slate-600 outline-gray-600 outline-zinc-600 outline-neutral-600 outline-stone-600 outline-red-600 outline-orange-600 outline-amber-600 outline-yellow-600 outline-lime-600 outline-green-600 outline-emerald-600 outline-teal-600 outline-cyan-600 outline-sky-600 outline-blue-600 outline-indigo-600 outline-violet-600 outline-purple-600 outline-fuchsia-600 outline-pink-600 outline-rose-600
+  );
+
   return classNames({
     'border-transparent': !border,
     [bgCls]: bg,
     [borderCls]: border,
     [hoverableCls]: hoverable,
+    [outlineCls]: outline,
     [textCls]: text,
   });
 }
