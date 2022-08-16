@@ -31,10 +31,8 @@ function RadioRoot({
             animate={{ scale: 0.5 }}
             exit={{ scale: 0 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className={classNames('absolute w-6 h-6 flex justify-center items-center rounded-full', colorCls)}
-          >
-            {/* <motion.div className="bg-zinc-900 w-1 h-1 rounded-full" /> */}
-          </motion.span>
+            className={classNames('absolute w-4 h-4 flex justify-center items-center rounded-full', colorCls)}
+          />
         )}
       </AnimatePresence>
       {label}

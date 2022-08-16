@@ -1,5 +1,7 @@
 import classNames from 'classnames';
-import { CSSProperties, ReactNode } from 'react';
+import {
+  createContext, CSSProperties, ReactNode, useContext, useMemo,
+} from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Colors, colorClass } from '../../utils/colors';
 import { Loading } from '../../icons/Loading';
@@ -25,8 +27,22 @@ export type ButtonProps = {
   loadingIcon?: ReactNode;
   leadingIcon?: ReactNode;
   left?: boolean;
+  value?: any;
   right?: boolean;
 };
+
+type BtnGroupCtxType = {
+  cancelable: any;
+  value: any,
+  setValue: ((value: any) => void),
+  activeColor: Colors,
+}
+const BtnGroupCtx = createContext<BtnGroupCtxType>({
+  value: undefined,
+  setValue: () => { },
+  activeColor: 'primary',
+  cancelable: false,
+});
 
 function BtnRoot({
   label,
@@ -48,14 +64,21 @@ function BtnRoot({
   loadingIcon = <Loading />,
   leadingIcon = null,
   left,
+  value,
   right,
 }: ButtonProps) {
+  const ctx = useContext(BtnGroupCtx);
+  let finalColor = color;
+  if (ctx.value && value === ctx.value) {
+    finalColor = ctx.activeColor;
+  }
   const colorCls = colorClass({
-    bg: (filled && !text) ? color : undefined,
-    border: border ? color : undefined,
-    hoverable: color,
-    text: text ? color : undefined,
+    bg: (filled && !text) ? finalColor : undefined,
+    border: border ? finalColor : undefined,
+    hoverable: finalColor,
+    text: text ? finalColor : undefined,
   });
+
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -76,6 +99,15 @@ function BtnRoot({
     'w-4': size === 'sm',
     'w-6': size === 'lg' || size === 'md',
   });
+  const clickCallback = onClick || (() => {
+    if (value) {
+      if (ctx.value !== value) {
+        ctx.setValue(value);
+      } else if (ctx.cancelable) {
+        ctx.setValue(undefined);
+      }
+    }
+  });
   if (icon) {
     return (
       <button
@@ -83,7 +115,7 @@ function BtnRoot({
         disabled={disabled}
         style={style}
         type="button"
-        onClick={onClick}
+        onClick={clickCallback}
       >
         <div
           className={loadingFinalClass}
@@ -101,7 +133,7 @@ function BtnRoot({
       disabled={disabled}
       style={style}
       type="button"
-      onClick={onClick}
+      onClick={clickCallback}
     >
       <div className={classNames(
         'r-btn-main',
@@ -166,20 +198,35 @@ function BtnRoot({
 type BtnGroup = {
   className?: string;
   children?: ReactNode;
+  cancelable?: boolean,
+  value: any,
+  setValue: (val: any) => void,
+  activeColor: Colors,
 };
-function Group({ className, children }: BtnGroup) {
+function Group({
+  className, children, value, setValue, activeColor = 'primary', cancelable,
+}: BtnGroup) {
+  const ctx = useMemo(() => ({
+    value, setValue, activeColor, cancelable,
+  }), [value, setValue, activeColor, cancelable]);
+  const colorCls = colorClass({
+    border: activeColor,
+  });
   return (
-    <div className="relative flex">
-      <div
-        className={classNames(
-          className,
-          'r-btn-group',
-          colorClass({ border: 'zinc' }),
-        )}
-      >
-        {children}
+    <BtnGroupCtx.Provider value={ctx}>
+      <div className="relative flex">
+        <div
+          className={classNames(
+            className,
+            { [colorCls]: ctx.value },
+            { [colorClass({ border: 'zinc' })]: !ctx.value },
+            'r-btn-group',
+          )}
+        >
+          {children}
+        </div>
       </div>
-    </div>
+    </BtnGroupCtx.Provider>
   );
 }
 

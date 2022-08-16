@@ -32,7 +32,7 @@
 
 .r-btn.r-btn-filled {
   @apply hover:text-white;
-  @apply text-white dark:text-white;
+  @apply text-white dark:!text-white;
 }
 
 .r-btn.r-btn-text {
@@ -77,12 +77,10 @@
 }
 
 .r-btn-group {
-  @apply flex divide-zinc-100/20 !divide-x border rounded-full;
+  @apply flex border rounded transform transition overflow-hidden;
 }
 
 .r-btn-group .r-btn {
   @apply outline-none border-none;
   @apply rounded-none;
-  @apply first:rounded-l-full;
-  @apply last:rounded-r-full;
 }

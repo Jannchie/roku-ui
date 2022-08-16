@@ -1,5 +1,5 @@
 .r-input-radio {
-  @apply w-6 h-6 mr-2 relative cursor-pointer transition;
+  @apply w-4 h-4 mr-2 relative cursor-pointer transition;
   @apply rounded-full appearance-none;
   @apply border-2;
 }
