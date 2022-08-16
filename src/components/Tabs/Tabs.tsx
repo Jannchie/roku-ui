@@ -3,7 +3,7 @@ import {
   ReactNode, useEffect, useRef, useState,
 } from 'react';
 import classNames from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Colors, colorClass } from '../..';
 import { BaseProps } from '../../utils/type';
 
@@ -84,6 +84,9 @@ function List({
             onClick={() => {
               onChange(i);
             }}
+            onMouseEnter={() => {
+              // onChange(i);
+            }}
             onKeyDown={(e) => {
               switch (e.key) {
                 case 'ArrowLeft':
@@ -115,10 +118,12 @@ function List({
         ))}
       </div>
       {type === 'indicator' && (
-        <div
-          className={classNames('r-tab-indicator', indicatorColor)}
-          style={indicatorStyle}
-        />
+        <div className="h-0.5 dark:bg-default-800 bg-default-100">
+          <div
+            className={classNames('r-tab-indicator', indicatorColor)}
+            style={indicatorStyle}
+          />
+        </div>
       )}
     </>
   );
@@ -167,8 +172,48 @@ export function TabsRoot(props: RTabsProps) {
     }
     return data;
   }
-  const wrapperDiv = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const data = getData();
+  const preH = useRef('');
+  const tabComps = data
+    .map((d, i) => (
+      <motion.div
+        // eslint-disable-next-line react/no-array-index-key
+        key={i}
+        style={{
+          display: selectedIndex === i ? 'block' : 'none',
+        }}
+        initial={{ opacity: 0, x: 0 }}
+        animate={{ opacity: 1, x: 0 }}
+        onAnimationStart={() => {
+          // Auto adjust tab plane height
+          if (wrapperRef.current) {
+            const wrapperDom = wrapperRef.current;
+            if (wrapperRef.current.children.length !== 0) {
+              // FIXME: If tab panel has margin, the height will be wrong.
+              // TODO: We can use window.getComputedStyle to get the true margin.
+              // TODO: But it will be a little bit slower, and complex.
+              const childDom = wrapperDom.children[wrapperDom.children.length - 1];
+              const height = childDom.scrollHeight;
+              wrapperRef.current.style.height = `${height}px`;
+              preH.current = wrapperDom.style.height;
+            }
+          }
+        }}
+        onAnimationComplete={() => {
+          if (wrapperRef.current && wrapperRef.current.style.height !== '') {
+            wrapperRef.current.style.height = '';
+          }
+        }}
+      >
+        {d.value}
+      </motion.div>
+    ));
+  useEffect(
+    () => {
+
+    },
+  );
   return (
     <div className={classNames(className, 'relative')} id={id} style={style}>
       <List
@@ -176,30 +221,15 @@ export function TabsRoot(props: RTabsProps) {
         data={data}
         selectedIndex={selectedIndex}
         type={type}
-        onChange={onChange}
+        onChange={(i) => {
+          if (wrapperRef.current) {
+            wrapperRef.current.style.height = preH.current;
+          }
+          onChange(i);
+        }}
       />
-      <div ref={wrapperDiv} className="transition-all r-tab-panels dark:text-white mt-2">
-        <AnimatePresence exitBeforeEnter>
-          {data
-            .map((d, i) => (
-              <motion.div
-                // eslint-disable-next-line react/no-array-index-key
-                key={i}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                initial={{ opacity: 0, y: 10 }}
-                onAnimationStart={() => {
-                  // Auto adjust tab plane height
-                  if (wrapperDiv.current) {
-                    wrapperDiv.current.style.height = `${wrapperDiv.current.children[0].getBoundingClientRect().height}px`;
-                  }
-                }}
-              >
-                {d.value}
-              </motion.div>
-            ))
-            .filter((_, i) => i === selectedIndex)}
-        </AnimatePresence>
+      <div ref={wrapperRef} className="transition-all r-tab-panels dark:text-white mt-2 overflow-hidden">
+        {tabComps.filter((_, i) => i === selectedIndex)}
       </div>
     </div>
   );

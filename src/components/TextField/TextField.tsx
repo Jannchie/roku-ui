@@ -3,24 +3,33 @@ import classnames from 'classnames';
 import {
   ChangeEvent, Dispatch, InputHTMLAttributes, ReactNode, SetStateAction,
 } from 'react';
+import { colorClass, Colors } from '../..';
 
 export type TextFieldProps = {
   className?: string;
+  value: any;
   prefix?: ReactNode;
   suffix?: ReactNode;
   placeholder?: string;
   borderType?: 'dash' | 'solid' | 'dot';
-  border?: boolean;
-  value: any;
+  border?: boolean ;
   setValue?: Dispatch<SetStateAction<any>>;
-  type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
   textAlign?: 'left' | 'center' | 'right';
   ring?: boolean;
   format?: (value: string) => string;
+  color?: Colors;
 };
 
 export function TextField({
-  className, prefix, suffix, ring = true, placeholder, type = 'text', textAlign = 'left', border = true, borderType = 'solid', value, setValue, ...inputProps
+  className, prefix, suffix,
+  ring = true,
+  placeholder,
+  textAlign = 'left',
+  border = false,
+  borderType = 'solid',
+  color = 'primary',
+  value, setValue,
+  ...inputProps
 }: TextFieldProps & InputHTMLAttributes<HTMLInputElement>) {
   let onChange;
   if (inputProps.onChange) {
@@ -40,8 +49,12 @@ export function TextField({
         `r-text-field-${borderType}`,
         {
           'r-text-field-border': border,
+          'r-text-field-fill': !border,
           'r-text-field-ring': ring,
         },
+        colorClass({
+          ring: color,
+        }),
       )}
     >
       {prefix && <div className="r-text-field-prefix">{prefix}</div>}
@@ -55,7 +68,6 @@ export function TextField({
         value={value}
         onChange={onChange}
         {...inputProps}
-        type={type}
       />
       {suffix && <div className="r-text-field-suffix">{suffix}</div>}
     </span>

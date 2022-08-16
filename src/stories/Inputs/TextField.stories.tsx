@@ -111,25 +111,27 @@ const BorderTypeTemplate: ComponentStory<typeof TextField> = () => {
   return (
     <div className="flex gap-2">
       <TextField
+        border
         borderType="solid"
         className="bg-default-500/10"
         setValue={setSolidValue}
         value={solidValue}
       />
       <TextField
+        border
         borderType="dash"
         className="bg-default-500/10"
         setValue={setDashedValue}
         value={dashedValue}
       />
       <TextField
+        border
         borderType="dot"
         className="bg-default-500/10"
         setValue={setDottedValue}
         value={dottedValue}
       />
       <TextField
-        border={false}
         className="bg-default-500/10"
         setValue={setNoneValue}
         value={noneValue}
