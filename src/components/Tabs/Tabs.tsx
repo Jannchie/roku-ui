@@ -167,6 +167,7 @@ export function TabsRoot(props: RTabsProps) {
     }
     return data;
   }
+  const wrapperDiv = useRef<HTMLDivElement>(null);
   const data = getData();
   return (
     <div className={classNames(className, 'relative')} id={id} style={style}>
@@ -177,24 +178,28 @@ export function TabsRoot(props: RTabsProps) {
         type={type}
         onChange={onChange}
       />
-      <div className="r-tab-panels dark:text-white mt-2">
-        {data
-          .map((d, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <AnimatePresence key={`${i}`} exitBeforeEnter>
+      <div ref={wrapperDiv} className="transition-all r-tab-panels dark:text-white mt-2">
+        <AnimatePresence exitBeforeEnter>
+          {data
+            .map((d, i) => (
               <motion.div
                 // eslint-disable-next-line react/no-array-index-key
-                key={`${i}`}
+                key={i}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 initial={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.15 }}
+                onAnimationStart={() => {
+                  // Auto adjust tab plane height
+                  if (wrapperDiv.current) {
+                    wrapperDiv.current.style.height = `${wrapperDiv.current.children[0].getBoundingClientRect().height}px`;
+                  }
+                }}
               >
                 {d.value}
               </motion.div>
-            </AnimatePresence>
-          ))
-          .filter((_, i) => i === selectedIndex)}
+            ))
+            .filter((_, i) => i === selectedIndex)}
+        </AnimatePresence>
       </div>
     </div>
   );

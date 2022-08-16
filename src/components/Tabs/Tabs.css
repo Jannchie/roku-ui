@@ -3,5 +3,5 @@
 }
 
 .r-tab-indicator {
-  @apply transition-all absolute h-1 rounded-md;
+  @apply transition-all absolute h-0.5 rounded-md;
 }
