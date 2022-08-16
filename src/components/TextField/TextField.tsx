@@ -11,8 +11,8 @@ export type TextFieldProps = {
   placeholder?: string;
   borderType?: 'dash' | 'solid' | 'dot';
   border?: boolean;
-  value: string;
-  setValue?: Dispatch<SetStateAction<string>>;
+  value: any;
+  setValue?: Dispatch<SetStateAction<any>>;
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
   textAlign?: 'left' | 'center' | 'right';
   ring?: boolean;

@@ -23,7 +23,7 @@ export function Card({
   dense,
   divider,
   shadow,
-  border = true,
+  border,
   ...other
 }: CardProps) {
   const cardClass = classnames(

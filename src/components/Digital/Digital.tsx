@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import { BaseProps } from '../../utils/type';
 
 type DigitalProps = {
-    value: number;
-    format?: (value: number) => string;
+  value: number;
+  format?: (value: number) => string;
+  animate?: boolean;
 } & BaseProps;
 export function Digital({
-  className, id, style, value, format = (v) => {
+  className, id, style, value, animate = true, format = (v) => {
     if (Number.isNaN(v)) return '';
     return v.toFixed();
   },
@@ -23,10 +24,14 @@ export function Digital({
     setDisplayValue(format(v));
   });
   return (
-    <motion.span id={id} style={style} className={classNames('r-digital', className)}>
-      <div>
+    animate ? (
+      <motion.span id={id} style={style} className={classNames('r-digital', className)}>
         {displayValue}
-      </div>
-    </motion.span>
+      </motion.span>
+    ) : (
+      <span id={id} style={style} className={classNames('r-digital', className)}>
+        {displayValue}
+      </span>
+    )
   );
 }

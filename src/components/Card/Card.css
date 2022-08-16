@@ -3,7 +3,7 @@
   @apply text-default-800;
   @apply dark:text-default-200 dark:border-default-800;
   @apply dark:divide-default-800;
-  @apply dark:bg-default-900 bg-default-50;
+  @apply dark:bg-default-800 bg-default-50;
 }
 
 .r-card-border {
