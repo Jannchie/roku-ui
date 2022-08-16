@@ -47,7 +47,7 @@ const BtnGroupCtx = createContext<BtnGroupCtxType>({
 function BtnRoot({
   label,
   size = 'md',
-  color = 'zinc',
+  color = 'default',
   dash = false,
   loading = false,
   disabled = false,
@@ -219,7 +219,7 @@ function Group({
           className={classNames(
             className,
             { [colorCls]: ctx.value },
-            { [colorClass({ border: 'zinc' })]: !ctx.value },
+            { [colorClass({ border: 'default' })]: !ctx.value },
             'r-btn-group',
           )}
         >

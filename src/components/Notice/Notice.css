@@ -1,11 +1,11 @@
 .r-notice-wrapper {
-  @apply dark:bg-zinc-900 dark:text-zinc-200 dark:border-zinc-800;
-  @apply bg-zinc-50 text-zinc-800 border-zinc-100;
+  @apply dark:bg-default-900 dark:text-default-200 dark:border-default-800;
+  @apply bg-default-50 text-default-800 border-default-100;
   @apply text-sm rounded;
 }
 
 .r-notice-desc {
-  @apply dark:text-zinc-400 text-zinc-600;
+  @apply dark:text-default-400 text-default-600;
 }
 
 .r-notice-icon {

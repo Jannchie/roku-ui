@@ -50,7 +50,7 @@ function SimpleComment({ data }: { data: CommentData }) {
           {user.name}
           :
         </motion.div>
-        <motion.div layoutId={`${id}-content`} className="dark:text-zinc-400 text-zinc-700">{content}</motion.div>
+        <motion.div layoutId={`${id}-content`} className="dark:text-default-400 text-default-700">{content}</motion.div>
       </motion.div>
     </motion.div>
   );
@@ -129,9 +129,9 @@ function Comment({
           <div className="text-sm text-ellipsis overflow-hidden">
             <div className="flex gap-1">
               <motion.div layoutId={`${id}-name`}>{name}</motion.div>
-              {data.time && <div className="text-zinc-400">{data.time}</div>}
+              {data.time && <div className="text-default-400">{data.time}</div>}
             </div>
-            <motion.div layoutId={`${id}-content`} className="dark:text-zinc-400 text-zinc-700">
+            <motion.div layoutId={`${id}-content`} className="dark:text-default-400 text-default-700">
               {data.content}
             </motion.div>
           </div>
@@ -146,7 +146,7 @@ function Comment({
           ref={repliesDetail}
           layout
           className={classNames(
-            'p-2 mx-2 rounded dark:bg-zinc-800 bg-zinc-100 flex flex-col',
+            'p-2 mx-2 rounded dark:bg-default-800 bg-default-100 flex flex-col',
           )}
         >
           <AnimatePresence>

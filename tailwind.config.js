@@ -14,6 +14,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        default: colors.zinc,
         danger: colors.red,
         primary: colors.cyan,
         success: colors.green,

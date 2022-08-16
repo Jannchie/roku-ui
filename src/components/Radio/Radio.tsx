@@ -21,7 +21,7 @@ function RadioRoot({
       <input
         type="radio"
         checked={checked}
-        className={classNames('r-input-radio', { [borderCls]: checked, ' dark:border-zinc-600': !checked })}
+        className={classNames('r-input-radio', { [borderCls]: checked, ' dark:border-default-600': !checked })}
         onChange={() => setValue(value)}
       />
       <AnimatePresence>

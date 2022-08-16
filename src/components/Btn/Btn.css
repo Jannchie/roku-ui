@@ -33,6 +33,7 @@
 .r-btn.r-btn-filled {
   @apply hover:text-white;
   @apply text-white dark:!text-white;
+  @apply active:!brightness-90;
 }
 
 .r-btn.r-btn-text {

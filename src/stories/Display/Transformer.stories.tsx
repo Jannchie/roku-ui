@@ -26,7 +26,7 @@ const Template: ComponentStory<typeof Transformer> = () => {
         <>
           <motion.div
             layoutId="bg"
-            className="bg-zinc-800 w-1 h-1"
+            className="bg-default-800 w-1 h-1"
           />
           <motion.div
             layoutId="btn"
@@ -42,7 +42,7 @@ const Template: ComponentStory<typeof Transformer> = () => {
       )}
       {show && (
         <>
-          <motion.div layoutId="bg" className="absolute bg-zinc-800 inset-4" style={{ borderRadius: 10 }} />
+          <motion.div layoutId="bg" className="absolute bg-default-800 inset-4" style={{ borderRadius: 10 }} />
           <motion.div layoutId="btn" className="text-white absolute right-4 top-4">
             <motion.div layout>
               <Btn onClick={() => setShow(false)}>

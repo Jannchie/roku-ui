@@ -7,7 +7,7 @@ export const parameters = {
   backgrounds: {
     values: [
       {
-        name: "zinc",
+        name: "default",
         value: "#18181b",
       },
       {

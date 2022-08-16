@@ -1,6 +1,6 @@
 .dark,
 .dark .docs-story {
-  @apply bg-zinc-900;
+  @apply bg-default-900;
 }
 
 .light {

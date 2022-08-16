@@ -7,14 +7,14 @@
   @apply rounded-lg;
   @apply inline-flex;
   @apply outline-none rounded transition;
-  @apply dark:text-zinc-100;
-  @apply dark:bg-zinc-900;
+  @apply dark:text-default-100;
+  @apply dark:bg-default-900;
   @apply border border-transparent;
 }
 
 .r-text-field-border {
-  @apply dark:border-zinc-600;
-  @apply border-zinc-400;
+  @apply dark:border-default-600;
+  @apply border-default-400;
 }
 
 .r-text-field-ring {
@@ -23,7 +23,7 @@
 }
 
 .r-text-field-wrapper:focus-within {
-  @apply dark:border-zinc-400 border-zinc-800;
+  @apply dark:border-default-400 border-default-800;
 }
 
 .r-text-field-dash {

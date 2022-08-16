@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof Badge> = (args) => {
   return (
     <Badge
       dot
-      className="outline dark:!outline-zinc-900 !outline-white"
+      className="outline dark:!outline-default-900 !outline-white"
       color={args.color}
       position={args.position}
       show={show}
@@ -34,7 +34,7 @@ const TemplateAvatar: ComponentStory<typeof Badge> = () => {
     <div>
       <Badge
         dot
-        className="outline dark:outline-zinc-900 outline-white"
+        className="outline dark:outline-default-900 outline-white"
         show={show}
       >
         <Avatar size="sm">

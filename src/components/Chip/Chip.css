@@ -20,11 +20,11 @@
 .r-chip-clickable {
   cursor: pointer;
   @apply active:bg-opacity-100 dark:active:bg-opacity-100 hover:text-white cursor-pointer;
-  @apply active:dark:text-zinc-800;
+  @apply active:dark:text-default-800;
 }
 
 .r-chip-group {
-  @apply flex divide-x divide-zinc-500/10;
+  @apply flex divide-x divide-default-500/10;
 }
 .r-chip-group .r-chip {
   @apply rounded-none;

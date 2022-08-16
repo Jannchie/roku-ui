@@ -22,7 +22,7 @@ export function Textarea({
   return (
     <>
       {maxLength && (
-        <div className="absolute top-full mt-1 text-zinc-500">
+        <div className="absolute top-full mt-1 text-default-500">
           {textarea.current?.value.length}
           /
           {maxLength}

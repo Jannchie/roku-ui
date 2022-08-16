@@ -10,7 +10,7 @@ body {
   color-scheme: dark;
 }
 .dark > * {
-  @apply text-zinc-200;
+  @apply text-default-200;
 }
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
