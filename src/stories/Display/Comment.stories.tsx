@@ -1,248 +1,21 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import classNames from 'classnames';
 import {
-  ReactNode, useRef, useState,
+  useRef, useState,
 } from 'react';
 import {
-  motion, AnimatePresence, LayoutGroup,
-} from 'framer-motion';
-import {
-  Avatar,
   Btn,
-  useOnClickOutside,
-  Anchor,
+  CommentData,
+  CommentDataWithReplies,
   MaterialSymbolIcon,
-  Textarea,
+  Panel,
 } from '../..';
-
-type CommentDataUser = {
-  name: ReactNode;
-  avatar?: ReactNode;
-  link?: string;
-}
-
-type CommentData = {
-  id: string | number;
-  user: CommentDataUser;
-  content: ReactNode;
-  time?: ReactNode;
-  [key: string]: any;
-}
-
-type CommentDataWithReplies = CommentData & {
-  replies?: CommentData[];
-}
-
-type CommentOptions = {
-  maxReplies?: number;
-  getMoreRepliesBtnText?: (cnt: number) => string;
-  refoldable?: boolean;
-}
-
-function SimpleComment({ data }: { data: CommentData }) {
-  const { id, user, content } = data;
-  return (
-    <motion.div
-      layoutId={`${id}-wrapper`}
-    >
-      <motion.div layout className="text-sm flex">
-        <motion.div layoutId={`${id}-name`} className="mr-2">
-          {user.name}
-          :
-        </motion.div>
-        <motion.div layoutId={`${id}-content`} className="dark:text-default-400 text-default-700">{content}</motion.div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-function Comment({
-  data,
-  replies,
-  maxReplies = 2,
-  actions,
-  refoldable,
-  getMoreRepliesBtnText = (cnt: number) => `${cnt} more replies`,
-}: {
-  data: CommentData;
-  actions?: ReactNode;
-  replies?: CommentData[];
-} & CommentOptions) {
-  const [showMore, setShowMore] = useState(false);
-  const repliesDetail = useRef(null);
-  const { id } = data;
-  useOnClickOutside(repliesDetail, () => {
-    if (refoldable) {
-      setShowMore(false);
-    }
-  });
-  let { avatar, name } = data.user;
-  if (typeof name === 'string') {
-    if (data.user.link) {
-      name = <Anchor href={data.user.link} target="_blank">{name}</Anchor>;
-    } else {
-      name = <Anchor>{name}</Anchor>;
-    }
-  }
-  if (typeof avatar === 'string') {
-    if (data.user.link) {
-      avatar = (
-        <Avatar
-          src={avatar}
-          alt={avatar}
-          onClick={() => {
-            if (data.user.link) {
-              window.open(data.user.link, '_blank');
-            }
-          }}
-        />
-      );
-    } else {
-      avatar = (
-        <Avatar
-          src={avatar}
-          alt={avatar}
-        />
-      );
-    }
-  }
-  return (
-    <motion.div
-      layoutId={`${id}-wrapper`}
-      className="flex flex-col gap-1"
-    >
-      <motion.div
-        layout
-      >
-        <div
-          className="flex gap-2"
-        >
-          { avatar && (
-            <motion.div
-              layoutId={`${id}-avatar`}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-            >
-              { avatar }
-            </motion.div>
-          )}
-          <div className="text-sm text-ellipsis overflow-hidden">
-            <div className="flex gap-1">
-              <motion.div layoutId={`${id}-name`}>{name}</motion.div>
-              {data.time && <div className="text-default-400">{data.time}</div>}
-            </div>
-            <motion.div layoutId={`${id}-content`} className="dark:text-default-400 text-default-700">
-              {data.content}
-            </motion.div>
-          </div>
-        </div>
-        <div className="flex gap-2 mx-2 mt-1">
-          {actions}
-        </div>
-      </motion.div>
-      {replies && (
-        <motion.div
-          key={`${id}-replies`}
-          ref={repliesDetail}
-          layout
-          className={classNames(
-            'p-2 mx-2 rounded dark:bg-default-800 bg-default-100 flex flex-col',
-          )}
-        >
-          <AnimatePresence>
-            {
-              !showMore && replies.slice(0, maxReplies).map((reply, i) => (
-                <motion.div
-                  key={`${reply.id}`}
-                  className="px-[5px]"
-                  layoutId={`${reply.id}`}
-                  initial={{ opacity: i < maxReplies ? 1 : 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <SimpleComment data={reply} />
-                </motion.div>
-              ))
-            }
-            {
-              showMore && replies.map((reply, i) => (
-                <motion.div
-                  key={`${reply.id}`}
-                  layoutId={`${reply.id}a`}
-                  initial={{ opacity: i < maxReplies ? 1 : 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{
-                    opacity: 0,
-                    transition: { delay: (replies.length - 1 - i) * 0.1 },
-                  }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Comment
-                    key={reply.id}
-                    data={reply}
-                  />
-                </motion.div>
-              ))
-            }
-          </AnimatePresence>
-          {replies.length > maxReplies && !showMore && (
-            <motion.div
-              layoutId={`${id}-replies-btn}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <Btn
-                text
-                size="xs"
-                color="primary"
-                className="text-xs"
-                onClick={() => { setShowMore(!showMore); }}
-              >
-                {getMoreRepliesBtnText(replies.length - maxReplies)}
-              </Btn>
-            </motion.div>
-          )}
-        </motion.div>
-      )}
-    </motion.div>
-  );
-}
+import { Comment } from '../../components/Comment/Comment';
+import { CommentComponent } from '../../components/Comment/CommentComponent';
 
 export default {
   // component: Chip.Group,
   title: 'Hyper/Comment',
 } as ComponentMeta<typeof Comment>;
-
-const CommentList = ({
-  data,
-  refoldable,
-  generateActions,
-  ...commentOptions
-}: {
-  data: CommentDataWithReplies[]
-  generateActions?: (target: CommentDataWithReplies) => ReactNode;
-} & CommentOptions) => (
-  <LayoutGroup>
-    <div className="flex flex-col gap-2">
-      {data.map((item, i) => (
-        <motion.div
-          key={item.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: i * 0.05 }}
-        >
-          <Comment
-            refoldable={refoldable}
-            data={item}
-            replies={item.replies}
-            actions={generateActions ? generateActions(item) : null}
-            {...commentOptions}
-          />
-        </motion.div>
-      ))}
-    </div>
-  </LayoutGroup>
-);
 
 const Template: ComponentStory<typeof Comment> = () => {
   const raw: CommentDataWithReplies[] = [
@@ -347,9 +120,15 @@ const Template: ComponentStory<typeof Comment> = () => {
   const [input, setInput] = useState('');
   const [replyTo, setReplyTo] = useState<CommentData|null>(null);
   return (
-    <div className="relative flex flex-col gap-4 m-auto max-w-lg">
-      <CommentList
-        // eslint-disable-next-line react/no-unstable-nested-components
+    <Panel border className="max-w-lg mx-auto h-96">
+      <CommentComponent
+        data={data}
+        setData={setData}
+        replyTo={replyTo}
+        setReplyTo={setReplyTo}
+        input={input}
+        setInput={setInput}
+        loading={false}
         generateActions={(target) => (
           [
             <Btn
@@ -376,13 +155,11 @@ const Template: ComponentStory<typeof Comment> = () => {
                 setData([...data]);
               }}
             >
-              {
-                target.liked
-                  ? <MaterialSymbolIcon fill icon="favorite" />
-                  : <MaterialSymbolIcon icon="favorite" />
-              }
+              {target.liked
+                ? <MaterialSymbolIcon fill icon="favorite" />
+                : <MaterialSymbolIcon icon="favorite" />}
               <span className="ml-1">
-                { target.like ?? 0}
+                {target.like ?? 0}
               </span>
             </Btn>,
             <Btn
@@ -401,73 +178,20 @@ const Template: ComponentStory<typeof Comment> = () => {
               }}
             >
               <MaterialSymbolIcon icon="reply" />
-              {
-                target.replies && (
-                  <span className="ml-1">
-                    { target.replies.length}
-                  </span>
-                )
-              }
+              {target.replies && (
+                <span className="ml-1">
+                  {target.replies.length}
+                </span>
+              )}
             </Btn>,
           ]
         )}
-        data={data}
-        getMoreRepliesBtnText={(cnt) => `Other ${cnt} replies`}
+        onLoadMore={() => {
+          // eslint-disable-next-line no-console
+          console.log('onLoadMore');
+        }}
       />
-      <div>
-        <div>
-          {replyTo ? (
-            <span>
-              To
-              {' '}
-              {replyTo.user.name }
-            </span>
-          ) : <span>Jannchie</span>}
-          :
-        </div>
-        <div className="flex gap-2 items-center">
-          <Textarea
-            value={input}
-            setValue={setInput}
-            className="w-full"
-            placeholder="Please Input The Comment"
-          />
-          <Btn
-            border
-            label="Send"
-            color="primary"
-            onClick={() => {
-            // eslint-disable-next-line no-console
-              const newComment = {
-                id: `${data.length + 10000 * Math.random()}`,
-                user: {
-                  name: 'Jannchie',
-                  avatar: 'https://i.pravatar.cc/80?img=2',
-                },
-                content: input,
-              };
-              if (!replyTo) {
-                setData([...data, newComment]);
-              } else {
-                setData([...data.map((d) => {
-                  if (d === replyTo) {
-                    const c = { ...d };
-                    if (!c.replies) {
-                      c.replies = [];
-                    }
-                    c.replies = [...c.replies, newComment];
-                    return c;
-                  }
-                  return d;
-                })]);
-                setReplyTo(null);
-              }
-              setInput('');
-            }}
-          />
-        </div>
-      </div>
-    </div>
+    </Panel>
   );
 };
 

@@ -19,7 +19,7 @@ export * from './components/Textarea';
 export * from './components/Radio';
 export * from './components/Digital';
 export * from './components/Panel';
-
+export * from './components/Comment';
 export * from './utils/Notifications';
 export * from './utils/colors';
 

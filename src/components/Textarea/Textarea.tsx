@@ -7,10 +7,11 @@ export type TextareaProps = {
   setValue: (value: string) => void,
   maxLength?: number,
   maxHeight?: number,
+  border: 'solid' | 'dashed' | 'dotted' | 'transparent',
 }
 
 export function Textarea({
-  className, value, setValue, maxLength, maxHeight, ...props
+  className, value, setValue, maxLength, maxHeight, border = 'transparent', ...props
 }: TextareaProps & HTMLMotionProps<'textarea'>) {
   const textarea = useRef<HTMLTextAreaElement>(null);
   const [height, setHeight] = useState<number>(38);
@@ -22,7 +23,7 @@ export function Textarea({
   return (
     <>
       {maxLength && (
-        <div className="absolute top-full mt-1 text-default-500">
+        <div className={classNames('r-textarea-extra-info')}>
           {textarea.current?.value.length}
           /
           {maxLength}
@@ -30,7 +31,7 @@ export function Textarea({
       )}
       <motion.textarea
         ref={textarea}
-        className={classNames('r-textarea', className)}
+        className={classNames(className, 'r-textarea', `r-textarea-border-${border}`)}
         style={{ height: springH, top: 0 }}
         value={value}
         onInput={(e) => {
