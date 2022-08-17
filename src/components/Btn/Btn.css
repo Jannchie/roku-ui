@@ -1,7 +1,7 @@
 .r-btn {
   @apply min-w-max;
   @apply h-fit transition;
-  @apply text-xs border;
+  @apply text-sm border;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
   @apply outline-none;
 }
@@ -42,8 +42,10 @@
 
 .r-btn-icon {
   line-height: 0px;
-  border: none;
-  width: 0px;
+}
+
+.r-btn-icon-border {
+  @apply border;
 }
 
 .r-btn-icon.r-btn-sm {
@@ -56,6 +58,10 @@
 
 .r-btn-icon.r-btn-lg {
   @apply p-2;
+}
+
+.r-btn-xs {
+  @apply py-1 px-1 text-xs rounded-sm;
 }
 
 .r-btn-sm {
@@ -84,4 +90,18 @@
 .r-btn-group .r-btn {
   @apply outline-none border-none;
   @apply rounded-none;
+}
+
+
+.r-loading-xs {
+  @apply h-3 w-3;
+}
+.r-loading-sm {
+  @apply h-4 w-4;
+}
+.r-loading-md {
+  @apply h-5 w-5;
+}
+.r-loading-lg {
+  @apply h-6 w-6;
 }

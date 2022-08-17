@@ -1,0 +1,14 @@
+.r-panel {
+}
+
+.r-panel-rounded {
+  @apply rounded;
+}
+
+.r-panel-padding {
+  @apply p-2;
+}
+
+.r-panel-border {
+  @apply border;
+}

@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply text-sm;
-}
-
 .dark {
   color-scheme: dark;
 }

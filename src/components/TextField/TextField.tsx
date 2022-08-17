@@ -10,6 +10,7 @@ export type TextFieldProps = {
   value: any;
   prefix?: ReactNode;
   suffix?: ReactNode;
+  size?: 'sm' | 'md' | 'lg';
   placeholder?: string;
   borderType?: 'dash' | 'solid' | 'dot';
   border?: boolean ;
@@ -18,10 +19,16 @@ export type TextFieldProps = {
   ring?: boolean;
   format?: (value: string) => string;
   color?: Colors;
+  type?: InputHTMLAttributes<HTMLInputElement>['type'];
+  onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
+  onFocus?: InputHTMLAttributes<HTMLInputElement>['onFocus'];
 };
 
 export function TextField({
-  className, prefix, suffix,
+  className,
+  prefix,
+  suffix,
+  size = 'md',
   ring = true,
   placeholder,
   textAlign = 'left',
@@ -30,22 +37,20 @@ export function TextField({
   color = 'primary',
   value, setValue,
   ...inputProps
-}: TextFieldProps & InputHTMLAttributes<HTMLInputElement>) {
+}: TextFieldProps) {
   let onChange;
   if (inputProps.onChange) {
     onChange = inputProps.onChange;
   } else if (setValue) {
-    onChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+    onChange = (e: ChangeEvent<HTMLInputElement>) => { setValue(e.target.value); };
   }
-  // const [displayVal, setDisplayVal] = useState(value);
-  // useEffect(() => {
-  //   setDisplayVal(value);
-  // }, [value]);
+
   return (
     <span
       className={classnames(
         className,
         'r-text-field-wrapper',
+        `r-text-field-wrapper-${size}`,
         `r-text-field-${borderType}`,
         {
           'r-text-field-border': border,

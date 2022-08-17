@@ -9,7 +9,7 @@ import './Btn.css';
 
 export type ButtonProps = {
   label?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   style?: CSSProperties;
   rounded?: boolean;
   color?: Colors;
@@ -83,6 +83,7 @@ function BtnRoot({
     'r-btn',
     `r-btn-${size}`,
     { 'r-btn-icon': icon },
+    { 'r-btn-icon-border': icon && border },
     { 'r-btn-rounded': rounded },
     { 'r-btn-dash': dash },
     { 'r-btn-ring': ring },
@@ -92,12 +93,11 @@ function BtnRoot({
     colorCls,
   );
   const body = children || label;
-
   const loadingFinalClass = classNames('leading-[0]', {
-    'mr-1': size === 'sm' && !icon,
-    'mr-2': (size === 'md' || size === 'lg') && !icon,
-    'w-4': size === 'sm',
-    'w-6': size === 'lg' || size === 'md',
+    'r-loading-xs': size === 'xs',
+    'r-loading-sm': size === 'sm',
+    'r-loading-md': size === 'md',
+    'r-loading-lg': size === 'lg',
   });
   const clickCallback = onClick || (() => {
     if (value) {

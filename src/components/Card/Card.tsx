@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import { HTMLAttributes, ReactNode } from 'react';
+import { Panel } from '../..';
 import { BaseProps } from '../../utils/type';
 
 type CardProps = {
@@ -40,7 +41,7 @@ export function Card({
     return <div className={cardClass}>{children}</div>;
   }
   return (
-    <div className={cardClass} {...other}>
+    <Panel className={cardClass} {...other} nopadding>
       {title && (
         <div className="r-card-title">
           <div className="title-line">{title}</div>
@@ -49,6 +50,6 @@ export function Card({
       )}
       {body && <div className="r-card-body">{body}</div>}
       {actions && <div className="r-card-actions">{actions}</div>}
-    </div>
+    </Panel>
   );
 }

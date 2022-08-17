@@ -8,7 +8,7 @@ export default {
 
 const Template: ComponentStory<typeof Card> = (args) => (
   <div className="flex justify-center">
-    <Card {...args} />
+    <Card border {...args} />
   </div>
 );
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import './EditableLine.css';
 import classnames from 'classnames';
 import { useRef, useState, ReactNode } from 'react';
@@ -13,13 +14,15 @@ export type EditableLineProps = {
   textAligin?: 'left' | 'center' | 'right';
   borderType?: 'dash' | 'solid' | 'dot';
   onOK?: (value: string) => void;
+  size: 'sm' | 'md' | 'lg';
 };
 
 export function EditableLine({
   value,
   setValue,
-  okBtnContent = <MaterialSymbolIcon icon="check" />,
-  cancelBtnContent = <MaterialSymbolIcon icon="close" />,
+  size = 'md',
+  okBtnContent,
+  cancelBtnContent,
   borderType = 'dash',
   textAligin = 'left',
   className,
@@ -27,6 +30,8 @@ export function EditableLine({
 }: EditableLineProps) {
   const [editing, setEditing] = useState(false);
   const tempValue = useRef(value);
+  if (!okBtnContent) okBtnContent = <MaterialSymbolIcon icon="check" size={size} />;
+  if (!cancelBtnContent) cancelBtnContent = <MaterialSymbolIcon icon="close" size={size} />;
   return (
     <div
       className={classnames('r-editable-line', 'flex', 'gap-2', {
@@ -34,6 +39,7 @@ export function EditableLine({
       })}
     >
       <TextField
+        size={size}
         borderType={borderType}
         className={className}
         setValue={setValue}
@@ -57,6 +63,8 @@ export function EditableLine({
         >
           <Btn
             border
+            icon
+            size={size}
             className="r-editable-line-ok-btn"
             color="success"
             onClick={() => {
@@ -70,6 +78,8 @@ export function EditableLine({
           </Btn>
           <Btn
             border
+            icon
+            size={size}
             className="r-editable-line-cancel-btn"
             onClick={() => {
               setEditing(false);

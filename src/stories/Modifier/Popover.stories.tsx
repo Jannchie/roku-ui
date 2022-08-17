@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Chip, Popover } from '../..';
+import { Chip, Panel, Popover } from '../..';
 
 export default {
   component: Popover,
@@ -7,11 +7,12 @@ export default {
 } as ComponentMeta<typeof Popover>;
 
 const Template: ComponentStory<typeof Popover> = () => (
-  <div
-    className="absolute flex inset-0"
+  <Panel
+    className="flex inset-0"
     style={
       {
         justifyContent: 'center',
+        height: 200,
         alignItems: 'center',
         translate: 'translate(-50%, -50%)',
       }
@@ -20,7 +21,7 @@ const Template: ComponentStory<typeof Popover> = () => (
     <Popover content={<Popover.Content>This is the popover.</Popover.Content>}>
       <Chip>Hover Me</Chip>
     </Popover>
-  </div>
+  </Panel>
 );
 
 export const Default = Template.bind({});

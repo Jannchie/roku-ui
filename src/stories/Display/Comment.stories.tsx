@@ -154,6 +154,7 @@ function Comment({
               !showMore && replies.slice(0, maxReplies).map((reply, i) => (
                 <motion.div
                   key={`${reply.id}`}
+                  className="px-[5px]"
                   layoutId={`${reply.id}`}
                   initial={{ opacity: i < maxReplies ? 1 : 0 }}
                   animate={{ opacity: 1 }}
@@ -192,7 +193,7 @@ function Comment({
             >
               <Btn
                 text
-                size="sm"
+                size="xs"
                 color="primary"
                 className="text-xs"
                 onClick={() => { setShowMore(!showMore); }}

@@ -10,9 +10,25 @@ export default {
 const Template: ComponentStory<typeof EditableLine> = (args) => {
   const [value, setValue] = useState(args.value || '');
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1 flex-col">
       <EditableLine
         {...args}
+        size="sm"
+        setValue={setValue}
+        value={value}
+        // eslint-disable-next-line no-console
+        onOK={console.log}
+      />
+      <EditableLine
+        {...args}
+        setValue={setValue}
+        value={value}
+        // eslint-disable-next-line no-console
+        onOK={console.log}
+      />
+      <EditableLine
+        {...args}
+        size="lg"
         setValue={setValue}
         value={value}
         // eslint-disable-next-line no-console

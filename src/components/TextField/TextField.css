@@ -2,9 +2,23 @@
   @apply transition outline-none bg-transparent;
 }
 
+.r-text-field-wrapper-sm {
+  @apply text-xs;
+  @apply p-1;
+}
+
+.r-text-field-wrapper-md {
+  @apply text-sm;
+  @apply p-2;
+}
+
+.r-text-field-wrapper-lg {
+  @apply text-base;
+  @apply p-2;
+}
+
 .r-text-field-wrapper {
   @apply focus-within:!bg-transparent transition;
-  @apply p-[6px];
   @apply rounded-lg;
   @apply inline-flex;
   @apply outline-none rounded transition;

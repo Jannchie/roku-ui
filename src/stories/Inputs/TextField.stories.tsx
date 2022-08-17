@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useState } from 'react';
-import { TextField } from '../..';
+import { Btn, TextField } from '../..';
 
 export default {
   component: TextField,
@@ -154,6 +154,7 @@ const DifferentTextSizeTemplate: ComponentStory<typeof TextField> = (args) => {
     </div>
   );
 };
+
 export const DifferentTextSize = DifferentTextSizeTemplate.bind({});
 DifferentTextSize.parameters = {
   docs: {
@@ -164,3 +165,24 @@ DifferentTextSize.parameters = {
 DifferentTextSize.args = {
   value: 'Test 123',
 };
+
+const TextFieldWithBtnTemplate: ComponentStory<typeof TextField> = (args) => {
+  const [value, setValue] = useState(args.value || '');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex gap-2">
+        <TextField size="lg" placeholder="Large" setValue={setValue} value={value} />
+        <Btn size="lg">BUTTON</Btn>
+      </div>
+      <div className="flex gap-2">
+        <TextField placeholder="Middle" setValue={setValue} value={value} />
+        <Btn>BUTTON</Btn>
+      </div>
+      <div className="flex gap-2">
+        <TextField size="sm" placeholder="Small" setValue={setValue} value={value} />
+        <Btn size="sm">BUTTON</Btn>
+      </div>
+    </div>
+  );
+};
+export const TextFieldWithBtn = TextFieldWithBtnTemplate.bind({});

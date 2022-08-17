@@ -9,15 +9,15 @@
 }
 
 .r-icon-xs {
-  font-size: 0.5rem;
-}
-
-.r-icon-sm {
   font-size: 0.75rem;
 }
 
-.r-icon-md {
+.r-icon-sm {
   font-size: 1rem;
+}
+
+.r-icon-md {
+  font-size: 1.25rem;
 }
 
 .r-icon-lg {

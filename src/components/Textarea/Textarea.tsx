@@ -13,7 +13,7 @@ export function Textarea({
   className, value, setValue, maxLength, maxHeight, ...props
 }: TextareaProps & HTMLMotionProps<'textarea'>) {
   const textarea = useRef<HTMLTextAreaElement>(null);
-  const [height, setHeight] = useState<number>(34);
+  const [height, setHeight] = useState<number>(38);
   const springH = useSpring(height);
   useEffect(() => {
     springH.set(height);
