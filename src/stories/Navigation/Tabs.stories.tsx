@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Tabs, Textarea,
 } from '../..';
@@ -12,7 +12,7 @@ function TestPage() {
   const [value, setValue] = useState('text');
   return (
     <div className="p-4">
-      <Textarea value={value} setValue={setValue} />
+      <Textarea value={value} setValue={setValue} border="solid" />
     </div>
   );
 }

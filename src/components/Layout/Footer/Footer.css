@@ -1,0 +1,5 @@
+.r-footer-wrapper {
+  @apply flex text-sm w-full border-t;
+  @apply dark:border-default-700 dark:bg-default-800 bg-default-50;
+  @apply px-4 py-1 items-center justify-between;
+}

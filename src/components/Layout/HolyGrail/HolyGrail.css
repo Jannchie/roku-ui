@@ -1,0 +1,12 @@
+.holy-grail-wrapper {
+  @apply flex rounded overflow-hidden h-full;
+}
+.holy-grail-main-wrapper {
+  @apply flex-grow relative flex-col flex h-full dark:bg-default-900 bg-default-50;
+}
+.holy-grail-main {
+  @apply flex-grow flex overflow-auto;
+}
+.holy-grail-content {
+  @apply flex-grow h-full overflow-auto;
+}

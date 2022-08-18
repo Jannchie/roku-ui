@@ -1,0 +1,17 @@
+.r-appbar-wrapper {
+  @apply flex text-sm w-full border-b;
+  @apply dark:border-default-700 dark:bg-default-800 bg-default-50;
+  @apply px-4 py-1 items-center justify-between;
+}
+
+.r-appbar-title {
+  @apply my-3 mx-2 flex;
+}
+
+.r-appbar-title__icon {
+  @apply mr-2;
+}
+
+.r-appbar-tailing {
+  @apply flex gap-2;
+}

@@ -118,7 +118,7 @@ function List({
         ))}
       </div>
       {type === 'indicator' && (
-        <div className="h-0.5 dark:bg-default-800 bg-default-100">
+        <div className="h-0.5 dark:bg-default-800 bg-default-50">
           <div
             className={classNames('r-tab-indicator', indicatorColor)}
             style={indicatorStyle}

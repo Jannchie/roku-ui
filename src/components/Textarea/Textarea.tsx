@@ -7,7 +7,7 @@ export type TextareaProps = {
   setValue: (value: string) => void,
   maxLength?: number,
   maxHeight?: number,
-  border: 'solid' | 'dashed' | 'dotted' | 'transparent',
+  border?: 'solid' | 'dashed' | 'dotted' | 'transparent',
 }
 
 export function Textarea({

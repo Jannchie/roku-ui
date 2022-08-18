@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import {
-  useRef, useState,
+  useState,
 } from 'react';
 import {
   Btn,
