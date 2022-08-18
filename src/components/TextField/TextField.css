@@ -1,5 +1,5 @@
 .r-text-field {
-  @apply transition outline-none bg-transparent;
+  @apply w-full transition outline-none bg-transparent;
 }
 
 .r-text-field-wrapper-sm {

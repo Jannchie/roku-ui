@@ -10,7 +10,7 @@ export default {
 const Template: ComponentStory<typeof TextField> = (args) => {
   const [val, setVal] = useState(args.value || '');
   return (
-    <TextField {...args} setValue={setVal} value={val} />
+    <TextField {...args} className="w-96" setValue={setVal} value={val} />
   );
 };
 export const Default = Template.bind({});
