@@ -123,9 +123,7 @@ const Template: ComponentStory<typeof Comment> = () => {
     <Panel border className="max-w-lg mx-auto h-96">
       <CommentComponent
         data={data}
-        setData={setData}
         replyTo={replyTo}
-        setReplyTo={setReplyTo}
         input={input}
         setInput={setInput}
         loading={false}
@@ -186,6 +184,34 @@ const Template: ComponentStory<typeof Comment> = () => {
             </Btn>,
           ]
         )}
+        onSend={() => {
+          // eslint-disable-next-line no-console
+          const newComment = {
+            id: `${data.length + 10000 * Math.random()}`,
+            user: {
+              name: 'Jannchie',
+              avatar: 'https://i.pravatar.cc/80?img=2',
+            },
+            content: input,
+          };
+          if (!replyTo) {
+            setData([...data, newComment]);
+          } else {
+            setData([...data.map((d) => {
+              if (d === replyTo) {
+                const c = { ...d };
+                if (!c.replies) {
+                  c.replies = [];
+                }
+                c.replies = [...c.replies, newComment];
+                return c;
+              }
+              return d;
+            })]);
+            setReplyTo(null);
+          }
+          setInput('');
+        }}
         onLoadMore={() => {
           // eslint-disable-next-line no-console
           console.log('onLoadMore');

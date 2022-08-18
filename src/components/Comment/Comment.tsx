@@ -11,7 +11,12 @@ import { SimpleComment } from './SimpleComment';
 import { CommentData, CommentOptions } from './CommentTypes';
 
 export function Comment({
-  data, replies, maxReplies = 2, actions, refoldable, getMoreRepliesBtnText = (cnt: number) => `${cnt} more replies`,
+  data,
+  replies,
+  maxReplies = 2,
+  actions,
+  refoldable,
+  getMoreRepliesBtnText = (cnt: number) => `${cnt} more replies`,
 }: {
   data: CommentData;
   actions?: ReactNode;

@@ -5,25 +5,23 @@ import { CommentData, CommentDataWithReplies } from './CommentTypes';
 
 export function CommentComponent(
   {
-    setData,
     data,
     replyTo,
-    setReplyTo,
     input,
     setInput,
     onLoadMore,
     loading,
     generateActions,
+    onSend,
   }: {
-    setData: (d: CommentDataWithReplies[]) => void;
     data: CommentDataWithReplies[];
     replyTo: CommentData | null;
-    setReplyTo: (r: CommentData | null) => void;
     input: string;
     setInput: (i: string) => void;
     onLoadMore: () => void;
     loading: boolean;
     generateActions: (d: CommentData) => ReactNode;
+    onSend: () => void;
   },
 ) {
   return (
@@ -36,12 +34,10 @@ export function CommentComponent(
         onLoadMore={onLoadMore}
       />
       <CommentForm
-        setData={setData}
-        data={data}
         replyTo={replyTo}
-        setReplyTo={setReplyTo}
         input={input}
         setInput={setInput}
+        onSend={onSend}
       />
     </div>
   );

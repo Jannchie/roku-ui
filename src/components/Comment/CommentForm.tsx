@@ -1,15 +1,13 @@
 import { Btn, Textarea } from '../..';
-import { CommentData, CommentDataWithReplies } from './CommentTypes';
+import { CommentData } from './CommentTypes';
 
 export function CommentForm({
-  replyTo, input, setInput, data, setData, setReplyTo,
+  replyTo, input, setInput, onSend,
 }: {
   replyTo: CommentData | null;
   input: string;
   setInput: (i: string) => void;
-  data: CommentDataWithReplies[];
-  setData: (d: CommentDataWithReplies[]) => void;
-  setReplyTo: (r: CommentData | null) => void;
+  onSend: () => void;
 }) {
   return (
     <div>
@@ -35,34 +33,7 @@ export function CommentForm({
           border
           label="Send"
           color="primary"
-          onClick={() => {
-            // eslint-disable-next-line no-console
-            const newComment = {
-              id: `${data.length + 10000 * Math.random()}`,
-              user: {
-                name: 'Jannchie',
-                avatar: 'https://i.pravatar.cc/80?img=2',
-              },
-              content: input,
-            };
-            if (!replyTo) {
-              setData([...data, newComment]);
-            } else {
-              setData([...data.map((d) => {
-                if (d === replyTo) {
-                  const c = { ...d };
-                  if (!c.replies) {
-                    c.replies = [];
-                  }
-                  c.replies = [...c.replies, newComment];
-                  return c;
-                }
-                return d;
-              })]);
-              setReplyTo(null);
-            }
-            setInput('');
-          }}
+          onClick={onSend}
         />
       </div>
     </div>
