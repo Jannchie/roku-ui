@@ -1,7 +1,9 @@
 import './TextField.css';
 import classnames from 'classnames';
 import {
-  ChangeEvent, Dispatch, InputHTMLAttributes, ReactNode, SetStateAction,
+  ChangeEvent, Dispatch,
+  InputHTMLAttributes,
+  ReactNode, SetStateAction,
 } from 'react';
 import { colorClass, Colors } from '../..';
 
@@ -19,10 +21,7 @@ export type TextFieldProps = {
   ring?: boolean;
   format?: (value: string) => string;
   color?: Colors;
-  type?: InputHTMLAttributes<HTMLInputElement>['type'];
-  onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
-  onFocus?: InputHTMLAttributes<HTMLInputElement>['onFocus'];
-};
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'|'prefix'|'suffix'>;
 
 export function TextField({
   className,
