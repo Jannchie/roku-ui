@@ -3,5 +3,5 @@
 }
 
 .r-anchor-clickable {
-  @apply hover:text-primary-500 hover:underline cursor-pointer;
+  @apply hover:text-primary-500 cursor-pointer underline;
 }
