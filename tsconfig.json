@@ -27,6 +27,7 @@
   },
   "include": [
     "src",
+    "doc",
     "stories",
     "index.d.ts",
   ],

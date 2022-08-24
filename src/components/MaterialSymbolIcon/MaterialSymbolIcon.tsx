@@ -4,9 +4,11 @@ import { CSSProperties, HTMLAttributes } from 'react';
 
 export function MaterialSymbolIcon({
   size = 'md',
+  type = 'rounded',
   ...props
 }: {
   icon: string,
+  type?: 'rounded'|'outliend'
   size?: number | 'xs' | 'sm' | 'md' | 'lg',
   fill?: boolean
 } & HTMLAttributes<HTMLElement>) {
@@ -15,7 +17,7 @@ export function MaterialSymbolIcon({
     style.fontSize = size;
   }
   const clsName = classNames(
-    'material-symbols-outlined',
+    `material-symbols-${type}`,
     { filled: props.fill },
     { 'r-icon-xs': size === 'xs' },
     { 'r-icon-sm': size === 'sm' },

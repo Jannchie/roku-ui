@@ -17,6 +17,7 @@
   "scripts": {
     "prepublish": "yarn build",
     "build": "tsc && vite build",
+    "dev": "vite dev",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -61,6 +62,7 @@
     "postcss": "^8.4.14",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "6",
     "rollup-plugin-visualizer": "^5.7.1",
     "storybook-dark-mode": "^1.1.0",
     "tailwindcss": "^3.1.6",

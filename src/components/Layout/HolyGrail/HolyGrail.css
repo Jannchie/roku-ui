@@ -1,8 +1,8 @@
 .holy-grail-wrapper {
-  @apply flex rounded overflow-hidden h-full;
+  @apply flex overflow-hidden h-screen;
 }
 .holy-grail-main-wrapper {
-  @apply flex-grow relative flex-col flex h-full dark:bg-default-900 bg-default-50;
+  @apply transition flex-grow relative flex-col flex h-full dark:bg-default-900 bg-default-50;
 }
 .holy-grail-main {
   @apply flex-grow flex overflow-auto;

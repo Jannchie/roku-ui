@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import './HolyGrail.css';
 
 export function HolyGrail(args: {
+  style?: React.CSSProperties;
   icon?: ReactNode;
   title?: ReactNode;
   searchCallback?: ((value: string) => void) | undefined;
@@ -15,7 +16,7 @@ export function HolyGrail(args: {
   footer?: ReactNode;
 }) {
   return (
-    <div className="holy-grail-wrapper">
+    <div className="holy-grail-wrapper" style={args.style}>
       { args.outerLeft && (args.outerLeft) }
       <div className="holy-grail-main-wrapper">
         { args.header && (args.header) }

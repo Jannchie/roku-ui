@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { colorClass } from '../..';
-import styles from './Panel.module.css';
+import './Panel.css';
 
 export function Panel({
   color = 'default',
@@ -20,13 +20,13 @@ export function Panel({
     <div
       {...others}
       className={classNames(
-        styles['r-panel'],
+        'r-panel',
         className,
         colorCls,
         {
-          [styles['r-panel-padding']]: !nopadding,
-          [styles['r-panel-border']]: border,
-          [styles['r-panel-rounded']]: !norounded,
+          'r-panel-padding': !nopadding,
+          'r-panel-border': border,
+          'r-panel-rounded': !norounded,
         },
       )}
     >

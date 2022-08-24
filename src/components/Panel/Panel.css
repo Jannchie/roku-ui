@@ -1,4 +1,5 @@
 .r-panel {
+  @apply transition;
 }
 
 .r-panel-rounded {
