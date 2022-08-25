@@ -12,7 +12,7 @@ type CardProps = {
   shadow?: boolean;
   border?: boolean;
   divider?: boolean;
-} & BaseProps & HTMLAttributes<HTMLDivElement>;
+} & BaseProps & Omit<HTMLAttributes<HTMLDivElement>, 'color'>;
 
 export function Card({
   className,

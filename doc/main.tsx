@@ -10,6 +10,7 @@ import { HomePage } from './pages/HomePage';
 import { CommentPage } from './pages/CommentPage';
 import { TypographyPage } from './pages/TypographyPage';
 import { BtnPage } from './pages/BtnPage';
+import { ResultPage } from './pages/ResultPage';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path="comment" element={<CommentPage />} />
           <Route path="typography" element={<TypographyPage />} />
           <Route path="btn" element={<BtnPage />} />
+          <Route path="result" element={<ResultPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

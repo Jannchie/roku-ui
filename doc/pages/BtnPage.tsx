@@ -52,7 +52,6 @@ function LoadingTemplate() {
       </Btn>
       <Btn
         color="red"
-        leadingIcon={<span className="material-symbols-rounded">error</span>}
         loading={loading}
         size="lg"
         onClick={() => {
@@ -90,6 +89,13 @@ const AllTemplate = () => (
       <Btn border color="danger" label="Danger" />
       <Btn border color="warning" label="Warning" />
       <Btn border label="Default" />
+    </div>
+    <div className="flex gap-2">
+      <Btn text hoverColor="primary" label="Primary" />
+      <Btn text hoverColor="success" label="Success" />
+      <Btn text hoverColor="danger" label="Danger" />
+      <Btn text hoverColor="warning" label="Warning" />
+      <Btn text label="Default" />
     </div>
     <div className="flex gap-2">
       <Btn dash text color="primary" label="Primary" />

@@ -16,9 +16,18 @@ const Template: ComponentStory<typeof Btn.Group> = () => {
         {value}
       </div>
       <Btn.Group value={value} setValue={setValue} activeColor="primary">
-        <Btn leadingIcon={<MaterialSymbolIcon icon="dark_mode" />} value="Dark">Dark</Btn>
-        <Btn leadingIcon={<MaterialSymbolIcon icon="light_mode" />} value="Light">Light</Btn>
-        <Btn leadingIcon={<MaterialSymbolIcon icon="routine" />} value="System">System</Btn>
+        <Btn value="Dark">
+          <MaterialSymbolIcon icon="dark_mode" />
+          Dark
+        </Btn>
+        <Btn value="Light">
+          <MaterialSymbolIcon icon="light_mode" />
+          Light
+        </Btn>
+        <Btn value="System">
+          <MaterialSymbolIcon icon="routine" />
+          System
+        </Btn>
       </Btn.Group>
     </>
   );

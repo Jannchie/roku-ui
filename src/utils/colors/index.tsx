@@ -61,17 +61,32 @@ export function isColor(color: string | Colors): color is Colors {
 }
 
 export function bgColorClass(color: Colors): string {
+  if (color === 'default') {
+    return 'dark:bg-zinc-800 bg-zinc-200 text-zinc-600';
+  }
   return classNames(
-    `bg-${color}-500`, // bg-default-500 bg-primary-500 bg-success-500 bg-danger-500 bg-warning-500 bg-slate-500 bg-gray-500 bg-zinc-500 bg-neutral-500 bg-stone-500 bg-red-500 bg-orange-500 bg-amber-500 bg-yellow-500 bg-lime-500 bg-green-500 bg-emerald-500 bg-teal-500 bg-cyan-500 bg-sky-500 bg-blue-500 bg-indigo-500 bg-violet-500 bg-purple-500 bg-fuchsia-500 bg-pink-500 bg-rose-500
-
+    `bg-${color}-600`, // bg-primary-600 bg-default-600 bg-success-600 bg-danger-600 bg-warning-600 bg-slate-600 bg-gray-600 bg-zinc-600 bg-neutral-600 bg-stone-600 bg-red-600 bg-orange-600 bg-amber-600 bg-yellow-600 bg-lime-600 bg-green-600 bg-emerald-600 bg-teal-600 bg-cyan-600 bg-sky-600 bg-blue-600 bg-indigo-600 bg-violet-600 bg-purple-600 bg-fuchsia-600 bg-pink-600 bg-rose-600
+    'text-white',
   );
 }
 
 export function textColorClass(color: Colors): string {
+  if (color === 'default') {
+    return 'dark:text-zinc-400 text-zinc-600';
+  }
   return classNames(
-    `text-${color}-500`, // text-default-500 text-primary-500 text-success-500 text-danger-500 text-warning-500 text-slate-500 text-gray-500 text-zinc-500 text-neutral-500 text-stone-500 text-red-500 text-orange-500 text-amber-500 text-yellow-500 text-lime-500 text-green-500 text-emerald-500 text-teal-500 text-cyan-500 text-sky-500 text-blue-500 text-indigo-500 text-violet-500 text-purple-500 text-fuchsia-500 text-pink-500 text-rose-500
+    `text-${color}-600 text-white`, // text-primary-600 text-default-600 text-success-600 text-danger-600 text-warning-600 text-slate-600 text-gray-600 text-zinc-600 text-neutral-600 text-stone-600 text-red-600 text-orange-600 text-amber-600 text-yellow-600 text-lime-600 text-green-600 text-emerald-600 text-teal-600 text-cyan-600 text-sky-600 text-blue-600 text-indigo-600 text-violet-600 text-purple-600 text-fuchsia-600 text-pink-600 text-rose-600
+    `dark:text-${color}-500`, // dark:text-default-500 dark:text-primary-500 dark:text-success-500 dark:text-danger-500 dark:text-warning-500 dark:text-slate-500 dark:text-gray-500 dark:text-zinc-500 dark:text-neutral-500 dark:text-stone-500 dark:text-red-500 dark:text-orange-500 dark:text-amber-500 dark:text-yellow-500 dark:text-lime-500 dark:text-green-500 dark:text-emerald-500 dark:text-teal-500 dark:text-cyan-500 dark:text-sky-500 dark:text-blue-500 dark:text-indigo-500 dark:text-violet-500 dark:text-purple-500 dark:text-fuchsia-500 dark:text-pink-500 dark:text-rose-500
   );
 }
+
+export function borderColorClass(color: Colors): string {
+  if (color === 'default') {
+    return 'border-zinc-400';
+  }
+  return classNames(`border-${color}-500`); // border-default-500 border-primary-500 border-success-500 border-danger-500 border-warning-500 border-slate-500 border-gray-500 border-zinc-500 border-neutral-500 border-stone-500 border-red-500 border-orange-500 border-amber-500 border-yellow-500 border-lime-500 border-green-500 border-emerald-500 border-teal-500 border-cyan-500 border-sky-500 border-blue-500 border-indigo-500 border-violet-500 border-purple-500 border-fuchsia-500 border-pink-500 border-rose-500`)
+}
+
 export function colorClass({
   bg,
   text,
@@ -88,7 +103,7 @@ export function colorClass({
   ring?: Colors;
 }) {
   const bgCls = classNames(
-    `dark:bg-${bg}-800`, // dark:bg-default-800 dark:bg-primary-800 dark:bg-success-800 dark:bg-danger-800 dark:bg-warning-800 dark:bg-slate-800 dark:bg-gray-800 dark:bg-zinc-800 dark:bg-neutral-800 dark:bg-stone-800 dark:bg-red-800 dark:bg-orange-800 dark:bg-amber-800 dark:bg-yellow-800 dark:bg-lime-800 dark:bg-green-800 dark:bg-emerald-800 dark:bg-teal-800 dark:bg-cyan-800 dark:bg-sky-800 dark:bg-blue-800 dark:bg-indigo-800 dark:bg-violet-800 dark:bg-purple-800 dark:bg-fuchsia-800 dark:bg-pink-800 dark:bg-rose-800
+    `dark:bg-${bg}-500`, // dark:bg-default-500 dark:bg-primary-500 dark:bg-success-500 dark:bg-danger-500 dark:bg-warning-500 dark:bg-slate-500 dark:bg-gray-500 dark:bg-zinc-500 dark:bg-neutral-500 dark:bg-stone-500 dark:bg-red-500 dark:bg-orange-500 dark:bg-amber-500 dark:bg-yellow-500 dark:bg-lime-500 dark:bg-green-500 dark:bg-emerald-500 dark:bg-teal-500 dark:bg-cyan-500 dark:bg-sky-500 dark:bg-blue-500 dark:bg-indigo-500 dark:bg-violet-500 dark:bg-purple-500 dark:bg-fuchsia-500 dark:bg-pink-500 dark:bg-rose-500
     { [`bg-${bg}-500`]: bg !== 'default' }, // bg-primary-500 bg-success-500 bg-danger-500 bg-warning-500 bg-slate-500 bg-gray-500 bg-zinc-500 bg-neutral-500 bg-stone-500 bg-red-500 bg-orange-500 bg-amber-500 bg-yellow-500 bg-lime-500 bg-green-500 bg-emerald-500 bg-teal-500 bg-cyan-500 bg-sky-500 bg-blue-500 bg-indigo-500 bg-violet-500 bg-purple-500 bg-fuchsia-500 bg-pink-500 bg-rose-500
     { [`bg-${bg}-50 !text-black dark:!text-default-200`]: bg === 'default' }, // bg-default-50 !text-black
   );
@@ -98,7 +113,7 @@ export function colorClass({
   );
   const hoverableCls = classNames(
     `dark:hover:bg-${hoverable}-700`, // dark:hover:bg-default-700 dark:hover:bg-primary-700 dark:hover:bg-success-700 dark:hover:bg-danger-700 dark:hover:bg-warning-700 dark:hover:bg-slate-700 dark:hover:bg-gray-700 dark:hover:bg-zinc-700 dark:hover:bg-neutral-700 dark:hover:bg-stone-700 dark:hover:bg-red-700 dark:hover:bg-orange-700 dark:hover:bg-amber-700 dark:hover:bg-yellow-700 dark:hover:bg-lime-700 dark:hover:bg-green-700 dark:hover:bg-emerald-700 dark:hover:bg-teal-700 dark:hover:bg-cyan-700 dark:hover:bg-sky-700 dark:hover:bg-blue-700 dark:hover:bg-indigo-700 dark:hover:bg-violet-700 dark:hover:bg-purple-700 dark:hover:bg-fuchsia-700 dark:hover:bg-pink-700 dark:hover:bg-rose-700
-    `dark:ring-${hoverable}-800`, // ring-primary-800 ring-success-800 ring-danger-800 ring-warning-800 ring-slate-800 ring-gray-800 ring-zinc-800 ring-neutral-800 ring-stone-800 ring-red-800 ring-orange-800 ring-amber-800 ring-yellow-800 ring-lime-800 ring-green-800 ring-emerald-800 ring-teal-800 ring-cyan-800 ring-sky-800 ring-blue-800 ring-indigo-800 ring-violet-800 ring-purple-800 ring-fuchsia-800 ring-pink-800 ring-rose-800
+    `dark:ring-${hoverable}-500`, // ring-primary-500 ring-success-500 ring-danger-500 ring-warning-500 ring-slate-500 ring-gray-500 ring-zinc-500 ring-neutral-500 ring-stone-500 ring-red-500 ring-orange-500 ring-amber-500 ring-yellow-500 ring-lime-500 ring-green-500 ring-emerald-500 ring-teal-500 ring-cyan-500 ring-sky-500 ring-blue-500 ring-indigo-500 ring-violet-500 ring-purple-500 ring-fuchsia-500 ring-pink-500 ring-rose-500
     { [`hover:bg-${hoverable}-600`]: hoverable !== 'default' }, // hover:bg-primary-600 hover:bg-success-600 hover:bg-danger-600 hover:bg-warning-600 hover:bg-slate-600 hover:bg-gray-600 hover:bg-zinc-600 hover:bg-neutral-600 hover:bg-stone-600 hover:bg-red-600 hover:bg-orange-600 hover:bg-amber-600 hover:bg-yellow-600 hover:bg-lime-600 hover:bg-green-600 hover:bg-emerald-600 hover:bg-teal-600 hover:bg-cyan-600 hover:bg-sky-600 hover:bg-blue-600 hover:bg-indigo-600 hover:bg-violet-600 hover:bg-purple-600 hover:bg-fuchsia-600 hover:bg-pink-600 hover:bg-rose-600
     { [`hover:bg-${hoverable}-200`]: hoverable === 'default' }, // hover:bg-default-200
     `hover:text-${hoverable}-600`, // hover:text-primary-600 hover:text-success-600 hover:text-danger-600 hover:text-warning-600 hover:text-slate-600 hover:text-gray-600 hover:text-zinc-600 hover:text-neutral-600 hover:text-stone-600 hover:text-red-600 hover:text-orange-600 hover:text-amber-600 hover:text-yellow-600 hover:text-lime-600 hover:text-green-600 hover:text-emerald-600 hover:text-teal-600 hover:text-cyan-600 hover:text-sky-600 hover:text-blue-600 hover:text-indigo-600 hover:text-violet-600 hover:text-purple-600 hover:text-fuchsia-600 hover:text-pink-600 hover:text-rose-600

@@ -1,14 +1,15 @@
 import classNames from 'classnames';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   createContext, CSSProperties, HTMLAttributes, ReactNode, useContext, useMemo, useState,
 } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import {
-  Colors, colorClass, bgColorClass, textColorClass,
+  Colors, colorClass, bgColorClass, textColorClass, borderColorClass,
 } from '../../utils/colors';
 import { Loading } from '../../icons/Loading';
-import './Btn.css';
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon';
+import './Btn.css';
+import { Typography } from '../Typography';
 
 export type ButtonProps = {
   label?: string;
@@ -52,7 +53,7 @@ function BtnRoot({
   label,
   size = 'md',
   color = 'default',
-  hoverColor = undefined,
+  hoverColor,
   dash = false,
   loading = false,
   disabled = false,
@@ -73,17 +74,7 @@ function BtnRoot({
   right,
 }: ButtonProps) {
   const ctx = useContext(BtnGroupCtx);
-  let finalColor = color;
-  if (ctx.value && value === ctx.value) {
-    finalColor = ctx.activeColor;
-  }
-  const colorCls = colorClass({
-    bg: (filled && !text) ? finalColor : undefined,
-    border: border ? finalColor : undefined,
-    hoverable: hoverColor || finalColor,
-    text: text ? finalColor : undefined,
-  });
-
+  const [hover, setHover] = useState(false);
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -94,8 +85,19 @@ function BtnRoot({
     { 'r-btn-ring': ring },
     { 'r-btn-filled': filled && !text },
     { 'r-btn-text': text },
+    { 'active:scale-95': true },
+    { '!bg-opacity-0 hover:!bg-opacity-10 active:!bg-opacity-25': text },
+    { '!bg-opacity-100 hover:!bg-opacity-90 active:!bg-opacity-75': filled && !text },
+    { [bgColorClass(color)]: !hover || !hoverColor },
+    { [textColorClass(color)]: text && (!hover || !hoverColor) },
+    { [borderColorClass(color)]: border && (!hover || !hoverColor) },
+    { ' dark:text-zinc-50': !text && color !== 'default' },
+    { ' dark:text-zinc-300': !text && color === 'default' },
+    { [bgColorClass(hoverColor!)]: hover && hoverColor },
+    { [textColorClass(hoverColor!)]: text && hover && hoverColor },
+    { [borderColorClass(hoverColor!)]: border && hover && hoverColor },
+    { 'border-transparent': !border },
     className,
-    colorCls,
   );
   const body = children || label;
   const loadingFinalClass = classNames('leading-[0]', {
@@ -131,13 +133,14 @@ function BtnRoot({
     );
   }
   return (
-    <motion.button
+    <button
       key="r-btn-wrapper"
-      layout
       className={btnClass}
       disabled={disabled}
       style={style}
       type="button"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       onClick={clickCallback}
     >
       <div className={classNames(
@@ -163,7 +166,8 @@ function BtnRoot({
                 layout
                 animate={{
                   marginRight: size === 'sm' ? 4 : 8,
-                  width: size === 'lg' ? 24 : 16,
+                  width: size === 'lg' ? 20 : 16,
+                  height: size === 'lg' ? 20 : 16,
                 }}
                 className={loadingFinalClass}
                 exit={{ marginRight: 0, width: 0 }}
@@ -182,21 +186,11 @@ function BtnRoot({
             )}
           </AnimatePresence>
         )}
-        <AnimatePresence exitBeforeEnter>
-          <motion.div
-            key="btn-body"
-            layout
-            transition={{
-              bounce: 0,
-              duration: 0.15,
-              type: 'spring',
-            }}
-          >
-            {body}
-          </motion.div>
-        </AnimatePresence>
+        <Typography.Button>
+          {body}
+        </Typography.Button>
       </div>
-    </motion.button>
+    </button>
   );
 }
 
@@ -254,7 +248,8 @@ function Counter({
     { [textColorClass(color)]: hover || active, [bgColorClass(color)]: hover || active },
     { [textColorClass('default')]: !hover && !active },
     `r-btn-${size}`,
-    'r-btn-icon r-btn bg-opacity-10',
+    'r-btn-icon r-btn bg-opacity-10 dark:bg-opacity-10',
+    'border-transparent',
   );
   const textCls = classNames(
     'r-btn-counter-value transition',
@@ -272,7 +267,7 @@ function Counter({
       <div className={iconCls}>
         <MaterialSymbolIcon size={size} icon={icon} />
       </div>
-      <span className={textCls}>{value}</span>
+      <Typography.Button className={textCls}>{value}</Typography.Button>
     </button>
   );
 }

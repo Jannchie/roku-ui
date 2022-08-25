@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
-    "framer-motion": "^7.0.1"
+    "framer-motion": "^7.0.1",
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
@@ -47,6 +48,7 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-motion": "^0.0.33",
+    "@types/react-transition-group": "^4.4.5",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "@vitejs/plugin-react": "^2.0.0",

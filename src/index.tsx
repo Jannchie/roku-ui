@@ -21,6 +21,7 @@ export * from './components/Digital';
 export * from './components/Panel';
 export * from './components/Comment';
 export * from './components/Typography';
+export * from './components/Result';
 export * from './components/Layout/Appbar';
 export * from './components/Layout/Footer';
 export * from './components/Layout/Container';

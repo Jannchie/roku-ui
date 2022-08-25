@@ -115,13 +115,13 @@ function LoadingTemplate() {
       </Btn>
       <Btn
         color="red"
-        leadingIcon={<span className="material-symbols-outlined">error</span>}
         loading={loading}
         size="lg"
         onClick={() => {
           setLoading((val) => !val);
         }}
       >
+        <span className="material-symbols-outlined">error</span>
         Loading Button Large
       </Btn>
       <Btn

@@ -1,4 +1,5 @@
-import { Container } from '../../src';
+import { Container, Typography } from '../../src';
+import './HomePage.css';
 
 export function HomePage() {
   return (
@@ -10,7 +11,9 @@ export function HomePage() {
       }}
     >
       <Container>
-        Home
+        <Typography.H1 className="gradient-text">
+          Roku UI
+        </Typography.H1>
       </Container>
     </div>
   );

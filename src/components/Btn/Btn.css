@@ -4,7 +4,6 @@
   @apply text-sm border;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
   @apply outline-none;
-  @apply border-transparent;
 }
 
 .r-btn-main {
@@ -32,13 +31,6 @@
 }
 
 .r-btn.r-btn-filled {
-  @apply hover:text-white;
-  @apply text-white dark:!text-white;
-  @apply active:!brightness-90;
-}
-
-.r-btn.r-btn-text {
-  @apply !bg-opacity-10 active:!bg-opacity-25;
 }
 
 .r-btn-icon {
@@ -108,4 +100,35 @@
 }
 .r-loading-lg {
   @apply h-6 w-6;
+}
+
+.r-btn-loading-enter {
+  opacity: 0;
+  width: 0px;
+  transition: all 0.2s ease-in-out;
+}
+.r-btn-loading-enter-active {
+  opacity: 1;
+  width: 20px;
+  transition: all 0.2s ease-in-out;
+}
+.r-btn-loading-enter-done {
+  opacity: 1;
+  width: 20px;
+  transition: all 0.2s ease-in-out;
+}
+.r-btn-loading-exit {
+  opacity: 1;
+  width: 20px;
+  transition: all 0.2s ease-in-out;
+}
+.r-btn-loading-exit-active {
+  width: 0px;
+  transition: all 0.2s ease-in-out;
+}
+.r-btn-loading-exit-done {
+  opacity: 1;
+  display: none;
+  transition: all 0.2s ease-in-out;
+  width: 0px;
 }
