@@ -1,6 +1,6 @@
-import { Container } from '../src';
+import { Container } from '../../src';
 
-export function Home() {
+export function HomePage() {
   return (
     <div
       style={{

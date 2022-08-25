@@ -1,7 +1,6 @@
 .r-textarea {
   @apply text-sm p-[9px] resize-none;
-  @apply outline-none focus:ring rounded transition;
-  @apply ring-primary-500;
+  @apply outline-none rounded focus:ring-1 transition;
   @apply dark:bg-default-900;
   @apply dark:border-default-800;
   @apply dark:text-default-100;

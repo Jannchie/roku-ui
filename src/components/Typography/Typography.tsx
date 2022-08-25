@@ -1,44 +1,97 @@
+import classNames from 'classnames';
 import { HTMLAttributes, ReactNode } from 'react';
+import './Typography.css';
 
-function H1({ children, ...props }: {children: ReactNode} & HTMLAttributes<HTMLHeadingElement>) {
+function H1({ children, ...props }: { children: ReactNode } & HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h1 {...props}>{children}</h1>
+    <h1
+      className={classNames({
+        'r-typography-h1': true,
+      }, props.className)}
+      {...props}
+    >
+      {children}
+    </h1>
   );
 }
 
 function H2({ children, ...props }: {children: ReactNode} & HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h2 {...props}>{children}</h2>
+    <h2
+      className={classNames({
+        'r-typography-h2': true,
+      }, props.className)}
+      {...props}
+    >
+      {children}
+
+    </h2>
   );
 }
 
 function H3({ children, ...props }: {children: ReactNode} & HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h3 {...props}>{children}</h3>
+    <h3
+      className={classNames({
+        'r-typography-h3': true,
+      }, props.className)}
+      {...props}
+    >
+      {children}
+    </h3>
   );
 }
 
 function H4({ children, ...props }: {children: ReactNode} & HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h4 {...props}>{children}</h4>
+    <h4
+      className={classNames({
+        'r-typography-h4': true,
+      }, props.className)}
+      {...props}
+    >
+      {children}
+    </h4>
   );
 }
 
 function H5({ children, ...props }: {children: ReactNode} & HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h5 {...props}>{children}</h5>
+    <h5
+      className={classNames({
+        'r-typography-h5': true,
+      }, props.className)}
+      {...props}
+    >
+      {children}
+
+    </h5>
   );
 }
 
 function H6({ children, ...props }: { children: ReactNode } & HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h6 {...props}>{children}</h6>
+    <h6
+      className={classNames({
+        'r-typography-h6': true,
+      }, props.className)}
+      {...props}
+    >
+      {children}
+    </h6>
   );
 }
 
 function P({ children, ...props }: { children: ReactNode } & HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p {...props}>{children}</p>
+    <p
+      className={classNames({
+        'r-typography-p': true,
+      }, props.className)}
+      {...props}
+    >
+      {children}
+    </p>
   );
 }
 

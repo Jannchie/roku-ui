@@ -4,6 +4,7 @@
   @apply text-sm border;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
   @apply outline-none;
+  @apply border-transparent;
 }
 
 .r-btn-main {
@@ -42,6 +43,7 @@
 
 .r-btn-icon {
   line-height: 0px;
+  @apply !rounded-full;
 }
 
 .r-btn-icon-border {
@@ -61,15 +63,15 @@
 }
 
 .r-btn-xs {
-  @apply py-1 px-1 text-xs rounded-sm;
+  @apply p-1 text-xs rounded-sm;
 }
 
 .r-btn-sm {
-  @apply py-1 px-1 rounded;
+  @apply p-1 rounded;
 }
 
 .r-btn-md {
-  @apply py-2 px-3 rounded-md;
+  @apply p-2 rounded-md;
 }
 
 .r-btn-lg {
@@ -92,7 +94,9 @@
   @apply rounded-none;
 }
 
-
+.r-btn-leading-icon {
+  @apply mr-2;
+}
 .r-loading-xs {
   @apply h-3 w-3;
 }

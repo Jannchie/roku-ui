@@ -32,7 +32,6 @@ function getNavIcon(icon: string) {
   function activableBtn({ isActive }: { isActive: boolean; }) {
     return (
       <Btn
-        icon
         color={isActive ? 'primary' : 'default'}
       >
         <MaterialSymbolIcon icon={icon} />
@@ -74,6 +73,8 @@ function DocLayout() {
     >
       <NavLink to="">{getNavIcon('home')}</NavLink>
       <NavLink to="comment">{getNavIcon('comment')}</NavLink>
+      <NavLink to="typography">{getNavIcon('title')}</NavLink>
+      <NavLink to="btn">{getNavIcon('crop_16_9')}</NavLink>
     </div>
   );
   return (

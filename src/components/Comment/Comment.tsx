@@ -40,6 +40,7 @@ export function Comment({
     if (data.user.link) {
       avatar = (
         <Avatar
+          size="sm"
           src={avatar}
           alt={avatar}
           onClick={() => {
@@ -52,6 +53,7 @@ export function Comment({
     } else {
       avatar = (
         <Avatar
+          size="sm"
           src={avatar}
           alt={avatar}
         />
@@ -60,34 +62,34 @@ export function Comment({
   }
   return (
     <div
-      className="flex flex-col gap-2"
+      className="flex flex-col"
     >
       <div>
         <div
-          className="flex gap-2"
+          className="flex gap-2 items-center mb-2 text-sm"
         >
-          <div>
-            {avatar}
+          {avatar}
+          <div className="font-bold">
+            {name}
           </div>
-          <div className="text-sm text-ellipsis overflow-hidden">
-            <div className="flex gap-1">
-              <div>{name}</div>
-              {data.time && <div className="text-default-400">{data.time}</div>}
-            </div>
-            <div className="dark:text-default-400 text-default-700">
-              {data.content}
-            </div>
-          </div>
+          {data.time && <div className="text-default-400">{data.time}</div>}
         </div>
-        <div className="flex gap-2 mx-2 mt-1">
-          {actions}
+
+        <div className="dark:text-default-400 text-default-700 text-sm">
+          {data.content}
         </div>
+        { actions
+          && (
+            <div className="flex my-2">
+              {actions}
+            </div>
+          )}
       </div>
       {replies && (
         <div
           ref={repliesDetail}
           className={classNames(
-            'p-2 mx-2 rounded dark:bg-default-900 bg-default-100 flex flex-col gap-2',
+            'pb-2 px-4 rounded flex flex-col gap-2',
           )}
         >
           {!showMore && replies.slice(0, maxReplies).map((reply) => (

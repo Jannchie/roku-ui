@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import { CommentForm } from './CommentForm';
 import { CommentList } from './CommentList';
 import { CommentData, CommentDataWithReplies } from './CommentTypes';
@@ -13,6 +13,7 @@ export function CommentComponent(
     loading,
     generateActions,
     onSend,
+    ...props
   }: {
     data: CommentDataWithReplies[];
     replyTo: CommentData | null;
@@ -22,10 +23,10 @@ export function CommentComponent(
     loading: boolean;
     generateActions: (d: CommentData) => ReactNode;
     onSend: () => void;
-  },
+  } & HTMLAttributes<HTMLDivElement>,
 ) {
   return (
-    <div className="relative flex flex-col gap-4 m-auto h-full">
+    <div {...props} className="relative flex flex-col gap-4 m-auto h-full">
       <CommentList
         loading={loading}
         generateActions={generateActions}

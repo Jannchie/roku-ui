@@ -16,10 +16,10 @@
   @apply rounded-xl;
 }
 .r-avatar-xs {
-  @apply w-4 h-4;
+  @apply w-5 h-5;
 }
 .r-avatar-sm {
-  @apply w-5 h-5;
+  @apply w-8 h-8;
 }
 .r-avatar-md {
   @apply w-10 h-10;

@@ -1,11 +1,14 @@
 import classNames from 'classnames';
 import {
-  createContext, CSSProperties, ReactNode, useContext, useMemo,
+  createContext, CSSProperties, HTMLAttributes, ReactNode, useContext, useMemo, useState,
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Colors, colorClass } from '../../utils/colors';
+import {
+  Colors, colorClass, bgColorClass, textColorClass,
+} from '../../utils/colors';
 import { Loading } from '../../icons/Loading';
 import './Btn.css';
+import { MaterialSymbolIcon } from '../MaterialSymbolIcon';
 
 export type ButtonProps = {
   label?: string;
@@ -13,6 +16,7 @@ export type ButtonProps = {
   style?: CSSProperties;
   rounded?: boolean;
   color?: Colors;
+  hoverColor?: Colors;
   filled?: boolean;
   border?: boolean;
   dash?: boolean;
@@ -48,6 +52,7 @@ function BtnRoot({
   label,
   size = 'md',
   color = 'default',
+  hoverColor = undefined,
   dash = false,
   loading = false,
   disabled = false,
@@ -75,7 +80,7 @@ function BtnRoot({
   const colorCls = colorClass({
     bg: (filled && !text) ? finalColor : undefined,
     border: border ? finalColor : undefined,
-    hoverable: finalColor,
+    hoverable: hoverColor || finalColor,
     text: text ? finalColor : undefined,
   });
 
@@ -144,7 +149,7 @@ function BtnRoot({
       >
         {leadingIcon ? (
           <div
-            className={loadingFinalClass}
+            className={classNames(loadingFinalClass, 'r-btn-leading-icon')}
             style={{
               fontSize: size === 'sm' ? '1rem' : '1.5rem',
             }}
@@ -230,6 +235,47 @@ function Group({
   );
 }
 
+function Counter({
+  value,
+  size = 'md',
+  color = 'primary',
+  icon = 'check_circle',
+  active = false,
+  ...props
+}: {
+  value: number,
+  icon: string,
+  color?: Colors,
+  active?: boolean,
+  size?: 'xs' | 'sm' | 'md' | 'lg',
+} & HTMLAttributes<HTMLButtonElement>) {
+  const [hover, setHover] = useState(false);
+  const iconCls = classNames(
+    { [textColorClass(color)]: hover || active, [bgColorClass(color)]: hover || active },
+    { [textColorClass('default')]: !hover && !active },
+    `r-btn-${size}`,
+    'r-btn-icon r-btn bg-opacity-10',
+  );
+  const textCls = classNames(
+    'r-btn-counter-value transition',
+    { [textColorClass(color)]: hover || active },
+    { [textColorClass('default')]: !hover && !active },
+  );
+  return (
+    <button
+      {...props}
+      type="button"
+      className="r-btn-counter text-sm flex items-center gap-2 hover:cursor-pointer"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <div className={iconCls}>
+        <MaterialSymbolIcon size={size} icon={icon} />
+      </div>
+      <span className={textCls}>{value}</span>
+    </button>
+  );
+}
 export const Btn = Object.assign(BtnRoot, {
-  Group,
+  Group, Counter,
 });
