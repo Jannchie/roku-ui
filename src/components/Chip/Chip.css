@@ -1,15 +1,19 @@
 .r-chip {
-  @apply rounded-full inline-flex transition items-stretch cursor-default;
+  @apply inline-flex transition items-stretch cursor-default rounded bg-opacity-10 dark:bg-opacity-10;
+}
+
+.r-chip-rounded {
+  @apply rounded-full;
 }
 
 .r-chip-xs {
-  @apply py-0 px-1 text-xs;
+  @apply py-0 px-0.5 text-xs;
 }
 .r-chip-sm {
-  @apply py-1 px-2 text-xs;
+  @apply py-0 px-0.5 text-xs;
 }
 .r-chip-md {
-  @apply py-1 px-3 text-sm;
+  @apply py-0.5 px-2 text-xs;
 }
 .r-chip-lg {
   @apply py-1 px-4 text-base;

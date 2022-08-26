@@ -1,7 +1,7 @@
 import './Chip.css';
 import { MouseEvent, KeyboardEvent, ReactNode } from 'react';
 import classNames from 'classnames';
-import { Colors, colorClass } from '../../utils/colors';
+import { Colors, colorClass, borderColorClass } from '../../utils/colors';
 
 type ChipProps = {
   className?: string;
@@ -9,6 +9,7 @@ type ChipProps = {
   color?: Colors;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   border?: boolean;
+  rounded?: boolean;
   onClick?: (e: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>) => void;
   leading?: ReactNode;
 };
@@ -16,9 +17,10 @@ export function ChipRoot({
   color = 'primary',
   className,
   children,
-  size = 'sm',
-  border = false,
+  size = 'md',
+  border,
   onClick,
+  rounded,
   leading,
 }: ChipProps) {
   const colorCls = colorClass({
@@ -29,11 +31,14 @@ export function ChipRoot({
   });
   const chipClass = classNames(
     'r-chip',
-    { 'r-chip-clickable': onClick !== undefined },
+    {
+      [borderColorClass(color)]: border,
+      'r-chip-clickable': onClick !== undefined,
+      'r-chip-rounded': rounded,
+    },
     `r-chip-${size}`,
     className,
     colorCls,
-    'bg-opacity-25 dark:bg-opacity-25',
   );
   return (
     <span
