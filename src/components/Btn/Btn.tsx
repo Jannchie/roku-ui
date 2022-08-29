@@ -4,7 +4,7 @@ import {
   createContext, CSSProperties, HTMLAttributes, ReactNode, useContext, useMemo, useState,
 } from 'react';
 import {
-  Colors, colorClass, bgColorClass, textColorClass, borderColorClass,
+  Colors, colorClass, bgColorClass, textColorClass, borderColorClass, hoverBgColorClass,
 } from '../../utils/colors';
 import { Loading } from '../../icons/Loading';
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon';
@@ -75,6 +75,7 @@ function BtnRoot({
 }: ButtonProps) {
   const ctx = useContext(BtnGroupCtx);
   const [hover, setHover] = useState(false);
+  const hColor = hoverColor || color;
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -86,16 +87,14 @@ function BtnRoot({
     { 'r-btn-filled': filled && !text },
     { 'r-btn-text': text },
     { 'active:scale-95': true },
-    { '!bg-opacity-0 hover:!bg-opacity-10 active:!bg-opacity-25': text },
-    { '!bg-opacity-100 hover:!bg-opacity-90 active:!bg-opacity-75': filled && !text },
-    { [bgColorClass(color)]: !hover || !hoverColor },
-    { [textColorClass(color)]: text && (!hover || !hoverColor) },
-    { [borderColorClass(color)]: border && (!hover || !hoverColor) },
-    { ' dark:text-zinc-50': !text && color !== 'default' },
-    { ' dark:text-zinc-300': !text && color === 'default' },
-    { [bgColorClass(hoverColor!)]: hover && hoverColor },
-    { [textColorClass(hoverColor!)]: text && hover && hoverColor },
-    { [borderColorClass(hoverColor!)]: border && hover && hoverColor },
+    { [hoverBgColorClass(hColor)]: hover },
+    { [bgColorClass(color)]: !hover && !text },
+    { [textColorClass(color)]: text && !hover },
+    { [textColorClass(hColor)]: text && hover },
+    { [borderColorClass(color)]: border && !hover },
+    { [bgColorClass(hColor)]: hover },
+    { '!bg-opacity-25': text && hover },
+    { [borderColorClass(hColor)]: border && hover },
     { 'border-transparent': !border },
     className,
   );
@@ -122,6 +121,8 @@ function BtnRoot({
         disabled={disabled}
         style={style}
         type="button"
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
         onClick={clickCallback}
       >
         <div
@@ -134,7 +135,6 @@ function BtnRoot({
   }
   return (
     <button
-      key="r-btn-wrapper"
       className={btnClass}
       disabled={disabled}
       style={style}
