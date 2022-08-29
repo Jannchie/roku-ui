@@ -16,19 +16,19 @@
   @apply rounded-xl;
 }
 .r-avatar-xs {
-  @apply w-5 h-5;
+  @apply w-3 h-3;
 }
 .r-avatar-sm {
-  @apply w-8 h-8;
+  @apply w-4 h-4;
 }
 .r-avatar-md {
-  @apply w-10 h-10;
+  @apply w-8 h-8;
 }
 .r-avatar-lg {
-  @apply w-16 h-16;
+  @apply w-12 h-12;
 }
 .r-avatar-xl {
-  @apply w-20 h-20;
+  @apply w-16 h-16;
 }
 .r-avatar-clickable {
   cursor: pointer;

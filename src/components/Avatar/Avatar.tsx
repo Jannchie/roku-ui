@@ -8,7 +8,7 @@ import { colorClass, Colors } from '../..';
 type AvatarProps = {
   className?: string;
   children?: ReactNode;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
   outline?: Colors | boolean;
   square?: boolean;
   color?: Colors;
@@ -32,17 +32,25 @@ export function AvatarRoot({
     bg: color,
     outline: outline ? outlineColor : undefined,
   });
+  let { style } = others;
+  if (typeof size === 'number') {
+    style = {
+      ...others.style,
+      width: size,
+      height: size,
+    };
+  }
   const avatarClass = classNames(
     'r-avatar',
+    { [`r-avatar-${size}`]: typeof size === 'string' },
     { 'r-avatar-clickable': onClick !== undefined },
     { 'r-avatar-outline': outline },
-    `r-avatar-${size}`,
     `r-avatar-${square ? 'square' : 'circle'}`,
     className,
     colorCls,
   );
-  const image = others.src ? <img {...others} alt={others.alt ?? 'Avatar'} /> : (
-    <div>
+  const image = others.src ? <img style={style} {...others} alt={others.alt ?? 'Avatar'} /> : (
+    <div style={style}>
       {children}
     </div>
   );
