@@ -54,6 +54,38 @@ export function ChipPage() {
               </div>
             </div>
           </Panel>
+          <Panel border>
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-2 items-center">
+                <span className="text-sm font-bold">Username</span>
+                <Chip text rounded border>OBOG</Chip>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-sm font-bold items-center">Rich</span>
+                <Chip rounded text color="purple">PRO</Chip>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-sm font-bold items-center">Admin</span>
+                <Chip text border color="orange">Owner</Chip>
+              </div>
+            </div>
+          </Panel>
+          <Panel border>
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-2 items-center">
+                <span className="text-sm font-bold">Username</span>
+                <Chip text rounded border onClick={() => {}}>OBOG</Chip>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-sm font-bold items-center">Rich</span>
+                <Chip rounded text color="purple" onClick={() => { }}>PRO</Chip>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-sm font-bold items-center">Admin</span>
+                <Chip text border color="orange" onClick={() => { }}>Owner</Chip>
+              </div>
+            </div>
+          </Panel>
         </div>
       </Container>
     </div>

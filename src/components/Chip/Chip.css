@@ -2,6 +2,10 @@
   @apply inline-flex transition items-stretch cursor-default rounded bg-opacity-10 dark:bg-opacity-10;
 }
 
+.r-chip.r-chip-text {
+  @apply bg-opacity-0;
+}
+
 .r-chip-rounded {
   @apply rounded-full;
 }

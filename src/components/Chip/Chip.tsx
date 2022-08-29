@@ -8,6 +8,7 @@ type ChipProps = {
   children?: ReactNode;
   color?: Colors;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  text?: boolean;
   border?: boolean;
   rounded?: boolean;
   onClick?: (e: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>) => void;
@@ -18,6 +19,7 @@ export function ChipRoot({
   className,
   children,
   size = 'md',
+  text,
   border,
   onClick,
   rounded,
@@ -35,6 +37,7 @@ export function ChipRoot({
       [borderColorClass(color)]: border,
       'r-chip-clickable': onClick !== undefined,
       'r-chip-rounded': rounded,
+      'r-chip-text': text,
     },
     `r-chip-${size}`,
     className,
