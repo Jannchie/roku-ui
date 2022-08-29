@@ -14,7 +14,7 @@ export type EditableLineProps = {
   textAligin?: 'left' | 'center' | 'right';
   borderType?: 'dash' | 'solid' | 'dot';
   onOK?: (value: string) => void;
-  size: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
 };
 
 export function EditableLine({
@@ -63,7 +63,6 @@ export function EditableLine({
         >
           <Btn
             border
-            icon
             size={size}
             className="r-editable-line-ok-btn"
             color="success"
@@ -78,7 +77,6 @@ export function EditableLine({
           </Btn>
           <Btn
             border
-            icon
             size={size}
             className="r-editable-line-cancel-btn"
             onClick={() => {

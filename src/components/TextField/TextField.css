@@ -37,7 +37,7 @@
 }
 
 .r-text-field-ring {
-  @apply focus-within:!border-transparent focus-within:ring;
+  @apply focus-within:!border-transparent focus-within:ring-1;
 }
 
 .r-text-field-wrapper:focus-within {

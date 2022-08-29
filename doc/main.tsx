@@ -6,24 +6,16 @@ import {
   Route,
 } from 'react-router-dom';
 import { App } from './app';
-import { HomePage } from './pages/HomePage';
-import { CommentPage } from './pages/CommentPage';
-import { TypographyPage } from './pages/TypographyPage';
-import { BtnPage } from './pages/BtnPage';
-import { ResultPage } from './pages/ResultPage';
-import { ChipPage } from './pages/ChipPage';
+import { router } from './router';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<HomePage />} />
-          <Route path="comment" element={<CommentPage />} />
-          <Route path="typography" element={<TypographyPage />} />
-          <Route path="btn" element={<BtnPage />} />
-          <Route path="result" element={<ResultPage />} />
-          <Route path="chip" element={<ChipPage />} />
+          {router.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
         </Route>
       </Routes>
     </BrowserRouter>

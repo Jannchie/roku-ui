@@ -6,6 +6,7 @@ import {
   Appbar, Btn, HolyGrail, MaterialSymbolIcon, Typography,
 } from '../src';
 import '../src/index.css';
+import { router } from './router';
 
 type ThemeType = {
   theme: 'light' | 'dark';
@@ -106,12 +107,14 @@ function DocLayout() {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <NavLink to="">{getNavIcon('home', hover, 'Home', width)}</NavLink>
-      <NavLink to="comment">{getNavIcon('comment', hover, 'Comment', width)}</NavLink>
-      <NavLink to="typography">{getNavIcon('title', hover, 'Typography', width)}</NavLink>
-      <NavLink to="btn">{getNavIcon('crop_16_9', hover, 'Button', width)}</NavLink>
-      <NavLink to="result">{getNavIcon('check_circle', hover, 'Result', width)}</NavLink>
-      <NavLink to="chip">{getNavIcon('label', hover, 'Chip', width)}</NavLink>
+      {router.map((route) => (
+        <NavLink
+          key={route.path}
+          to={route.path}
+        >
+          {getNavIcon(route.icon, hover, route.title, width)}
+        </NavLink>
+      ))}
     </div>
   );
   return (

@@ -1,5 +1,4 @@
 import { Container, Typography } from '../../src';
-import './HomePage.css';
 
 export function HomePage() {
   return (

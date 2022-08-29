@@ -1,7 +1,6 @@
 import {
   Chip, Container, Panel, Typography,
 } from '../../src';
-import './HomePage.css';
 
 export function ChipPage() {
   return (
