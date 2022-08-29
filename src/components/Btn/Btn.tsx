@@ -234,13 +234,15 @@ function Counter({
   size = 'md',
   color = 'primary',
   icon = 'check_circle',
+  fill = false,
   active = false,
   ...props
 }: {
   value: number,
-  icon: string,
+  icon: string | ReactNode,
   color?: Colors,
   active?: boolean,
+  fill?: boolean,
   size?: 'xs' | 'sm' | 'md' | 'lg',
 } & HTMLAttributes<HTMLButtonElement>) {
   const [hover, setHover] = useState(false);
@@ -265,7 +267,11 @@ function Counter({
       onMouseLeave={() => setHover(false)}
     >
       <div className={iconCls}>
-        <MaterialSymbolIcon size={size} icon={icon} />
+        {
+          typeof icon === 'string' ? (
+            <MaterialSymbolIcon size={size} icon={icon} fill={fill} />
+          ) : icon
+        }
       </div>
       <Typography.Button className={textCls}>{value}</Typography.Button>
     </button>

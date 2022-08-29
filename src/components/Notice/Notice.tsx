@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 import {
-  Btn, colorClass, Colors, Progress,
+  Btn, colorClass, Colors, MaterialSymbolIcon, Progress,
 } from '../..';
 import './Notice.css';
 
@@ -43,7 +43,7 @@ export function Notice({
   progress = false,
   outlined = false,
   dense = false,
-  icon = <span className="material-symbols-outlined">check_circle</span>,
+  icon = <MaterialSymbolIcon icon="check_circle" />,
   existMS = 3000,
   close,
 }: NoticeProps) {
@@ -81,7 +81,7 @@ export function Notice({
               className="!rounded-full dark:!text-default-400 hover:!bg-opacity-10 hover:!text-default-900 dark:hover:!text-default-200"
               onClick={close}
             >
-              <span className="material-symbols-outlined">close</span>
+              <MaterialSymbolIcon icon="close" />
             </Btn>
           )}
         </div>
