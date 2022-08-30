@@ -5,16 +5,18 @@ import { CSSProperties, HTMLAttributes } from 'react';
 export function MaterialSymbolIcon({
   size = 'md',
   type = 'rounded',
+  className,
+  style = {},
   ...props
 }: {
   icon: string,
   type?: 'rounded'|'outliend'
   size?: number | 'xs' | 'sm' | 'md' | 'lg',
-  fill?: boolean
+  fill?: boolean,
 } & HTMLAttributes<HTMLElement>) {
-  const style: CSSProperties = { verticalAlign: 'bottom' };
+  const styl: CSSProperties = { verticalAlign: 'bottom', ...style };
   if (typeof size === 'number') {
-    style.fontSize = size;
+    styl.fontSize = size;
   }
   const clsName = classNames(
     `material-symbols-${type}`,
@@ -23,9 +25,10 @@ export function MaterialSymbolIcon({
     { 'r-icon-sm': size === 'sm' },
     { 'r-icon-md': size === 'md' },
     { 'r-icon-lg': size === 'lg' },
+    className,
   );
   return (
-    <i className={clsName} style={style}>
+    <i className={clsName} style={styl}>
       {props.icon}
     </i>
   );
