@@ -4,7 +4,7 @@ import {
   ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
 import classNames from 'classnames';
-import { Colors, Notice } from '../..';
+import { Colors, MaterialSymbolIcon, Notice } from '../..';
 
 type NotificationConfig = {
   left?: boolean;
@@ -65,24 +65,22 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
   switch (type) {
     case 'success': {
       mainColor = 'success';
-      icon = <span className="material-symbols-outlined">check_circle</span>;
+      icon = <MaterialSymbolIcon icon="check_circle" />;
       break;
     }
     case 'danger': {
       mainColor = 'danger';
-      icon = <span className="material-symbols-outlined">cancel</span>;
+      icon = <MaterialSymbolIcon icon="cancel" />;
       break;
     }
     case 'warning': {
       mainColor = 'warning';
-      icon = <span className="material-symbols-outlined">error</span>;
+      icon = <MaterialSymbolIcon icon="error" />;
       break;
     }
     default: {
       mainColor = 'primary';
-      icon = (
-        <span className="material-symbols-outlined">circle_notifications</span>
-      );
+      icon = <MaterialSymbolIcon icon="circle_notifications" />;
     }
   }
   const n = (
