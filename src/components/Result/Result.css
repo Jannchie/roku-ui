@@ -1,0 +1,3 @@
+.r-result-desc {
+  @apply dark:text-zinc-400 text-zinc-600;
+}

@@ -1,7 +1,9 @@
+import { AvatarPage } from './pages/AvatarPage';
 import { BtnPage } from './pages/BtnPage';
 import { ChipPage } from './pages/ChipPage';
 import { CommentPage } from './pages/CommentPage';
 import { EditableLinePage } from './pages/EditableLinePage';
+import { DigitalPage } from './pages/DigitalPage';
 import { HomePage } from './pages/HomePage';
 import { ResultPage } from './pages/ResultPage';
 import { TypographyPage } from './pages/TypographyPage';
@@ -41,4 +43,14 @@ export const router = [{
   title: 'Editable Line',
   icon: 'edit',
   element: <EditableLinePage />,
+}, {
+  path: 'digital',
+  title: 'Digital',
+  icon: '123',
+  element: <DigitalPage />,
+}, {
+  path: 'avatar',
+  title: 'Avatar',
+  icon: 'account_circle',
+  element: <AvatarPage />,
 }];
