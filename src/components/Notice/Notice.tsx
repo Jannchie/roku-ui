@@ -1,38 +1,38 @@
-import classNames from 'classnames';
-import { ReactNode } from 'react';
+import classNames from 'classnames'
+import { ReactNode } from 'react'
 import {
   Btn, colorClass, Colors, MaterialSymbolIcon, Progress,
-} from '../..';
-import './Notice.css';
+} from '../..'
+import './Notice.css'
 
-export type NoticeProps = {
-  color?: Colors;
-  title?: string;
-  desc?: string;
-  wrapperClass?: string;
-  titleClass?: string;
-  descClass?: string;
-  icon?: ReactNode;
-  outlined?: boolean;
-  dense?: boolean;
-  progress?: boolean;
-  shadow?: boolean;
-  close?: () => void;
-  existMS?: number;
-};
-export function animate(
+export interface NoticeProps {
+  color?: Colors
+  title?: string
+  desc?: string
+  wrapperClass?: string
+  titleClass?: string
+  descClass?: string
+  icon?: ReactNode
+  outlined?: boolean
+  dense?: boolean
+  progress?: boolean
+  shadow?: boolean
+  close?: () => void
+  existMS?: number
+}
+export async function animate (
   el: HTMLElement,
   keyframes: Keyframe[] | PropertyIndexedKeyframes,
   options?: number | KeyframeAnimationOptions,
 ): Promise<void> {
-  return new Promise((resolve) => {
-    const anim = el.animate(keyframes, options);
-    anim.addEventListener('finish', () => resolve());
-    anim.addEventListener('cancel', () => resolve());
-  });
+  return await new Promise((resolve) => {
+    const anim = el.animate(keyframes, options)
+    anim.addEventListener('finish', () => resolve())
+    anim.addEventListener('cancel', () => resolve())
+  })
 }
 
-export function Notice({
+export function Notice ({
   wrapperClass,
   color = 'primary',
   title,
@@ -54,15 +54,15 @@ export function Notice({
     { dense },
     { border: outlined },
     wrapperClass,
-  );
-  const mainTextColorCls = colorClass({ text: color });
-  const descCls = classNames('r-notice-desc truncate', descClass);
+  )
+  const mainTextColorCls = colorClass({ text: color })
+  const descCls = classNames('r-notice-desc truncate', descClass)
   const titleCls = classNames(
     'r-notice-title truncate',
     mainTextColorCls,
     titleClass,
-  );
-  const iconCls = classNames('r-notice-icon', mainTextColorCls);
+  )
+  const iconCls = classNames('r-notice-icon', mainTextColorCls)
   return (
     <div className={wrapperCls}>
       <div className={classNames(dense ? 'p-2' : 'p-4')}>
@@ -74,7 +74,7 @@ export function Notice({
               <div className={descCls}>{desc}</div>
             </div>
           </div>
-          {close && (
+          {(close != null) && (
             <Btn
               icon
               text
@@ -90,5 +90,5 @@ export function Notice({
         <Progress blur durationMS={existMS} color={color} />
       )}
     </div>
-  );
+  )
 }

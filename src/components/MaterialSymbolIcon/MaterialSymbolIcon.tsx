@@ -1,22 +1,22 @@
-import './MaterialSymbolIcon.css';
-import classNames from 'classnames';
-import { CSSProperties, HTMLAttributes } from 'react';
+import './MaterialSymbolIcon.css'
+import classNames from 'classnames'
+import { CSSProperties, HTMLAttributes } from 'react'
 
-export function MaterialSymbolIcon({
+export function MaterialSymbolIcon ({
   size = 'md',
   type = 'rounded',
   className,
   style = {},
   ...props
 }: {
-  icon: string,
-  type?: 'rounded'|'outliend'
-  size?: number | 'xs' | 'sm' | 'md' | 'lg',
-  fill?: boolean,
+  icon: string
+  type?: 'rounded' | 'outliend'
+  size?: number | 'xs' | 'sm' | 'md' | 'lg'
+  fill?: boolean
 } & HTMLAttributes<HTMLElement>) {
-  const styl: CSSProperties = { verticalAlign: 'bottom', ...style };
+  const styl: CSSProperties = { verticalAlign: 'bottom', ...style }
   if (typeof size === 'number') {
-    styl.fontSize = size;
+    styl.fontSize = size
   }
   const clsName = classNames(
     `material-symbols-${type}`,
@@ -26,10 +26,10 @@ export function MaterialSymbolIcon({
     { 'r-icon-md': size === 'md' },
     { 'r-icon-lg': size === 'lg' },
     className,
-  );
+  )
   return (
     <i className={clsName} style={styl}>
       {props.icon}
     </i>
-  );
+  )
 }

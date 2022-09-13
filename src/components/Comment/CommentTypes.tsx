@@ -1,25 +1,25 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
-export type CommentDataUser = {
-  name: ReactNode;
-  avatar?: ReactNode;
-  link?: string;
+export interface CommentDataUser {
+  name: ReactNode
+  avatar?: ReactNode
+  link?: string
 }
 
-export type CommentData = {
-  id: string | number;
-  user: CommentDataUser;
-  content: ReactNode;
-  time?: ReactNode;
-  [key: string]: any;
+export interface CommentData {
+  id: string | number
+  user: CommentDataUser
+  content: ReactNode
+  time?: ReactNode
+  [key: string]: any
 }
 
 export type CommentDataWithReplies = CommentData & {
-  replies?: CommentData[];
+  replies?: CommentData[]
 }
 
-export type CommentOptions = {
-  maxReplies?: number;
-  getMoreRepliesBtnText?: (cnt: number) => string;
-  refoldable?: boolean;
+export interface CommentOptions {
+  maxReplies?: number
+  getMoreRepliesBtnText?: (cnt: number) => string
+  refoldable?: boolean
 }

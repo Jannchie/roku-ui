@@ -1,6 +1,6 @@
-import { Container, Panel, Typography } from '../../src';
+import { Container, Panel, Typography } from '../../src'
 
-export function TypographyPage() {
+export function TypographyPage () {
   return (
     <div
       style={{
@@ -49,5 +49,5 @@ export function TypographyPage() {
         </div>
       </Container>
     </div>
-  );
+  )
 }

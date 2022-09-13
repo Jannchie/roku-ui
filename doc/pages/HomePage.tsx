@@ -1,6 +1,6 @@
-import { Container, Typography } from '../../src';
+import { Container, Typography } from '../../src'
 
-export function HomePage() {
+export function HomePage () {
   return (
     <div
       style={{
@@ -15,5 +15,5 @@ export function HomePage() {
         </Typography.H1>
       </Container>
     </div>
-  );
+  )
 }

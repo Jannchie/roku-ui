@@ -1,8 +1,8 @@
 import {
   Container, Panel, Result, Typography,
-} from '../../src';
+} from '../../src'
 
-export function ResultPage() {
+export function ResultPage () {
   return (
     <div
       style={{
@@ -33,5 +33,5 @@ export function ResultPage() {
         </div>
       </Container>
     </div>
-  );
+  )
 }

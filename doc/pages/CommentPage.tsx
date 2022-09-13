@@ -1,11 +1,11 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
-import { useState } from 'react';
+import { useState } from 'react'
 import {
   Btn, CommentComponent,
   CommentData, CommentDataWithReplies,
   Container, Panel, Typography,
-} from '../../src';
+} from '../../src'
 
 const Template = () => {
   const raw: CommentDataWithReplies[] = [
@@ -105,10 +105,10 @@ const Template = () => {
         },
       ],
     },
-  ];
-  const [data, setData] = useState(raw);
-  const [input, setInput] = useState('');
-  const [replyTo, setReplyTo] = useState<CommentData|null>(null);
+  ]
+  const [data, setData] = useState(raw)
+  const [input, setInput] = useState('')
+  const [replyTo, setReplyTo] = useState<CommentData | null>(null)
   return (
 
     <CommentComponent
@@ -128,15 +128,15 @@ const Template = () => {
             style={{ minWidth: 48 }}
             value={target.likes}
             onClick={() => {
-              console.log('like', target);
+              console.log('like', target)
               if (target.liked) {
-                target.like = 0;
-                target.liked = false;
+                target.like = 0
+                target.liked = false
               } else {
-                target.like = 1;
-                target.liked = true;
+                target.like = 1
+                target.liked = true
               }
-              setData([...data]);
+              setData([...data])
             }}
           />,
           <Btn.Counter
@@ -148,9 +148,9 @@ const Template = () => {
             value={target.replies?.length}
             onClick={() => {
               if (replyTo === target) {
-                setReplyTo(null);
+                setReplyTo(null)
               } else {
-                setReplyTo(target);
+                setReplyTo(target)
               }
             }}
           />,
@@ -165,34 +165,34 @@ const Template = () => {
             avatar: 'https://i.pravatar.cc/80?img=2',
           },
           content: input,
-        };
-        if (!replyTo) {
-          setData([...data, newComment]);
+        }
+        if (replyTo == null) {
+          setData([...data, newComment])
         } else {
           setData([...data.map((d) => {
             if (d === replyTo) {
-              const c = { ...d };
-              if (!c.replies) {
-                c.replies = [];
+              const c = { ...d }
+              if (c.replies == null) {
+                c.replies = []
               }
-              c.replies = [...c.replies, newComment];
-              return c;
+              c.replies = [...c.replies, newComment]
+              return c
             }
-            return d;
-          })]);
-          setReplyTo(null);
+            return d
+          })])
+          setReplyTo(null)
         }
-        setInput('');
+        setInput('')
       }}
       onLoadMore={() => {
         // eslint-disable-next-line no-console
-        console.log('onLoadMore');
+        console.log('onLoadMore')
       }}
     />
-  );
-};
+  )
+}
 
-export function CommentPage() {
+export function CommentPage () {
   return (
     <div
       style={{
@@ -212,5 +212,5 @@ export function CommentPage() {
         </div>
       </Container>
     </div>
-  );
+  )
 }

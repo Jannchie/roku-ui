@@ -1,8 +1,8 @@
-import classNames from 'classnames';
-import { HTMLAttributes, ReactNode } from 'react';
-import './Typography.css';
+import classNames from 'classnames'
+import { HTMLAttributes, ReactNode } from 'react'
+import './Typography.css'
 
-function H1({ children, className, ...props }: {
+function H1 ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
@@ -12,10 +12,10 @@ function H1({ children, className, ...props }: {
     >
       {children}
     </h1>
-  );
+  )
 }
 
-function H2({ children, className, ...props }: {
+function H2 ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
@@ -26,10 +26,10 @@ function H2({ children, className, ...props }: {
       {children}
 
     </h2>
-  );
+  )
 }
 
-function H3({ children, className, ...props }: {
+function H3 ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
@@ -39,10 +39,10 @@ function H3({ children, className, ...props }: {
     >
       {children}
     </h3>
-  );
+  )
 }
 
-function H4({ children, className, ...props }: {
+function H4 ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
@@ -52,10 +52,10 @@ function H4({ children, className, ...props }: {
     >
       {children}
     </h4>
-  );
+  )
 }
 
-function H5({ children, className, ...props }: {
+function H5 ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
@@ -66,10 +66,10 @@ function H5({ children, className, ...props }: {
       {children}
 
     </h5>
-  );
+  )
 }
 
-function H6({ children, className, ...props }: {
+function H6 ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
@@ -79,10 +79,10 @@ function H6({ children, className, ...props }: {
     >
       {children}
     </h6>
-  );
+  )
 }
 
-function P({ children, className, ...props }: {
+function P ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLParagraphElement>) {
   return (
@@ -92,9 +92,9 @@ function P({ children, className, ...props }: {
     >
       {children}
     </p>
-  );
+  )
 }
-function Caption({ children, className, ...props }: {
+function Caption ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLSpanElement>) {
   return (
@@ -104,9 +104,9 @@ function Caption({ children, className, ...props }: {
     >
       {children}
     </span>
-  );
+  )
 }
-function Button({ children, className, ...props }: {
+function Button ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLSpanElement>) {
   return (
@@ -116,9 +116,9 @@ function Button({ children, className, ...props }: {
     >
       {children}
     </span>
-  );
+  )
 }
 
 export const Typography = {
   H1, H2, H3, H4, H5, H6, P, Caption, Button,
-};
+}

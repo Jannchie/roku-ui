@@ -1,9 +1,9 @@
-export function Loading({
-  mainColor,
-  subColor,
+export function Loading ({
+  mainClassName,
+  subClassName,
 }: {
-  mainColor?: string;
-  subColor?: string;
+  mainClassName?: string
+  subClassName?: string
 }) {
   return (
     <svg
@@ -12,7 +12,7 @@ export function Loading({
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        className={mainColor}
+        className={mainClassName}
         cx="50"
         cy="50"
         fill="none"
@@ -32,7 +32,7 @@ export function Loading({
         />
       </circle>
       <circle
-        className={subColor}
+        className={subClassName}
         cx="50"
         cy="50"
         fill="none"
@@ -53,5 +53,5 @@ export function Loading({
         />
       </circle>
     </svg>
-  );
+  )
 }

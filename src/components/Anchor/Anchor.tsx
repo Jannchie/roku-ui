@@ -1,8 +1,8 @@
-import './Anchor.css';
-import classNames from 'classnames';
-import { AnchorHTMLAttributes } from 'react';
+import './Anchor.css'
+import classNames from 'classnames'
+import { AnchorHTMLAttributes } from 'react'
 
-export function Anchor({
+export function Anchor ({
   children,
   className,
   ...props
@@ -19,5 +19,5 @@ export function Anchor({
     >
       {children}
     </a>
-  );
+  )
 }

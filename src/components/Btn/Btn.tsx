@@ -1,55 +1,55 @@
-import classNames from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
+import classNames from 'classnames'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   createContext, CSSProperties, HTMLAttributes, ReactNode, useContext, useMemo, useState,
-} from 'react';
+} from 'react'
 import {
   Colors, colorClass, bgColorClass, textColorClass, borderColorClass, hoverBgColorClass,
-} from '../../utils/colors';
-import { Loading } from '../../icons/Loading';
-import { MaterialSymbolIcon } from '../MaterialSymbolIcon';
-import './Btn.css';
-import { Typography } from '../Typography';
+} from '../../utils/colors'
+import { Loading } from '../../icons/Loading'
+import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
+import './Btn.css'
+import { Typography } from '../Typography'
 
-export type ButtonProps = {
-  label?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  style?: CSSProperties;
-  rounded?: boolean;
-  color?: Colors;
-  hoverColor?: Colors;
-  filled?: boolean;
-  border?: boolean;
-  dash?: boolean;
-  text?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
-  loading?: boolean;
-  ring?: boolean;
-  children?: ReactNode;
-  className?: string;
-  icon?: boolean;
-  loadingIcon?: ReactNode;
-  leadingIcon?: ReactNode;
-  left?: boolean;
-  value?: any;
-  right?: boolean;
-};
+export interface ButtonProps {
+  label?: string
+  size?: 'xs' | 'sm' | 'md' | 'lg'
+  style?: CSSProperties
+  rounded?: boolean
+  color?: Colors
+  hoverColor?: Colors
+  filled?: boolean
+  border?: boolean
+  dash?: boolean
+  text?: boolean
+  disabled?: boolean
+  onClick?: () => void
+  loading?: boolean
+  ring?: boolean
+  children?: ReactNode
+  className?: string
+  icon?: boolean
+  loadingIcon?: ReactNode
+  leadingIcon?: ReactNode
+  left?: boolean
+  value?: any
+  right?: boolean
+}
 
-type BtnGroupCtxType = {
-  cancelable: any;
-  value: any,
-  setValue: ((value: any) => void),
-  activeColor: Colors,
+interface BtnGroupCtxType {
+  cancelable: any
+  value: any
+  setValue: ((value: any) => void)
+  activeColor: Colors
 }
 const BtnGroupCtx = createContext<BtnGroupCtxType>({
   value: undefined,
   setValue: () => { },
   activeColor: 'primary',
   cancelable: false,
-});
+})
 
-function BtnRoot({
+function BtnRoot ({
   label,
   size = 'md',
   color = 'default',
@@ -73,9 +73,9 @@ function BtnRoot({
   value,
   right,
 }: ButtonProps) {
-  const ctx = useContext(BtnGroupCtx);
-  const [hover, setHover] = useState(false);
-  const hColor = hoverColor || color;
+  const ctx = useContext(BtnGroupCtx)
+  const [hover, setHover] = useState(false)
+  const hColor = hoverColor ?? color
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -97,23 +97,25 @@ function BtnRoot({
     { [borderColorClass(hColor)]: border && hover },
     { 'border-transparent': !border },
     className,
-  );
-  const body = children || label;
+  )
+  const body = children ?? label
   const loadingFinalClass = classNames('leading-[0]', {
     'r-loading-xs': size === 'xs',
     'r-loading-sm': size === 'sm',
     'r-loading-md': size === 'md',
     'r-loading-lg': size === 'lg',
-  });
-  const clickCallback = onClick || (() => {
-    if (value) {
-      if (ctx.value !== value) {
-        ctx.setValue(value);
-      } else if (ctx.cancelable) {
-        ctx.setValue(undefined);
+  })
+  const clickCallback = onClick !== null
+    ? onClick
+    : () => {
+        if (value) {
+          if (ctx.value !== value) {
+            ctx.setValue(value)
+          } else if (ctx.cancelable) {
+            ctx.setValue(undefined)
+          }
+        }
       }
-    }
-  });
   if (icon) {
     return (
       <button
@@ -131,7 +133,7 @@ function BtnRoot({
           {loading ? loadingIcon : children}
         </div>
       </button>
-    );
+    )
   }
   return (
     <button
@@ -150,7 +152,8 @@ function BtnRoot({
         { 'r-btn-center': !left && !right },
       )}
       >
-        {leadingIcon ? (
+        {leadingIcon
+          ? (
           <div
             className={classNames(loadingFinalClass, 'r-btn-leading-icon')}
             style={{
@@ -159,7 +162,8 @@ function BtnRoot({
           >
             {loading ? loadingIcon : leadingIcon}
           </div>
-        ) : (
+            )
+          : (
           <AnimatePresence>
             {loading && (
               <motion.div
@@ -185,32 +189,32 @@ function BtnRoot({
               </motion.div>
             )}
           </AnimatePresence>
-        )}
+            )}
         <Typography.Button>
           {body}
         </Typography.Button>
       </div>
     </button>
-  );
+  )
 }
 
-type BtnGroup = {
-  className?: string;
-  children?: ReactNode;
-  cancelable?: boolean,
-  value: any,
-  setValue: (val: any) => void,
-  activeColor: Colors,
-};
-function Group({
+interface BtnGroup {
+  className?: string
+  children?: ReactNode
+  cancelable?: boolean
+  value: any
+  setValue: (val: any) => void
+  activeColor: Colors
+}
+function Group ({
   className, children, value, setValue, activeColor = 'primary', cancelable,
 }: BtnGroup) {
   const ctx = useMemo(() => ({
     value, setValue, activeColor, cancelable,
-  }), [value, setValue, activeColor, cancelable]);
+  }), [value, setValue, activeColor, cancelable])
   const colorCls = colorClass({
     border: activeColor,
-  });
+  })
   return (
     <BtnGroupCtx.Provider value={ctx}>
       <div className="relative flex">
@@ -226,10 +230,10 @@ function Group({
         </div>
       </div>
     </BtnGroupCtx.Provider>
-  );
+  )
 }
 
-function Counter({
+function Counter ({
   value,
   size = 'md',
   color = 'primary',
@@ -238,26 +242,26 @@ function Counter({
   active = false,
   ...props
 }: {
-  value: number,
-  icon: string | ReactNode,
-  color?: Colors,
-  active?: boolean,
-  fill?: boolean,
-  size?: 'xs' | 'sm' | 'md' | 'lg',
+  value: number
+  icon: string | ReactNode
+  color?: Colors
+  active?: boolean
+  fill?: boolean
+  size?: 'xs' | 'sm' | 'md' | 'lg'
 } & HTMLAttributes<HTMLButtonElement>) {
-  const [hover, setHover] = useState(false);
+  const [hover, setHover] = useState(false)
   const iconCls = classNames(
     { [textColorClass(color)]: hover || active, [bgColorClass(color)]: hover || active },
     { [textColorClass('default')]: !hover && !active },
     `r-btn-${size}`,
     'r-btn-icon r-btn bg-opacity-10 dark:bg-opacity-10',
     'border-transparent',
-  );
+  )
   const textCls = classNames(
     'r-btn-counter-value transition',
     { [textColorClass(color)]: hover || active },
     { [textColorClass('default')]: !hover && !active },
-  );
+  )
   return (
     <button
       {...props}
@@ -268,15 +272,17 @@ function Counter({
     >
       <div className={iconCls}>
         {
-          typeof icon === 'string' ? (
+          typeof icon === 'string'
+            ? (
             <MaterialSymbolIcon size={size} icon={icon} fill={fill} />
-          ) : icon
+              )
+            : icon
         }
       </div>
       <Typography.Button className={textCls}>{value}</Typography.Button>
     </button>
-  );
+  )
 }
 export const Btn = Object.assign(BtnRoot, {
   Group, Counter,
-});
+})

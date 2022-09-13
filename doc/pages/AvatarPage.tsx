@@ -1,9 +1,9 @@
 import {
   Avatar,
   Container, Panel, Typography,
-} from '../../src';
+} from '../../src'
 
-export function AvatarPage() {
+export function AvatarPage () {
   return (
     <div
       style={{
@@ -42,5 +42,5 @@ export function AvatarPage() {
         </div>
       </Container>
     </div>
-  );
+  )
 }

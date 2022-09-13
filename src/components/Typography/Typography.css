@@ -1,25 +1,25 @@
 .r-typography-h1 {
-  @apply text-5xl leading-loose font-black mb-4;
+  @apply text-5xl leading-loose font-black mt-4;
 }
 
 .r-typography-h2 {
-  @apply text-4xl leading-loose font-bold mb-3;
+  @apply text-4xl leading-loose font-bold mt-3;
 }
 
 .r-typography-h3 {
-  @apply text-3xl leading-relaxed font-semibold mb-3;
+  @apply text-3xl leading-relaxed font-semibold mt-3;
 }
 
 .r-typography-h4 {
-  @apply text-2xl leading-relaxed font-semibold mb-3;
+  @apply text-2xl leading-relaxed font-semibold mt-3;
 }
 
 .r-typography-h5 {
-  @apply text-xl leading-relaxed font-normal mb-3;
+  @apply text-xl leading-relaxed font-normal mt-3;
 }
 
 .r-typography-h6 {
-  @apply text-lg leading-relaxed font-normal mb-2;
+  @apply text-lg leading-relaxed font-normal mt-2;
 }
 
 .r-typography-p {
@@ -27,5 +27,5 @@
 }
 
 .r-typography-btn {
-  @apply text-sm uppercase;
+  @apply text-sm;
 }

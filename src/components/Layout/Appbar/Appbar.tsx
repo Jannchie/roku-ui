@@ -1,15 +1,15 @@
-import { ReactNode } from 'react';
-import { MaterialSymbolIcon } from '../../MaterialSymbolIcon';
-import { TextField } from '../../TextField';
-import './Appbar.css';
+import { ReactNode } from 'react'
+import { MaterialSymbolIcon } from '../../MaterialSymbolIcon'
+import { TextField } from '../../TextField'
+import './Appbar.css'
 
-export function Appbar({
+export function Appbar ({
   icon, title, searchCallback, tailing,
 }: {
-  icon?: ReactNode;
-  title?: ReactNode;
-  searchCallback?: (value: string) => void;
-  tailing?: ReactNode;
+  icon?: ReactNode
+  title?: ReactNode
+  searchCallback?: (value: string) => void
+  tailing?: ReactNode
 }) {
   return (
     <header className="r-appbar-wrapper">
@@ -22,13 +22,13 @@ export function Appbar({
         </div>
       </div>
       <div className="r-appbar-tailing">
-        {searchCallback && (
+        {(searchCallback != null) && (
           <div>
             <TextField
               prefix={<MaterialSymbolIcon icon="search" />}
               value={undefined}
               onChange={(e) => {
-                searchCallback(e.target.value);
+                searchCallback(e.target.value)
               }}
             />
           </div>
@@ -36,5 +36,5 @@ export function Appbar({
         {tailing}
       </div>
     </header>
-  );
+  )
 }

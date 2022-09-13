@@ -1,17 +1,17 @@
-import './Modal.css';
-import { ReactNode, useRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useOnClickOutside } from '../../hooks';
-import { BaseProps } from '../../utils/type';
+import './Modal.css'
+import { ReactNode, useRef } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useOnClickOutside } from '../../hooks'
+import { BaseProps } from '../../utils/type'
 
 export type ModalProps = {
-  children?: ReactNode;
-  show?: boolean;
-  hide?: () => void;
-  background?: boolean;
-} & BaseProps;
+  children?: ReactNode
+  show?: boolean
+  hide?: () => void
+  background?: boolean
+} & BaseProps
 
-export function Modal({
+export function Modal ({
   className,
   style,
   background,
@@ -19,8 +19,8 @@ export function Modal({
   show,
   hide = () => {},
 }: ModalProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref, hide);
+  const ref = useRef<HTMLDivElement>(null)
+  useOnClickOutside(ref, hide)
   return (
     <div className={className} style={style}>
       <AnimatePresence>
@@ -54,5 +54,5 @@ export function Modal({
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }

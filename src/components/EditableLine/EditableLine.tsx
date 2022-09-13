@@ -1,23 +1,23 @@
 /* eslint-disable no-param-reassign */
-import './EditableLine.css';
-import classnames from 'classnames';
-import { useRef, useState, ReactNode } from 'react';
-import { motion } from 'framer-motion';
-import { Btn, MaterialSymbolIcon, TextField } from '../..';
+import './EditableLine.css'
+import classnames from 'classnames'
+import { useRef, useState, ReactNode } from 'react'
+import { motion } from 'framer-motion'
+import { Btn, MaterialSymbolIcon, TextField } from '../..'
 
-export type EditableLineProps = {
-  value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  okBtnContent?: ReactNode;
-  cancelBtnContent?: ReactNode;
-  className?: string;
-  textAligin?: 'left' | 'center' | 'right';
-  borderType?: 'dash' | 'solid' | 'dot';
-  onOK?: (value: string) => void;
-  size?: 'sm' | 'md' | 'lg';
-};
+export interface EditableLineProps {
+  value: string
+  setValue: React.Dispatch<React.SetStateAction<string>>
+  okBtnContent?: ReactNode
+  cancelBtnContent?: ReactNode
+  className?: string
+  textAligin?: 'left' | 'center' | 'right'
+  borderType?: 'dash' | 'solid' | 'dot'
+  onOK?: (value: string) => void
+  size?: 'sm' | 'md' | 'lg'
+}
 
-export function EditableLine({
+export function EditableLine ({
   value,
   setValue,
   size = 'md',
@@ -28,10 +28,10 @@ export function EditableLine({
   className,
   onOK,
 }: EditableLineProps) {
-  const [editing, setEditing] = useState(false);
-  const tempValue = useRef(value);
-  if (!okBtnContent) okBtnContent = <MaterialSymbolIcon icon="check" size={size} />;
-  if (!cancelBtnContent) cancelBtnContent = <MaterialSymbolIcon icon="close" size={size} />;
+  const [editing, setEditing] = useState(false)
+  const tempValue = useRef(value)
+  if (!okBtnContent) okBtnContent = <MaterialSymbolIcon icon="check" size={size} />
+  if (!cancelBtnContent) cancelBtnContent = <MaterialSymbolIcon icon="close" size={size} />
   return (
     <div
       className={classnames('r-editable-line', 'flex', 'gap-2', {
@@ -46,10 +46,10 @@ export function EditableLine({
         textAlign={textAligin}
         value={value}
         onFocus={() => {
-          if (editing === false) {
-            tempValue.current = value;
+          if (!editing) {
+            tempValue.current = value
           }
-          setEditing(true);
+          setEditing(true)
         }}
       />
       {editing && (
@@ -67,9 +67,9 @@ export function EditableLine({
             className="r-editable-line-ok-btn"
             color="success"
             onClick={() => {
-              setEditing(false);
+              setEditing(false)
               if (typeof onOK === 'function') {
-                onOK(value);
+                onOK(value)
               }
             }}
           >
@@ -80,8 +80,8 @@ export function EditableLine({
             size={size}
             className="r-editable-line-cancel-btn"
             onClick={() => {
-              setEditing(false);
-              setValue(tempValue.current);
+              setEditing(false)
+              setValue(tempValue.current)
             }}
           >
             {cancelBtnContent}
@@ -89,5 +89,5 @@ export function EditableLine({
         </motion.div>
       )}
     </div>
-  );
+  )
 }

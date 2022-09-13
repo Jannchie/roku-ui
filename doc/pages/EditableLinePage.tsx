@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import {
   Container, EditableLine, Panel, Typography,
-} from '../../src';
+} from '../../src'
 
-export function EditableLinePage() {
-  const [value, setValue] = useState('Test Text');
+export function EditableLinePage () {
+  const [value, setValue] = useState('Test Text')
   return (
     <div
       style={{
@@ -43,5 +43,5 @@ export function EditableLinePage() {
         </Panel>
       </Container>
     </div>
-  );
+  )
 }

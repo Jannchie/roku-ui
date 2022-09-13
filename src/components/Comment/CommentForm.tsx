@@ -1,24 +1,26 @@
-import { Btn, Textarea } from '../..';
-import { CommentData } from './CommentTypes';
+import { Btn, Textarea } from '../..'
+import { CommentData } from './CommentTypes'
 
-export function CommentForm({
+export function CommentForm ({
   replyTo, input, setInput, onSend,
 }: {
-  replyTo: CommentData | null;
-  input: string;
-  setInput: (i: string) => void;
-  onSend: () => void;
+  replyTo: CommentData | null
+  input: string
+  setInput: (i: string) => void
+  onSend: () => void
 }) {
   return (
     <div>
       <div>
-        {replyTo ? (
+        {(replyTo != null)
+          ? (
           <span>
             To
             {' '}
             {replyTo.user.name}
           </span>
-        ) : <span>Jannchie</span>}
+            )
+          : <span>Jannchie</span>}
         :
       </div>
       <div className="flex gap-2 items-center">
@@ -37,5 +39,5 @@ export function CommentForm({
         />
       </div>
     </div>
-  );
+  )
 }

@@ -1,86 +1,86 @@
-import './style.css';
-import { AnimatePresence, motion } from 'framer-motion';
+import './style.css'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   ReactNode, useCallback, useEffect, useRef, useState,
-} from 'react';
-import classNames from 'classnames';
-import { Colors, MaterialSymbolIcon, Notice } from '../..';
+} from 'react'
+import classNames from 'classnames'
+import { Colors, MaterialSymbolIcon, Notice } from '../..'
 
-type NotificationConfig = {
-  left?: boolean;
-  right?: boolean;
-  bottom?: boolean;
-  className?: string;
-  defaultExistsMS?: number;
-  maxCount?: number;
-  stack?: boolean,
-  wait?: boolean;
-};
+interface NotificationConfig {
+  left?: boolean
+  right?: boolean
+  bottom?: boolean
+  className?: string
+  defaultExistsMS?: number
+  maxCount?: number
+  stack?: boolean
+  wait?: boolean
+}
 
-type NoticeData = { key: number; value: ReactNode };
-type PushConfig = {
-  existsMS?: number;
-};
+interface NoticeData { key: number, value: ReactNode }
+interface PushConfig {
+  existsMS?: number
+}
 
-export type NoticeConfig = {
-  title: string;
-  desc?: string;
-  type?: 'success' | 'danger' | 'warning' | 'info';
-  existsMS?: number;
-  progressBar?: boolean;
-  closable?: boolean;
-};
+export interface NoticeConfig {
+  title: string
+  desc?: string
+  type?: 'success' | 'danger' | 'warning' | 'info'
+  existsMS?: number
+  progressBar?: boolean
+  closable?: boolean
+}
 
-export type OnPush = (notice: ReactNode, config?: PushConfig) => void;
-type OnRemove = (notice: ReactNode) => void;
+export type OnPush = (notice: ReactNode, config?: PushConfig) => void
+type OnRemove = (notice: ReactNode) => void
 
 interface NotificationsEventManager {
-  onPush: OnPush[];
-  onRemove: OnRemove[];
+  onPush: OnPush[]
+  onRemove: OnRemove[]
 }
 
 const nEventMgr: NotificationsEventManager = {
   onPush: [],
   onRemove: [],
-};
+}
 
 export const customPush = (notice: ReactNode, config?: PushConfig): void => {
   if (nEventMgr.onPush.length === 0) {
     throw new Error(
       'No notification event listener, you should add at least one Notifications Component to your app.',
-    );
+    )
   }
-  nEventMgr.onPush.forEach((cb) => cb(notice, config));
-};
+  nEventMgr.onPush.forEach((cb) => cb(notice, config))
+}
 export const pushNotice = (config: PushConfig & NoticeConfig) => {
-  let { existsMS, progressBar, closable } = config;
-  const { title, desc, type } = config;
+  let { existsMS, progressBar, closable } = config
+  const { title, desc, type } = config
 
-  if (!existsMS) existsMS = 3000;
-  if (!progressBar) progressBar = false;
-  if (!closable) closable = true;
-  let mainColor: Colors = 'primary';
+  if (!existsMS) existsMS = 3000
+  if (!progressBar) progressBar = false
+  if (!closable) closable = true
+  let mainColor: Colors = 'primary'
 
-  let icon: ReactNode = '';
+  let icon: ReactNode = ''
   switch (type) {
     case 'success': {
-      mainColor = 'success';
-      icon = <MaterialSymbolIcon icon="check_circle" />;
-      break;
+      mainColor = 'success'
+      icon = <MaterialSymbolIcon icon="check_circle" />
+      break
     }
     case 'danger': {
-      mainColor = 'danger';
-      icon = <MaterialSymbolIcon icon="cancel" />;
-      break;
+      mainColor = 'danger'
+      icon = <MaterialSymbolIcon icon="cancel" />
+      break
     }
     case 'warning': {
-      mainColor = 'warning';
-      icon = <MaterialSymbolIcon icon="error" />;
-      break;
+      mainColor = 'warning'
+      icon = <MaterialSymbolIcon icon="error" />
+      break
     }
     default: {
-      mainColor = 'primary';
-      icon = <MaterialSymbolIcon icon="circle_notifications" />;
+      mainColor = 'primary'
+      icon = <MaterialSymbolIcon icon="circle_notifications" />
     }
   }
   const n = (
@@ -91,8 +91,8 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       close={
         closable
           ? () => {
-            nEventMgr.onRemove.forEach((cb) => cb(n));
-          }
+              nEventMgr.onRemove.forEach((cb) => cb(n))
+            }
           : undefined
       }
       desc={desc}
@@ -101,86 +101,86 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       color={mainColor}
       title={title}
     />
-  );
-  customPush(n, { existsMS });
-};
+  )
+  customPush(n, { existsMS })
+}
 
-export function Notifications({
+export function Notifications ({
   bottom, left, right, defaultExistsMS, maxCount, wait, className, stack,
 }: NotificationConfig) {
-  let align = 'top';
+  let align = 'top'
   if (bottom) {
-    align = 'bottom';
+    align = 'bottom'
   }
-  let justify = 'center';
+  let justify = 'center'
   if (left) {
-    justify = 'left';
+    justify = 'left'
   }
   if (right) {
-    justify = 'right';
+    justify = 'right'
   }
-  const [notices, setNotices] = useState<NoticeData[]>([]);
-  const id = useRef(1);
-  const waitList = useRef<[ReactNode, PushConfig][]>([]);
+  const [notices, setNotices] = useState<NoticeData[]>([])
+  const id = useRef(1)
+  const waitList = useRef<Array<[ReactNode, PushConfig]>>([])
   const pushCallback = useCallback<OnPush>((notice: ReactNode, config: PushConfig = {}) => {
-    let existsMS;
+    let existsMS
     if (config.existsMS) {
-      existsMS = config.existsMS;
+      existsMS = config.existsMS
     }
     if (!existsMS) {
-      existsMS = defaultExistsMS || 3000;
+      existsMS = defaultExistsMS ?? 3000
     }
     if (maxCount) {
       if (notices.length >= maxCount) {
         if (wait) {
-          waitList.current.push([notice, config]);
-          return;
+          waitList.current.push([notice, config])
+          return
         }
-        notices.pop();
+        notices.pop()
       }
     }
-    const currentId = id.current;
+    const currentId = id.current
 
-    id.current += 1;
-    setNotices([{ key: currentId, value: notice }, ...notices]);
+    id.current += 1
+    setNotices([{ key: currentId, value: notice }, ...notices])
     setTimeout(() => {
-      setNotices((val) => val.filter((n) => n.key !== currentId));
-    }, existsMS);
-  }, [maxCount, notices, defaultExistsMS, wait]);
+      setNotices((val) => val.filter((n) => n.key !== currentId))
+    }, existsMS)
+  }, [maxCount, notices, defaultExistsMS, wait])
 
   useEffect(() => {
     if (wait) {
       if (maxCount) {
         if (waitList.current.length > 0 && notices.length < maxCount) {
-          const current = waitList.current.shift();
+          const current = waitList.current.shift()
 
-          if (current) {
-            pushCallback(...current);
+          if (current != null) {
+            pushCallback(...current)
           }
         }
       }
     }
-  }, [notices, maxCount, wait, pushCallback]);
+  }, [notices, maxCount, wait, pushCallback])
 
   const removeCallback: OnRemove = (notice: ReactNode) => {
-    setNotices((val) => val.filter((n) => n.value !== notice));
-  };
+    setNotices((val) => val.filter((n) => n.value !== notice))
+  }
 
   // resiger callback, notice that it is a effect.
   useEffect(() => {
-    nEventMgr.onPush.unshift(pushCallback);
+    nEventMgr.onPush.unshift(pushCallback)
     return () => {
-      nEventMgr.onPush.splice(nEventMgr.onPush.indexOf(pushCallback), 1);
-    };
-  });
+      nEventMgr.onPush.splice(nEventMgr.onPush.indexOf(pushCallback), 1)
+    }
+  })
   useEffect(() => {
-    nEventMgr.onRemove.unshift(removeCallback);
+    nEventMgr.onRemove.unshift(removeCallback)
     return () => {
-      nEventMgr.onRemove.splice(nEventMgr.onRemove.indexOf(removeCallback), 1);
-    };
-  });
-  const noticesWrapper = useRef<HTMLDivElement>(null);
-  function getNoticeAnimate(i: number) {
+      nEventMgr.onRemove.splice(nEventMgr.onRemove.indexOf(removeCallback), 1)
+    }
+  })
+  const noticesWrapper = useRef<HTMLDivElement>(null)
+  function getNoticeAnimate (i: number) {
     if (!stack) {
       return {
         animate: {
@@ -194,7 +194,7 @@ export function Notifications({
           opacity: 0,
           scale: 0.8,
         },
-      };
+      }
     }
     switch (align) {
       case 'bottom': {
@@ -215,7 +215,7 @@ export function Notifications({
             opacity: 0,
             scale: 1.2,
           },
-        };
+        }
       }
       default: {
         return {
@@ -235,7 +235,7 @@ export function Notifications({
             opacity: 0,
             scale: 1.2,
           },
-        };
+        }
       }
     }
   }
@@ -273,5 +273,5 @@ export function Notifications({
         </AnimatePresence>
       </div>
     </div>
-  );
+  )
 }

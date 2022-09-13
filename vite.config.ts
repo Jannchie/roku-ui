@@ -1,8 +1,7 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
-import { visualizer } from 'rollup-plugin-visualizer';
+import { defineConfig } from 'vite'
+import { resolve } from 'path'
+import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   switch (command) {
@@ -11,7 +10,7 @@ export default defineConfig(({ command, mode }) => {
         plugins: [react()],
         input: {
           main: resolve(__dirname, 'index.html'),
-        }
+        },
       }
     }
     case 'build': {
@@ -20,7 +19,10 @@ export default defineConfig(({ command, mode }) => {
           plugins: [react()],
           input: {
             main: resolve(__dirname, 'index.html'),
-          }
+          },
+          build: {
+            outDir: 'dist-doc',
+          },
         }
       } else {
         return {
@@ -41,9 +43,9 @@ export default defineConfig(({ command, mode }) => {
             },
             target: 'modules',
           },
-          plugins: [react(), dts({ outputDir: 'dist/types' }), visualizer()],
+          plugins: [react(), dts({ outputDir: 'dist/types' })],
         }
       }
     }
   }
-});
+})

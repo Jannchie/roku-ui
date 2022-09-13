@@ -19,17 +19,16 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "noEmit": true,
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules"
-      },
-    ]
   },
   "include": [
     "src",
     "doc",
     "stories",
     "index.d.ts",
+    "vite.config.ts",
+  ],
+  "exclude": [
+    "dist"
   ],
   "references": [
     {

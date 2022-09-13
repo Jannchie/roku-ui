@@ -1,10 +1,10 @@
-import classNames from 'classnames';
-import { HTMLAttributes, ReactNode } from 'react';
-import { CommentForm } from './CommentForm';
-import { CommentList } from './CommentList';
-import { CommentData, CommentDataWithReplies } from './CommentTypes';
+import classNames from 'classnames'
+import { HTMLAttributes, ReactNode } from 'react'
+import { CommentForm } from './CommentForm'
+import { CommentList } from './CommentList'
+import { CommentData, CommentDataWithReplies } from './CommentTypes'
 
-export function CommentComponent(
+export function CommentComponent (
   {
     data,
     replyTo,
@@ -17,14 +17,14 @@ export function CommentComponent(
     className,
     ...props
   }: {
-    data: CommentDataWithReplies[];
-    replyTo: CommentData | null;
-    input: string;
-    setInput: (i: string) => void;
-    onLoadMore: () => void;
-    loading: boolean;
-    generateActions: (d: CommentData) => ReactNode;
-    onSend: () => void;
+    data: CommentDataWithReplies[]
+    replyTo: CommentData | null
+    input: string
+    setInput: (i: string) => void
+    onLoadMore: () => void
+    loading: boolean
+    generateActions: (d: CommentData) => ReactNode
+    onSend: () => void
   } & HTMLAttributes<HTMLDivElement>,
 ) {
   return (
@@ -43,5 +43,5 @@ export function CommentComponent(
         onSend={onSend}
       />
     </div>
-  );
+  )
 }

@@ -1,15 +1,15 @@
-import classNames from 'classnames';
-import { ReactNode, useRef, useState } from 'react';
+import classNames from 'classnames'
+import { ReactNode, useRef, useState } from 'react'
 import {
   Avatar,
   Btn,
   useOnClickOutside,
   Anchor,
-} from '../..';
-import { SimpleComment } from './SimpleComment';
-import { CommentData, CommentOptions } from './CommentTypes';
+} from '../..'
+import { SimpleComment } from './SimpleComment'
+import { CommentData, CommentOptions } from './CommentTypes'
 
-export function Comment({
+export function Comment ({
   data,
   replies,
   maxReplies = 2,
@@ -17,23 +17,23 @@ export function Comment({
   refoldable,
   getMoreRepliesBtnText = (cnt: number) => `${cnt} more replies`,
 }: {
-  data: CommentData;
-  actions?: ReactNode;
-  replies?: CommentData[];
+  data: CommentData
+  actions?: ReactNode
+  replies?: CommentData[]
 } & CommentOptions) {
-  const [showMore, setShowMore] = useState(false);
-  const repliesDetail = useRef(null);
+  const [showMore, setShowMore] = useState(false)
+  const repliesDetail = useRef(null)
   useOnClickOutside(repliesDetail, () => {
     if (refoldable) {
-      setShowMore(false);
+      setShowMore(false)
     }
-  });
-  let { avatar, name } = data.user;
+  })
+  let { avatar, name } = data.user
   if (typeof name === 'string') {
     if (data.user.link) {
-      name = <Anchor href={data.user.link} target="_blank">{name}</Anchor>;
+      name = <Anchor href={data.user.link} target="_blank">{name}</Anchor>
     } else {
-      name = <Anchor>{name}</Anchor>;
+      name = <Anchor>{name}</Anchor>
     }
   }
   if (typeof avatar === 'string') {
@@ -45,11 +45,11 @@ export function Comment({
           alt={avatar}
           onClick={() => {
             if (data.user.link) {
-              window.open(data.user.link, '_blank');
+              window.open(data.user.link, '_blank')
             }
           }}
         />
-      );
+      )
     } else {
       avatar = (
         <Avatar
@@ -57,7 +57,7 @@ export function Comment({
           src={avatar}
           alt={avatar}
         />
-      );
+      )
     }
   }
   return (
@@ -78,14 +78,14 @@ export function Comment({
         <div className="dark:text-default-400 text-default-700 text-sm">
           {data.content}
         </div>
-        { actions
-          && (
+        { actions &&
+          (
             <div className="flex my-2">
               {actions}
             </div>
           )}
       </div>
-      {replies && (
+      {(replies != null) && (
         <div
           ref={repliesDetail}
           className={classNames(
@@ -117,7 +117,7 @@ export function Comment({
                 size="xs"
                 color="primary"
                 className="text-xs"
-                onClick={() => { setShowMore(!showMore); }}
+                onClick={() => { setShowMore(!showMore) }}
               >
                 {getMoreRepliesBtnText(replies.length - maxReplies)}
               </Btn>
@@ -126,5 +126,5 @@ export function Comment({
         </div>
       )}
     </div>
-  );
+  )
 }

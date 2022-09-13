@@ -1,29 +1,29 @@
-import './TextField.css';
-import classnames from 'classnames';
+import './TextField.css'
+import classnames from 'classnames'
 import {
   ChangeEvent, Dispatch,
   InputHTMLAttributes,
   ReactNode, SetStateAction,
-} from 'react';
-import { colorClass, Colors } from '../..';
+} from 'react'
+import { colorClass, Colors } from '../..'
 
 export type TextFieldProps = {
-  className?: string;
-  value: any;
-  prefix?: ReactNode;
-  suffix?: ReactNode;
-  size?: 'sm' | 'md' | 'lg';
-  placeholder?: string;
-  borderType?: 'dash' | 'solid' | 'dot';
-  border?: boolean ;
-  setValue?: Dispatch<SetStateAction<any>>;
-  textAlign?: 'left' | 'center' | 'right';
-  ring?: boolean;
-  format?: (value: string) => string;
-  color?: Colors;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, 'size'|'prefix'|'suffix'>;
+  className?: string
+  value: any
+  prefix?: ReactNode
+  suffix?: ReactNode
+  size?: 'sm' | 'md' | 'lg'
+  placeholder?: string
+  borderType?: 'dash' | 'solid' | 'dot'
+  border?: boolean
+  setValue?: Dispatch<SetStateAction<any>>
+  textAlign?: 'left' | 'center' | 'right'
+  ring?: boolean
+  format?: (value: string) => string
+  color?: Colors
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'suffix'>
 
-export function TextField({
+export function TextField ({
   className,
   prefix,
   suffix,
@@ -37,11 +37,11 @@ export function TextField({
   value, setValue,
   ...inputProps
 }: TextFieldProps) {
-  let onChange;
-  if (inputProps.onChange) {
-    onChange = inputProps.onChange;
-  } else if (setValue) {
-    onChange = (e: ChangeEvent<HTMLInputElement>) => { setValue(e.target.value); };
+  let onChange
+  if (inputProps.onChange != null) {
+    onChange = inputProps.onChange
+  } else if (setValue != null) {
+    onChange = (e: ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) }
   }
 
   return (
@@ -75,5 +75,5 @@ export function TextField({
       />
       {suffix && <div className="r-text-field-suffix">{suffix}</div>}
     </span>
-  );
+  )
 }

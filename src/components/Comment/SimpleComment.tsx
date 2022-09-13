@@ -1,7 +1,7 @@
-import { CommentData } from './CommentTypes';
+import { CommentData } from './CommentTypes'
 
-export function SimpleComment({ data }: { data: CommentData; }) {
-  const { user, content } = data;
+export function SimpleComment ({ data }: { data: CommentData }) {
+  const { user, content } = data
   return (
     <div>
       <div className="text-sm flex">
@@ -12,5 +12,5 @@ export function SimpleComment({ data }: { data: CommentData; }) {
         <div className="dark:text-default-400 text-default-700">{content}</div>
       </div>
     </div>
-  );
+  )
 }

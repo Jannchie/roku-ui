@@ -1,40 +1,40 @@
-.r-chip {
-  @apply inline-flex transition items-stretch cursor-default rounded bg-opacity-10 dark:bg-opacity-10;
+.r-tag {
+  @apply border border-transparent inline-flex transition cursor-default rounded bg-opacity-10 dark:bg-opacity-10 items-center;
 }
 
-.r-chip.r-chip-text {
+.r-tag.r-tag-text {
   @apply bg-opacity-0;
 }
 
-.r-chip-rounded {
+.r-tag-rounded {
   @apply rounded-full;
 }
 
-.r-chip-xs {
+.r-tag-xs {
   @apply py-0 px-0.5 text-xs;
 }
-.r-chip-sm {
+.r-tag-sm {
   @apply py-0 px-0.5 text-xs;
 }
-.r-chip-md {
+.r-tag-md {
   @apply py-0.5 px-2 text-xs;
 }
-.r-chip-lg {
+.r-tag-lg {
   @apply py-1 px-4 text-base;
 }
-.r-chip-xl {
+.r-tag-xl {
   @apply py-1 px-5 text-lg;
 }
-.r-chip-clickable {
+.r-tag-clickable {
   cursor: pointer;
   @apply active:bg-opacity-100 active:text-white dark:active:bg-opacity-100 dark:hover:text-white hover:bg-opacity-20 dark:hover:bg-opacity-20 cursor-pointer;
   @apply active:dark:text-default-800;
 }
 
-.r-chip-group {
+.r-tag-group {
   @apply flex divide-x divide-default-500/10;
 }
-.r-chip-group .r-chip {
+.r-tag-group .r-tag {
   @apply rounded-none;
   @apply first:rounded-l-full;
   @apply last:rounded-r-full;

@@ -1,1 +1,1 @@
-export * from './HolyGrail';
+export * from './HolyGrail'

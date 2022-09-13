@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const colors = require("tailwindcss/colors");
+const colors = require('tailwindcss/colors')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,ts,tsx}"],
-  darkMode: "class",
+  content: ['./src/**/*.{html,js,ts,tsx}'],
+  darkMode: 'class',
   plugins: [
     function ({ addVariant }) {
-      addVariant("child", "& > *");
-      addVariant("child-hover", "& > *:hover");
+      addVariant('child', '& > *')
+      addVariant('child-hover', '& > *:hover')
     },
   ],
   theme: {
@@ -24,7 +24,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      backdropBrightness: ["hover", "focus"],
+      backdropBrightness: ['hover', 'focus'],
     },
   },
-};
+}

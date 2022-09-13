@@ -1,1 +1,1 @@
-export { MaterialSymbolIcon } from './MaterialSymbolIcon';
+export { MaterialSymbolIcon } from './MaterialSymbolIcon'

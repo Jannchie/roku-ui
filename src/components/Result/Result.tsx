@@ -1,24 +1,24 @@
-import classNames from 'classnames';
-import { Colors, textColorClass } from '../..';
-import { MaterialSymbolIcon } from '../MaterialSymbolIcon';
-import { Typography } from '../Typography';
-import './Result.css';
+import classNames from 'classnames'
+import { Colors, textColorClass } from '../..'
+import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
+import { Typography } from '../Typography'
+import './Result.css'
 
-export function Result({
+export function Result ({
   icon, title, description, size = 'md', color = 'default',
 }: {
-  icon: string;
-  title: string;
-  color?: Colors;
-  size?: 'sm' | 'md' | 'lg';
-  description?: string;
+  icon: string
+  title: string
+  color?: Colors
+  size?: 'sm' | 'md' | 'lg'
+  description?: string
 }) {
-  let sizeNumber = 96;
+  let sizeNumber = 96
   if (size === 'sm') {
-    sizeNumber = 64;
+    sizeNumber = 64
   }
   if (size === 'lg') {
-    sizeNumber = 128;
+    sizeNumber = 128
   }
   return (
     <div className={classNames('flex flex-col text-center', {
@@ -33,5 +33,5 @@ export function Result({
         {description}
       </div>
     </div>
-  );
+  )
 }

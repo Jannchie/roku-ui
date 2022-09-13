@@ -1,6 +1,6 @@
-import './style.css';
-import { FC } from 'react';
+import './style.css'
+import { FC } from 'react'
 
 export const RTemp: FC<{
-  className?: string;
-}> = () => <>Test</>;
+  className?: string
+}> = () => <>Test</>

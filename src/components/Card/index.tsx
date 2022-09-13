@@ -1,3 +1,3 @@
-import './Card.css';
+import './Card.css'
 
-export { Card } from './Card';
+export { Card } from './Card'

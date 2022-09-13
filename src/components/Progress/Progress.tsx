@@ -1,19 +1,19 @@
-import './Progress.css';
-import classNames from 'classnames';
-import { motion } from 'framer-motion';
-import { BaseProps } from '../../utils/type';
-import { colorClass, Colors, isColor } from '../..';
+import './Progress.css'
+import classNames from 'classnames'
+import { motion } from 'framer-motion'
+import { BaseProps } from '../../utils/type'
+import { colorClass, Colors, isColor } from '../..'
 
 type ProgressProps = {
-  color?: Colors | string;
-  total?: number;
-  value?: number;
-  durationMS?: number;
-  fake?: boolean;
-  infinite?: boolean;
-  blur?: boolean;
-} & BaseProps;
-export function Progress({
+  color?: Colors | string
+  total?: number
+  value?: number
+  durationMS?: number
+  fake?: boolean
+  infinite?: boolean
+  blur?: boolean
+} & BaseProps
+export function Progress ({
   color = 'primary',
   total = 100,
   value = 0,
@@ -25,16 +25,16 @@ export function Progress({
   className,
   style,
 }: ProgressProps) {
-  let colorCls: string | undefined;
+  let colorCls: string | undefined
   if (isColor(color)) {
-    colorCls = colorClass({ bg: color });
+    colorCls = colorClass({ bg: color })
   }
-  const wrapperCls = classNames(className, 'r-progress-wrapper dark:bg-default-800 bg-default-50');
-  let precent = 25;
+  const wrapperCls = classNames(className, 'r-progress-wrapper dark:bg-default-800 bg-default-50')
+  let precent = 25
   if (!infinite) {
-    precent = Math.min((value / total) * 100, 100);
+    precent = Math.min((value / total) * 100, 100)
   }
-  let progressMain;
+  let progressMain
   if (infinite) {
     progressMain = (
       <>
@@ -65,7 +65,7 @@ export function Progress({
           )
         }
       </>
-    );
+    )
   } else if (fake) {
     progressMain = (
       <>
@@ -90,7 +90,7 @@ export function Progress({
           )
         }
       </>
-    );
+    )
   } else if (durationMS) {
     progressMain = (
       <>
@@ -115,7 +115,7 @@ export function Progress({
           )
         }
       </>
-    );
+    )
   } else {
     progressMain = (
       <>
@@ -132,7 +132,7 @@ export function Progress({
           )
         }
       </>
-    );
+    )
   }
   return (
     <div
@@ -144,5 +144,5 @@ export function Progress({
     >
       {progressMain}
     </div>
-  );
+  )
 }

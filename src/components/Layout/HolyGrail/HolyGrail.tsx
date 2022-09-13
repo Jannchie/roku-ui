@@ -1,19 +1,19 @@
-import { ReactNode } from 'react';
-import './HolyGrail.css';
+import { ReactNode } from 'react'
+import './HolyGrail.css'
 
-export function HolyGrail(args: {
-  style?: React.CSSProperties;
-  icon?: ReactNode;
-  title?: ReactNode;
-  searchCallback?: ((value: string) => void) | undefined;
-  tailing?: ReactNode;
-  outerLeft?: ReactNode;
-  outerRight?: ReactNode;
-  innerLeft?: ReactNode;
-  innerRight?: ReactNode;
-  main?: ReactNode;
-  header?: ReactNode;
-  footer?: ReactNode;
+export function HolyGrail (args: {
+  style?: React.CSSProperties
+  icon?: ReactNode
+  title?: ReactNode
+  searchCallback?: ((value: string) => void) | undefined
+  tailing?: ReactNode
+  outerLeft?: ReactNode
+  outerRight?: ReactNode
+  innerLeft?: ReactNode
+  innerRight?: ReactNode
+  main?: ReactNode
+  header?: ReactNode
+  footer?: ReactNode
 }) {
   return (
     <div className="holy-grail-wrapper" style={args.style}>
@@ -31,5 +31,5 @@ export function HolyGrail(args: {
       </div>
       { args.outerRight && (args.outerRight) }
     </div>
-  );
+  )
 }

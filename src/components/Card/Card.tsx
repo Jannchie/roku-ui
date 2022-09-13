@@ -1,20 +1,20 @@
-import classnames from 'classnames';
-import { HTMLAttributes, ReactNode } from 'react';
-import { Panel } from '../..';
-import { BaseProps } from '../../utils/type';
+import classnames from 'classnames'
+import { HTMLAttributes, ReactNode } from 'react'
+import { Panel } from '../..'
+import { BaseProps } from '../../utils/type'
 
 type CardProps = {
-  title?: ReactNode;
-  subtitle?: ReactNode;
-  body?: ReactNode;
-  actions?: ReactNode[] | ReactNode;
-  dense?: boolean;
-  shadow?: boolean;
-  border?: boolean;
-  divider?: boolean;
-} & BaseProps & Omit<HTMLAttributes<HTMLDivElement>, 'color'>;
+  title?: ReactNode
+  subtitle?: ReactNode
+  body?: ReactNode
+  actions?: ReactNode[] | ReactNode
+  dense?: boolean
+  shadow?: boolean
+  border?: boolean
+  divider?: boolean
+} & BaseProps & Omit<HTMLAttributes<HTMLDivElement>, 'color'>
 
-export function Card({
+export function Card ({
   className,
   title,
   subtitle,
@@ -36,9 +36,9 @@ export function Card({
       'r-card-border': border,
     },
     className,
-  );
+  )
   if (children) {
-    return <div className={cardClass}>{children}</div>;
+    return <div className={cardClass}>{children}</div>
   }
   return (
     <Panel className={cardClass} {...other} nopadding>
@@ -51,5 +51,5 @@ export function Card({
       {body && <div className="r-card-body">{body}</div>}
       {actions && <div className="r-card-actions">{actions}</div>}
     </Panel>
-  );
+  )
 }

@@ -1,18 +1,18 @@
-import './Badge.css';
-import { ReactNode } from 'react';
-import classNames from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Colors, colorClass } from '../..';
+import './Badge.css'
+import { ReactNode } from 'react'
+import classNames from 'classnames'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Colors, colorClass } from '../..'
 
-type BadgeProps = {
-  className?: string;
-  color?: Colors;
-  children?: ReactNode;
-  dot?: boolean;
-  show?: boolean;
-  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-};
-export function Badge({
+interface BadgeProps {
+  className?: string
+  color?: Colors
+  children?: ReactNode
+  dot?: boolean
+  show?: boolean
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+}
+export function Badge ({
   color = 'red',
   className,
   children,
@@ -22,7 +22,7 @@ export function Badge({
 }: BadgeProps) {
   const colorCls = colorClass({
     bg: color,
-  });
+  })
   const badgePointCls = classNames(
     'r-badge-point',
     { 'r-badge-point-dot': dot },
@@ -32,7 +32,7 @@ export function Badge({
     { 'r-badge-point-bottom-right': position === 'bottom-right' },
     colorCls,
     className,
-  );
+  )
 
   return (
     <span className="r-badge-wrapper">
@@ -51,5 +51,5 @@ export function Badge({
         </AnimatePresence>
       </div>
     </span>
-  );
+  )
 }

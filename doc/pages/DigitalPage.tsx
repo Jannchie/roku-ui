@@ -1,33 +1,33 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import {
   Container, Digital, Panel, TextField, Typography,
-} from '../../src';
+} from '../../src'
 
 const Template = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('')
   const formater1 = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 0,
-  });
+  })
   const formater2 = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 0,
     notation: 'compact',
     compactDisplay: 'short',
-  });
+  })
   const formater3 = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 0,
     notation: 'compact',
     compactDisplay: 'long',
-  });
-  const formater4 = new Intl.NumberFormat('zh-Hans-CN-u-nu-hanidec');
-  const formater5 = new Intl.NumberFormat('ar-EG');
+  })
+  const formater4 = new Intl.NumberFormat('zh-Hans-CN-u-nu-hanidec')
+  const formater5 = new Intl.NumberFormat('ar-EG')
   const formater6 = new Intl.NumberFormat('zh-CN', {
     style: 'currency',
     currency: 'JPY',
     maximumFractionDigits: 0,
-  });
+  })
   const formater7 = new Intl.NumberFormat('zh-CN', {
     style: 'percent',
-  });
+  })
   return (
     <div className="text-center">
       <TextField
@@ -75,10 +75,10 @@ const Template = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export function DigitalPage() {
+export function DigitalPage () {
   return (
     <div
       style={{
@@ -101,5 +101,5 @@ export function DigitalPage() {
         </Panel>
       </Container>
     </div>
-  );
+  )
 }

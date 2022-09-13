@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-import { HTMLAttributes } from 'react';
-import { colorClass, Colors } from '../..';
-import './Panel.css';
+import classNames from 'classnames'
+import { HTMLAttributes } from 'react'
+import { colorClass, Colors } from '../..'
+import './Panel.css'
 
-export function Panel({
+export function Panel ({
   color = 'default',
   className,
   border,
@@ -13,16 +13,16 @@ export function Panel({
   norounded,
   ...others
 }: {
-  color?: Colors;
-  border?: boolean;
-  nopadding?: boolean;
-  norounded?: boolean;
-  background?: boolean;
+  color?: Colors
+  border?: boolean
+  nopadding?: boolean
+  norounded?: boolean
+  background?: boolean
 } & HTMLAttributes<HTMLDivElement>) {
   const colorCls = colorClass({
     bg: background ? color : undefined,
     border: border ? color : undefined,
-  });
+  })
   return (
     <div
       {...others}
@@ -39,5 +39,5 @@ export function Panel({
     >
       {children}
     </div>
-  );
+  )
 }

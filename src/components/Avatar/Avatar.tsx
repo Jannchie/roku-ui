@@ -1,20 +1,20 @@
-import './Avatar.css';
+import './Avatar.css'
 import {
   MouseEvent, KeyboardEvent, ReactNode, ImgHTMLAttributes, HTMLAttributes,
-} from 'react';
-import classNames from 'classnames';
-import { colorClass, Colors } from '../..';
+} from 'react'
+import classNames from 'classnames'
+import { colorClass, Colors } from '../..'
 
 type AvatarProps = {
-  className?: string;
-  children?: ReactNode;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
-  outline?: Colors | boolean;
-  square?: boolean;
-  color?: Colors;
-  onClick?: (e: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>) => void;
-} & ImgHTMLAttributes<HTMLImageElement>;
-export function AvatarRoot({
+  className?: string
+  children?: ReactNode
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number
+  outline?: Colors | boolean
+  square?: boolean
+  color?: Colors
+  onClick?: (e: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>) => void
+} & ImgHTMLAttributes<HTMLImageElement>
+export function AvatarRoot ({
   className,
   children,
   outline,
@@ -24,21 +24,21 @@ export function AvatarRoot({
   color = 'primary',
   ...others
 }: AvatarProps) {
-  let outlineColor = color;
+  let outlineColor = color
   if (typeof outline === 'string') {
-    outlineColor = outline;
+    outlineColor = outline
   }
   const colorCls = colorClass({
     bg: color,
     outline: outline ? outlineColor : undefined,
-  });
-  let { style } = others;
+  })
+  let { style } = others
   if (typeof size === 'number') {
     style = {
       ...others.style,
       width: size,
       height: size,
-    };
+    }
   }
   const avatarClass = classNames(
     'r-avatar',
@@ -48,34 +48,38 @@ export function AvatarRoot({
     `r-avatar-${square ? 'square' : 'circle'}`,
     className,
     colorCls,
-  );
-  const image = others.src ? <img style={style} {...others} alt={others.alt ?? 'Avatar'} /> : (
+  )
+  const image = others.src
+    ? <img style={style} {...others} alt={others.alt ?? 'Avatar'} />
+    : (
     <div style={style}>
       {children}
     </div>
-  );
+      )
 
   return (
-    onClick ? (
+    (onClick != null)
+      ? (
       <div
         className={avatarClass}
         role="button"
         tabIndex={-1}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            if (onClick) { onClick(e); }
+            if (onClick) { onClick(e) }
           }
         }}
         onClick={onClick}
       >
         {image}
       </div>
-    ) : (
+        )
+      : (
       <div className={avatarClass}>
         {image}
       </div>
-    )
-  );
+        )
+  )
 }
 
 const Group = ({ children, className, ...others }: {
@@ -83,6 +87,6 @@ const Group = ({ children, className, ...others }: {
   <div className={classNames('r-avatar-group', className)} {...others}>
     {children}
   </div>
-);
+)
 
-export const Avatar = Object.assign(AvatarRoot, { Group });
+export const Avatar = Object.assign(AvatarRoot, { Group })

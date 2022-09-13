@@ -1,36 +1,36 @@
 import {
   ReactNode, useState, useMemo, useContext, createContext,
-} from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+} from 'react'
+import { NavLink, Outlet } from 'react-router-dom'
 import {
   Appbar, Btn, HolyGrail, MaterialSymbolIcon, Typography,
-} from '../src';
-import '../src/index.css';
-import { router } from './router';
+} from '../src'
+import '../src/index.css'
+import { router } from './router'
 
-type ThemeType = {
-  theme: 'light' | 'dark';
-  setTheme: (theme: 'light' | 'dark') => void;
+interface ThemeType {
+  theme: 'light' | 'dark'
+  setTheme: (theme: 'light' | 'dark') => void
 }
 
 const ThemeContext = createContext<ThemeType>({
   theme: 'dark',
   setTheme: () => {},
-});
+})
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-  const ctx = useMemo(() => ({ theme, setTheme: (value: 'light'|'dark') => setTheme(value) }), [theme, setTheme]);
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const ctx = useMemo(() => ({ theme, setTheme: (value: 'light' | 'dark') => setTheme(value) }), [theme, setTheme])
   return (
     <ThemeContext.Provider value={ctx}>
       <div className={theme}>
         {children}
       </div>
     </ThemeContext.Provider>
-  );
-};
+  )
+}
 
-function getNavIcon(icon: string, hover: boolean, title: string, width: number) {
-  function activableBtn({ isActive }: { isActive: boolean; }) {
+function getNavIcon (icon: string, hover: boolean, title: string, width: number) {
+  function activableBtn ({ isActive }: { isActive: boolean }) {
     return (
       <Btn
         left
@@ -65,14 +65,14 @@ function getNavIcon(icon: string, hover: boolean, title: string, width: number) 
           </Typography.Button>
         </div>
       </Btn>
-    );
+    )
   }
-  return activableBtn;
+  return activableBtn
 }
 
-function DocLayout() {
-  const { theme, setTheme } = useContext(ThemeContext);
-  const width = 240;
+function DocLayout () {
+  const { theme, setTheme } = useContext(ThemeContext)
+  const width = 240
   const appbar = (
     <Appbar
       title="Roku UI"
@@ -82,7 +82,7 @@ function DocLayout() {
             text
             icon
             onClick={() => {
-              setTheme(theme === 'light' ? 'dark' : 'light');
+              setTheme(theme === 'light' ? 'dark' : 'light')
             }}
           >
             <MaterialSymbolIcon
@@ -92,8 +92,8 @@ function DocLayout() {
         </div>
       )}
     />
-  );
-  const [hover, setHover] = useState(false);
+  )
+  const [hover, setHover] = useState(false)
   const innerLeft = (
     <div
       style={{
@@ -116,18 +116,18 @@ function DocLayout() {
         </NavLink>
       ))}
     </div>
-  );
+  )
   return (
     <HolyGrail
       header={appbar}
       main={<Outlet />}
       innerLeft={innerLeft}
     />
-  );
+  )
 }
 
 export const App = () => (
   <ThemeProvider>
     <DocLayout />
   </ThemeProvider>
-);
+)
