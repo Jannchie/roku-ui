@@ -25,6 +25,9 @@ module.exports = {
     'jsx-a11y',
   ],
   rules: {
+    indent: ['warn', 2],
+    '@typescript-eslint/indent': ['warn', 2],
+    'jsx-quotes': ['warn', 'prefer-double'],
     '@typescript-eslint/no-invalid-void-type': 'off',
     'space-before-function-paren': 'off',
     '@typescript-eslint/space-before-function-paren': 'warn',
@@ -32,6 +35,7 @@ module.exports = {
     '@typescript-eslint/comma-dangle': ['warn', 'always-multiline'],
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'react/self-closing-comp': ['warn', { component: true, html: true }],
     'react/jsx-sort-props': [
       'warn',
       {

@@ -1,24 +1,40 @@
+import classNames from 'classnames'
 import { ReactNode } from 'react'
 import { MaterialSymbolIcon } from '../../MaterialSymbolIcon'
 import { TextField } from '../../TextField'
 import './Appbar.css'
 
 export function Appbar ({
-  icon, title, searchCallback, tailing,
+  varient = 'default',
+  icon,
+  title,
+  searchCallback,
+  tailing,
+  leading,
+  ...others
 }: {
+  varient?: 'default' | 'blur' | 'transparent' | 'pattern'
   icon?: ReactNode
   title?: ReactNode
+  leading?: ReactNode
   searchCallback?: (value: string) => void
   tailing?: ReactNode
-}) {
+} & React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <header className="r-appbar-wrapper">
-      <div className="r-appbar-title">
-        <div className="r-appbar-title__icon">
-          {icon}
-        </div>
-        <div>
-          {title}
+    <header className={classNames(
+      'r-appbar-wrapper',
+      `r-appbar-${varient}`,
+      others.className,
+    )} {...others}>
+      <div className="r-appbar-leading">
+        {leading}
+        <div className="r-appbar-title">
+          <div className="r-appbar-title__icon">
+            {icon}
+          </div>
+          <div>
+            {title}
+          </div>
         </div>
       </div>
       <div className="r-appbar-tailing">
@@ -35,6 +51,7 @@ export function Appbar ({
         )}
         {tailing}
       </div>
+
     </header>
   )
 }

@@ -15,7 +15,7 @@ export function TagPage () {
       <Container>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <Typography.H1>
-            标签(Tag)
+            标签（Tag）
           </Typography.H1>
           <Typography.H2>
             有边框的标签

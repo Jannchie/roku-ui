@@ -76,42 +76,42 @@ function LoadingTemplate () {
 }
 const AllTemplate = () => (
   <div className="flex flex-col gap-2">
-    <div className="flex gap-2">
+    <div className="flex gap-2" style={{ flexWrap: 'wrap' }}>
       <Btn color="primary" label="Primary" />
       <Btn color="success" label="Success" />
       <Btn color="danger" label="Danger" />
       <Btn color="warning" label="Warning" />
       <Btn label="Default" />
     </div>
-    <div className="flex gap-2">
+    <div className="flex gap-2" style={{ flexWrap: 'wrap' }}>
       <Btn border color="primary" label="Primary" />
       <Btn border color="success" label="Success" />
       <Btn border color="danger" label="Danger" />
       <Btn border color="warning" label="Warning" />
       <Btn border label="Default" />
     </div>
-    <div className="flex gap-2">
+    <div className="flex gap-2" style={{ flexWrap: 'wrap' }}>
       <Btn text hoverColor="primary" label="Primary" />
       <Btn text hoverColor="success" label="Success" />
       <Btn text hoverColor="danger" label="Danger" />
       <Btn text hoverColor="warning" label="Warning" />
       <Btn text label="Default" />
     </div>
-    <div className="flex gap-2">
+    <div className="flex gap-2" style={{ flexWrap: 'wrap' }}>
       <Btn dash text color="primary" label="Primary" />
       <Btn dash text color="success" label="Success" />
       <Btn dash text color="danger" label="Danger" />
       <Btn dash text color="warning" label="Warning" />
       <Btn dash text label="Default" />
     </div>
-    <div className="flex gap-2">
+    <div className="flex gap-2" style={{ flexWrap: 'wrap' }}>
       <Btn border dash text color="primary" label="Primary" />
       <Btn border dash text color="success" label="Success" />
       <Btn border dash text color="danger" label="Danger" />
       <Btn border dash text color="warning" label="Warning" />
       <Btn border dash text label="Default" />
     </div>
-    <div className="flex gap-2">
+    <div className="flex gap-2" style={{ flexWrap: 'wrap' }}>
       <Btn dash disabled color="primary" label="Primary" />
       <Btn dash disabled color="success" label="Success" />
       <Btn dash disabled color="danger" label="Danger" />

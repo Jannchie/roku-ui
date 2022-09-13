@@ -7,6 +7,8 @@ import { DigitalPage } from './pages/DigitalPage'
 import { HomePage } from './pages/HomePage'
 import { ResultPage } from './pages/ResultPage'
 import { TypographyPage } from './pages/TypographyPage'
+import { HolyGrailPage } from './pages/HolyGrailPage'
+import { AppbarPage } from './pages/AppbarPage'
 
 export const router = [{
   path: '/',
@@ -18,6 +20,11 @@ export const router = [{
   title: 'Typography',
   icon: 'title',
   element: <TypographyPage />,
+}, {
+  path: 'appbar',
+  title: ' 应用栏（Appbar）',
+  icon: 'settop_component',
+  element: <AppbarPage />,
 }, {
   path: 'btn',
   title: '按钮 (Btn)',
@@ -53,4 +60,10 @@ export const router = [{
   title: '评论 (Comment)',
   icon: 'comment',
   element: <CommentPage />,
-}]
+}, {
+  path: 'holy-grail',
+  title: '圣杯 (HolyGrail)',
+  icon: 'view_day',
+  element: <HolyGrailPage />,
+},
+]
