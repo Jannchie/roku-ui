@@ -3,7 +3,7 @@ import {
 } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import {
-  Appbar, Btn, HolyGrail, MaterialSymbolIcon, useOnClickOutside,
+  Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, useOnClickOutside,
 } from '../src'
 import useWindowSize from '../src/hooks/useWindowSize'
 import '../src/index.css'
@@ -194,9 +194,14 @@ function DocLayout () {
       innerLeft={ innerLeft }
       header={appbar}
       main={
-        <div style={{ marginTop: 100, minHeight: '100vh' }}>
+        <div style={{ marginTop: 100, minHeight: 'calc(100vh - 100px - 29px)' }}>
           <Outlet />
-        </div>} />
+        </div>
+      }
+      footer={(
+        <Footer>Jannchie Studio @ { new Date().getFullYear()}</Footer>
+      )}
+    />
   )
 }
 

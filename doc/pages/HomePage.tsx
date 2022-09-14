@@ -1,19 +1,12 @@
-import { Container, Typography } from '../../src'
-
+import { Article } from '../../src'
+import Markdown from 'markdown-to-jsx'
+import md from '../markdown/home.md?raw'
 export function HomePage () {
   return (
-    <div
-      style={{
-        padding: 8,
-        borderRadius: '8px 0 0 0 ',
-        height: '100%',
-      }}
-    >
-      <Container>
-        <Typography.H1 className="gradient-text">
-          Roku UI
-        </Typography.H1>
-      </Container>
-    </div>
+    <Article>
+      <Markdown>
+        {md}
+      </Markdown>
+    </Article>
   )
 }

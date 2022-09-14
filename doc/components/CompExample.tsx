@@ -13,7 +13,7 @@ export const CompExample = ({ title, desc, children }: {
     <Typography.P>
       {desc}
     </Typography.P>
-    <Panel border>
+    <Panel border style={{ padding: 16 }}>
       {children}
     </Panel>
   </div>

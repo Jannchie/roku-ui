@@ -8,42 +8,46 @@ export default defineConfig(({ command, mode }) => {
     case 'serve': {
       return {
         plugins: [react()],
+        assetsInclude: '**/*.md',
         input: {
           main: resolve(__dirname, 'index.html'),
         },
       }
     }
     case 'build': {
-      if (mode === 'doc') {
-        return {
-          plugins: [react()],
-          input: {
-            main: resolve(__dirname, 'index.html'),
-          },
-          build: {
-            outDir: 'dist-doc',
-          },
-        }
-      } else {
-        return {
-          build: {
-            lib: {
-              entry: resolve(__dirname, 'src/index.tsx'),
-              fileName: 'roku-ui',
-              name: 'RokuUI',
+      switch (mode) {
+        case 'doc': {
+          return {
+            plugins: [react()],
+            input: {
+              main: resolve(__dirname, 'index.html'),
             },
-            rollupOptions: {
-              external: ['react', 'react-dom'],
-              output: {
-                globals: {
-                  react: 'React',
-                  'react-dom': 'ReactDOM',
+            build: {
+              outDir: 'dist-doc',
+            },
+          }
+        }
+        default: {
+          return {
+            build: {
+              lib: {
+                entry: resolve(__dirname, 'src/index.tsx'),
+                fileName: 'roku-ui',
+                name: 'RokuUI',
+              },
+              rollupOptions: {
+                external: ['react', 'react-dom'],
+                output: {
+                  globals: {
+                    react: 'React',
+                    'react-dom': 'ReactDOM',
+                  },
                 },
               },
+              target: 'modules',
             },
-            target: 'modules',
-          },
-          plugins: [react(), dts({ outputDir: 'dist/types' })],
+            plugins: [react(), dts({ outputDir: 'dist/types' })],
+          }
         }
       }
     }

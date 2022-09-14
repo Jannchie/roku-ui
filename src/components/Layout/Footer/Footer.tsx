@@ -1,13 +1,13 @@
-import { ReactNode } from 'react'
+import classNames from 'classnames'
+import { HTMLAttributes } from 'react'
 import './Footer.css'
 
 export function Footer ({
   children,
-}: {
-  children?: ReactNode
-}) {
+  ...others
+}: HTMLAttributes<HTMLDivElement>) {
   return (
-    <footer className="r-footer-wrapper">
+    <footer { ...others } className={classNames('r-footer-wrapper', others.className)}>
       {children}
     </footer>
   )

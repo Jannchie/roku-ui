@@ -4,20 +4,21 @@ import { TagPage } from './pages/TagPage'
 import { CommentPage } from './pages/CommentPage'
 import { EditableLinePage } from './pages/EditableLinePage'
 import { DigitalPage } from './pages/DigitalPage'
-import { HomePage } from './pages/HomePage'
 import { ResultPage } from './pages/ResultPage'
 import { TypographyPage } from './pages/TypographyPage'
 import { HolyGrailPage } from './pages/HolyGrailPage'
 import { AppbarPage } from './pages/AppbarPage'
-
+import HomeMD from './markdown/home.md?raw'
+import articleMD from './markdown/article.md?raw'
+import { Page } from './components/Page'
 export const router = [{
   path: '/',
-  title: 'Home',
+  title: '主页',
   icon: 'home',
-  element: <HomePage />,
+  element: <Page md={HomeMD} />,
 }, {
   path: 'typography',
-  title: 'Typography',
+  title: '排版（Typography）',
   icon: 'title',
   element: <TypographyPage />,
 }, {
@@ -27,12 +28,12 @@ export const router = [{
   element: <AppbarPage />,
 }, {
   path: 'btn',
-  title: '按钮 (Btn)',
+  title: '按钮（Btn）',
   icon: 'crop_16_9',
   element: <BtnPage />,
 }, {
   path: 'result',
-  title: '结果 (Result)',
+  title: '结果（Result）',
   icon: 'check_circle',
   element: <ResultPage />,
 }, {
@@ -42,17 +43,17 @@ export const router = [{
   element: <TagPage />,
 }, {
   path: 'editable-line',
-  title: 'Editable Line',
+  title: '可编行（Editable Line）',
   icon: 'edit',
   element: <EditableLinePage />,
 }, {
   path: 'digital',
-  title: 'Digital',
+  title: '数字（Digital）',
   icon: '123',
   element: <DigitalPage />,
 }, {
   path: 'avatar',
-  title: 'Avatar',
+  title: '头像（Avatar）',
   icon: 'account_circle',
   element: <AvatarPage />,
 }, {
@@ -65,5 +66,10 @@ export const router = [{
   title: '圣杯 (HolyGrail)',
   icon: 'view_day',
   element: <HolyGrailPage />,
+}, {
+  path: 'article',
+  title: '文章（Article）',
+  icon: 'article',
+  element: <Page md={articleMD} />,
 },
 ]

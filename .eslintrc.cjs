@@ -25,8 +25,8 @@ module.exports = {
     'jsx-a11y',
   ],
   rules: {
-    indent: ['warn', 2],
-    '@typescript-eslint/indent': ['warn', 2],
+    indent: ['warn', 2, { SwitchCase: 1 }],
+    '@typescript-eslint/indent': ['warn', 2, { SwitchCase: 1 }],
     'jsx-quotes': ['warn', 'prefer-double'],
     '@typescript-eslint/no-invalid-void-type': 'off',
     'space-before-function-paren': 'off',

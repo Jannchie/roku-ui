@@ -26,7 +26,7 @@ export * from './components/Layout/Appbar'
 export * from './components/Layout/Footer'
 export * from './components/Layout/Container'
 export * from './components/Layout/HolyGrail'
-
+export * from './components/Article'
 export * from './utils/Notifications'
 export * from './utils/colors'
 

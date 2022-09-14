@@ -34,4 +34,3 @@
 - 这是一个基于 React 的组件库。
 - 通过 Flamer Motion 来实现动画。
 - 通过 TailwindCSS 来管理样式。
-- 通过 Storybook 来制作组件库文档。
