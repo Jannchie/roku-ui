@@ -1,13 +1,7 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-console */
 import { useState } from 'react'
-import {
-  Btn, CommentComponent,
-  CommentData, CommentDataWithReplies,
-  Container, Panel, Typography,
-} from '../../src'
+import { CommentDataWithReplies, CommentData, CommentComponent, Btn } from '../../src'
 
-const Template = () => {
+export default function CommentDemo () {
   const raw: CommentDataWithReplies[] = [
     {
       id: '1',
@@ -189,28 +183,5 @@ const Template = () => {
         console.log('onLoadMore')
       }}
     />
-  )
-}
-
-export function CommentPage () {
-  return (
-    <div
-      style={{
-        padding: 8,
-        borderRadius: '8px 0 0 0 ',
-        height: '100%',
-      }}
-    >
-      <Container>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Typography.H1>
-            Comment
-          </Typography.H1>
-          <Panel border>
-            <Template />
-          </Panel>
-        </div>
-      </Container>
-    </div>
   )
 }

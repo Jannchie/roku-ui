@@ -1,9 +1,7 @@
 import { useState } from 'react'
-import {
-  Container, Digital, Panel, TextField, Typography,
-} from '../../src'
+import { DynamicValue, TextField } from '../../src'
 
-const Template = () => {
+export default function DynamicValueDemo () {
   const [value, setValue] = useState('')
   const formater1 = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 0,
@@ -37,69 +35,43 @@ const Template = () => {
         setValue={setValue}
       />
       <div className="flex gap-4 flex-col justify-between flex-wrap">
-        <Digital
+        <DynamicValue
           className="text-xl dark:text-primary-500"
           value={Number(value)}
           format={(v) => formater1.format(v)}
         />
-        <Digital
+        <DynamicValue
           className="text-xl dark:text-primary-500"
           value={Number(value)}
           format={(v) => formater2.format(v)}
         />
-        <Digital
+        <DynamicValue
           className="text-xl dark:text-primary-500"
           value={Number(value)}
           format={(v) => formater3.format(v)}
         />
-        <Digital
+        <DynamicValue
           className="text-xl dark:text-primary-500"
           value={Number(value)}
           format={(v) => formater4.format(v)}
         />
-        <Digital
+        <DynamicValue
           className="text-xl dark:text-primary-500"
           value={Number(value)}
           format={(v) => formater5.format(v)}
         />
-        <Digital
+        <DynamicValue
           className="text-xl dark:text-primary-500"
           value={Number(value)}
           format={(v) => formater6.format(v)}
         />
 
-        <Digital
+        <DynamicValue
           className="text-xl dark:text-primary-500"
           value={Number(value)}
           format={(v) => formater7.format(v)}
         />
       </div>
-    </div>
-  )
-}
-
-export function DigitalPage () {
-  return (
-    <div
-      style={{
-        padding: 8,
-        borderRadius: '8px 0 0 0 ',
-        height: '100%',
-      }}
-    >
-      <Container>
-        <Typography.H1 className="gradient-text">
-          Digital
-        </Typography.H1>
-        <Panel
-          border
-          style={{
-            padding: 16,
-          }}
-        >
-          <Template />
-        </Panel>
-      </Container>
     </div>
   )
 }

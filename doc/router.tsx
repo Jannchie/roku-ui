@@ -1,14 +1,14 @@
-import { AvatarPage } from './pages/AvatarPage'
-import { CommentPage } from './pages/CommentPage'
-import { EditableLinePage } from './pages/EditableLinePage'
-import { DigitalPage } from './pages/DigitalPage'
-import { HolyGrailPage } from './pages/HolyGrailPage'
+import editableLineMD from './markdown/editable-line.md?raw'
 import typographyMD from './markdown/typography.md?raw'
 import HomeMD from './markdown/home.md?raw'
 import articleMD from './markdown/article.md?raw'
 import appbarMD from './markdown/appbar.md?raw'
+import commentMD from './markdown/comment.md?raw'
+import avatarMD from './markdown/avatar.md?raw'
 import buttonMD from './markdown/button.md?raw'
 import resultMD from './markdown/result.md?raw'
+import dynamicValueMD from './markdown/dynamic-value.md?raw'
+import holyGrailMD from './markdown/holy-grail.md?raw'
 import tagMD from './markdown/tag.md?raw'
 import { Page } from './components/Page'
 export const router = [{
@@ -45,27 +45,27 @@ export const router = [{
   path: 'editable-line',
   title: '可编行（Editable Line）',
   icon: 'edit',
-  element: <EditableLinePage />,
+  element: <Page md={editableLineMD} />,
 }, {
-  path: 'digital',
-  title: '数字（Digital）',
+  path: 'dynamic-value',
+  title: '动态数值（Dynamic Value）',
   icon: '123',
-  element: <DigitalPage />,
+  element: <Page md={dynamicValueMD} />,
 }, {
   path: 'avatar',
   title: '头像（Avatar）',
   icon: 'account_circle',
-  element: <AvatarPage />,
+  element: <Page md={avatarMD} />,
 }, {
   path: 'comment',
   title: '评论 (Comment)',
   icon: 'comment',
-  element: <CommentPage />,
+  element: <Page md={commentMD} />,
 }, {
   path: 'holy-grail',
   title: '圣杯 (HolyGrail)',
   icon: 'view_day',
-  element: <HolyGrailPage />,
+  element: <Page md={holyGrailMD} />,
 }, {
   path: 'article',
   title: '文章（Article）',

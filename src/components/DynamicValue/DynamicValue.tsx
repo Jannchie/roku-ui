@@ -3,17 +3,17 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { BaseProps } from '../../utils/type'
 
-type DigitalProps = {
+type DynamicValueProps = {
   value: number
   format?: (value: number) => string
   animate?: boolean
 } & BaseProps
-export function Digital ({
+export function DynamicValue ({
   className, id, style, value, animate = true, format = (v) => {
     if (Number.isNaN(v)) return ''
     return v.toFixed()
   },
-}: DigitalProps) {
+}: DynamicValueProps) {
   const motionValue = useSpring(useMotionValue(value))
   useEffect(() => {
     if (Number.isNaN(value)) return
@@ -26,14 +26,14 @@ export function Digital ({
   return (
     animate
       ? (
-      <motion.span id={id} style={style} className={classNames('r-digital', className)}>
-        {displayValue}
-      </motion.span>
-        )
+        <motion.span id={id} style={style} className={classNames('r-digital', className)}>
+          {displayValue}
+        </motion.span>
+      )
       : (
-      <span id={id} style={style} className={classNames('r-digital', className)}>
-        {displayValue}
-      </span>
-        )
+        <span id={id} style={style} className={classNames('r-digital', className)}>
+          {displayValue}
+        </span>
+      )
   )
 }
