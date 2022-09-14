@@ -3,8 +3,8 @@
   "version": "0.1.24",
   "type": "module",
   "types": "./dist/types/index.d.ts",
-  "main": "./dist/roku-ui.umd.js",
-  "module": "./dist/roku-ui.mjs",
+  "main": "./dist/roku-ui.umd.cjs",
+  "module": "./dist/roku-ui.js",
   "exports": {
     ".": {
       "require": "./dist/roku-ui.umd.js",
