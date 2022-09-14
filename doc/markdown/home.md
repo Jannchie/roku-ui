@@ -29,15 +29,17 @@
 
 只有很少的一部分网站使用了 Roku UI，全部都是我做的。不过那又如何，至少只要我还在做网站，这个项目就会一直更新下去。
 
+由 Roku UI 驱动的网站有：
+
 - [Roku UI 官方文档](https://roku-ui.vercel.app/)：也就是你正在浏览的网站。
 - [Zeroroku](https://zeroroku.com/)：一个数据观测站点。
 
-如果你竟然真的敢于将这个项目用在了自己的网站中，那么非常欢迎向我提交 Issue，把你的网站追加在这里。
+如果你竟然真的敢于将这个项目用在了自己的网站中，那么非常欢迎向我提交 Issue，我会把你的网站追加在这里。
 
 ## 安装
 
-可以使用 [pnpm](https://pnpm.io/) [npm](https://www.npmjs.com/) 或 [yarn](https://yarnpkg.com/) 安装。
+可以朴实无华地使用 [pnpm](https://pnpm.io/)、[npm](https://www.npmjs.com/) 或 [yarn](https://yarnpkg.com/) 安装。开发时使用的是 pnpm，因此我更推荐你使用它。
 
 ```bash
-npm install roku-ui
+pnpm install roku-ui
 ```

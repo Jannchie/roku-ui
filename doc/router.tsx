@@ -1,15 +1,15 @@
 import { AvatarPage } from './pages/AvatarPage'
-import { BtnPage } from './pages/BtnPage'
-import { TagPage } from './pages/TagPage'
 import { CommentPage } from './pages/CommentPage'
 import { EditableLinePage } from './pages/EditableLinePage'
 import { DigitalPage } from './pages/DigitalPage'
-import { ResultPage } from './pages/ResultPage'
-import { TypographyPage } from './pages/TypographyPage'
 import { HolyGrailPage } from './pages/HolyGrailPage'
-import { AppbarPage } from './pages/AppbarPage'
+import typographyMD from './markdown/typography.md?raw'
 import HomeMD from './markdown/home.md?raw'
 import articleMD from './markdown/article.md?raw'
+import appbarMD from './markdown/appbar.md?raw'
+import buttonMD from './markdown/button.md?raw'
+import resultMD from './markdown/result.md?raw'
+import tagMD from './markdown/tag.md?raw'
 import { Page } from './components/Page'
 export const router = [{
   path: '/',
@@ -20,27 +20,27 @@ export const router = [{
   path: 'typography',
   title: '排版（Typography）',
   icon: 'title',
-  element: <TypographyPage />,
+  element: <Page md={typographyMD} />,
 }, {
   path: 'appbar',
   title: ' 应用栏（Appbar）',
   icon: 'settop_component',
-  element: <AppbarPage />,
+  element: <Page md={appbarMD} />,
 }, {
   path: 'btn',
   title: '按钮（Btn）',
   icon: 'crop_16_9',
-  element: <BtnPage />,
+  element: <Page md={buttonMD} />,
 }, {
   path: 'result',
   title: '结果（Result）',
   icon: 'check_circle',
-  element: <ResultPage />,
+  element: <Page md={resultMD} />,
 }, {
   path: 'tag',
   title: '标签 (Tag)',
   icon: 'label',
-  element: <TagPage />,
+  element: <Page md={tagMD} />,
 }, {
   path: 'editable-line',
   title: '可编行（Editable Line）',
