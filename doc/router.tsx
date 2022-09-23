@@ -8,7 +8,9 @@ import avatarMD from './markdown/avatar.md?raw'
 import buttonMD from './markdown/button.md?raw'
 import resultMD from './markdown/result.md?raw'
 import dynamicValueMD from './markdown/dynamic-value.md?raw'
+import dynamicIslandMD from './markdown/dynamic-island.md?raw'
 import holyGrailMD from './markdown/holy-grail.md?raw'
+import tabsMD from './markdown/tabs.md?raw'
 import tagMD from './markdown/tag.md?raw'
 import { Page } from './components/Page'
 export const router = [{
@@ -48,9 +50,19 @@ export const router = [{
   element: <Page md={editableLineMD} />,
 }, {
   path: 'dynamic-value',
-  title: '动态数值（Dynamic Value）',
+  title: '灵动数值（Dynamic Value）',
   icon: '123',
   element: <Page md={dynamicValueMD} />,
+}, {
+  path: 'dynamic-island',
+  title: '灵动岛（Dynamic Island）',
+  icon: 'landscape',
+  element: <Page md={dynamicIslandMD} />,
+}, {
+  path: 'tabs',
+  title: '选项卡（Tabs）',
+  icon: 'tab',
+  element: <Page md={tabsMD} />,
 }, {
   path: 'avatar',
   title: '头像（Avatar）',

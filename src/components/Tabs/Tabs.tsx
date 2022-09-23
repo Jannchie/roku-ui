@@ -3,8 +3,7 @@ import {
   ReactNode, useEffect, useRef, useState,
 } from 'react'
 import classNames from 'classnames'
-import { motion } from 'framer-motion'
-import { Colors, colorClass } from '../..'
+import { Colors, colorClass, useAutoSetHeight } from '../..'
 import { BaseProps } from '../../utils/type'
 
 // eslint-disable-next-line react/no-unused-prop-types
@@ -174,40 +173,18 @@ export function TabsRoot (props: RTabsProps) {
   }
   const wrapperRef = useRef<HTMLDivElement>(null)
   const data = getData()
-  const preH = useRef('')
+  useAutoSetHeight(wrapperRef)
   const tabComps = data
     .map((d, i) => (
-      <motion.div
+      <div
         // eslint-disable-next-line react/no-array-index-key
         key={i}
         style={{
           display: selectedIndex === i ? 'block' : 'none',
         }}
-        initial={{ opacity: 0, x: 0 }}
-        animate={{ opacity: 1, x: 0 }}
-        onAnimationStart={() => {
-          // Auto adjust tab plane height
-          if (wrapperRef.current != null) {
-            const wrapperDom = wrapperRef.current
-            if (wrapperRef.current.children.length !== 0) {
-              // FIXME: If tab panel has margin, the height will be wrong.
-              // TODO: We can use window.getComputedStyle to get the true margin.
-              // TODO: But it will be a little bit slower, and complex.
-              const childDom = wrapperDom.children[wrapperDom.children.length - 1]
-              const height = childDom.scrollHeight
-              wrapperRef.current.style.height = `${height}px`
-              preH.current = wrapperDom.style.height
-            }
-          }
-        }}
-        onAnimationComplete={() => {
-          if ((wrapperRef.current != null) && wrapperRef.current.style.height !== '') {
-            wrapperRef.current.style.height = ''
-          }
-        }}
       >
         {d.value}
-      </motion.div>
+      </div>
     ))
   useEffect(
     () => {
@@ -222,9 +199,6 @@ export function TabsRoot (props: RTabsProps) {
         selectedIndex={selectedIndex}
         type={type}
         onChange={(i) => {
-          if (wrapperRef.current != null) {
-            wrapperRef.current.style.height = preH.current
-          }
           onChange(i)
         }}
       />

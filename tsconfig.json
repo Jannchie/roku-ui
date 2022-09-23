@@ -26,6 +26,7 @@
     "stories",
     "index.d.ts",
     "vite.config.ts",
+    "doc/demo/.demo.tsx",
   ],
   "exclude": [
     "dist"

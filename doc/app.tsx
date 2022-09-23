@@ -14,7 +14,7 @@ interface ThemeType {
   setTheme: (theme: 'light' | 'dark') => void
 }
 
-const ThemeContext = createContext<ThemeType>({
+export const ThemeContext = createContext<ThemeType>({
   theme: 'auto',
   setTheme: () => {},
 })
@@ -49,8 +49,8 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
   )
 }
 
-function getNavIcon (icon: string, hover: boolean, title: string, width: number) {
-  function activableBtn ({ isActive }: { isActive: boolean }) {
+function getNavItem (icon: string, hover: boolean, title: string, width: number) {
+  return function ActivableBtn ({ isActive }: { isActive: boolean }) {
     return (
       <Btn
         left
@@ -65,7 +65,6 @@ function getNavIcon (icon: string, hover: boolean, title: string, width: number)
           gap: 16,
         }}
         >
-
           <MaterialSymbolIcon
             style={{
             }}
@@ -87,7 +86,6 @@ function getNavIcon (icon: string, hover: boolean, title: string, width: number)
       </Btn>
     )
   }
-  return activableBtn
 }
 
 function DocLayout () {
@@ -122,9 +120,10 @@ function DocLayout () {
         {router.map((route) => (
           <NavLink
             key={route.path}
+            end
             to={route.path}
           >
-            {getNavIcon(route.icon, hover, route.title, width)}
+            {getNavItem(route.icon, hover, route.title, width)}
           </NavLink>
         ))}
       </div>
@@ -149,7 +148,7 @@ function DocLayout () {
           key={route.path}
           to={route.path}
         >
-          {getNavIcon(route.icon, true, route.title, width)}
+          {getNavItem(route.icon, true, route.title, width)}
         </NavLink>
       ))}
     </div>

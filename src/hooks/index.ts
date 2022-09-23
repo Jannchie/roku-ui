@@ -3,3 +3,4 @@ import useEventListener from './useEventListener'
 export { useEventListener }
 export * from './useOnClickOutside'
 export * from './useScrollBottom'
+export * from './useAutoSetHeight'
