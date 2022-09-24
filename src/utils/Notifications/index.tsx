@@ -91,8 +91,8 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       close={
         closable
           ? () => {
-              nEventMgr.onRemove.forEach((cb) => cb(n))
-            }
+            nEventMgr.onRemove.forEach((cb) => cb(n))
+          }
           : undefined
       }
       desc={desc}

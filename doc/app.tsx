@@ -1,11 +1,12 @@
 import {
   ReactNode, useState, useMemo, useContext, createContext, useEffect, useRef,
 } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, useLocation, useOutlet } from 'react-router-dom'
+import { SwitchTransition, Transition } from 'react-transition-group'
 import {
   Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, useOnClickOutside,
 } from '../src'
-import useWindowSize from '../src/hooks/useWindowSize'
+import useWindowSize, { WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
 import { router } from './router'
 
@@ -90,15 +91,100 @@ function getNavItem (icon: string, hover: boolean, title: string, width: number)
 
 function DocLayout () {
   const { theme, setTheme } = useContext(ThemeContext)
-  const width = 240
-  const [hover, setHover] = useState(false)
   const size = useWindowSize()
   const [showMenu, setShowMenu] = useState(false)
+  const appbar = <Appbar
+    style={{ position: 'fixed', top: 0, width: '100%', zIndex: 1 }}
+    varient="pattern"
+    title="Roku UI"
+    leading={size.width < 640
+      ? (
+        <Btn
+          text
+          icon
+          onClick={() => {
+            setShowMenu(!showMenu)
+          }}
+        >
+          <MaterialSymbolIcon
+            icon="menu"
+          />
+        </Btn>
+      )
+      : null}
+    tailing={(
+      <Btn
+        text
+        icon
+        onClick={() => {
+          setTheme(theme === 'light' ? 'dark' : 'light')
+        }}
+      >
+        <MaterialSymbolIcon
+          icon={theme === 'light' ? 'dark_mode' : 'light_mode'}
+        />
+      </Btn>
+    )}
+  />
+  const pageBodyRef = useRef<HTMLDivElement>(null)
+  const location = useLocation()
+  const outlet = useOutlet()
+  const timeoutMS = 200
+  return (
+    <HolyGrail
+      style={{
+        minHeight: '100vh',
+      }}
+      innerLeft={<LeftMenu size={size} showMenu={ showMenu} setShowMenu={setShowMenu} />}
+      header={appbar}
+      main={
+        <SwitchTransition
+          mode="out-in"
+        >
+          <Transition
+            key={location.pathname}
+            unmountOnExit
+            nodeRef={pageBodyRef}
+            timeout={timeoutMS}
+          >
+            {(state) => {
+              return <div ref={pageBodyRef} style={{
+                marginTop: 100,
+                minHeight: 'calc(100vh - 100px - 29px)',
+                transition: `all ${timeoutMS}ms ease-out`,
+                opacity: state === 'entered' ? 1 : 0,
+                transform: state === 'entered' ? 'translateY(0)' : 'translateY(10px)',
+              }}>
+                {outlet}
+              </div>
+            }}
+          </Transition>
+        </SwitchTransition>
+      }
+      footer={(
+        <Footer>Jannchie Studio @ { new Date().getFullYear()}</Footer>
+      )}
+    />
+  )
+}
+
+export const App = () => (
+  <ThemeProvider>
+    <DocLayout />
+  </ThemeProvider>
+)
+
+function LeftMenu ({
+  size, showMenu, setShowMenu,
+}: { size: WindowSize, showMenu: boolean, setShowMenu: (show: boolean) => void }) {
+  const width = 240
+  const { theme } = useContext(ThemeContext)
   const ref = useRef(null)
   useOnClickOutside(ref, () => {
     setShowMenu(false)
   })
-  const innerLeft = size.width > 640
+  const [hover, setHover] = useState(false)
+  return size.width > 640
     ? (
       <div
         style={{
@@ -152,60 +238,4 @@ function DocLayout () {
         </NavLink>
       ))}
     </div>
-  const appbar = <Appbar
-    style={{ position: 'fixed', top: 0, width: '100%', zIndex: 1 }}
-    varient="pattern"
-    title="Roku UI"
-    leading={size.width < 640
-      ? (
-        <Btn
-          text
-          icon
-          onClick={() => {
-            setShowMenu(!showMenu)
-          }}
-        >
-          <MaterialSymbolIcon
-            icon="menu"
-          />
-        </Btn>
-      )
-      : null}
-    tailing={(
-      <Btn
-        text
-        icon
-        onClick={() => {
-          setTheme(theme === 'light' ? 'dark' : 'light')
-        }}
-      >
-        <MaterialSymbolIcon
-          icon={theme === 'light' ? 'dark_mode' : 'light_mode'}
-        />
-      </Btn>
-    )}
-  />
-  return (
-    <HolyGrail
-      style={{
-        minHeight: '100vh',
-      }}
-      innerLeft={ innerLeft }
-      header={appbar}
-      main={
-        <div style={{ marginTop: 100, minHeight: 'calc(100vh - 100px - 29px)' }}>
-          <Outlet />
-        </div>
-      }
-      footer={(
-        <Footer>Jannchie Studio @ { new Date().getFullYear()}</Footer>
-      )}
-    />
-  )
 }
-
-export const App = () => (
-  <ThemeProvider>
-    <DocLayout />
-  </ThemeProvider>
-)

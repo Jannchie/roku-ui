@@ -20,7 +20,6 @@ export const Demo = ({ name }: {
   useAutoSetHeight(compRef)
   const { theme } = useContext(ThemeContext)
   return (
-
     <Panel
       border
       style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}>
@@ -32,9 +31,11 @@ export const Demo = ({ name }: {
         padding: 16,
         borderBottom: theme === 'dark' ? '1px solid rgba(102, 102, 102, 0.4)' : '1px solid rgb(228 228 231 / var(--tw-border-opacity))',
       }}>
-        <Suspense fallback={<div>Loading...</div>}>
-          {comp}
-        </Suspense>
+        <div>
+          <Suspense fallback={<div>Loading...</div>}>
+            {comp}
+          </Suspense>
+        </div>
       </div>
       <div className="not-prose">
         {code &&

@@ -12,6 +12,8 @@ import dynamicIslandMD from './markdown/dynamic-island.md?raw'
 import holyGrailMD from './markdown/holy-grail.md?raw'
 import tabsMD from './markdown/tabs.md?raw'
 import tagMD from './markdown/tag.md?raw'
+import notificationMD from './markdown/notification.md?raw'
+
 import { Page } from './components/Page'
 export const router = [{
   path: '/',
@@ -83,5 +85,10 @@ export const router = [{
   title: '文章（Article）',
   icon: 'article',
   element: <Page md={articleMD} />,
+}, {
+  path: 'notification',
+  title: '通知（Notification）',
+  icon: 'notifications',
+  element: <Page md={notificationMD} />,
 },
 ]
