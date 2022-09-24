@@ -1,6 +1,6 @@
 import { Avatar } from '../../src'
 
-export default function CommentDemo () {
+export default function AvatarDemo () {
   return (
     <div style={{
       display: 'flex',
@@ -14,14 +14,14 @@ export default function CommentDemo () {
         gap: 16,
       }}>
         <Avatar
-          outline
+          ring
           color="orange"
           src="https://i.pravatar.cc/80?img=9"
         />
-        <Avatar outline="emerald" color="fuchsia">
+        <Avatar ring="emerald" color="fuchsia">
               L
         </Avatar>
-        <Avatar outline color="sky" src="https://i.pravatar.cc/80?img=14" />
+        <Avatar ring color="sky" src="https://i.pravatar.cc/80?img=14" />
       </div>
       <div style={{
         display: 'flex',

@@ -3,7 +3,7 @@
 }
 
 .r-avatar-outline {
-  @apply outline-offset-4;
+  @apply ring-offset-2 dark:ring-offset-zinc-900 ring-offset-zinc-100 ring-2;
 }
 
 .r-avatar-blur {

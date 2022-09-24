@@ -210,7 +210,7 @@ function LeftMenu ({
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        {router.map((route) => (
+        {router.filter(d => d.path !== 'test').map((route) => (
           <NavLink
             key={route.path}
             end
@@ -236,7 +236,7 @@ function LeftMenu ({
         overflowX: 'hidden',
       }}
     >
-      {router.map((route) => (
+      {router.filter(d => d.path !== 'test').map((route) => (
         <NavLink
           key={route.path}
           to={route.path}

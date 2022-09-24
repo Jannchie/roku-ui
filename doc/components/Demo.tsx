@@ -1,8 +1,6 @@
 import { ReactNode, useEffect, useState, lazy, Suspense, useRef, useContext } from 'react'
 import { Panel, useAutoSetHeight } from '../../src'
-import hljs from 'highlight.js'
 import { ThemeContext } from '../app'
-import 'highlight.js/styles/tokyo-night-dark.css'
 
 export const Demo = ({ name }: {
   name: string
@@ -13,12 +11,18 @@ export const Demo = ({ name }: {
     const Comp = lazy(async () => await import(`../demo/${name}.demo.tsx`))
     setComp(<Comp/>)
     import(`../demo/${name}.demo.tsx?raw`).then((module) => {
-      setCode(module.default.replace('../../src', 'roku-ui'))
+      setCode(module.default.replace('../../src', 'roku-ui').replaceAll('\n', ' \n'))
     }).catch((err) => console.error(err))
   }, [name])
   const compRef = useRef<HTMLDivElement>(null)
   useAutoSetHeight(compRef)
   const { theme } = useContext(ThemeContext)
+  const ref = useRef<HTMLPreElement>(null)
+  useEffect(() => {
+    if (ref.current) {
+      window.Prism.highlightElement(ref.current, false, (e) => { })
+    }
+  }, [code])
   return (
     <Panel
       border
@@ -40,21 +44,22 @@ export const Demo = ({ name }: {
       <div className="not-prose">
         {code &&
           <pre
-            dangerouslySetInnerHTML={{
-              __html: hljs.highlightAuto(code, ['tsx']).value,
-            }}
+            ref={ref}
+            className="language-tsx"
             style={{
               margin: 0,
               borderTopLeftRadius: 0,
               borderTopRightRadius: 0,
               padding: 16,
-              overflowX: 'scroll',
+              overflowX: 'auto',
               fontFamily: 'monospace',
               fontSize: 12,
               background: '#1e1e1e',
               color: '#d4d4d4',
             }}
-          />
+          >
+            {code}
+          </pre>
         }
       </div>
     </Panel>

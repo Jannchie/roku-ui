@@ -86,7 +86,7 @@ function BtnRoot ({
     { 'r-btn-ring': ring },
     { 'r-btn-filled': filled && !text },
     { 'r-btn-text': text },
-    { 'active:scale-95': true },
+    { 'active:scale-[0.98]': true },
     { [hoverBgColorClass(hColor)]: hover },
     { [bgColorClass(color)]: !hover && !text },
     { [textColorClass(color)]: text && !hover },
@@ -108,14 +108,14 @@ function BtnRoot ({
   const clickCallback = onClick !== null
     ? onClick
     : () => {
-        if (value) {
-          if (ctx.value !== value) {
-            ctx.setValue(value)
-          } else if (ctx.cancelable) {
-            ctx.setValue(undefined)
-          }
+      if (value) {
+        if (ctx.value !== value) {
+          ctx.setValue(value)
+        } else if (ctx.cancelable) {
+          ctx.setValue(undefined)
         }
       }
+    }
   if (icon) {
     return (
       <button
@@ -154,42 +154,42 @@ function BtnRoot ({
       >
         {leadingIcon
           ? (
-          <div
-            className={classNames(loadingFinalClass, 'r-btn-leading-icon')}
-            style={{
-              fontSize: size === 'sm' ? '1rem' : '1.5rem',
-            }}
-          >
-            {loading ? loadingIcon : leadingIcon}
-          </div>
-            )
+            <div
+              className={classNames(loadingFinalClass, 'r-btn-leading-icon')}
+              style={{
+                fontSize: size === 'sm' ? '1rem' : '1.5rem',
+              }}
+            >
+              {loading ? loadingIcon : leadingIcon}
+            </div>
+          )
           : (
-          <AnimatePresence>
-            {loading && (
-              <motion.div
-                layout
-                animate={{
-                  marginRight: size === 'sm' ? 4 : 8,
-                  width: size === 'lg' ? 20 : 16,
-                  height: size === 'lg' ? 20 : 16,
-                }}
-                className={loadingFinalClass}
-                exit={{ marginRight: 0, width: 0 }}
-                initial={{
-                  marginRight: 0,
-                  width: 0,
-                }}
-                transition={{
-                  bounce: 0,
-                  duration: 0.15,
-                  type: 'spring',
-                }}
-              >
-                {loadingIcon}
-              </motion.div>
-            )}
-          </AnimatePresence>
-            )}
+            <AnimatePresence>
+              {loading && (
+                <motion.div
+                  layout
+                  animate={{
+                    marginRight: size === 'sm' ? 4 : 8,
+                    width: size === 'lg' ? 20 : 16,
+                    height: size === 'lg' ? 20 : 16,
+                  }}
+                  className={loadingFinalClass}
+                  exit={{ marginRight: 0, width: 0 }}
+                  initial={{
+                    marginRight: 0,
+                    width: 0,
+                  }}
+                  transition={{
+                    bounce: 0,
+                    duration: 0.15,
+                    type: 'spring',
+                  }}
+                >
+                  {loadingIcon}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
         <Typography.Button>
           {body}
         </Typography.Button>
@@ -274,8 +274,8 @@ function Counter ({
         {
           typeof icon === 'string'
             ? (
-            <MaterialSymbolIcon size={size} icon={icon} fill={fill} />
-              )
+              <MaterialSymbolIcon size={size} icon={icon} fill={fill} />
+            )
             : icon
         }
       </div>

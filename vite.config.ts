@@ -2,27 +2,31 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   switch (command) {
     case 'serve': {
       return {
         plugins: [react()],
-        assetsInclude: '**/*.md',
+        assetsInclude: ['**/*.md', 'doc/assets'],
         input: {
-          main: resolve(__dirname, 'index.html'),
+          main: resolve(__dirname, 'doc/index.html'),
         },
       }
     }
     case 'build': {
+      process.env.NODE_ENV = 'production'
       switch (mode) {
         case 'doc': {
           return {
             plugins: [react()],
+            assetsInclude: ['**/*.md', 'doc/assets'],
             input: {
-              main: resolve(__dirname, 'index.html'),
+              main: resolve(__dirname, 'doc/index.html'),
             },
             build: {
+              minify: 'terser',
               outDir: 'dist-doc',
             },
           }

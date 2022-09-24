@@ -103,6 +103,28 @@ export function borderColorClass (color: Colors): string {
   )
 }
 
+export function ringColorClass (color: Colors): string {
+  if (color === 'default') {
+    return 'border-zinc-300 dark:border-zinc-600'
+  }
+  return classNames(
+    `ring-${color}-500`, // ring-default-500 ring-primary-500 ring-success-500 ring-danger-500 ring-warning-500 ring-slate-500 ring-gray-500 ring-zinc-500 ring-neutral-500 ring-stone-500 ring-red-500 ring-orange-500 ring-amber-500 ring-yellow-500 ring-lime-500 ring-green-500 ring-emerald-500 ring-teal-500 ring-cyan-500 ring-sky-500 ring-blue-500 ring-indigo-500 ring-violet-500 ring-purple-500 ring-fuchsia-500 ring-pink-500 ring-rose-500
+    `dark:ring-${color}-700`, // dark:ring-default-700 dark:ring-primary-700 dark:ring-success-700 dark:ring-danger-700 dark:ring-warning-700 dark:ring-slate-700 dark:ring-gray-700 dark:ring-zinc-700 dark:ring-neutral-700 dark:ring-stone-700 dark:ring-red-700 dark:ring-orange-700 dark:ring-amber-700 dark:ring-yellow-700 dark:ring-lime-700 dark:ring-green-700 dark:ring-emerald-700 dark:ring-teal-700 dark:ring-cyan-700 dark:ring-sky-700 dark:ring-blue-700 dark:ring-indigo-700 dark:ring-violet-700 dark:ring-purple-700 dark:ring-fuchsia-700 dark:ring-pink-700 dark:ring-rose-700
+    'ring',
+  )
+}
+
+export function outlineColorClass (color: Colors): string {
+  if (color === 'default') {
+    return 'border-zinc-300 dark:border-zinc-600'
+  }
+  return classNames(
+    `outline-${color}-500`, // outline-default-500 outline-primary-500 outline-success-500 outline-danger-500 outline-warning-500 outline-slate-500 outline-gray-500 outline-zinc-500 outline-neutral-500 outline-stone-500 outline-red-500 outline-orange-500 outline-amber-500 outline-yellow-500 outline-lime-500 outline-green-500 outline-emerald-500 outline-teal-500 outline-cyan-500 outline-sky-500 outline-blue-500 outline-indigo-500 outline-violet-500 outline-purple-500 outline-fuchsia-500 outline-pink-500 outline-rose-500
+    `dark:outline-${color}-700`, // dark:outline-default-700 dark:outline-primary-700 dark:outline-success-700 dark:outline-danger-700 dark:outline-warning-700 dark:outline-slate-700 dark:outline-gray-700 dark:outline-zinc-700 dark:outline-neutral-700 dark:outline-stone-700 dark:outline-red-700 dark:outline-orange-700 dark:outline-amber-700 dark:outline-yellow-700 dark:outline-lime-700 dark:outline-green-700 dark:outline-emerald-700 dark:outline-teal-700 dark:outline-cyan-700 dark:outline-sky-700 dark:outline-blue-700 dark:outline-indigo-700 dark:outline-violet-700 dark:outline-purple-700 dark:outline-fuchsia-700 dark:outline-pink-700 dark:outline-rose-700
+    'outline',
+  )
+}
+
 export function colorClass ({
   bg,
   text,
