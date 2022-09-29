@@ -1,7 +1,6 @@
 import './Badge.css'
-import { ReactNode } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 import classNames from 'classnames'
-import { AnimatePresence, motion } from 'framer-motion'
 import { Colors, colorClass } from '../..'
 
 interface BadgeProps {
@@ -10,45 +9,57 @@ interface BadgeProps {
   children?: ReactNode
   dot?: boolean
   show?: boolean
+  ping?: boolean
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  size?: 'lg' | 'sm' | 'md'
+  circle?: boolean
+  content?: ReactNode
 }
 export function Badge ({
   color = 'red',
   className,
   children,
+  ping,
+  size = 'md',
   show = true,
   dot = false,
   position = 'top-right',
-}: BadgeProps) {
+  circle = false,
+  content = '',
+  ...others
+}: BadgeProps & HTMLAttributes<HTMLSpanElement>) {
   const colorCls = colorClass({
     bg: color,
   })
   const badgePointCls = classNames(
     'r-badge-point',
+    `r-badge-point-${position}`,
+    `r-badge-point-${size}`,
+    { 'r-badge-point-for-circle': circle },
     { 'r-badge-point-dot': dot },
-    { 'r-badge-point-top-left': position === 'top-left' },
-    { 'r-badge-point-top-right': position === 'top-right' },
-    { 'r-badge-point-bottom-left': position === 'bottom-left' },
-    { 'r-badge-point-bottom-right': position === 'bottom-right' },
+    { 'r-badge-point-with-content': content },
     colorCls,
     className,
   )
 
   return (
-    <span className="r-badge-wrapper">
+    <span className={classNames('r-badge-wrapper', className)} {...others}>
       <div className="relative">
         {children}
-        <AnimatePresence>
-          {show && (
-            <motion.span
-              animate={{ height: 8, width: 8 }}
+        {show && (
+          <>
+            <span
               className={badgePointCls}
-              exit={{ height: 0, width: 0 }}
-              initial={{ height: 0, width: 0 }}
-              transition={{ damping: 8, type: 'spring' }}
-            />
-          )}
-        </AnimatePresence>
+            >
+              {content}
+            </span>
+            {ping &&
+              <span className={classNames('animate-ping text-transparent', badgePointCls)} >
+                {content}
+              </span>
+            }
+          </>
+        )}
       </div>
     </span>
   )

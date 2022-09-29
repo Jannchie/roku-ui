@@ -1,6 +1,6 @@
 .r-badge-point {
-  @apply absolute rounded-full;
-  @apply w-4 h-4;
+  @apply absolute rounded-full pointer-events-none;
+  @apply w-4 h-4 text-xs z-10;
 }
 
 .r-badge-wrapper {
@@ -13,19 +13,58 @@
 
 .r-badge-point-top-left {
   @apply top-0 left-0;
-  transform: translate(-50%, -50%);
 }
 
 .r-badge-point-top-right {
   @apply top-0 right-0;
-  transform: translate(50%, -50%);
 }
 
 .r-badge-point-bottom-left {
   @apply bottom-0 left-0;
-  transform: translate(-50%, 0%);
 }
 .r-badge-point-bottom-right {
   @apply bottom-0 right-0;
-  transform: translate(50%, 0%);
+}
+
+.r-badge-point-ping {
+  @apply animate-ping;
+}
+.r-badge-point-sm {
+  @apply w-2 h-2;
+  @apply -m-1;
+}
+.r-badge-point-sm.r-badge-point-for-circle {
+  @apply m-0;
+}
+.r-badge-point-md {
+  @apply w-3 h-3;
+  @apply -m-1.5;
+}
+.r-badge-point-md.r-badge-point-for-circle {
+  @apply -m-0.5;
+}
+.r-badge-point-lg {
+  @apply w-4 h-4;
+  @apply -m-2;
+}
+.r-badge-point-lg.r-badge-point-for-circle {
+  @apply -m-1;
+}
+.r-badge-point-with-content {
+  @apply !w-auto !h-auto px-1 py-0.5;
+}
+.r-badge-point-with-content {
+  @apply !w-auto !h-auto px-1 py-0.5;
+}
+.r-badge-point-with-content.r-badge-point-bottom-right {
+  @apply right-auto -ml-3;
+}
+.r-badge-point-with-content.r-badge-point-top-right {
+  @apply right-auto -ml-3;
+}
+.r-badge-point-with-content.r-badge-point-bottom-left {
+  @apply -ml-3;
+}
+.r-badge-point-with-content.r-badge-point-top-left {
+  @apply -ml-3;
 }
