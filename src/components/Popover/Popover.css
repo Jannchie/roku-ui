@@ -2,8 +2,30 @@
   @apply underline underline-offset-2 decoration-primary-500 decoration-dotted decoration-2;
 }
 
-.r-popover-content {
-  @apply absolute bottom-full text-white text-xs;
+.r-popover-wrapper {
+  @apply relative inline-block;
+}
+
+.r-popover-content-wrapper {
+  @apply absolute bottom-full mb-4;
   left: 50%;
-  transform: translate(-50%, -8px);
+  transform: translate(-50%, 0px);
+}
+
+.r-popover-content {
+  @apply px-2 py-1 rounded whitespace-nowrap;
+  background-color: var(--r-bg-secondary-color);
+}
+
+.r-popover-indicator {
+  @apply absolute left-1/2 pointer-events-none;
+  fill: var(--r-bg-secondary-color);
+  transform: translateX(-5px);
+}
+
+.r-popover-indicator.r-popover-indicator-left {
+  @apply left-1/4;
+}
+.r-popover-indicator.r-popover-indicator-right {
+  @apply right-1/4;
 }

@@ -30,7 +30,10 @@ export type Colors =
   | 'pink'
   | 'rose'
 
-const colors = ['primary',
+export type BgColors = 'bg-1' | 'bg-2'
+
+const colors = [
+  'primary',
   'default',
   'success',
   'danger',
@@ -58,13 +61,25 @@ const colors = ['primary',
   'pink',
   'rose',
 ]
-export function isColor (color: string | Colors): color is Colors {
+export function isColor (color?: string | Colors): color is Colors {
+  if (!color) {
+    return false
+  }
   return colors.includes(color)
 }
 
-export function bgColorClass (color: Colors): string {
+export function bgColorClass (color?: Colors | BgColors): string {
+  if (color === undefined) {
+    return ''
+  }
   if (color === 'default') {
     return 'dark:bg-zinc-800 bg-zinc-200 text-zinc-600 dark:text-zinc-200'
+  }
+  if (color === 'bg-1') {
+    return 'r-bg-1'
+  }
+  if (color === 'bg-2') {
+    return 'r-bg-2'
   }
   return classNames(
     `bg-${color}-600`, // bg-primary-600 bg-default-600 bg-success-600 bg-danger-600 bg-warning-600 bg-slate-600 bg-gray-600 bg-zinc-600 bg-neutral-600 bg-stone-600 bg-red-600 bg-orange-600 bg-amber-600 bg-yellow-600 bg-lime-600 bg-green-600 bg-emerald-600 bg-teal-600 bg-cyan-600 bg-sky-600 bg-blue-600 bg-indigo-600 bg-violet-600 bg-purple-600 bg-fuchsia-600 bg-pink-600 bg-rose-600
@@ -72,7 +87,10 @@ export function bgColorClass (color: Colors): string {
   )
 }
 
-export function hoverBgColorClass (color: Colors): string {
+export function hoverBgColorClass (color?: Colors): string {
+  if (color === undefined) {
+    return ''
+  }
   if (color === 'default') {
     return 'hover:bg-zinc-300 hover:dark:bg-zinc-600'
   }
@@ -82,7 +100,10 @@ export function hoverBgColorClass (color: Colors): string {
   )
 }
 
-export function textColorClass (color: Colors): string {
+export function textColorClass (color?: Colors): string {
+  if (color === undefined) {
+    return ''
+  }
   if (color === 'default') {
     return 'dark:text-zinc-400 text-zinc-600'
   }
@@ -92,7 +113,10 @@ export function textColorClass (color: Colors): string {
   )
 }
 
-export function borderColorClass (color: Colors): string {
+export function borderColorClass (color?: Colors): string {
+  if (color === undefined) {
+    return ''
+  }
   if (color === 'default') {
     return 'border-zinc-300 dark:border-zinc-600'
   }
@@ -103,7 +127,10 @@ export function borderColorClass (color: Colors): string {
   )
 }
 
-export function ringColorClass (color: Colors): string {
+export function ringColorClass (color?: Colors): string {
+  if (color === undefined) {
+    return ''
+  }
   if (color === 'default') {
     return 'border-zinc-300 dark:border-zinc-600'
   }
@@ -114,7 +141,10 @@ export function ringColorClass (color: Colors): string {
   )
 }
 
-export function outlineColorClass (color: Colors): string {
+export function outlineColorClass (color?: Colors): string {
+  if (color === undefined) {
+    return ''
+  }
   if (color === 'default') {
     return 'border-zinc-300 dark:border-zinc-600'
   }

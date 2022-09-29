@@ -13,8 +13,8 @@ import holyGrailMD from './markdown/holy-grail.md?raw'
 import tabsMD from './markdown/tabs.md?raw'
 import tagMD from './markdown/tag.md?raw'
 import notificationMD from './markdown/notification.md?raw'
+import badgeMD from './markdown/badge.md?raw'
 import testMD from './markdown/test.md?raw'
-
 import { Page } from './components/Page'
 export const router = [{
   path: '/',
@@ -91,6 +91,11 @@ export const router = [{
   title: '通知（Notification）',
   icon: 'notifications',
   element: <Page md={notificationMD} />,
+}, {
+  path: 'badge',
+  title: '徽章（Badge）',
+  icon: 'mark_chat_unread',
+  element: <Page md={badgeMD} />,
 }, {
   path: 'test',
   title: '测试用',

@@ -4,18 +4,29 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ReactNode, useState } from 'react'
 import { BaseProps } from '../../utils/type'
 
-function Content ({ children }: { children: ReactNode }) {
+function Content ({
+  children,
+  left,
+  right,
+}: {
+  left?: boolean
+  right?: boolean
+  children: ReactNode
+}) {
   return (
-    <>
-      <div className="bg-black px-2 py-1 rounded whitespace-nowrap">
+    <div className="z-50">
+      <div className="r-popover-content">
         {children}
       </div>
-      <svg className="absolute fill-black left-1/2" style={{ width: 20, height: 5, transform: 'translateX(-50%)' }}>
+      <svg className={classNames('r-popover-indicator', {
+        'r-popover-indicator-left': left,
+        'r-popover-indicator-right': right,
+      })} width={10} height={5} >
         <path
-          d="m0 0c15 6 5 6 20 0z"
+          d="m0 0c5 6 5 6 10 0z"
         />
       </svg>
-    </>
+    </div>
   )
 }
 
@@ -26,8 +37,9 @@ export function PopoverRoot ({
   underline?: boolean
   children?: ReactNode
   style?: BaseProps['style']
+
 } & BaseProps) {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
   return (
     <span
       className="relative"
@@ -37,7 +49,7 @@ export function PopoverRoot ({
       <AnimatePresence>
         {show && (
           <motion.div
-            className={classNames('r-popover-content', other.className)}
+            className={classNames('r-popover-content-wrapper', other.className)}
             style={{
               ...other.style,
             }}
@@ -50,10 +62,12 @@ export function PopoverRoot ({
           </motion.div>
         )}
       </AnimatePresence>
-      <span className={classNames(
-        { 'r-popover-main-underline': underline },
-      )}
-      >
+      <span className={
+        classNames(
+          'r-popover-wrapper',
+          { 'r-popover-main-underline': underline },
+        )
+      }>
         {children}
       </span>
     </span>

@@ -1,36 +1,39 @@
 import classNames from 'classnames'
 import { HTMLAttributes } from 'react'
-import { colorClass, Colors } from '../..'
+import { bgColorClass, BgColors, borderColorClass, Colors } from '../..'
 import './Panel.css'
 
 export function Panel ({
-  color = 'default',
+  color = 'bg-2',
   className,
   border,
-  background,
   children,
   nopadding,
   norounded,
   ...others
 }: {
-  color?: Colors
+  color?: Colors | BgColors
   border?: boolean
   nopadding?: boolean
   norounded?: boolean
-  background?: boolean
 } & HTMLAttributes<HTMLDivElement>) {
-  const colorCls = colorClass({
-    bg: background ? color : undefined,
-    border: border ? color : undefined,
-  })
+  const bgCls = bgColorClass(color)
+  let borderColor: Colors = 'default'
+  if (color === 'bg-1' || color === 'bg-2') {
+    borderColor = 'default'
+  } else {
+    borderColor = color
+  }
+  const borderCls = borderColorClass(borderColor)
   return (
     <div
       {...others}
       className={classNames(
         'r-panel',
         className,
-        colorCls,
+        bgCls,
         {
+          [borderCls]: border,
           'r-panel-padding': !nopadding,
           'r-panel-border': border,
           'r-panel-rounded': !norounded,
