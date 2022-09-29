@@ -2,8 +2,10 @@
   @apply flex;
 }
 .holy-grail-main-wrapper {
-  @apply transition flex-grow relative flex-col flex h-full dark:bg-default-900 bg-default-50;
+  @apply transition flex-grow relative flex-col flex h-full;
+  background-color: rgb(var(--r-bg-color));
 }
+
 .holy-grail-main {
   @apply flex-grow flex items-start;
 }
