@@ -20,6 +20,12 @@
 
 <Demo name="AppbarVarient" />
 
+## 颜色
+
+我们也可以自定义颜色，但是颜色目前在 `pattern` 变体上不会生效。
+
+<Demo name="AppbarColor" />
+
 ## 搜索
 
 应用栏可以包含搜索框。一种最简单的实现是，给 Appbar 添加一个 `searchCallback` 属性。

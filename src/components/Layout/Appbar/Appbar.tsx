@@ -1,11 +1,14 @@
 import classNames from 'classnames'
 import { ReactNode } from 'react'
+import { bgColorClass, BgColors, Colors } from '../../..'
 import { MaterialSymbolIcon } from '../../MaterialSymbolIcon'
 import { TextField } from '../../TextField'
 import './Appbar.css'
 
 export function Appbar ({
   varient = 'default',
+  color = 'bg-1',
+  border,
   icon,
   title,
   searchCallback,
@@ -14,6 +17,8 @@ export function Appbar ({
   ...others
 }: {
   varient?: 'default' | 'blur' | 'transparent' | 'pattern'
+  border?: boolean
+  color?: Colors | BgColors
   icon?: ReactNode
   title?: ReactNode
   leading?: ReactNode
@@ -24,6 +29,8 @@ export function Appbar ({
     <header className={classNames(
       'r-appbar-wrapper',
       `r-appbar-${varient}`,
+      { 'r-appbar-border': border },
+      { [bgColorClass(color)]: varient !== 'pattern' },
       others.className,
     )} {...others}>
       <div className="r-appbar-leading">

@@ -1,12 +1,18 @@
 .r-appbar-wrapper {
-  @apply flex text-sm w-full border-b;
+  @apply flex text-sm w-full;
   @apply px-4 py-1 items-center justify-between;
-  @apply dark:border-default-700/20;
+}
+
+.r-appbar-border {
+  @apply border-b;
 }
 
 .dark .r-appbar-pattern {
   @apply backdrop-blur;
-  background-image: radial-gradient(rgba(0, 0, 0, 0) 1px, rgb(24 24 27) 1px);
+  background-image: radial-gradient(
+    rgba(0, 0, 0, 0) 1px,
+    rgb(var(--r-bg-color)) 1px
+  ) !important;
   background-size: 4px 4px;
 }
 
@@ -16,21 +22,23 @@
 
 .r-appbar-pattern {
   @apply backdrop-blur;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.75) 1px, #fff 1px);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.75) 1px,
+    rgb(var(--r-bg-color)) 1px
+  ) !important;
   background-size: 4px 4px;
 }
 
 .r-appbar-default {
-  @apply dark:border-default-700 dark:bg-default-800 bg-default-50 transition;
+  @apply bg-opacity-100;
 }
 
 .r-appbar-transparent {
-  @apply dark:border-default-700/20 dark:bg-default-800/20 bg-default-50/20 transition;
+  @apply bg-opacity-0;
 }
 
 .r-appbar-blur {
-  @apply dark:border-default-700/20 dark:bg-default-800/20 bg-default-50/20 transition;
-  @apply backdrop-blur;
+  @apply backdrop-blur bg-opacity-20;
 }
 
 .r-appbar-title {
