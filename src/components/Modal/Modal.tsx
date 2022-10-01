@@ -3,18 +3,21 @@ import { ReactNode, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useOnClickOutside } from '../../hooks'
 import { BaseProps } from '../../utils/type'
+import classNames from 'classnames'
 
 export type ModalProps = {
   children?: ReactNode
   show?: boolean
   hide?: () => void
   background?: boolean
+  backgroundBlur?: boolean
 } & BaseProps
 
 export function Modal ({
   className,
   style,
   background,
+  backgroundBlur,
   children,
   show,
   hide = () => {},
@@ -25,11 +28,11 @@ export function Modal ({
     <div className={className} style={style}>
       <AnimatePresence>
         {show && (
-          <div className="relative z-10">
+          <div className="absolute inset-0 z-10">
             {background && (
               <motion.div
                 animate={{ opacity: 1 }}
-                className="r-modal-bg"
+                className={classNames('r-modal-bg', { 'r-modal-bg-blur': backgroundBlur })}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}

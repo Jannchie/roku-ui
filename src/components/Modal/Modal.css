@@ -14,3 +14,7 @@
 .r-modal-panel {
   @apply flex min-h-full items-center justify-center;
 }
+
+.r-modal-bg-blur {
+  @apply backdrop-blur;
+}
