@@ -14,12 +14,12 @@
 
 .r-popover-content {
   @apply px-2 py-1 rounded whitespace-nowrap;
-  background-color: var(--r-bg-secondary-color);
+  background-color: rgb(var(--r-bg-content-color));
 }
 
 .r-popover-indicator {
   @apply absolute left-1/2 pointer-events-none;
-  fill: var(--r-bg-secondary-color);
+  fill: rgb(var(--r-bg-content-color));
   transform: translateX(-5px);
 }
 
