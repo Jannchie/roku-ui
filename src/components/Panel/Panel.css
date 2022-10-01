@@ -13,3 +13,27 @@
 .r-panel-border {
   @apply border;
 }
+
+.r-panel-rounded-sm {
+  @apply rounded-sm;
+}
+
+.r-panel-rounded-md {
+  @apply rounded;
+}
+
+.r-panel-rounded-lg {
+  @apply rounded-lg;
+}
+
+.r-panel-rounded-xl {
+  @apply rounded-xl;
+}
+
+.r-panel-rounded-2xl {
+  @apply rounded-2xl;
+}
+
+.r-panel-rounded-3xl {
+  @apply rounded-3xl;
+}

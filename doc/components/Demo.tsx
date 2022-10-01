@@ -49,7 +49,7 @@ export const Demo = ({ name }: {
               fontFamily: 'monospace',
               fontSize: 12,
               background: '#1e1e1e',
-              borderRadius: '0 0 4px 4px',
+              borderRadius: '0 0 1rem 1rem',
             }}
           >
             <code

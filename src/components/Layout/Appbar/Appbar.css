@@ -11,8 +11,8 @@
   @apply backdrop-blur;
   background-image: radial-gradient(
     rgba(0, 0, 0, 0) 1px,
-    rgb(var(--r-bg-color)) 1px
-  ) !important;
+    rgb(var(--r-bg-content-color)) 1px
+  );
   background-size: 4px 4px;
 }
 
@@ -24,8 +24,8 @@
   @apply backdrop-blur;
   background-image: radial-gradient(
     rgba(255, 255, 255, 0.75) 1px,
-    rgb(var(--r-bg-color)) 1px
-  ) !important;
+    rgb(var(--r-bg-content-color)) 1px
+  );
   background-size: 4px 4px;
 }
 

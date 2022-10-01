@@ -1,12 +1,11 @@
-export default function TestDemo () {
+import { Btn, Popover } from '../../src'
+
+export default function Demo () {
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      gap: 32,
-    }}>
-      Test
-    </div>
+    <Popover content={<Popover.Content>Content</Popover.Content>}>
+      <Btn>
+        Btn with Popover
+      </Btn>
+    </Popover>
   )
 }

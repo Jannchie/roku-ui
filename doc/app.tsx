@@ -4,7 +4,7 @@ import {
 import { NavLink, useLocation, useOutlet } from 'react-router-dom'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import {
-  Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, useOnClickOutside,
+  Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, Tag, useOnClickOutside,
 } from '../src'
 import useWindowSize, { WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
@@ -96,7 +96,17 @@ function DocLayout () {
   const appbar = <Appbar
     style={{ position: 'fixed', top: 0, width: '100%', zIndex: 1 }}
     varient="pattern"
-    title="Roku UI"
+    title={(<div style={{
+      display: 'flex',
+      gap: 8,
+    }}>
+      <span>
+        Roku UI
+      </span>
+      <Tag size="sm">
+        Ver.{APP_VERSION}
+      </Tag>
+    </div>)}
     leading={size.width < 640
       ? (
         <Btn

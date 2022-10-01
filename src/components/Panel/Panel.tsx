@@ -9,13 +9,13 @@ export function Panel ({
   border,
   children,
   nopadding,
-  norounded,
+  rounded = '2xl',
   ...others
 }: {
   color?: Colors | BgColors
   border?: boolean
   nopadding?: boolean
-  norounded?: boolean
+  rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'none'
 } & HTMLAttributes<HTMLDivElement>) {
   const bgCls = bgColorClass(color)
   let borderColor: Colors = 'default'
@@ -36,7 +36,7 @@ export function Panel ({
           [borderCls]: border,
           'r-panel-padding': !nopadding,
           'r-panel-border': border,
-          'r-panel-rounded': !norounded,
+          [`r-panel-rounded-${rounded}`]: rounded !== 'none',
         },
       )}
     >
