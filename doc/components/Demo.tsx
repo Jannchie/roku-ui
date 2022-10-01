@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState, lazy, Suspense, useRef } from 'react'
 import { Panel, useAutoSetHeight } from '../../src'
-
+import './Demo.css'
 export const Demo = ({ name }: {
   name: string
 }) => {
@@ -34,7 +34,11 @@ export const Demo = ({ name }: {
       }}>
         <div>
           <Suspense fallback={<div>Loading...</div>}>
-            {comp}
+            <div
+              className="comp-wrapper"
+            >
+              {comp}
+            </div>
           </Suspense>
         </div>
       </div>
