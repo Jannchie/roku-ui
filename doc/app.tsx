@@ -169,8 +169,8 @@ function DocLayout () {
                 marginTop: 100,
                 minHeight: 'calc(100vh - 100px - 29px)',
                 transition: `all ${timeoutMS}ms ease-out`,
-                opacity: state === 'entered' ? 1 : 0,
-                transform: state === 'entered' ? 'translateY(0)' : 'translateY(10px)',
+                opacity: state === 'entered' ? undefined : 0,
+                transform: state === 'entered' ? undefined : 'translateY(10px)',
               }}>
                 {outlet}
               </div>
