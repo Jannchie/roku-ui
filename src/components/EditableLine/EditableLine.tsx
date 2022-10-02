@@ -39,6 +39,7 @@ export function EditableLine ({
       })}
     >
       <TextField
+        border
         size={size}
         borderType={borderType}
         className={className}

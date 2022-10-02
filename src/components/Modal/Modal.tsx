@@ -11,6 +11,7 @@ export type ModalProps = {
   hide?: () => void
   background?: boolean
   backgroundBlur?: boolean
+  shadow?: boolean
 } & BaseProps
 
 export function Modal ({
@@ -18,6 +19,7 @@ export function Modal ({
   style,
   background,
   backgroundBlur,
+  shadow,
   children,
   show,
   hide = () => {},
@@ -39,7 +41,7 @@ export function Modal ({
                 onClick={hide}
               />
             )}
-            <div className="r-modal-panel-wrapper">
+            <div className={classNames('r-modal-panel-wrapper')}>
               <div className="r-modal-panel">
                 <motion.div
                   key="modal"

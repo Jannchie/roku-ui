@@ -1,5 +1,5 @@
 .r-notification {
-  @apply absolute;
+  @apply fixed z-10;
 }
 
 .r-notification.r-center {

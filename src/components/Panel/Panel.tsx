@@ -1,10 +1,10 @@
 import classNames from 'classnames'
 import { HTMLAttributes } from 'react'
-import { bgColorClass, BgColors, borderColorClass, Colors } from '../..'
+import { bgColorClass, borderColorClass, Colors } from '../..'
 import './Panel.css'
 
 export function Panel ({
-  color = 'bg-2',
+  color,
   className,
   border,
   children,
@@ -12,18 +12,13 @@ export function Panel ({
   rounded = '2xl',
   ...others
 }: {
-  color?: Colors | BgColors
+  color?: Colors
   border?: boolean
   nopadding?: boolean
   rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'none'
 } & HTMLAttributes<HTMLDivElement>) {
-  const bgCls = bgColorClass(color)
-  let borderColor: Colors = 'default'
-  if (color === 'bg-1' || color === 'bg-2') {
-    borderColor = 'default'
-  } else {
-    borderColor = color
-  }
+  const bgCls = color ? bgColorClass(color) : 'bg-bg-2'
+  const borderColor: Colors = 'default'
   const borderCls = borderColorClass(borderColor)
   return (
     <div

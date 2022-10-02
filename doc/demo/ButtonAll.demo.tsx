@@ -29,11 +29,11 @@ export default function AllBtnDemo () {
         <Btn text label="Default" />
       </div>
       <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
-        <Btn dash text color="primary" label="Primary" />
-        <Btn dash text color="success" label="Success" />
-        <Btn dash text color="danger" label="Danger" />
-        <Btn dash text color="warning" label="Warning" />
-        <Btn dash text label="Default" />
+        <Btn text color="primary" label="Primary" />
+        <Btn text color="success" label="Success" />
+        <Btn text color="danger" label="Danger" />
+        <Btn text color="warning" label="Warning" />
+        <Btn text label="Default" />
       </div>
       <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
         <Btn border dash text color="primary" label="Primary" />

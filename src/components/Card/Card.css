@@ -1,8 +1,7 @@
 .r-card {
   @apply flex flex-col gap-2 rounded-lg;
-  @apply text-default-800;
-  @apply dark:text-default-200 dark:border-default-800;
-  @apply dark:divide-default-800;
+  /* @apply bg-2; */
+  /* @apply dark:divide-default-800; */
 }
 
 .r-card-border {
@@ -18,7 +17,6 @@
 }
 
 .r-card-title {
-  @apply dark:text-default-200;
   @apply p-6 pb-0;
   @apply text-base;
 }
@@ -32,9 +30,8 @@
 }
 
 .r-card-body {
-  @apply dark:text-default-200 text-default-600;
   @apply p-6 py-1;
-  @apply text-base dark:text-default-400;
+  @apply text-base;
 }
 .r-card-dense > .r-card-body {
   @apply p-4 py-1 text-sm;
@@ -42,11 +39,9 @@
 
 .r-card-actions {
   @apply flex gap-2 justify-end;
-  @apply dark:text-default-200;
   @apply p-4;
 }
 
 .r-card-dense > .r-card-actions {
-  @apply dark:text-default-200;
   @apply p-4;
 }

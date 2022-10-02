@@ -2,18 +2,18 @@ import './Textarea.css'
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import { HTMLMotionProps, motion, useSpring } from 'framer-motion'
-import { colorClass, Colors } from '../../utils/colors'
+import { Colors } from '../../utils/colors'
 
 export interface TextareaProps {
   setValue: (value: string) => void
   maxLength?: number
   maxHeight?: number
   border?: 'solid' | 'dashed' | 'dotted' | 'transparent'
-  activeColor?: Colors
+  color?: Colors
 }
 
 export function Textarea ({
-  className, value, setValue, maxLength, maxHeight, border = 'transparent', activeColor, ...props
+  className, value, setValue, maxLength, maxHeight, border = 'transparent', color = 'primary', ...props
 }: TextareaProps & HTMLMotionProps<'textarea'>) {
   const textarea = useRef<HTMLTextAreaElement>(null)
   const [height, setHeight] = useState<number>(38)
@@ -21,7 +21,6 @@ export function Textarea ({
   useEffect(() => {
     springH.set(height)
   }, [height, springH])
-  const colorCls = colorClass({ hoverable: activeColor, ring: activeColor })
   return (
     <>
       {maxLength && (
@@ -33,7 +32,11 @@ export function Textarea ({
       )}
       <motion.textarea
         ref={textarea}
-        className={classNames(className, 'r-textarea', `r-textarea-border-${border}`, colorCls)}
+        className={classNames(className,
+          'r-textarea',
+          `r-textarea-border-${border}`,
+          `hover:bg-bg-1 bg-bg-1/50 ring-${color}-2`,
+        )}
         style={{ height: springH, top: 0 }}
         value={value}
         onInput={(e) => {

@@ -1,10 +1,10 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  createContext, CSSProperties, HTMLAttributes, ReactNode, useContext, useMemo, useState,
+  createContext, CSSProperties, HTMLAttributes, ReactNode, useContext, useMemo,
 } from 'react'
 import {
-  Colors, colorClass, bgColorClass, textColorClass, borderColorClass, hoverBgColorClass,
+  Colors, borderColorClass,
 } from '../../utils/colors'
 import { Loading } from '../../icons/Loading'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
@@ -72,10 +72,11 @@ function BtnRoot ({
   left,
   value,
   right,
+  ...others
 }: ButtonProps) {
   const ctx = useContext(BtnGroupCtx)
-  const [hover, setHover] = useState(false)
   const hColor = hoverColor ?? color
+  const fgColor = color === 'default' ? 'fg' : color
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -87,14 +88,9 @@ function BtnRoot ({
     { 'r-btn-filled': filled && !text },
     { 'r-btn-text': text },
     { 'active:scale-[0.98]': true },
-    { [hoverBgColorClass(hColor)]: hover },
-    { [bgColorClass(color)]: !hover && !text },
-    { [textColorClass(color)]: text && !hover },
-    { [textColorClass(hColor)]: text && hover },
-    { [borderColorClass(color)]: border && !hover },
-    { [bgColorClass(hColor)]: hover },
-    { '!bg-opacity-25': text && hover },
-    { [borderColorClass(hColor)]: border && hover },
+    { [`text-${fgColor}-2 hover:text-${hColor === 'default' ? 'fg' : hColor}-1 hover:bg-${hColor}-1/10`]: text },
+    { [`bg-${color}-2 hover:bg-${color}-1 text-${color === 'default' ? 'fg' : 'bg'}-2`]: !text },
+    { [`border-${color}-1`]: border },
     { 'border-transparent': !border },
     className,
   )
@@ -123,9 +119,8 @@ function BtnRoot ({
         disabled={disabled}
         style={style}
         type="button"
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
         onClick={clickCallback}
+        {...others}
       >
         <div
           className={loadingFinalClass}
@@ -141,8 +136,6 @@ function BtnRoot ({
       disabled={disabled}
       style={style}
       type="button"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
       onClick={clickCallback}
     >
       <div className={classNames(
@@ -212,9 +205,7 @@ function Group ({
   const ctx = useMemo(() => ({
     value, setValue, activeColor, cancelable,
   }), [value, setValue, activeColor, cancelable])
-  const colorCls = colorClass({
-    border: activeColor,
-  })
+  const colorCls = borderColorClass(activeColor)
   return (
     <BtnGroupCtx.Provider value={ctx}>
       <div className="relative flex">
@@ -222,7 +213,7 @@ function Group ({
           className={classNames(
             className,
             { [colorCls]: ctx.value },
-            { [colorClass({ border: 'default' })]: !ctx.value },
+            { [borderColorClass('secondary')]: !ctx.value },
             'r-btn-group',
           )}
         >
@@ -249,26 +240,20 @@ function Counter ({
   fill?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg'
 } & HTMLAttributes<HTMLButtonElement>) {
-  const [hover, setHover] = useState(false)
   const iconCls = classNames(
-    { [textColorClass(color)]: hover || active, [bgColorClass(color)]: hover || active },
-    { [textColorClass('default')]: !hover && !active },
     `r-btn-${size}`,
     'r-btn-icon r-btn bg-opacity-10 dark:bg-opacity-10',
     'border-transparent',
+    `group-hover:bg-${color}-1/10 group-hover:text-${color}-1`,
   )
   const textCls = classNames(
-    'r-btn-counter-value transition',
-    { [textColorClass(color)]: hover || active },
-    { [textColorClass('default')]: !hover && !active },
+    `r-btn-counter-value transition group-hover:text-${color}-1`,
   )
   return (
     <button
       {...props}
       type="button"
-      className="r-btn-counter text-sm flex items-center gap-2 hover:cursor-pointer"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      className="r-btn-counter group text-sm flex items-center gap-2 hover:cursor-pointer"
     >
       <div className={iconCls}>
         {

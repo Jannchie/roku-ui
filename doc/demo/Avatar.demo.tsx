@@ -15,13 +15,13 @@ export default function AvatarDemo () {
       }}>
         <Avatar
           ring
-          color="orange"
+          color="danger"
           src="https://i.pravatar.cc/80?img=9"
         />
-        <Avatar ring="emerald" color="fuchsia">
+        <Avatar ring="info" color="info">
               L
         </Avatar>
-        <Avatar ring color="sky" src="https://i.pravatar.cc/80?img=14" />
+        <Avatar ring color="primary" src="https://i.pravatar.cc/80?img=14" />
       </div>
       <div style={{
         display: 'flex',
@@ -30,11 +30,11 @@ export default function AvatarDemo () {
       }}>
         <Avatar
           square
-          color="orange"
+          color="info"
           src="https://i.pravatar.cc/80?img=32"
         />
-        <Avatar square color="lime" src="https://i.pravatar.cc/80?img=15" />
-        <Avatar square color="sky" src="https://i.pravatar.cc/80?img=30" />
+        <Avatar square color="info" src="https://i.pravatar.cc/80?img=15" />
+        <Avatar square color="primary" src="https://i.pravatar.cc/80?img=30" />
       </div>
       <Avatar.Group>
         <Avatar src="https://i.pravatar.cc/80?img=16" />

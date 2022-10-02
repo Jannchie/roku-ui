@@ -44,7 +44,7 @@ const nEventMgr: NotificationsEventManager = {
   onRemove: [],
 }
 
-export const customPush = (notice: ReactNode, config?: PushConfig): void => {
+export const push = (notice: ReactNode, config?: PushConfig): void => {
   if (nEventMgr.onPush.length === 0) {
     throw new Error(
       'No notification event listener, you should add at least one Notifications Component to your app.',
@@ -102,7 +102,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       title={title}
     />
   )
-  customPush(n, { existsMS })
+  push(n, { existsMS })
 }
 
 export function Notifications ({

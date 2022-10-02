@@ -1,14 +1,15 @@
 import { ReactNode, useEffect, useState, lazy, Suspense, useRef } from 'react'
 import { Panel, useAutoSetHeight } from '../../src'
 import './Demo.css'
-export const Demo = ({ name }: {
+export const Demo = ({ name, prose = false }: {
   name: string
+  prose?: boolean
 }) => {
   const [comp, setComp] = useState<ReactNode>()
   const [code, setCode] = useState<string>()
   useEffect(() => {
     const Comp = lazy(async () => await import(`../demo/${name}.demo.tsx`))
-    setComp(<Comp/>)
+    setComp(<Comp />)
     import(`../demo/${name}.demo.tsx?raw`).then((module) => {
       setCode(module.default.replace('../../src', 'roku-ui').replaceAll('\n', ' \n'))
     }).catch((err) => console.error(err))
@@ -24,7 +25,7 @@ export const Demo = ({ name }: {
   return (
     <Panel
       nopadding
-      className="not-prose"
+      className={prose ? '' : 'not-prose'}
       style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}>
       <div ref={compRef} style={{
         transitionProperty: 'height',

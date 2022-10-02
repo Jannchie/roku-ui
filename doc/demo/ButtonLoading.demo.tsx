@@ -19,7 +19,7 @@ export default function BtnLoadingDemo () {
         {loading ? 'Loading' : 'Click'}
       </Btn>
       <Btn
-        color="fuchsia"
+        color="success"
         loading={loading}
         size="sm"
         onClick={() => {
@@ -29,7 +29,7 @@ export default function BtnLoadingDemo () {
         Loading Button Small
       </Btn>
       <Btn
-        color="pink"
+        color="info"
         loading={loading}
         size="md"
         onClick={() => {
@@ -39,7 +39,7 @@ export default function BtnLoadingDemo () {
         Loading Button Medium
       </Btn>
       <Btn
-        color="pink"
+        color="secondary"
         loading={loading}
         size="lg"
         onClick={() => {
@@ -49,7 +49,7 @@ export default function BtnLoadingDemo () {
         Loading Button Large
       </Btn>
       <Btn
-        color="red"
+        color="danger"
         loading={loading}
         size="lg"
         onClick={() => {
@@ -60,7 +60,7 @@ export default function BtnLoadingDemo () {
       </Btn>
       <Btn
         icon
-        color="green"
+        color="primary"
         loading={loading}
         size="lg"
         onClick={() => {

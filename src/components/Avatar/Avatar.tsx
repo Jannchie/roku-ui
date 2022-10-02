@@ -3,7 +3,7 @@ import {
   MouseEvent, KeyboardEvent, ReactNode, ImgHTMLAttributes, HTMLAttributes,
 } from 'react'
 import classNames from 'classnames'
-import { bgColorClass, Colors, ringColorClass } from '../..'
+import { Colors } from '../..'
 
 type AvatarProps = {
   className?: string
@@ -28,8 +28,8 @@ export function AvatarRoot ({
   if (typeof ring === 'string') {
     ringColor = ring
   }
-  const bgClass = bgColorClass(color)
-  const ringClass = ring ? ringColorClass(ringColor) : ''
+  const bgClass = `bg-${color}-2 text-fg-2`
+  const ringClass = ring ? `ring-${ringColor}-2 ring-offset-bg-2` : ''
   let { style } = others
   if (typeof size === 'number') {
     style = {

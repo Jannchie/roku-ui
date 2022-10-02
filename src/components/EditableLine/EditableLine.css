@@ -1,15 +1,14 @@
 .r-editable-line > .r-text-field-wrapper {
-  @apply transition focus:ring-1;
-  @apply focus-within:!bg-transparent hover:!bg-default-700/20;
+  @apply transition focus:ring-1 ring-0;
 }
 .r-editable-line:not(.r-editable-line-editing) > .r-text-field-wrapper {
-  @apply !border-transparent bg-transparent;
+  @apply !border-transparent;
 }
 .r-editable-line:not(.r-editable-line-editing) .r-text-field {
   @apply hover:cursor-pointer;
 }
 .r-editable-line.r-editable-line-editing > .r-text-field-wrapper {
-  @apply bg-default-500/5 !border !border-default-700;
+  @apply !border;
 }
 .r-editable-line.r-editable-line-editing > .r-text-field {
   @apply cursor-text;

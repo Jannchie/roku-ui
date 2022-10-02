@@ -8,11 +8,15 @@
 }
 
 .r-modal-panel-wrapper {
-  @apply fixed inset-0 overflow-y-auto;
+  @apply fixed bottom-2 left-2 right-2 sm:inset-0 overflow-y-auto;
 }
 
 .r-modal-panel {
-  @apply flex min-h-full items-center justify-center;
+  @apply flex min-h-full items-center justify-center child:w-full sm:child:w-auto;
+}
+
+.r-modal-shadow {
+  @apply shadow;
 }
 
 .r-modal-bg-blur {

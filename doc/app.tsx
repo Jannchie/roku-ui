@@ -24,7 +24,8 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     if (typeof window !== 'undefined' && isDark) {
-      document.documentElement.classList.add('dark')
+      // document.documentElement.classList.add('dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
     }
   }, [])
   const [theme, setTheme] = useState<'light' | 'dark' | 'auto'>(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
@@ -33,17 +34,15 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
     setTheme: (value: 'light' | 'dark' | 'auto') => {
       setTheme(value)
       if (value === 'dark') {
-        document.documentElement.classList.add('dark')
-        document.documentElement.classList.remove('light')
+        document.documentElement.setAttribute('data-theme', 'dark')
       } else {
-        document.documentElement.classList.add('light')
-        document.documentElement.classList.remove('dark')
+        document.documentElement.setAttribute('data-theme', 'light')
       }
     },
   }), [theme, setTheme])
   return (
     <ThemeContext.Provider value={ctx}>
-      <div className={theme}>
+      <div>
         {children}
       </div>
     </ThemeContext.Provider>
@@ -94,7 +93,7 @@ function DocLayout () {
   const size = useWindowSize()
   const [showMenu, setShowMenu] = useState(false)
   const appbar = <Appbar
-    style={{ position: 'fixed', top: 0, width: '100%', zIndex: 1 }}
+    style={{ position: 'fixed', top: 0, width: '100%' }}
     varient="pattern"
     title={(<div style={{
       display: 'flex',

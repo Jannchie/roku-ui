@@ -15,6 +15,7 @@ export default function Demo () {
           setShow(false)
         }} >
         <Card
+          shadow
           style={{
             minWidth: 300,
           }}

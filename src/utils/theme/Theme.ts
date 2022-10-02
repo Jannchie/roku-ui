@@ -1,0 +1,29 @@
+export interface Theme {
+  bg1: string
+  bg2: string
+  bg3: string
+  fg1: string
+  fg2: string
+  fg3: string
+  primary1: string
+  primary2: string
+  primary3: string
+  secondary1: string
+  secondary2: string
+  secondary3: string
+  default1: string
+  default2: string
+  default3: string
+  success1: string
+  success2: string
+  success3: string
+  warning1: string
+  warning2: string
+  warning3: string
+  danger1: string
+  danger2: string
+  danger3: string
+  info1: string
+  info2: string
+  info3: string
+}

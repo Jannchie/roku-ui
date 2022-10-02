@@ -17,23 +17,27 @@
   @apply p-2;
 }
 
+.r-text-field-prefix {
+  @apply min-w-fit pr-1;
+}
+
+.r-text-field-suffix {
+  @apply min-w-fit pl-1;
+}
+
 .r-text-field-wrapper {
-  @apply focus-within:!bg-transparent transition;
+  @apply transition;
   @apply rounded-lg;
   @apply inline-flex;
   @apply outline-none rounded transition;
-  @apply dark:text-default-100;
-  @apply dark:bg-default-900;
   @apply border border-transparent;
-  @apply dark:bg-default-800 hover:dark:bg-default-700 hover:bg-default-200;
 }
 
 .r-text-field-border {
-  @apply dark:border-default-600;
-  @apply border-default-300 dark:border-default-700;
+  @apply border-fg-3 hover:bg-bg-1 focus-within:bg-bg-1;
 }
 .r-text-field-fill {
-  @apply bg-default-100;
+  @apply hover:bg-bg-1 bg-bg-1/50;
 }
 
 .r-text-field-ring {
@@ -41,7 +45,7 @@
 }
 
 .r-text-field-wrapper:focus-within {
-  @apply dark:border-default-400 border-default-800;
+  /* @apply dark:border-default-400 border-default-800; */
 }
 
 .r-text-field-dash {
@@ -60,10 +64,10 @@
   @apply border-transparent;
 }
 
-.dark ::-ms-reveal {
+[data-theme="dark"] ::-ms-reveal {
   filter: invert(90%);
 }
 
-.dark input[type="number"]::-webkit-inner-spin-button {
+[data-theme="dark"] input[type="number"]::-webkit-inner-spin-button {
   filter: invert(90%);
 }

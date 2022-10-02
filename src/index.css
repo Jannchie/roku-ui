@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.dark {
+
+[data-theme="dark"] {
   color-scheme: dark;
 }
-.dark > * {
-  @apply text-default-200;
+
+[data-theme="dark"] > * {
+  /* @apply text-default-200; */
 }
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
@@ -15,22 +17,7 @@
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
-:root.dark {
-  --r-bg-color: 17 17 17;
-  --r-bg-content-color: 24 24 24;
-  --tw-bg-opacity: 1;
-}
-
 :root {
-  --r-bg-color: 238 238 238;
-  --r-bg-content-color: 255 255 255;
   --tw-bg-opacity: 1;
-}
-
-.r-bg-1 {
-  background-color: rgb(var(--r-bg-color) / var(--tw-bg-opacity));
-}
-
-.r-bg-2 {
-  background-color: rgb(var(--r-bg-content-color) / var(--tw-bg-opacity));
+  --tw-border-opacity: 1;
 }

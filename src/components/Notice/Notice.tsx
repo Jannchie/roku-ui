@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { ReactNode } from 'react'
 import {
-  Btn, colorClass, Colors, MaterialSymbolIcon, Progress,
+  Btn, Colors, MaterialSymbolIcon, Progress, textColorClass,
 } from '../..'
 import './Notice.css'
 
@@ -55,7 +55,7 @@ export function Notice ({
     { border: outlined },
     wrapperClass,
   )
-  const mainTextColorCls = colorClass({ text: color })
+  const mainTextColorCls = textColorClass(color)
   const descCls = classNames('r-notice-desc truncate', descClass)
   const titleCls = classNames(
     'r-notice-title truncate',

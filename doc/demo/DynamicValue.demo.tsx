@@ -36,38 +36,38 @@ export default function DynamicValueDemo () {
       />
       <div className="flex gap-4 flex-col justify-between flex-wrap">
         <DynamicValue
-          className="text-xl dark:text-primary-500"
+          className="text-xl text-primary-2"
           value={Number(value)}
           format={(v) => formater1.format(v)}
         />
         <DynamicValue
-          className="text-xl dark:text-primary-500"
+          className="text-xl text-primary-2"
           value={Number(value)}
           format={(v) => formater2.format(v)}
         />
         <DynamicValue
-          className="text-xl dark:text-primary-500"
+          className="text-xl text-primary-2"
           value={Number(value)}
           format={(v) => formater3.format(v)}
         />
         <DynamicValue
-          className="text-xl dark:text-primary-500"
+          className="text-xl text-primary-2"
           value={Number(value)}
           format={(v) => formater4.format(v)}
         />
         <DynamicValue
-          className="text-xl dark:text-primary-500"
+          className="text-xl text-primary-2"
           value={Number(value)}
           format={(v) => formater5.format(v)}
         />
         <DynamicValue
-          className="text-xl dark:text-primary-500"
+          className="text-xl text-primary-2"
           value={Number(value)}
           format={(v) => formater6.format(v)}
         />
 
         <DynamicValue
-          className="text-xl dark:text-primary-500"
+          className="text-xl text-primary-2"
           value={Number(value)}
           format={(v) => formater7.format(v)}
         />

@@ -2,7 +2,7 @@ import './Progress.css'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 import { BaseProps } from '../../utils/type'
-import { colorClass, Colors, isColor } from '../..'
+import { bgColorClass, Colors, isColor } from '../..'
 
 type ProgressProps = {
   color?: Colors | string
@@ -25,9 +25,9 @@ export function Progress ({
   className,
   style,
 }: ProgressProps) {
-  let colorCls: string | undefined
+  let bgCls: string | undefined
   if (isColor(color)) {
-    colorCls = colorClass({ bg: color })
+    bgCls = bgColorClass(color)
   }
   const wrapperCls = classNames(className, 'r-progress-wrapper dark:bg-default-800 bg-default-50')
   let precent = 25
@@ -40,7 +40,7 @@ export function Progress ({
       <>
         <motion.div
           animate={{ left: ['0%', '10%', '90%', '100%'], width: ['0%', '10%', '10%', '0%'] }}
-          className={classNames(colorCls, 'r-progress-bar')}
+          className={classNames(bgCls, 'r-progress-bar')}
           transition={{
             duration: 1,
             ease: 'linear',
@@ -54,7 +54,7 @@ export function Progress ({
               animate={
                 { left: ['0%', '10%', '90%', '100%'], width: ['0%', '10%', '10%', '0%'] }
               }
-              className={classNames(colorCls, 'absolute', 'r-progress-bar blur-md')}
+              className={classNames(bgCls, 'absolute', 'r-progress-bar blur-md')}
               transition={{
                 duration: 1,
                 ease: 'linear',
@@ -71,7 +71,7 @@ export function Progress ({
       <>
         <motion.div
           animate={{ width: ['0%', '10%', '12%', '80%', '80%', '95%', '99%'] }}
-          className={classNames(colorCls, 'r-progress-bar')}
+          className={classNames(bgCls, 'r-progress-bar')}
           transition={{
             times: [0, 0.01, 0.012, 0.2, 0.24, 0.5, 1],
             duration: durationMS === 0 ? 16 : durationMS / 1000,
@@ -81,7 +81,7 @@ export function Progress ({
           blur && (
             <motion.div
               animate={{ width: ['0%', '10%', '12%', '80%', '80%', '95%', '99%'] }}
-              className={classNames(colorCls, 'absolute', 'r-progress-bar blur-md')}
+              className={classNames(bgCls, 'absolute', 'r-progress-bar blur-md')}
               transition={{
                 times: [0, 0.01, 0.012, 0.2, 0.24, 0.5, 1],
                 duration: durationMS === 0 ? 16 : durationMS / 1000,
@@ -96,7 +96,7 @@ export function Progress ({
       <>
         <motion.div
           animate={{ width: ['0%', '100%'] }}
-          className={classNames(colorCls, 'r-progress-bar')}
+          className={classNames(bgCls, 'r-progress-bar')}
           transition={{
             duration: durationMS / 1000,
             ease: 'linear',
@@ -106,7 +106,7 @@ export function Progress ({
           blur && (
             <motion.div
               animate={{ width: ['0%', '100%'] }}
-              className={classNames(colorCls, 'absolute', 'r-progress-bar blur-md')}
+              className={classNames(bgCls, 'absolute', 'r-progress-bar blur-md')}
               transition={{
                 duration: durationMS / 1000,
                 ease: 'linear',
@@ -121,13 +121,13 @@ export function Progress ({
       <>
         <motion.div
           animate={{ width: `${precent}%` }}
-          className={classNames(colorCls, 'r-progress-bar', 'absolute')}
+          className={classNames(bgCls, 'r-progress-bar', 'absolute')}
         />
         {
           blur && (
             <motion.div
               animate={{ width: `${precent}%` }}
-              className={classNames(colorCls, 'absolute', 'r-progress-bar blur-md')}
+              className={classNames(bgCls, 'absolute', 'r-progress-bar blur-md')}
             />
           )
         }
