@@ -24,6 +24,9 @@ export default defineConfig(({ command, mode }) => {
         case 'doc': {
           return {
             plugins: [react()],
+            define: {
+              APP_VERSION: JSON.stringify(process.env.npm_package_version),
+            },
             assetsInclude: ['**/*.md', 'doc/assets'],
             input: {
               main: resolve(__dirname, 'doc/index.html'),
