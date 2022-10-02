@@ -3,7 +3,7 @@ import { Theme } from '../Theme'
 export const defaultDark: Theme = {
   bg3: '#111114',
   bg2: '#18181b',
-  bg1: '#1f1f23',
+  bg1: '#27272a',
   fg3: '#a1a1aa',
   fg2: '#d4d4d8',
   fg1: '#fafafa',

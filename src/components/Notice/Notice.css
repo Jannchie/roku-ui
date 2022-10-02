@@ -1,6 +1,5 @@
 .r-notice-wrapper {
-  /* @apply dark:bg-default-900 dark:text-default-200 dark:border-default-800; */
-  /* @apply bg-default-50 text-default-800 border-default-100; */
+  @apply bg-bg-2 border-bg-1;
   @apply text-sm rounded;
 }
 

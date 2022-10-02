@@ -14,12 +14,12 @@ export function CommentForm ({
       <div>
         {(replyTo != null)
           ? (
-          <span>
+            <span>
             To
-            {' '}
-            {replyTo.user.name}
-          </span>
-            )
+              {' '}
+              {replyTo.user.name}
+            </span>
+          )
           : <span>Jannchie</span>}
         :
       </div>
