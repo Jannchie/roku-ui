@@ -36,9 +36,14 @@ export const router = [{
   icon: 'subject',
   element: <Page />,
 }, {
+  path: 'text-field',
+  title: '输入框（text-field）',
+  icon: 'edit',
+  element: <Page />,
+}, {
   path: 'editable-line',
   title: '可编行（Editable Line）',
-  icon: 'edit',
+  icon: 'drive_file_rename_outline',
   element: <Page />,
 }, {
   path: 'dynamic-value',

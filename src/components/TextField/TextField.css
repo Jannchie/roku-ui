@@ -17,6 +17,14 @@
   @apply p-2;
 }
 
+.r-text-field-prefix {
+  @apply min-w-fit pr-1;
+}
+
+.r-text-field-suffix {
+  @apply min-w-fit pl-1;
+}
+
 .r-text-field-wrapper {
   @apply transition;
   @apply rounded-lg;
@@ -29,7 +37,7 @@
   @apply border-fg-3 hover:bg-bg-1 focus-within:bg-bg-1;
 }
 .r-text-field-fill {
-  @apply bg-bg-1 hover:bg-bg-1;
+  @apply hover:bg-bg-1 bg-bg-1/50;
 }
 
 .r-text-field-ring {
