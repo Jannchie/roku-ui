@@ -8,8 +8,8 @@ export default function TagBaseDemo () {
       gap: 8,
     }}>
       <Tag >OBOG</Tag>
-      <Tag color="purple">PRO</Tag>
-      <Tag color="orange">Owner</Tag>
+      <Tag color="secondary">PRO</Tag>
+      <Tag color="danger">Owner</Tag>
     </div>
   )
 }

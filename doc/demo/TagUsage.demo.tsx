@@ -16,7 +16,7 @@ export default function TagUsageDemo () {
       >
         有钱的小伙子
       </Anchor>
-      <Tag color="purple">PRO</Tag>
+      <Tag color="secondary">PRO</Tag>
     </div>
   )
 }

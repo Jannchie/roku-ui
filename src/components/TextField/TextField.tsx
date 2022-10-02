@@ -5,7 +5,7 @@ import {
   InputHTMLAttributes,
   ReactNode, SetStateAction,
 } from 'react'
-import { colorClass, Colors } from '../..'
+import { Colors } from '../..'
 
 export type TextFieldProps = {
   className?: string
@@ -56,9 +56,7 @@ export function TextField ({
           'r-text-field-fill': !border,
           'r-text-field-ring': ring,
         },
-        colorClass({
-          ring: color,
-        }),
+        { [`ring-${color}-2`]: color },
       )}
     >
       {prefix && <div className="r-text-field-prefix">{prefix}</div>}

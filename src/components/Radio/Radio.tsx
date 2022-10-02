@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, HTMLAttributes, useContext, useMemo } from 'react'
-import { colorClass, Colors } from '../../utils/colors'
+import { bgColorClass, borderColorClass, Colors } from '../../utils/colors'
 import './Radio.css'
 
 const RadioCtx = createContext<{ val: any, setValue: ((value: any) => void) }>({ val: '', setValue: () => { } })
@@ -11,8 +11,8 @@ function RadioRoot ({
 }: { value: any, label: string, color: Colors } & HTMLAttributes<HTMLLabelElement>) {
   const { val, setValue } = useContext(RadioCtx)
   const checked = val === value
-  const colorCls = colorClass({ bg: color })
-  const borderCls = colorClass({ border: color })
+  const colorCls = bgColorClass(color)
+  const borderCls = borderColorClass(color)
   return (
     <label htmlFor={id} className={classNames('r-input-radio-wrapper flex items-center', className)} {...others} >
       <input

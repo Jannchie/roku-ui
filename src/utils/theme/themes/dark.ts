@@ -1,0 +1,32 @@
+import { Theme } from '../Theme'
+
+export const defaultDark: Theme = {
+  bg3: '#111114',
+  bg2: '#18181b',
+  bg1: '#1f1f23',
+  fg3: '#a1a1aa',
+  fg2: '#d4d4d8',
+  fg1: '#fafafa',
+  primary1: '#0ea5e9',
+  primary2: '#0284c7',
+  primary3: '#075985',
+  secondary1: '#14b8a6',
+  secondary2: '#059669',
+  secondary3: '#047857',
+  default1: '#3f3f46',
+  default2: '#27272a',
+  default3: '#18181b',
+  success1: '#10b981',
+  success2: '#059669',
+  success3: '#047857',
+  warning1: '#fb923c',
+  warning2: '#ea580c',
+  warning3: '#9a3412',
+  danger1: '#ef4444',
+  danger2: '#dc2626',
+  danger3: '#991b1b',
+  info1: '#38bdf8',
+  info2: '#0ea5e9',
+  info3: '#0284c7',
+
+}

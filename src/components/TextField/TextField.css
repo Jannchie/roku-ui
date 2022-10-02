@@ -18,22 +18,18 @@
 }
 
 .r-text-field-wrapper {
-  @apply focus-within:!bg-transparent transition;
+  @apply transition;
   @apply rounded-lg;
   @apply inline-flex;
   @apply outline-none rounded transition;
-  @apply dark:text-default-100;
-  @apply dark:bg-default-900;
   @apply border border-transparent;
-  @apply dark:bg-default-800 hover:dark:bg-default-700 hover:bg-default-200;
 }
 
 .r-text-field-border {
-  @apply dark:border-default-600;
-  @apply border-default-300 dark:border-default-700;
+  @apply border-fg-2/25 hover:bg-fg-3/25 focus-within:bg-fg-3/10;
 }
 .r-text-field-fill {
-  @apply bg-default-100;
+  @apply bg-fg-3/10 hover:bg-fg-3/25;
 }
 
 .r-text-field-ring {
@@ -41,7 +37,7 @@
 }
 
 .r-text-field-wrapper:focus-within {
-  @apply dark:border-default-400 border-default-800;
+  /* @apply dark:border-default-400 border-default-800; */
 }
 
 .r-text-field-dash {
@@ -60,10 +56,10 @@
   @apply border-transparent;
 }
 
-.dark ::-ms-reveal {
+[data-theme="dark"] ::-ms-reveal {
   filter: invert(90%);
 }
 
-.dark input[type="number"]::-webkit-inner-spin-button {
+[data-theme="dark"] input[type="number"]::-webkit-inner-spin-button {
   filter: invert(90%);
 }

@@ -15,6 +15,9 @@ import tagMD from './markdown/tag.md?raw'
 import notificationMD from './markdown/notification.md?raw'
 import badgeMD from './markdown/badge.md?raw'
 import testMD from './markdown/test.md?raw'
+import modalMD from './markdown/modal.md?raw'
+import popoverMD from './markdown/popover.md?raw'
+import switchMD from './markdown/switch.md?raw'
 import { Page } from './components/Page'
 export const router = [{
   path: '/',
@@ -96,6 +99,21 @@ export const router = [{
   title: '徽章（Badge）',
   icon: 'mark_chat_unread',
   element: <Page md={badgeMD} />,
+}, {
+  path: 'modal',
+  title: '模态框（Modal）',
+  icon: 'web_asset',
+  element: <Page md={modalMD} />,
+}, {
+  path: 'popover',
+  title: '溢出框（Popover）',
+  icon: 'live_help',
+  element: <Page md={popoverMD} />,
+}, {
+  path: 'switch',
+  title: '开关（Switch）',
+  icon: 'toggle_on',
+  element: <Page md={switchMD} />,
 }, {
   path: 'test',
   title: '测试用',

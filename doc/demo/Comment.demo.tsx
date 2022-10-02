@@ -147,7 +147,7 @@ export default function CommentDemo () {
               key="like"
               icon="favorite"
               size="sm"
-              color="red"
+              color="danger"
               style={{ minWidth: 48 }}
               value={target.likes}
               onClick={() => {
@@ -166,7 +166,7 @@ export default function CommentDemo () {
               key="reply"
               icon="reply"
               size="sm"
-              color="green"
+              color="success"
               style={{ minWidth: 48 }}
               value={target.replies?.length}
               onClick={() => {

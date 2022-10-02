@@ -8,8 +8,8 @@ export default function TagTextDemo () {
       gap: 8,
     }}>
       <Tag text rounded border>OBOG</Tag>
-      <Tag rounded text color="purple">PRO</Tag>
-      <Tag text border color="orange">Owner</Tag>
+      <Tag rounded text color="secondary">PRO</Tag>
+      <Tag text border color="danger" onClick={() => {}}>Owner</Tag>
     </div>
   )
 }

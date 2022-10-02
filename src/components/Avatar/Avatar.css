@@ -3,7 +3,7 @@
 }
 
 .r-avatar-outline {
-  @apply ring-offset-2 dark:ring-offset-zinc-900 ring-offset-zinc-100 ring-2;
+  @apply ring-offset-2 ring-2;
 }
 
 .r-avatar-blur {
@@ -32,8 +32,6 @@
 }
 .r-avatar-clickable {
   cursor: pointer;
-  @apply active:bg-opacity-100 dark:active:bg-opacity-100 hover:bg-opacity-50 dark:hover:bg-opacity-50;
-  @apply active:dark:text-default-800;
 }
 
 .r-avatar-group {

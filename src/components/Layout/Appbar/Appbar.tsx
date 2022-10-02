@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { HTMLAttributes, ReactNode } from 'react'
-import { bgColorClass, BgColors, Colors } from '../../..'
+import { Colors } from '../../..'
 import { MaterialSymbolIcon } from '../../MaterialSymbolIcon'
 import { TextField } from '../../TextField'
 import './Appbar.css'
@@ -8,7 +8,7 @@ import './Appbar.css'
 interface AppbarAttributes {
   varient?: 'default' | 'blur' | 'transparent' | 'pattern'
   border?: boolean
-  color?: Colors | BgColors
+  color?: Colors
   icon?: ReactNode
   title?: ReactNode
   leading?: ReactNode
@@ -17,7 +17,7 @@ interface AppbarAttributes {
 }
 export function Appbar ({
   varient = 'default',
-  color = 'bg-1',
+  color = 'bg',
   border,
   icon,
   title,
@@ -31,7 +31,9 @@ export function Appbar ({
       'r-appbar-wrapper',
       `r-appbar-${varient}`,
       { 'r-appbar-border': border },
-      { [bgColorClass(color)]: varient !== 'pattern' },
+      { [`bg-${color}-2`]: varient === 'default' },
+      { [`bg-${color}-2/25`]: varient === 'blur' },
+      { [`bg-${color}-2/10`]: varient === 'pattern' },
       others.className,
     )} {...others}>
       <div className="r-appbar-leading">

@@ -1,11 +1,12 @@
-import { Btn, Popover } from '../../src'
+import { Btn, useTheme } from '../../src'
 
 export default function Demo () {
+  const { theme, setTheme } = useTheme()
   return (
-    <Popover content={<Popover.Content>Content</Popover.Content>}>
-      <Btn>
-        Btn with Popover
-      </Btn>
-    </Popover>
+    <Btn onClick={() => {
+      setTheme(theme === 'light' ? 'dark' : 'light')
+    }}>
+      Btn with Popover
+    </Btn>
   )
 }

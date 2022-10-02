@@ -31,13 +31,13 @@ export * from './components/Layout/HolyGrail'
 export * from './components/Article'
 export * from './utils/Notifications'
 export * from './utils/colors'
+export * from './utils/theme'
+
+export * from './icons/Loading'
+export * from './hooks'
+export type { Colors } from './utils/colors'
 
 const Reorder = Object.assign(FramerReorder, {
   StyledItem: {},
 })
 export { Reorder }
-
-export * from './icons/Loading'
-export * from './hooks'
-
-export type { Colors, BgColors } from './utils/colors'

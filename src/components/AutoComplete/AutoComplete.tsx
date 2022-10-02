@@ -40,11 +40,11 @@ export function AutoComplete<D extends { id: number, name: string }> ({
         <div className="r-combobox-options">
           {filteredData.length === 0 && query !== ''
             ? (
-            <div className="r-combobox-not-found">{notFoundContent}</div>
-              )
+              <div className="r-combobox-not-found">{notFoundContent}</div>
+            )
             : (
-                filteredData.map((d) => <div key={d.id} />)
-              )}
+              filteredData.map((d) => <div key={d.id} />)
+            )}
         </div>
       </div>
     </div>

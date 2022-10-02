@@ -1,7 +1,7 @@
 import './Tag.css'
 import { MouseEvent, KeyboardEvent, ReactNode } from 'react'
 import classNames from 'classnames'
-import { Colors, colorClass, borderColorClass } from '../../utils/colors'
+import { Colors } from '../../utils/colors'
 
 type ChipProps = {
   className?: string
@@ -25,25 +25,32 @@ export function ChipRoot ({
   onClick,
   rounded,
   leading,
+  onMouseEnter,
+  onMouseLeave,
   ...others
 }: ChipProps) {
-  const colorCls = colorClass({
-    bg: color,
-    border: border ? color : undefined,
-    hoverable: onClick !== undefined ? color : undefined,
-    text: color,
-  })
+  // const [hover, setHover] = useState(false)
+  // const bgCls = bgColorClass(color, hover && onClick ? 50 : 10)
+  // const borderCls = borderColorClass(border ? color : undefined)
+  // const textCls = textColorClass(hover && onClick ? 'bg' : color)
   const chipClass = classNames(
     'r-tag',
     {
-      [borderColorClass(color)]: border,
       'r-tag-clickable': onClick !== undefined,
       'r-tag-rounded': rounded,
       'r-tag-text': text,
     },
     `r-tag-${size}`,
     className,
-    colorCls,
+    {
+      [`bg-${color}-2/10`]: !text,
+      [`hover:bg-${color}-2/75 active:bg-${color}-2`]: onClick,
+    },
+    {
+      [`border border-${color}-2`]: true,
+      [`text-${color}-2`]: true,
+      'hover:text-bg-2': onClick,
+    },
   )
   return (
     <span

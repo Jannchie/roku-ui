@@ -1,5 +1,5 @@
 .r-appbar-wrapper {
-  @apply flex text-sm w-full;
+  @apply flex text-sm w-full z-10;
   @apply px-4 py-1 items-center justify-between;
 }
 
@@ -7,11 +7,11 @@
   @apply border-b;
 }
 
-.dark .r-appbar-pattern {
+[data-theme="dark"] .r-appbar-pattern {
   @apply backdrop-blur;
   background-image: radial-gradient(
     rgba(0, 0, 0, 0) 1px,
-    rgb(var(--r-bg-content-color)) 1px
+    hsl(var(--r-bg-2)) 1px
   );
   background-size: 4px 4px;
 }
@@ -24,21 +24,20 @@
   @apply backdrop-blur;
   background-image: radial-gradient(
     rgba(255, 255, 255, 0.75) 1px,
-    rgb(var(--r-bg-content-color)) 1px
+    hsl(var(--r-bg-2)) 1px
   );
   background-size: 4px 4px;
 }
 
 .r-appbar-default {
-  @apply bg-opacity-100;
 }
 
 .r-appbar-transparent {
-  @apply bg-opacity-0;
+  @apply bg-transparent;
 }
 
 .r-appbar-blur {
-  @apply backdrop-blur bg-opacity-20;
+  @apply backdrop-blur;
 }
 
 .r-appbar-title {

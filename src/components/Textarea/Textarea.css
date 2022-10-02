@@ -1,10 +1,10 @@
 .r-textarea {
   @apply text-sm p-[9px] resize-none;
   @apply outline-none rounded focus:ring-1 transition;
-  @apply dark:bg-default-900;
-  @apply dark:border-default-800;
-  @apply dark:text-default-100;
-  @apply border-default-400;
+  /* @apply dark:bg-default-900; */
+  /* @apply dark:border-default-800; */
+  /* @apply dark:text-default-100; */
+  /* @apply border-default-400; */
   @apply border focus:border-transparent;
 }
 .r-textarea::-webkit-scrollbar {
@@ -12,25 +12,26 @@
 }
 
 .r-textarea-extra-info {
-  @apply absolute top-full mt-1 text-default-500;
+  @apply absolute top-full mt-1 
+  /* @apply text-default-500; */
 }
 
 .r-textarea-border-solid {
   @apply border border-solid;
-  @apply border-default-400;
-  @apply dark:border-default-700;
+  /* @apply border-default-400; */
+  /* @apply dark:border-default-700; */
 }
 
 .r-textarea-border-dotted {
   @apply border border-dotted;
-  @apply border-default-400;
-  @apply dark:border-default-700;
+  /* @apply border-default-400; */
+  /* @apply dark:border-default-700; */
 }
 
 .r-textarea-border-dashed {
   @apply border border-dashed;
-  @apply border-default-400;
-  @apply dark:border-default-700;
+  /* @apply border-default-400; */
+  /* @apply dark:border-default-700; */
 }
 
 .r-textarea-border-transparent {

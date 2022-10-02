@@ -7,13 +7,13 @@ export default function ResultDemo () {
     gap: 32,
   }}>
     <Result
-      color="green"
+      color="success"
       icon="check_circle"
       title="奈斯"
       description="你成功了"
     />
     <Result
-      color="red"
+      color="danger"
       icon="error"
       title="纳尼"
       description="我失败了"

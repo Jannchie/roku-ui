@@ -5,7 +5,7 @@ import { Typography } from '../Typography'
 import './Result.css'
 
 export function Result ({
-  icon, title, description, size = 'md', color = 'default',
+  icon, title, description, size = 'md', color = 'primary',
 }: {
   icon: string
   title: string

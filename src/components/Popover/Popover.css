@@ -1,5 +1,7 @@
 .r-popover-main-underline {
-  @apply underline underline-offset-2 decoration-primary-500 decoration-dotted decoration-2;
+  @apply underline underline-offset-2;
+  /* @apply decoration-primary-500  */
+  @apply decoration-dotted decoration-2;
 }
 
 .r-popover-wrapper {
@@ -14,12 +16,12 @@
 
 .r-popover-content {
   @apply px-2 py-1 rounded whitespace-nowrap;
-  background-color: rgb(var(--r-bg-content-color));
+  background-color: hsl(var(--r-bg-2));
 }
 
 .r-popover-indicator {
   @apply absolute left-1/2 pointer-events-none;
-  fill: rgb(var(--r-bg-content-color));
+  fill: hsl(var(--r-bg-2));
   transform: translateX(-5px);
 }
 

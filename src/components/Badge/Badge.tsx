@@ -1,7 +1,7 @@
 import './Badge.css'
 import { HTMLAttributes, ReactNode } from 'react'
 import classNames from 'classnames'
-import { Colors, colorClass } from '../..'
+import { Colors, bgColorClass } from '../..'
 
 interface BadgeProps {
   className?: string
@@ -16,7 +16,7 @@ interface BadgeProps {
   content?: ReactNode
 }
 export function Badge ({
-  color = 'red',
+  color = 'danger',
   className,
   children,
   ping,
@@ -28,9 +28,7 @@ export function Badge ({
   content = '',
   ...others
 }: BadgeProps & HTMLAttributes<HTMLSpanElement>) {
-  const colorCls = colorClass({
-    bg: color,
-  })
+  const colorCls = bgColorClass(color)
   const badgePointCls = classNames(
     'r-badge-point',
     `r-badge-point-${position}`,
