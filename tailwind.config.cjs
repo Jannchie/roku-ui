@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const saveList = []
 const variants = ['hover', 'active', 'group-hover', 'focus-within']
-const utilities = ['border', 'bg', 'text', 'ring', 'outlined']
+const utilities = ['border', 'bg', 'text', 'ring', 'outlined', 'decoration']
 const colorType = ['primary', 'secondary', 'default', 'success', 'danger', 'warning', 'info', 'fg', 'bg']
 const colorLevel = [1, 2, 3]
 const opacityLevel = [10, 25, 50, 75, 90]

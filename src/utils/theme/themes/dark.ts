@@ -28,5 +28,4 @@ export const defaultDark: Theme = {
   info1: '#38bdf8',
   info2: '#0ea5e9',
   info3: '#0284c7',
-
 }

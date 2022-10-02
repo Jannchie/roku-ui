@@ -6,6 +6,11 @@ export const router = [{
   icon: 'home',
   element: <Page md={HomeMD} />,
 }, {
+  path: 'anchor',
+  title: '锚点（Anchor）',
+  icon: 'anchor',
+  element: <Page />,
+}, {
   path: 'typography',
   title: '排版（Typography）',
   icon: 'title',
