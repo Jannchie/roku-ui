@@ -37,7 +37,7 @@ export const router = [{
   element: <Page />,
 }, {
   path: 'text-field',
-  title: '输入框（text-field）',
+  title: '输入框（Text Field）',
   icon: 'edit',
   element: <Page />,
 }, {
