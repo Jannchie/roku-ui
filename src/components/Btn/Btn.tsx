@@ -67,7 +67,7 @@ function BtnRoot ({
   onClick,
   className,
   icon = false,
-  loadingIcon = <Loading />,
+  loadingIcon,
   leadingIcon = null,
   left,
   value,
@@ -77,6 +77,11 @@ function BtnRoot ({
   const ctx = useContext(BtnGroupCtx)
   const hColor = hoverColor ?? color
   const fgColor = color === 'default' ? 'fg' : color
+  if (!loadingIcon) {
+    loadingIcon = <Loading
+      mainClassName="stroke-[hsl(var(--r-bg-3))]"
+      subClassName="stroke-[hsl(var(--r-bg-2))]" />
+  }
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -167,15 +172,18 @@ function BtnRoot ({
                     height: size === 'lg' ? 20 : 16,
                   }}
                   className={loadingFinalClass}
-                  exit={{ marginRight: 0, width: 0 }}
+                  exit={{
+                    marginRight: 0,
+                    width: 0,
+                    height: 0,
+                  }}
                   initial={{
                     marginRight: 0,
                     width: 0,
+                    height: 0,
                   }}
                   transition={{
                     bounce: 0,
-                    duration: 0.15,
-                    type: 'spring',
                   }}
                 >
                   {loadingIcon}

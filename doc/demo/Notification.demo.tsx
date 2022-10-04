@@ -30,7 +30,7 @@ export default function Demo () {
           <Radio id="radio-type-warning" color="warning" value="warning" label="Warning" />
         </Radio.Group>
       </div>
-      <Notifications stack={stack} />
+      <Notifications className="mt-2" stack={stack} />
     </div>
   )
 }

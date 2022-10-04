@@ -41,7 +41,7 @@ export function Card ({
     return <div className={cardClass}>{children}</div>
   }
   return (
-    <Panel className={cardClass} {...other} nopadding>
+    <Panel className={cardClass} {...other} >
       {title && (
         <div className="r-card-title">
           <div className="title-line">{title}</div>

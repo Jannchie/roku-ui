@@ -1,53 +1,14 @@
 import {
-  ReactNode, useState, useMemo, useContext, createContext, useEffect, useRef,
+  useState, useRef,
 } from 'react'
 import { NavLink, useLocation, useOutlet } from 'react-router-dom'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import {
-  Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, Tag, useOnClickOutside,
+  Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, Tag, useOnClickOutside, useTheme,
 } from '../src'
 import useWindowSize, { WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
 import { router } from './router'
-
-interface ThemeType {
-  theme: 'light' | 'dark' | 'auto'
-  setTheme: (theme: 'light' | 'dark') => void
-}
-
-export const ThemeContext = createContext<ThemeType>({
-  theme: 'auto',
-  setTheme: () => {},
-})
-
-const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  useEffect(() => {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    if (typeof window !== 'undefined' && isDark) {
-      // document.documentElement.classList.add('dark')
-      document.documentElement.setAttribute('data-theme', 'dark')
-    }
-  }, [])
-  const [theme, setTheme] = useState<'light' | 'dark' | 'auto'>(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-  const ctx = useMemo(() => ({
-    theme,
-    setTheme: (value: 'light' | 'dark' | 'auto') => {
-      setTheme(value)
-      if (value === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark')
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light')
-      }
-    },
-  }), [theme, setTheme])
-  return (
-    <ThemeContext.Provider value={ctx}>
-      <div>
-        {children}
-      </div>
-    </ThemeContext.Provider>
-  )
-}
 
 function getNavItem (icon: string, hover: boolean, title: string, width: number) {
   return function ActivableBtn ({ isActive }: { isActive: boolean }) {
@@ -89,7 +50,7 @@ function getNavItem (icon: string, hover: boolean, title: string, width: number)
 }
 
 function DocLayout () {
-  const { theme, setTheme } = useContext(ThemeContext)
+  const { theme, setTheme } = useTheme()
   const size = useWindowSize()
   const [showMenu, setShowMenu] = useState(false)
   const appbar = <Appbar
@@ -185,16 +146,13 @@ function DocLayout () {
 }
 
 export const App = () => (
-  <ThemeProvider>
-    <DocLayout />
-  </ThemeProvider>
+  <DocLayout />
 )
 
 function LeftMenu ({
   size, showMenu, setShowMenu,
 }: { size: WindowSize, showMenu: boolean, setShowMenu: (show: boolean) => void }) {
   const width = 240
-  const { theme } = useContext(ThemeContext)
   const ref = useRef(null)
   useOnClickOutside(ref, () => {
     setShowMenu(false)
@@ -232,11 +190,11 @@ function LeftMenu ({
     )
     : <div
       ref={ref}
+      className="bg-bg-2 shadow"
       style={{
         zIndex: 10,
         height: '100vh',
         position: 'fixed',
-        backgroundColor: theme === 'dark' ? 'rgb(24 24 27)' : 'white',
         padding: 8,
         left: showMenu ? 0 : -width,
         transition: 'all 0.3s ease-in-out',

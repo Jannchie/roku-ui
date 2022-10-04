@@ -1,8 +1,15 @@
-import { Article } from '../../src'
+import { Article, Notice } from '../../src'
 import Markdown from 'markdown-to-jsx'
 import { Demo } from './Demo'
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+
+const DocNotice = ({ type, content }: {
+  type: 'info' | 'warning' | 'danger'
+  content: string
+}) => {
+  return <Notice color={type} title={type.toUpperCase()} desc={content} className="my-2" />
+}
 export function Page ({ md = '' }: { md?: string, path?: string }) {
   const { pathname } = useLocation()
   const [body, setBody] = useState(md)
@@ -21,6 +28,7 @@ export function Page ({ md = '' }: { md?: string, path?: string }) {
           overrides: {
             Article: { component: Article },
             Demo: { component: Demo },
+            Notice: { component: DocNotice },
           },
         }}>
           {body}

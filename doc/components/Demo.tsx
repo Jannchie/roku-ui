@@ -24,14 +24,12 @@ export const Demo = ({ name, prose = false }: {
   }, [code])
   return (
     <Panel
-      nopadding
       className={prose ? '' : 'not-prose'}
       style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}>
       <div ref={compRef} style={{
         transitionProperty: 'height',
         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
         transitionDuration: '300ms',
-        padding: 16,
       }}>
         <div>
           <Suspense fallback={<div>Loading...</div>}>

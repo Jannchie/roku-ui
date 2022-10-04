@@ -13,7 +13,6 @@ export default function Demo () {
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'column',
-      height: 300,
       gap: 16,
     }}>
       <Btn onClick={() => {
