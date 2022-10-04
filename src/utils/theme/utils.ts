@@ -35,18 +35,20 @@ export function hexToHsl (hex: string): [number, number, number] {
 }
 
 export function registTheme (name: string, theme: Theme) {
-  let style = document.getElementById(`theme-${name}`)
-  if (style) {
-    // already exist
-    return
-  }
-  const items = []
-  for (const [key, value] of Object.entries(theme)) {
-    items.push(`--r-${key.slice(0, -1) + '-' + key.slice(-1)}: ${HSLColor.fromHex(value).toString()};`)
-  }
-  style = document.createElement('style')
-  style.id = `theme-${name}`
-  style.innerHTML = `
+  if (document) {
+    let style = document.getElementById(`theme-${name}`)
+    if (style) {
+      // already exist
+      return
+    }
+    const items = []
+    for (const [key, value] of Object.entries(theme)) {
+      items.push(`--r-${key.slice(0, -1) + '-' + key.slice(-1)}: ${HSLColor.fromHex(value).toString()};`)
+    }
+    style = document.createElement('style')
+    style.id = `theme-${name}`
+    style.innerHTML = `
     [data-theme="${name}"] {${items.join('')}}`.replace(/\s+/g, ' ')
-  document.head.appendChild(style)
+    document.head.appendChild(style)
+  }
 }
