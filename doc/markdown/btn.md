@@ -21,3 +21,7 @@
 在 `Button` 组件的基础上添加了一个加载动画。用于提高提交表单等操作的用户体验。
 
 <Demo name="ButtonLoading" />
+
+## 按钮组
+
+<Demo name="ButtonGroup" />

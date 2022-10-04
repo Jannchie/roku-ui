@@ -3,9 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import {
   createContext, CSSProperties, HTMLAttributes, ReactNode, useContext, useMemo,
 } from 'react'
-import {
-  Colors, borderColorClass,
-} from '../../utils/colors'
+import { Colors } from '../../utils/colors'
 import { Loading } from '../../icons/Loading'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import './Btn.css'
@@ -82,6 +80,9 @@ function BtnRoot ({
       mainClassName="stroke-[hsl(var(--r-bg-3))]"
       subClassName="stroke-[hsl(var(--r-bg-2))]" />
   }
+  if (value && value === ctx.value) {
+    color = ctx.activeColor
+  }
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -106,17 +107,15 @@ function BtnRoot ({
     'r-loading-md': size === 'md',
     'r-loading-lg': size === 'lg',
   })
-  const clickCallback = onClick !== null
-    ? onClick
-    : () => {
-      if (value) {
-        if (ctx.value !== value) {
-          ctx.setValue(value)
-        } else if (ctx.cancelable) {
-          ctx.setValue(undefined)
-        }
+  const clickCallback = onClick ?? (() => {
+    if (value) {
+      if (ctx.value !== value) {
+        ctx.setValue(value)
+      } else if (ctx.cancelable) {
+        ctx.setValue(undefined)
       }
     }
+  })
   if (icon) {
     return (
       <button
@@ -205,7 +204,7 @@ interface BtnGroup {
   cancelable?: boolean
   value: any
   setValue: (val: any) => void
-  activeColor: Colors
+  activeColor?: Colors
 }
 function Group ({
   className, children, value, setValue, activeColor = 'primary', cancelable,
@@ -213,15 +212,13 @@ function Group ({
   const ctx = useMemo(() => ({
     value, setValue, activeColor, cancelable,
   }), [value, setValue, activeColor, cancelable])
-  const colorCls = borderColorClass(activeColor)
   return (
     <BtnGroupCtx.Provider value={ctx}>
       <div className="relative flex">
         <div
           className={classNames(
             className,
-            { [colorCls]: ctx.value },
-            { [borderColorClass('secondary')]: !ctx.value },
+            `border-${activeColor}-2`,
             'r-btn-group',
           )}
         >

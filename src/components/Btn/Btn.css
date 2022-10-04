@@ -1,9 +1,13 @@
 .r-btn {
   @apply min-w-max;
   @apply h-fit transition;
-  @apply text-sm border;
+  @apply text-sm rounded-2xl;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
   @apply outline-none;
+}
+
+.r-panel .r-btn {
+  @apply rounded-lg;
 }
 
 .r-btn-main {
@@ -67,7 +71,7 @@
 }
 
 .r-btn-md {
-  @apply p-2 rounded-md;
+  @apply p-2 rounded-lg;
 }
 
 .r-btn-lg {
