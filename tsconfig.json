@@ -23,9 +23,7 @@
   "include": [
     "src",
     "doc",
-    "stories",
-    "index.d.ts",
-    "vite.config.ts",
+    "vite.config.ts"
   ],
   "exclude": [
     "dist"

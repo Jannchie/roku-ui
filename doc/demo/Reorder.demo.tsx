@@ -1,5 +1,6 @@
-import { Reorder, Panel } from '../../src'
+import { Panel } from '../../src'
 import { useState } from 'react'
+import { Reorder } from 'framer-motion'
 
 export default function TestDemo () {
   const [data, setData] = useState([1, 2, 3, 4, 5])

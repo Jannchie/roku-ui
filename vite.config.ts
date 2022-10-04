@@ -42,7 +42,7 @@ export default defineConfig(({ command, mode }) => {
             },
             build: {
               lib: {
-                entry: resolve(__dirname, 'src/index.tsx'),
+                entry: resolve(__dirname, 'src/index.ts'),
                 fileName: 'roku-ui',
                 name: 'RokuUI',
               },
@@ -57,7 +57,10 @@ export default defineConfig(({ command, mode }) => {
               },
               target: 'modules',
             },
-            plugins: [react(), dts({ outputDir: 'dist/types' })],
+            plugins: [react(), dts({
+              outputDir: 'dist/types',
+              include: ['./src/**/*.ts(x)?'],
+            })],
           }
         }
       }
