@@ -1,6 +1,6 @@
 .comp-wrapper {
   padding: 16px;
-  border-radius:8px;
+  border-radius:1rem 1rem 0rem 0rem;
   background-color: transparent;
   background-size: 4px 4px;
   background-image: linear-gradient(to right, #8881 1px, transparent 1px),

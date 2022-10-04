@@ -16,6 +16,11 @@ export const router = [{
   icon: 'title',
   element: <Page />,
 }, {
+  path: 'panel',
+  title: '面板（Panel）',
+  icon: 'table_bar',
+  element: <Page />,
+}, {
   path: 'appbar',
   title: ' 应用栏（Appbar）',
   icon: 'settop_component',
@@ -84,6 +89,11 @@ export const router = [{
   path: 'article',
   title: '文章（Article）',
   icon: 'article',
+  element: <Page />,
+}, {
+  path: 'notice',
+  title: '通知（Notice）',
+  icon: 'campaign',
   element: <Page />,
 }, {
   path: 'notification',

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import {
-  Btn, Colors, MaterialSymbolIcon, Progress, textColorClass,
+  Btn, Colors, MaterialSymbolIcon, Panel, PanelProps, Progress, textColorClass,
 } from '../..'
 import './Notice.css'
 
@@ -17,6 +17,9 @@ export interface NoticeProps {
   dense?: boolean
   progress?: boolean
   shadow?: boolean
+  blur?: boolean
+  progressValue?: number
+  progressTotal?: number
   close?: () => void
   existMS?: number
 }
@@ -34,25 +37,31 @@ export async function animate (
 
 export function Notice ({
   wrapperClass,
+  titleClass,
+  descClass,
+  className,
   color = 'primary',
   title,
   desc,
-  titleClass,
-  descClass,
-  shadow = false,
-  progress = false,
-  outlined = false,
-  dense = false,
+  shadow,
+  progress,
+  outlined,
+  dense,
+  blur,
   icon = <MaterialSymbolIcon icon="check_circle" />,
   existMS = 3000,
+  progressValue,
+  progressTotal = 100,
   close,
-}: NoticeProps) {
+  ...others
+}: NoticeProps & PanelProps) {
   const wrapperCls = classNames(
     'r-notice-wrapper',
     { 'shadow-lg shadow-black/5': shadow },
     'overflow-hidden',
     { dense },
     { border: outlined },
+    className,
     wrapperClass,
   )
   const mainTextColorCls = textColorClass(color)
@@ -62,9 +71,18 @@ export function Notice ({
     mainTextColorCls,
     titleClass,
   )
+  useEffect(() => {
+    if (progressValue === undefined) {
+      setTimeout(() => {
+        if (close != null) {
+          close()
+        }
+      }, existMS)
+    }
+  })
   const iconCls = classNames('r-notice-icon', mainTextColorCls)
   return (
-    <div className={wrapperCls}>
+    <Panel {...others} className={wrapperCls}>
       <div className={classNames(dense ? 'p-2' : 'p-4')}>
         <div className="flex justify-between">
           <div className="flex items-center">
@@ -86,9 +104,9 @@ export function Notice ({
           )}
         </div>
       </div>
-      {progress && (
-        <Progress blur durationMS={existMS} color={color} />
-      )}
-    </div>
+      {progress && progressValue === undefined
+        ? <Progress blur={blur} durationMS={existMS} color={color} />
+        : <Progress blur={blur} value={progressValue} total={progressTotal} color={color} />}
+    </Panel>
   )
 }
