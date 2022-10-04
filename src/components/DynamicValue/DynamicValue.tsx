@@ -1,18 +1,23 @@
 import classNames from 'classnames'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { HTMLMotionProps, motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { BaseProps } from '../../utils/type'
+import { Colors } from '../..'
 
 type DynamicValueProps = {
   value: number
   format?: (value: number) => string
-  animate?: boolean
-} & BaseProps
+  color?: Colors
+} & HTMLMotionProps<'span'>
 export function DynamicValue ({
-  className, id, style, value, animate = true, format = (v) => {
+  className,
+  style,
+  value,
+  color = 'fg',
+  format = (v) => {
     if (Number.isNaN(v)) return ''
     return v.toFixed()
   },
+  ...others
 }: DynamicValueProps) {
   const motionValue = useSpring(useMotionValue(value))
   useEffect(() => {
@@ -24,16 +29,8 @@ export function DynamicValue ({
     setDisplayValue(format(v))
   })
   return (
-    animate
-      ? (
-        <motion.span id={id} style={style} className={classNames('r-digital', className)}>
-          {displayValue}
-        </motion.span>
-      )
-      : (
-        <span id={id} style={style} className={classNames('r-digital', className)}>
-          {displayValue}
-        </span>
-      )
+    <motion.span style={style} className={classNames('r-digital', className, `text-${color}-2`)} {...others}>
+      {displayValue}
+    </motion.span>
   )
 }
