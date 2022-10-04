@@ -35,7 +35,7 @@ export function hexToHsl (hex: string): [number, number, number] {
 }
 
 export function registTheme (name: string, theme: Theme) {
-  if (document) {
+  if (typeof document !== 'undefined') {
     let style = document.getElementById(`theme-${name}`)
     if (style) {
       // already exist

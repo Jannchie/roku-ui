@@ -5,14 +5,18 @@ import { registTheme } from '../utils/theme/utils'
 export function useTheme () {
   registTheme('dark', defaultDark)
   registTheme('light', defaultLight)
-  let localTheme = localStorage.getItem('theme')
-  if (localTheme === null) {
-    localTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  }
-  const [theme, setTheme] = useState<string>(localTheme)
+  const [theme, setTheme] = useState<string>()
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme)
+      localStorage.setItem('roku.ui.theme', theme)
+    } else {
+      let localTheme = localStorage.getItem('roku.ui.theme')
+      if (!localTheme) {
+        localTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      }
+      setTheme(localTheme)
+    }
   }, [theme])
   return { theme, setTheme }
 }
