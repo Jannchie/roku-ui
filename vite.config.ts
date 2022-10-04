@@ -31,13 +31,15 @@ export default defineConfig(({ command, mode }) => {
               main: resolve(__dirname, 'doc/index.html'),
             },
             build: {
-              minify: 'terser',
               outDir: 'dist-doc',
             },
           }
         }
         default: {
           return {
+            esbuild: {
+              minifyIdentifiers: false,
+            },
             build: {
               lib: {
                 entry: resolve(__dirname, 'src/index.tsx'),

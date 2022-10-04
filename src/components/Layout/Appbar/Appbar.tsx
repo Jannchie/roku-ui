@@ -1,11 +1,11 @@
 import classNames from 'classnames'
-import { HTMLAttributes, ReactNode } from 'react'
+import { FC, HTMLAttributes, ReactNode } from 'react'
 import { Colors } from '../../..'
 import { MaterialSymbolIcon } from '../../MaterialSymbolIcon'
 import { TextField } from '../../TextField'
 import './Appbar.css'
 
-interface AppbarAttributes {
+type AppbarAttributes = {
   varient?: 'default' | 'blur' | 'transparent' | 'pattern'
   border?: boolean
   color?: Colors
@@ -14,8 +14,8 @@ interface AppbarAttributes {
   leading?: ReactNode
   tailing?: ReactNode
   searchCallback?: (value: string) => void
-}
-export function Appbar ({
+} & Omit<HTMLAttributes<HTMLElement>, 'title'>
+export const Appbar: FC<AppbarAttributes> = ({
   varient = 'default',
   color = 'bg',
   border,
@@ -25,7 +25,7 @@ export function Appbar ({
   tailing,
   leading,
   ...others
-}: AppbarAttributes & Omit<HTMLAttributes<HTMLElement>, 'title'>) {
+}: AppbarAttributes) => {
   return (
     <header className={classNames(
       'r-appbar-wrapper',

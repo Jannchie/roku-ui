@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState, lazy, Suspense, useRef } from 'react'
-import { Panel } from '../../src'
+import { Loading, Panel } from '../../src'
 import './Demo.css'
 export const Demo = ({ name, prose = false }: {
   name: string
@@ -31,7 +31,7 @@ export const Demo = ({ name, prose = false }: {
         transitionDuration: '300ms',
       }}>
         <div>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div style={{ height: '8rem', display: 'flex', justifyContent: 'center', padding: '1rem' }}><Loading /></div>}>
             <div
               className="comp-wrapper"
             >
