@@ -3,6 +3,19 @@
   border-radius:1rem 1rem 0rem 0rem;
   background-color: transparent;
   background-size: 4px 4px;
-  background-image: linear-gradient(to right, #8881 1px, transparent 1px),
-    linear-gradient(to bottom, #8881 1px, transparent 1px);
+  background-image: linear-gradient(to right, hsl(var(--r-fg-1)/.025) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--r-fg-1)/.025) 1px, transparent 1px);
+}
+
+.comp-wrapper-2 {
+  padding: 16px;
+  border-radius:1rem 1rem 0rem 0rem;
+  background-color: transparent;
+  background-size: 0.5rem 0.5rem;
+  background: conic-gradient(
+      transparent 0.25turn,
+      hsl(var(--r-fg-1)/.025) 0.25turn 0.5turn,
+      transparent 0.5turn 0.75turn,
+      hsl(var(--r-fg-1)/.025) 0.75turn
+    ) top left / 1rem 1rem repeat;
 }

@@ -5,7 +5,7 @@ import { Colors } from '../..'
 export interface SwitchProps {
   value: boolean
   setValue: (value: boolean) => void
-  color?: Colors | string
+  color?: Colors
   size?: 'lg' | 'sm' | 'md'
   label?: ReactNode
 }
@@ -13,7 +13,7 @@ export const Switch: FC<SwitchProps> = ({
   value,
   setValue,
   size = 'md',
-  color = 'primary',
+  color = 'fg',
   label,
 }: SwitchProps) => {
   const [clicking, setClicking] = useState(false)

@@ -17,3 +17,9 @@
 通过 `label` 属性可以设置开关的标签。
 
 <Demo name="SwitchLabel" />
+
+## 颜色
+
+通过 `color` 属性可以设置开关的颜色。
+
+<Demo name="SwitchColor" />

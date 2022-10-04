@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState, lazy, Suspense, useRef } from 'react'
-import { Panel, useAutoSetHeight } from '../../src'
+import { Panel } from '../../src'
 import './Demo.css'
 export const Demo = ({ name, prose = false }: {
   name: string
@@ -11,11 +11,10 @@ export const Demo = ({ name, prose = false }: {
     const Comp = lazy(async () => await import(`../demo/${name}.demo.tsx`))
     setComp(<Comp />)
     import(`../demo/${name}.demo.tsx?raw`).then((module) => {
-      setCode(module.default.replace('../../src', 'roku-ui').replaceAll('\n', ' \n'))
+      setCode(module.default.replace('../../src', 'roku-ui'))
     }).catch((err) => console.error(err))
   }, [name])
   const compRef = useRef<HTMLDivElement>(null)
-  useAutoSetHeight(compRef)
   const ref = useRef<HTMLPreElement>(null)
   useEffect(() => {
     if (ref.current) {
