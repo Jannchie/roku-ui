@@ -1,5 +1,5 @@
 import './Modal.css'
-import { ReactNode, useRef } from 'react'
+import { ReactNode, useCallback, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useOnClickOutside } from '../../hooks'
 import { BaseProps } from '../../utils/type'
@@ -11,7 +11,8 @@ export type ModalProps = {
   hide?: () => void
   background?: boolean
   backgroundBlur?: boolean
-  shadow?: boolean
+  setShow?: (show: boolean) => void
+  preventClickOutside?: boolean
 } & BaseProps
 
 export function Modal ({
@@ -19,13 +20,29 @@ export function Modal ({
   style,
   background,
   backgroundBlur,
-  shadow,
+  preventClickOutside,
   children,
   show,
+  setShow,
   hide = () => {},
 }: ModalProps) {
   const ref = useRef<HTMLDivElement>(null)
-  useOnClickOutside(ref, hide)
+  const [shakeing, setShakeing] = useState(false)
+  const onHide = useCallback(() => {
+    if (preventClickOutside) {
+      setShakeing(true)
+      setTimeout(() => {
+        setShakeing(false)
+      }, 500)
+      return
+    }
+    if (setShow) {
+      setShow(false)
+    } else if (hide) {
+      hide()
+    }
+  }, [hide, preventClickOutside, setShow])
+  useOnClickOutside(ref, onHide)
   return (
     <div className={className} style={style}>
       <AnimatePresence>
@@ -38,10 +55,10 @@ export function Modal ({
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                onClick={hide}
+                onClick={onHide}
               />
             )}
-            <div className={classNames('r-modal-panel-wrapper')}>
+            <div className={classNames('r-modal-panel-wrapper', { 'r-shake': shakeing })}>
               <div className="r-modal-panel">
                 <motion.div
                   key="modal"

@@ -13,7 +13,7 @@ export function hexToHsl (hex: string): [number, number, number] {
   let s = 0
   const l = (max + min) / 2
 
-  if (max === min) {
+if (max === min) {
     h = s = 0
   } else {
     const d = max - min

@@ -9,11 +9,10 @@ export default function Demo () {
         setShow(true)
       }}>Open</Btn>
       <Modal
+        preventClickOutside
         background
         backgroundBlur
-        show={show} hide={() => {
-          setShow(false)
-        }} >
+        show={show} setShow={setShow} >
         <Card
           shadow
           style={{
