@@ -15,12 +15,12 @@ export function CommentForm ({
         {(replyTo != null)
           ? (
             <span>
-            To
+            回复
               {' '}
               {replyTo.user.name}
             </span>
           )
-          : <span>Jannchie</span>}
+          : <span>{'发送评论'}</span>}
         :
       </div>
       <div className="flex gap-2 items-center">
