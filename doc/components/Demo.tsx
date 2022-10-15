@@ -8,11 +8,15 @@ export const Demo = ({ name, prose = false }: {
   const [comp, setComp] = useState<ReactNode>()
   const [code, setCode] = useState<string>()
   useEffect(() => {
-    const Comp = lazy(async () => await import(`../demo/${name}.demo.tsx`))
-    setComp(<Comp />)
-    import(`../demo/${name}.demo.tsx?raw`).then((module) => {
-      setCode(module.default.replace('../../src', 'roku-ui'))
-    }).catch((err) => console.error(err))
+    try {
+      const Comp = lazy(async () => await import(`../demo/${name}.demo.tsx`))
+      setComp(<Comp />)
+      void import(`../demo/${name}.demo.tsx?raw`).then((module) => {
+        setCode(module.default.replace('../../src', 'roku-ui'))
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }, [name])
   const compRef = useRef<HTMLDivElement>(null)
   const ref = useRef<HTMLPreElement>(null)

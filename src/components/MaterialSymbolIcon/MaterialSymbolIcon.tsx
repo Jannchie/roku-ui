@@ -20,6 +20,7 @@ export function MaterialSymbolIcon ({
   }
   const clsName = classNames(
     `material-symbols-${type}`,
+    'select-none',
     { filled: props.fill },
     { 'r-icon-xs': size === 'xs' },
     { 'r-icon-sm': size === 'sm' },

@@ -121,6 +121,26 @@ export const router = [{
   icon: 'toggle_on',
   element: <Page />,
 }, {
+  path: 'window',
+  title: '窗体（Window）',
+  icon: 'wysiwyg',
+  element: <Page />,
+}, {
+  path: 'phone',
+  title: '手机模型（Phone）',
+  icon: 'smartphone',
+  element: <Page />,
+}, {
+  path: 'steps',
+  title: '步骤（Steps）',
+  icon: 'arrow_right_alt',
+  element: <Page />,
+}, {
+  path: 'collapse',
+  title: '折叠面板（Collapse）',
+  icon: 'expand_more',
+  element: <Page />,
+}, {
   path: 'test',
   title: '测试用',
   icon: 'science',
