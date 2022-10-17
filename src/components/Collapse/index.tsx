@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ReactNode, useRef } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import { useAutoSetHeight } from '../../hooks'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import { Panel, PanelProps } from '../Panel'
@@ -21,24 +21,31 @@ export function Collapse ({
 } & PanelProps) {
   const compRef = useRef(null)
   useAutoSetHeight(compRef)
+  const [internelExpanded, setInternelExpanded] = useState(expanded)
+  let e = expanded
+  let setE = setExpanded
+  if (!setE) {
+    e = internelExpanded
+    setE = setInternelExpanded
+  }
   return (
     <Panel padding onClick={() => {
-      if (setExpanded) setExpanded(!expanded)
+      if (setE) setE(!e)
     }} {...props}>
       <div className={classNames('cursor-pointer text-lg flex items-center justify-between')}>
         {header}
         {icon && (
           <div style={{
             transition: 'transform 0.3s',
-            transform: `rotate(${expanded ? 180 : 0}deg)`,
+            transform: `rotate(${e ? 180 : 0}deg)`,
           }} >
             {icon}
           </div>
         )}
       </div>
       <div ref={compRef} className={classNames({
-        'h-[0%] leading-[0] overflow-hidden transition-all': !expanded,
-        'h-[100%]  transition-all': expanded,
+        'h-[0%] leading-[0] overflow-hidden transition-all': !e,
+        'h-[100%]  transition-all': e,
       })}>
         {children}
       </div>
