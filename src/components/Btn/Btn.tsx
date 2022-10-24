@@ -9,7 +9,7 @@ import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import './Btn.css'
 import { Typography } from '../Typography'
 
-export interface ButtonProps {
+export type ButtonProps = {
   label?: string
   size?: 'xs' | 'sm' | 'md' | 'lg'
   style?: CSSProperties
@@ -32,7 +32,7 @@ export interface ButtonProps {
   left?: boolean
   value?: any
   right?: boolean
-}
+} & HTMLAttributes<HTMLButtonElement>
 
 interface BtnGroupCtxType {
   cancelable: any

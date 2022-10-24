@@ -23,7 +23,7 @@ function Item ({
   const { current } = useContext(ctx)
   return (
     <li
-      className={classNames('flex items-center whitespace-nowrap gap-2', {
+      className={classNames('flex items-center whitespace-nowrap gap-2 transition-all', {
         'text-primary-1': current >= index,
         'text-fg-3': current < index,
       })}

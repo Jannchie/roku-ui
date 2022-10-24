@@ -1,4 +1,5 @@
 .r-btn {
+  @apply border;
   @apply min-w-max;
   @apply h-fit transition;
   @apply text-sm rounded-2xl;
@@ -6,7 +7,7 @@
   @apply outline-none;
 }
 
-.r-panel .r-btn {
+.r-panel>.r-btn {
   @apply rounded-lg;
 }
 
@@ -71,11 +72,11 @@
 }
 
 .r-btn-md {
-  @apply p-2 rounded-lg;
+  @apply p-2 rounded;
 }
 
 .r-btn-lg {
-  @apply p-2 text-base rounded-lg;
+  @apply p-2 text-base rounded;
 }
 .r-btn-block {
   @apply w-full;

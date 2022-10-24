@@ -141,6 +141,16 @@ export const router = [{
   icon: 'expand_more',
   element: <Page />,
 }, {
+  path: 'icon',
+  title: '图标（Icon）',
+  icon: 'dentistry',
+  element: <Page />,
+}, {
+  path: 'rating',
+  title: '评分（Rating）',
+  icon: 'star',
+  element: <Page />,
+}, {
   path: 'test',
   title: '测试用',
   icon: 'science',
