@@ -27,6 +27,7 @@ export const Demo = ({ name, prose = false }: {
   }, [code])
   return (
     <Panel
+      border
       className={prose ? '' : 'not-prose'}
       style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}>
       <div ref={compRef} style={{

@@ -49,7 +49,7 @@ export function ChipRoot ({
     {
       [`border border-${color}-2`]: true,
       [`text-${color}-2`]: true,
-      'hover:text-bg-2': onClick,
+      'hover:text-background-2': onClick,
     },
   )
   return (

@@ -3,8 +3,8 @@
 }
 .holy-grail-main-wrapper {
   @apply transition flex-grow relative flex-col flex h-full;
-  background-color: hsl(var(--r-bg-3));
-  color: hsl(var(--r-fg-3));
+  background-color: hsl(var(--r-background-3));
+  color: hsl(var(--r-frontground-3));
 }
 
 .holy-grail-main {

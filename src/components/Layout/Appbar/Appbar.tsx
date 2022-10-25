@@ -17,7 +17,7 @@ type AppbarAttributes = {
 } & Omit<HTMLAttributes<HTMLElement>, 'title'>
 export const Appbar: FC<AppbarAttributes> = ({
   varient = 'default',
-  color = 'bg',
+  color = 'background',
   border,
   icon,
   title,

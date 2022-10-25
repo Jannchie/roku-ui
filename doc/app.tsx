@@ -190,7 +190,7 @@ function LeftMenu ({
     )
     : <div
       ref={ref}
-      className="bg-bg-2 shadow"
+      className="bg-background-2 shadow"
       style={{
         zIndex: 10,
         height: '100vh',

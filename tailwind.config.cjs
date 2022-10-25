@@ -3,7 +3,7 @@
 const saveList = []
 const variants = ['hover', 'active', 'group-hover', 'focus-within']
 const utilities = ['border', 'bg', 'text', 'ring', 'outlined', 'decoration']
-const colorType = ['primary', 'secondary', 'default', 'success', 'danger', 'warning', 'info', 'fg', 'bg']
+const colorType = ['primary', 'secondary', 'default', 'success', 'danger', 'warning', 'info', 'background', 'frontground', 'border']
 const colorLevel = [1, 2, 3]
 const opacityLevel = [10, 25, 50, 75, 90]
 const colors = {}
@@ -34,7 +34,7 @@ for (const type of colorType) {
     }
   }
 }
-for (const type of ['bg', 'fg']) {
+for (const type of ['background', 'frontground']) {
   colors[`${type}`] = {}
   for (const level of colorLevel) {
     saveList.push(`${type}-${level}`)

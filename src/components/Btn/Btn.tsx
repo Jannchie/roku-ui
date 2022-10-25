@@ -77,8 +77,8 @@ function BtnRoot ({
   const fgColor = color === 'default' ? 'fg' : color
   if (!loadingIcon) {
     loadingIcon = <Loading
-      mainClassName="stroke-[hsl(var(--r-bg-3))]"
-      subClassName="stroke-[hsl(var(--r-bg-2))]" />
+      mainClassName="stroke-[hsl(var(--r-background-3))]"
+      subClassName="stroke-[hsl(var(--r-background-2))]" />
   }
   if (value && value === ctx.value) {
     color = ctx.activeColor
@@ -95,7 +95,7 @@ function BtnRoot ({
     { 'r-btn-text': text },
     { 'active:scale-[0.98]': true },
     { [`text-${fgColor}-2 hover:text-${hColor === 'default' ? 'fg' : hColor}-1 hover:bg-${hColor}-1/10`]: text },
-    { [`bg-${color}-2 hover:bg-${color}-1 text-${color === 'default' ? 'fg' : 'bg'}-2`]: !text },
+    { [`bg-${color}-2 hover:bg-${color}-1 text-${color === 'default' ? 'frontground' : 'background'}-2`]: !text },
     { [`border-${color}-1`]: border },
     { 'border-transparent': !border },
     className,

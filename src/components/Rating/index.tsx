@@ -10,7 +10,7 @@ export function Rating ({ max, value, setValue, color = 'primary' }: {
   setValue: (value: number) => void
 }) {
   const range = Array.from({ length: max }, (_, i) => i + 1)
-  const [hover, setHover] = useState(0)
+  const [hover, setHover] = useState(value)
   return (
     <div className="flex">
       {range.map(d => (

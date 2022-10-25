@@ -8,8 +8,8 @@ export type Colors =
   | 'danger'
   | 'warning'
   | 'info'
-  | 'bg'
-  | 'fg'
+  | 'background'
+  | 'frontground'
 
 export function isColor (color?: string | Colors): color is Colors {
   const colors = [
@@ -46,7 +46,7 @@ export function hoverBgColorClass (color?: Colors): string {
     return ''
   }
   if (color === 'default') {
-    return 'bg-fg-1'
+    return 'bg-frontground-1'
   }
   return classNames(
     `hover:bg-${color}-1`,
@@ -78,11 +78,11 @@ export function ringColorClass (color?: Colors): string {
     return ''
   }
   if (color === 'default') {
-    return 'ring-fg-1'
+    return 'ring-frontground-1'
   }
   return classNames(
     `ring-${color}-2`,
-    'ring-offset-bg-2',
+    'ring-offset-background-2',
     'ring',
   )
 }
@@ -92,7 +92,7 @@ export function outlineColorClass (color?: Colors): string {
     return ''
   }
   if (color === 'default') {
-    return 'outline-fg-1'
+    return 'outline-frontground-1'
   }
   return classNames(
     `outline-${color}-2`,

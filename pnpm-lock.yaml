@@ -7,6 +7,7 @@ overrides:
 specifiers:
   '@babel/core': ^7.19.3
   '@tailwindcss/typography': ^0.5.7
+  '@types/d3-color': ^3.1.0
   '@types/prismjs': ^1.26.0
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
@@ -17,6 +18,7 @@ specifiers:
   '@vitejs/plugin-react': ^2.1.0
   autoprefixer: ^10.4.12
   classnames: ^2.3.2
+  d3-color: ^3.1.0
   eslint: ^8.24.0
   eslint-config-standard-with-typescript: ^23.0.0
   eslint-plugin-import: ^2.26.0
@@ -43,11 +45,13 @@ specifiers:
 
 dependencies:
   classnames: 2.3.2
+  d3-color: 3.1.0
   framer-motion: 7.5.1_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@babel/core': 7.19.3
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
+  '@types/d3-color': 3.1.0
   '@types/prismjs': 1.26.0
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
@@ -655,6 +659,10 @@ packages:
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
     dev: true
 
+  /@types/d3-color/3.1.0:
+    resolution: {integrity: sha512-HKuicPHJuvPgCD+np6Se9MQvS6OCbJmOjGvylzMJRlDwUXjKTTXs6Pwgk79O09Vj/ho3u1ofXnhFOaEWWPrlwA==}
+    dev: true
+
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
@@ -1179,6 +1187,11 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
+
+  /d3-color/3.1.0:
+    resolution: {integrity: sha512-zg/chbXyeBtMQ1LbD/WSoW2DpC3I0mpmPdW+ynRTj/x2DAWYrIY7qeZIHidozwV24m4iavr15lNwIwLxRmOxhA==}
+    engines: {node: '>=12'}
+    dev: false
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
