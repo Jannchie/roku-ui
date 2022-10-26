@@ -13,7 +13,7 @@ export const Switch: FC<SwitchProps> = ({
   value,
   setValue,
   size = 'md',
-  color = 'fg',
+  color = 'frontground',
   label,
 }: SwitchProps) => {
   const [clicking, setClicking] = useState(false)

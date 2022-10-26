@@ -12,7 +12,7 @@ export function DynamicValue ({
   className,
   style,
   value,
-  color = 'fg',
+  color = 'frontground',
   format = (v) => {
     if (Number.isNaN(v)) return ''
     return v.toFixed()
@@ -29,7 +29,7 @@ export function DynamicValue ({
     setDisplayValue(format(v))
   })
   return (
-    <motion.span style={style} className={classNames('r-digital', className, `text-${color}-2`)} {...others}>
+    <motion.span style={style} className={classNames('r-digital', className, `text-${color}`)} {...others}>
       {displayValue}
     </motion.span>
   )
