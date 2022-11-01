@@ -151,6 +151,11 @@ export const router = [{
   icon: 'star',
   element: <Page />,
 }, {
+  path: 'radio',
+  title: '单选项（Radio）',
+  icon: 'radio',
+  element: <Page />,
+}, {
   path: 'test',
   title: '测试用',
   icon: 'science',

@@ -1,25 +1,23 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, HTMLAttributes, useContext, useMemo } from 'react'
-import { bgColorClass, borderColorClass, Colors } from '../../utils/colors'
+import { Colors } from '../../utils/colors'
 import './Radio.css'
 
 const RadioCtx = createContext<{ val: any, setValue: ((value: any) => void) }>({ val: '', setValue: () => { } })
 
 function RadioRoot ({
-  id, className, value, label, color = 'primary', ...others
-}: { value: any, label: string, color: Colors } & HTMLAttributes<HTMLLabelElement>) {
+  id, className, value, label, color = 'frontground', ...others
+}: { value: any, label: string, color?: Colors } & HTMLAttributes<HTMLLabelElement>) {
   const { val, setValue } = useContext(RadioCtx)
   const checked = val === value
-  const colorCls = bgColorClass(color)
-  const borderCls = borderColorClass(color)
   return (
-    <label htmlFor={id} className={classNames('r-input-radio-wrapper flex items-center', className)} {...others} >
+    <label htmlFor={id} className={classNames('r-input-radio-wrapper flex items-center', `text-${color}-2 hover:text-${color}-1`, className)} {...others} >
       <input
         id={id}
         type="radio"
         checked={checked}
-        className={classNames('r-input-radio', { [borderCls]: checked, ' dark:border-default-600': !checked })}
+        className={classNames('r-input-radio', `border-${color}-2 hover:border-${color}-1`)}
         onChange={() => setValue(value)}
       />
       <AnimatePresence>
@@ -28,8 +26,8 @@ function RadioRoot ({
             initial={{ scale: 0 }}
             animate={{ scale: 0.5 }}
             exit={{ scale: 0 }}
-            transition={{ duration: 0.15, ease: 'easeOut' }}
-            className={classNames('absolute w-4 h-4 flex justify-center items-center rounded-full', colorCls)}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className={classNames('absolute w-4 h-4 flex justify-center items-center rounded-full', `hover:bg-${color}-1 bg-${color}-2`)}
           />
         )}
       </AnimatePresence>
