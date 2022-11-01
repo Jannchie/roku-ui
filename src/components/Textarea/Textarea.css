@@ -1,27 +1,27 @@
 .r-textarea {
-  @apply text-sm p-[9px] resize-none;
+  @apply text-sm p-[9px] py-[8px] resize-none;
   @apply outline-none rounded focus:ring-1 transition;
   @apply border focus:border-transparent;
+  @apply transition-all duration-300;
 }
 .r-textarea::-webkit-scrollbar {
-  display: none;
+  display: auto;
 }
 
 .r-textarea-extra-info {
   @apply absolute top-full mt-1 text-frontground-2;
-  /* @apply text-default-500; */
 }
 
 .r-textarea-border-solid {
-  @apply border border-solid border-background-1;
+  @apply border border-solid;
 }
 
 .r-textarea-border-dotted {
-  @apply border border-dotted border-background-1;
+  @apply border border-dotted;
 }
 
 .r-textarea-border-dashed {
-  @apply border border-dashed border-background-1;
+  @apply border border-dashed;
 }
 
 .r-textarea-border-transparent {

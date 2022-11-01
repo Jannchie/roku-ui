@@ -60,7 +60,7 @@ export function EditableLine ({
           }}
           className="flex gap-2"
           initial={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
+          transition={{ duration: 0.3 }}
         >
           <Btn
             border

@@ -27,6 +27,7 @@ export function CommentForm ({
         <Textarea
           border="dashed"
           value={input}
+          maxHeight={96}
           setValue={setInput}
           className="w-full"
           placeholder="Please Input The Comment"

@@ -1,7 +1,6 @@
 import './Textarea.css'
 import classNames from 'classnames'
-import { useEffect, useRef, useState } from 'react'
-import { HTMLMotionProps, motion, useSpring } from 'framer-motion'
+import { TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { Colors } from '../../utils/colors'
 
 export interface TextareaProps {
@@ -13,14 +12,14 @@ export interface TextareaProps {
 }
 
 export function Textarea ({
-  className, value, setValue, maxLength, maxHeight, border = 'transparent', color = 'primary', ...props
-}: TextareaProps & HTMLMotionProps<'textarea'>) {
+  className, value, setValue, maxLength, maxHeight, border = 'solid', color = 'primary', ...props
+}: TextareaProps & TextareaHTMLAttributes<HTMLTextAreaElement>) {
   const textarea = useRef<HTMLTextAreaElement>(null)
   const [height, setHeight] = useState<number>(38)
-  const springH = useSpring(height)
+  const [h, setH] = useState<number>(height)
   useEffect(() => {
-    springH.set(height)
-  }, [height, springH])
+    setH(height)
+  }, [height])
   return (
     <>
       {maxLength && (
@@ -30,27 +29,38 @@ export function Textarea ({
           {maxLength}
         </div>
       )}
-      <motion.textarea
+      <textarea
         ref={textarea}
         className={classNames(className,
           'r-textarea',
           `r-textarea-border-${border}`,
+          'border-border-2',
           `hover:bg-background-1 bg-background-1/50 ring-${color}-2`,
         )}
-        style={{ height: springH, top: 0 }}
+        style={{
+          height: h,
+          ...props.style,
+        }}
         value={value}
         onInput={(e) => {
           e.stopPropagation()
           setValue(e.currentTarget.value)
           // only update height if it's changed
           if (height !== e.currentTarget.scrollHeight) {
-            e.currentTarget.style.height = '0px' // to make the scroll height as the real content height.
-            const newHeight = e.currentTarget.scrollHeight
+            const targetCopy = e.currentTarget.cloneNode(true) as HTMLElement
+            targetCopy.style.height = '0px'
+            targetCopy.style.visibility = 'hidden'
+            document.body.appendChild(targetCopy)
+            const newHeight = targetCopy.scrollHeight
+            console.log(newHeight)
             if (newHeight !== height) {
               if (!maxHeight || newHeight < maxHeight) {
-                setHeight(newHeight)
+                setHeight(newHeight + 2)
+              } else {
+                setHeight(maxHeight + 2)
               }
             }
+            document.body.removeChild(targetCopy)
           }
         }}
         {...props}
