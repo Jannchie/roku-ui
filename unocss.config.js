@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
+import { presetTypography, presetUno, transformerDirectives, defineConfig } from 'unocss'
 const saveList = []
 const variants = ['hover', 'active', 'group-hover', 'focus-within']
 const utilities = ['border', 'bg', 'text', 'ring', 'outlined', 'decoration']
@@ -7,7 +6,6 @@ const colorType = ['primary', 'secondary', 'default', 'success', 'danger', 'warn
 const colorLevel = [1, 2, 3]
 const opacityLevel = [10, 25, 50, 75, 90]
 const colors = {}
-
 for (const utility of utilities) {
   for (const type of colorType) {
     for (const level of colorLevel) {
@@ -41,26 +39,16 @@ for (const type of ['background', 'frontground']) {
     colors[`${type}`][`${level}`] = `hsl(var(--r-${type}-${level}))`
   }
 }
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./src/**/*.{html,js,ts,tsx}'],
-  darkMode: ['class', '[data-theme="dark"]'],
-  plugins: [
-    function ({ addVariant }) {
-      addVariant('child', '& > *')
-      addVariant('child-hover', '& > *:hover')
-    },
-    require('@tailwindcss/typography'),
+export default defineConfig({
+  presets: [
+    presetUno(),
+    presetTypography({}),
   ],
   theme: {
-    extend: {
-      colors: {
-        ...colors,
-      },
-    },
+    colors,
   },
+  transformers: [
+    transformerDirectives(),
+  ],
   safelist: saveList,
-  variants: {
-    extend: {},
-  },
-}
+})

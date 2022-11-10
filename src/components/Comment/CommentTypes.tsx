@@ -9,7 +9,7 @@ export interface CommentDataUser {
 export interface CommentData {
   id: string | number
   user: CommentDataUser
-  content: ReactNode
+  content: string
   time?: ReactNode
   [key: string]: any
 }

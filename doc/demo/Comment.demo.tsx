@@ -10,7 +10,7 @@ export default function CommentDemo () {
         avatar: 'https://i.pravatar.cc/80?img=1',
         link: 'https://zeroroku.com',
       },
-      content: 'Hello, world!',
+      content: 'Hello,\n world!',
       time: '2020-01-01',
     },
     {
@@ -19,7 +19,8 @@ export default function CommentDemo () {
         name: 'Jannchie',
         avatar: 'https://i.pravatar.cc/80?img=2',
       },
-      content: 'This is a comment.',
+      content: `This is a **comment**,
+with second line.`,
       replies: [
         {
           id: '3',
@@ -35,7 +36,7 @@ export default function CommentDemo () {
             name: 'Cake',
             avatar: 'https://i.pravatar.cc/80?img=3',
           },
-          content: "I'm a very very very very very very very very very very very very Long reply.",
+          content: 'I\'m a very very very very very very very very very very very very Long reply.',
         },
         {
           id: '4',
@@ -43,7 +44,7 @@ export default function CommentDemo () {
             name: 'Cake',
             avatar: 'https://i.pravatar.cc/80?img=3',
           },
-          content: "I'm a reply.",
+          content: 'I\'m a reply, with another line.',
         },
         {
           id: '8',

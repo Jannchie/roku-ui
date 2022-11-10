@@ -4,4 +4,4 @@
 
 ## 示例
 
-<Demo name="Comment" />
+<Demo name="Comment" prose />

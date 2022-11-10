@@ -4,7 +4,7 @@ import './Article.css'
 
 export function Article ({ children, className, ...others }: { children: ReactNode } & HTMLAttributes<HTMLDivElement>) {
   return (
-    <article className={classNames('r-article', className)} {...others}>
+    <article className={classNames('r-article prose', className)} {...others}>
       {children}
     </article>
   )

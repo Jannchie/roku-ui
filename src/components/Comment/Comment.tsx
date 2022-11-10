@@ -8,6 +8,7 @@ import {
 } from '../..'
 import { SimpleComment } from './SimpleComment'
 import { CommentData, CommentOptions } from './CommentTypes'
+import Markdown from 'markdown-to-jsx'
 
 export function Comment ({
   data,
@@ -62,9 +63,9 @@ export function Comment ({
   }
   return (
     <div
-      className="flex flex-col"
+      className="flex flex-col bg-background-3 rounded py-2 px-4 gap-2"
     >
-      <div>
+      <div className="flex flex-col gap-1">
         <div
           className="flex gap-2 items-center mb-2 text-sm"
         >
@@ -72,15 +73,16 @@ export function Comment ({
           <div className="font-bold">
             {name}
           </div>
-          {data.time && <div className="text-default-400">{data.time}</div>}
+          {data.time && <div className="text-frontground-3">{data.time}</div>}
         </div>
-
-        <div className="dark:text-default-400 text-default-700 text-sm">
-          {data.content}
+        <div className="dark:text-default-400 text-default-700 prose-sm dark:prose-sm">
+          <Markdown>
+            {data.content.replaceAll('\n', '\n\n')}
+          </Markdown>
         </div>
         { actions &&
           (
-            <div className="flex my-2">
+            <div className="flex">
               {actions}
             </div>
           )}
@@ -89,13 +91,12 @@ export function Comment ({
         <div
           ref={repliesDetail}
           className={classNames(
-            'pb-2 px-4 rounded flex flex-col gap-2',
+            'rounded flex flex-col gap-2',
           )}
         >
           {!showMore && replies.slice(0, maxReplies).map((reply) => (
             <div
               key={`${reply.id}`}
-              className="px-[5px]"
             >
               <SimpleComment data={reply} />
             </div>
@@ -114,7 +115,7 @@ export function Comment ({
             <div>
               <Btn
                 text
-                size="xs"
+                size="sm"
                 color="primary"
                 className="text-xs"
                 onClick={() => { setShowMore(!showMore) }}

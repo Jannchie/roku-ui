@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 [data-theme="dark"] {
   color-scheme: dark;
@@ -18,6 +18,6 @@
 }
 
 :root {
-  --tw-background-opacity: 1;
-  --tw-border-opacity: 1;
+  --un-background-opacity: 1;
+  --un-border-opacity: 1;
 }

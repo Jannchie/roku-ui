@@ -31,7 +31,7 @@ export function TextField ({
   ring = true,
   placeholder,
   textAlign = 'left',
-  border = false,
+  border = true,
   borderType = 'solid',
   color = 'primary',
   value, setValue,
