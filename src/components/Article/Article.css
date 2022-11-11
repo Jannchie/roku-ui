@@ -1,3 +1,3 @@
 .r-article {
-  @apply prose prose-sm prose-zinc dark:prose-invert m-auto;
+  @apply m-auto;
 }

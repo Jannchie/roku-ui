@@ -1,7 +1,7 @@
 import { Appbar, MaterialSymbolIcon } from '../../src'
 
 export default function Demo () {
-  return <div>
+  return <div style={{ background: 'url("https://picsum.photos/seed/picsum/1024/52")' }}>
     <Appbar
       varient="default"
       color="primary"
