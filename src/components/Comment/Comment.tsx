@@ -75,7 +75,7 @@ export function Comment ({
           </div>
           {data.time && <div className="text-frontground-3">{data.time}</div>}
         </div>
-        <div className="dark:text-default-400 text-default-700 prose-sm dark:prose-sm">
+        <div className="text-frontground-2 not-prose">
           <Markdown>
             {data.content.replaceAll('\n', '\n\n')}
           </Markdown>
