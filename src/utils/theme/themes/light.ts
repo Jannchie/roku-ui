@@ -5,7 +5,7 @@ export const defaultLight: Theme = {
   dark: false,
   background: {
     base: '#fefefe',
-    darker: '#f5f5f5',
+    darker: '#f9f9f9',
     lighter: '#ffffff',
   },
   frontground: '#18181b',

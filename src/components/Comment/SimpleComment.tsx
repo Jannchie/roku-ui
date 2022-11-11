@@ -1,4 +1,3 @@
-import Markdown from 'markdown-to-jsx'
 import { CommentData } from './CommentTypes'
 
 export function SimpleComment ({ data }: { data: CommentData }) {
@@ -17,7 +16,7 @@ export function SimpleComment ({ data }: { data: CommentData }) {
         <div className="mr-2">
           {user.name}
         </div>
-        <div className="dark:text-default-400 text-default-700 text-sm not-prose dark:prose-invert">
+        <div className="text-sm not-prose dark:prose-invert">
           {content}
         </div>
       </div>
