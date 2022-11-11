@@ -53,14 +53,11 @@ export const push = (notice: ReactNode, config?: PushConfig): void => {
   nEventMgr.onPush.forEach((cb) => cb(notice, config))
 }
 export const pushNotice = (config: PushConfig & NoticeConfig) => {
-  let { existsMS, progressBar, closable } = config
+  let { existsMS, closable = false } = config
   const { title, desc, type } = config
 
   if (!existsMS) existsMS = 3000
-  if (!progressBar) progressBar = false
-  if (!closable) closable = true
-  let mainColor: Colors = 'primary'
-
+  let mainColor: Colors
   let icon: ReactNode = ''
   switch (type) {
     case 'success': {

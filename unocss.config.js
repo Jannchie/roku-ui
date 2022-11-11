@@ -1,5 +1,5 @@
 import { presetTypography, presetUno, transformerDirectives, defineConfig } from 'unocss'
-const saveList = []
+const saveList = ['prose', 'not-prose']
 const variants = ['hover', 'active', 'group-hover', 'focus-within']
 const utilities = ['border', 'bg', 'text', 'ring', 'outlined', 'decoration']
 const colorType = ['primary', 'secondary', 'default', 'success', 'danger', 'warning', 'info', 'background', 'frontground', 'border']
