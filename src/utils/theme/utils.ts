@@ -17,6 +17,12 @@ export function registTheme (name: string, theme: Theme) {
       if (key === 'k') {
         continue
       }
+      if (key === 'dark') {
+        if (value) {
+          items.push('color-scheme: dark;')
+        }
+        continue
+      }
       if (typeof value === 'string') {
         const c = hsl(value)
         if (c) {

@@ -2,6 +2,7 @@ import { Theme } from '../Theme'
 
 export const defaultLight: Theme = {
   k: 0.4,
+  dark: false,
   background: {
     base: '#fefefe',
     darker: '#f5f5f5',

@@ -2,6 +2,7 @@ export interface ThemeColorObject { k?: number, base: string, darker?: string, l
 export type ThemeColor = string | ThemeColorObject
 export interface Theme {
   k: number
+  dark: boolean
   background: ThemeColor
   frontground: ThemeColor
   border: ThemeColor
