@@ -1,6 +1,6 @@
 # Roku UI
 
-一个 [React](https://reactjs.org/) 组件库。基于 [Tailwind CSS](https://tailwindcss.com/)、[Vite](https://cn.vitejs.dev) 等项目，很潮。
+一个 [React](https://reactjs.org/) 组件库。基于 [Uno CSS](https://github.com/unocss/unocss)、[Vite](https://cn.vitejs.dev) 等项目，很潮。
 
 相对于现有的组件库，Ruku UI 试图实现以下目标：
 
