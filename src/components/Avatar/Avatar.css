@@ -39,5 +39,5 @@
   @apply flex-row flex-wrap;
   @apply justify-center;
   @apply -space-x-3;
-  @apply hover:child:-translate-x-4;
+  @apply hover:children:translate-x-4;
 }

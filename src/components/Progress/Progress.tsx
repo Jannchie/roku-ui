@@ -44,7 +44,7 @@ export function Progress ({
           transition={{
             duration: 1,
             ease: 'linear',
-            repeat: infinite ? Infinity : 0,
+            repeat: Infinity,
             times: [0, 0.1, 0.9, 1],
           }}
         />

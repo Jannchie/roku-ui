@@ -2,11 +2,11 @@ import classNames from 'classnames'
 import { HTMLAttributes } from 'react'
 import { Colors } from '../..'
 import './Panel.css'
-export type PanelProps = {
+export interface PanelProps {
   color?: Colors
   border?: boolean
   padding?: boolean
-} & HTMLAttributes<HTMLDivElement>
+}
 
 export function Panel ({
   color,
@@ -15,7 +15,7 @@ export function Panel ({
   children,
   padding,
   ...others
-}: PanelProps) {
+}: PanelProps & HTMLAttributes<HTMLDivElement>) {
   const bgCls = color ? `bg-${color}-2` : 'bg-background-2'
   const borderCls = `border-${color ?? 'border'}-1`
   return (

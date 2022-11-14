@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ReactNode, useEffect } from 'react'
+import { HTMLAttributes, ReactNode, useEffect } from 'react'
 import {
   Btn, Colors, MaterialSymbolIcon, Panel, PanelProps, Progress, textColorClass,
 } from '../..'
@@ -54,7 +54,7 @@ export function Notice ({
   progressTotal = 100,
   close,
   ...others
-}: NoticeProps & PanelProps) {
+}: NoticeProps & PanelProps & HTMLAttributes<HTMLDivElement>) {
   const wrapperCls = classNames(
     'r-notice-wrapper',
     { 'shadow-lg shadow-black/5': shadow },

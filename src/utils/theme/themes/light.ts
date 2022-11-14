@@ -1,8 +1,13 @@
 import { Theme } from '../Theme'
 
 export const defaultLight: Theme = {
-  k: 0.1,
-  background: '#EFEFEF',
+  k: 0.4,
+  dark: false,
+  background: {
+    base: '#fefefe',
+    darker: '#f9f9f9',
+    lighter: '#ffffff',
+  },
   frontground: '#18181b',
   border: '#BBB',
   primary: '#0284c7',

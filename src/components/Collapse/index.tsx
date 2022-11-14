@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ReactNode, useRef, useState } from 'react'
+import { HTMLAttributes, ReactNode, useRef, useState } from 'react'
 import { useAutoSetHeight } from '../../hooks'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import { Panel, PanelProps } from '../Panel'
@@ -18,7 +18,7 @@ export function Collapse ({
   expanded?: boolean
   icon?: ReactNode
   setExpanded?: (expanded: boolean) => void
-} & PanelProps) {
+} & PanelProps & HTMLAttributes<HTMLDivElement>) {
   const compRef = useRef(null)
   useAutoSetHeight(compRef)
   const [internelExpanded, setInternelExpanded] = useState(expanded)

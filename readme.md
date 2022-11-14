@@ -11,7 +11,7 @@
 - 内置丰富而不造作的动画。
 - 内置开箱即用的高级组件。
 
-你可以通过这些链接体验我对此作出的尝试：[评论列表组件(开发中)](https://roku-ui.vercel.app/?path=/story/hyper-comment--default)和[通知系统组件](https://roku-ui.vercel.app/?path=/story/global-notifications--default)。
+你可以通过这些链接体验我对此作出的尝试：[评论列表组件](https://roku-ui.vercel.app/?path=/story/hyper-comment--default)和[通知系统组件](https://roku-ui.vercel.app/?path=/story/global-notifications--default)。
 
 ## 为什么要做一个新的的组件库？
 
@@ -33,4 +33,4 @@
 
 - 这是一个基于 React 的组件库。
 - 通过 Flamer Motion 来实现动画。
-- 通过 TailwindCSS 来管理样式。
+- 通过 Unocss 来管理样式。
