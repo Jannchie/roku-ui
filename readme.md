@@ -32,5 +32,5 @@
 比起实践，这个项目更适合学习和交流。
 
 - 这是一个基于 React 的组件库。
-- 通过 Flamer Motion 来实现动画。
+- 通过 Framer Motion 来实现动画。
 - 通过 Unocss 来管理样式。
