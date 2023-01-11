@@ -31,8 +31,8 @@ specifiers:
   framer-motion: ^8.4.0
   jsx-to-string: ^1.4.0
   markdown-to-jsx: ^7.1.8
-  react: ^18.2.0
-  react-dom: ^18.2.0
+  react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   react-element-to-jsx-string: ^15.0.0
   react-router-dom: ^6.6.2
   react-test-renderer: ^18.2.0
