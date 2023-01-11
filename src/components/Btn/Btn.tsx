@@ -21,7 +21,6 @@ export type ButtonProps = {
   dash?: boolean
   text?: boolean
   disabled?: boolean
-  onClick?: () => void
   loading?: boolean
   ring?: boolean
   children?: ReactNode
