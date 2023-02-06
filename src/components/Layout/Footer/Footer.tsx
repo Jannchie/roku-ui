@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { HTMLAttributes } from 'react'
+import { type HTMLAttributes } from 'react'
 import './Footer.css'
 
 export function Footer ({
@@ -7,7 +7,7 @@ export function Footer ({
   ...others
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <footer { ...others } className={classNames('r-footer-wrapper', others.className)}>
+    <footer { ...others } className={classNames('r-footer-wrapper border-b-2', others.className)}>
       {children}
     </footer>
   )

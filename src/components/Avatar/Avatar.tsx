@@ -1,9 +1,9 @@
 import './Avatar.css'
 import {
-  MouseEvent, KeyboardEvent, ReactNode, ImgHTMLAttributes, HTMLAttributes,
+  type MouseEvent, type KeyboardEvent, type ReactNode, type ImgHTMLAttributes, type HTMLAttributes,
 } from 'react'
 import classNames from 'classnames'
-import { Colors } from '../..'
+import { type Colors } from '../..'
 
 type AvatarProps = {
   className?: string
@@ -81,8 +81,7 @@ export function AvatarRoot ({
   )
 }
 
-const Group = ({ children, className, ...others }: {
-} & HTMLAttributes<HTMLDivElement>) => (
+const Group = ({ children, className, ...others }: HTMLAttributes<HTMLDivElement>) => (
   <div className={classNames('r-avatar-group', className)} {...others}>
     {children}
   </div>

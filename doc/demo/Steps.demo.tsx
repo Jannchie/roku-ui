@@ -11,9 +11,9 @@ export default function Demo () {
         <Step.Item index={2}>Step 3</Step.Item>
       </Step.Container>
       <div style={{ display: 'flex', gap: 16, marginTop: 16 }}>
-        <Btn onClick={() => setCurrent(0)}>Step 1</Btn>
-        <Btn onClick={() => setCurrent(1)}>Step 2</Btn>
-        <Btn onClick={() => setCurrent(2)}>Step 3</Btn>
+        <Btn onClick={() => { setCurrent(0) }}>Step 1</Btn>
+        <Btn onClick={() => { setCurrent(1) }}>Step 2</Btn>
+        <Btn onClick={() => { setCurrent(2) }}>Step 3</Btn>
       </div>
     </>
   )

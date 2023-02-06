@@ -1,10 +1,10 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
-import { createContext, HTMLAttributes, useContext, useMemo } from 'react'
-import { Colors } from '../../utils/colors'
+import { createContext, type HTMLAttributes, useContext, useMemo } from 'react'
+import { type Colors } from '../../utils/colors'
 import './Radio.css'
 
-const RadioCtx = createContext<{ val: any, setValue: ((value: any) => void) }>({ val: '', setValue: () => { } })
+const RadioCtx = createContext<{ val: any, setValue: (value: any) => void }>({ val: '', setValue: () => { } })
 
 function RadioRoot ({
   id, className, value, label, color = 'frontground', ...others
@@ -18,7 +18,7 @@ function RadioRoot ({
         type="radio"
         checked={checked}
         className={classNames('r-input-radio', `border-${color}-2 hover:border-${color}-1`)}
-        onChange={() => setValue(value)}
+        onChange={() => { setValue(value) }}
       />
       <AnimatePresence>
         {checked && (

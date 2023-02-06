@@ -1,6 +1,6 @@
 import './MaterialSymbolIcon.css'
 import classNames from 'classnames'
-import { CSSProperties, HTMLAttributes } from 'react'
+import { type CSSProperties, type HTMLAttributes } from 'react'
 
 export function MaterialSymbolIcon ({
   size = 'md',

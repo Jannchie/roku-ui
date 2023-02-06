@@ -6,7 +6,7 @@ import { SwitchTransition, Transition } from 'react-transition-group'
 import {
   Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, Tag, useOnClickOutside, useTheme,
 } from '../src'
-import useWindowSize, { WindowSize } from '../src/hooks/useWindowSize'
+import useWindowSize, { type WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
 import { router } from './router'
 
@@ -174,8 +174,8 @@ function LeftMenu ({
           overflowY: 'auto',
           overflowX: 'hidden',
         }}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        onMouseEnter={() => { setHover(true) }}
+        onMouseLeave={() => { setHover(false) }}
       >
         {router.filter(d => d.path !== 'test').map((route) => (
           <NavLink

@@ -1,8 +1,8 @@
 import './Progress.css'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
-import { BaseProps } from '../../utils/type'
-import { bgColorClass, Colors, isColor } from '../..'
+import { type BaseProps } from '../../utils/type'
+import { bgColorClass, type Colors, isColor } from '../..'
 
 type ProgressProps = {
   color?: Colors | string

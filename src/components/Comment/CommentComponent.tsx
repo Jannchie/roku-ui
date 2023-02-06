@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import { HTMLAttributes, ReactNode } from 'react'
+import { type HTMLAttributes, type ReactNode } from 'react'
 import { CommentForm } from './CommentForm'
 import { CommentList } from './CommentList'
-import { CommentData, CommentDataWithReplies } from './CommentTypes'
+import { type CommentData, type CommentDataWithReplies } from './CommentTypes'
 
 export function CommentComponent (
   {

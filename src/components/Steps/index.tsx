@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { createContext, HTMLAttributes, ReactElement, ReactNode, useContext } from 'react'
+import { createContext, type HTMLAttributes, type ReactElement, type ReactNode, useContext } from 'react'
 import './Steps.css'
 type StepItemProps = {
   index: number

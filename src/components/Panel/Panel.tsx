@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { HTMLAttributes } from 'react'
-import { Colors } from '../..'
+import { type HTMLAttributes } from 'react'
+import { type Colors } from '../..'
 import './Panel.css'
 export interface PanelProps {
   color?: Colors

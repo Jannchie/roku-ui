@@ -1,11 +1,11 @@
 import './TextField.css'
 import classnames from 'classnames'
 import {
-  ChangeEvent, Dispatch,
-  InputHTMLAttributes,
-  ReactNode, SetStateAction,
+  type ChangeEvent, type Dispatch,
+  type InputHTMLAttributes,
+  type ReactNode, type SetStateAction,
 } from 'react'
-import { Colors } from '../..'
+import { type Colors } from '../..'
 
 export type TextFieldProps = {
   className?: string

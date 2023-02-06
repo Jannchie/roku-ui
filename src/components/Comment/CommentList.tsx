@@ -1,8 +1,8 @@
-import { ReactNode, useEffect } from 'react'
+import { type ReactNode, useEffect } from 'react'
 import { Progress } from '../..'
 import { Comment } from './Comment'
 import { useScrollBottom } from '../../hooks'
-import { CommentDataWithReplies, CommentOptions } from './CommentTypes'
+import { type CommentDataWithReplies, type CommentOptions } from './CommentTypes'
 
 export function CommentList ({
   data, refoldable, generateActions, onLoadMore, loading, ...commentOptions

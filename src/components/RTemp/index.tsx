@@ -1,5 +1,5 @@
 import './style.css'
-import { FC } from 'react'
+import { type FC } from 'react'
 
 export const RTemp: FC<{
   className?: string

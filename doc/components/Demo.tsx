@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState, lazy, Suspense, useRef } from 'react'
+import { type ReactNode, useEffect, useState, lazy, Suspense, useRef } from 'react'
 import { Loading, Panel } from '../../src'
 import './Demo.css'
 export const Demo = ({ name, prose = false }: {
@@ -28,7 +28,7 @@ export const Demo = ({ name, prose = false }: {
   return (
     <Panel
       border
-      className={prose ? '' : 'not-prose'}
+      className={ prose ? '' : 'not-prose'}
       style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}>
       <div ref={compRef} style={{
         transitionProperty: 'height',

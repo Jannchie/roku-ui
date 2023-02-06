@@ -1,7 +1,7 @@
 import './Tag.css'
-import { MouseEvent, KeyboardEvent, ReactNode } from 'react'
+import { type MouseEvent, type KeyboardEvent, type ReactNode } from 'react'
 import classNames from 'classnames'
-import { Colors } from '../../utils/colors'
+import { type Colors } from '../../utils/colors'
 
 type ChipProps = {
   className?: string

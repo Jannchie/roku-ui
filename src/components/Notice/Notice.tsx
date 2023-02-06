@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { HTMLAttributes, ReactNode, useEffect } from 'react'
+import { type HTMLAttributes, type ReactNode, useEffect } from 'react'
 import {
-  Btn, Colors, MaterialSymbolIcon, Panel, PanelProps, Progress, textColorClass,
+  Btn, type Colors, MaterialSymbolIcon, Panel, type PanelProps, Progress, textColorClass,
 } from '../..'
 import './Notice.css'
 
@@ -28,10 +28,10 @@ export async function animate (
   keyframes: Keyframe[] | PropertyIndexedKeyframes,
   options?: number | KeyframeAnimationOptions,
 ): Promise<void> {
-  return await new Promise((resolve) => {
+  await new Promise<void>((resolve) => {
     const anim = el.animate(keyframes, options)
-    anim.addEventListener('finish', () => resolve())
-    anim.addEventListener('cancel', () => resolve())
+    anim.addEventListener('finish', () => { resolve() })
+    anim.addEventListener('cancel', () => { resolve() })
   })
 }
 

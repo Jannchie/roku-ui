@@ -1,8 +1,7 @@
-import { CommentData } from './CommentTypes'
+import { type CommentData } from './CommentTypes'
 
 export function SimpleComment ({ data }: { data: CommentData }) {
   const { user, content, id, time } = data
-  console.log(content)
   return (
     <div key={id}>
       {

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ReactNode, useRef, useState } from 'react'
+import { type ReactNode, useRef, useState } from 'react'
 import {
   Avatar,
   Btn,
@@ -7,7 +7,7 @@ import {
   Anchor,
 } from '../..'
 import { SimpleComment } from './SimpleComment'
-import { CommentData, CommentOptions } from './CommentTypes'
+import { type CommentData, type CommentOptions } from './CommentTypes'
 import Markdown from 'markdown-to-jsx'
 
 export function Comment ({

@@ -1,7 +1,7 @@
 import './Badge.css'
-import { HTMLAttributes, ReactNode } from 'react'
+import { type HTMLAttributes, type ReactNode } from 'react'
 import classNames from 'classnames'
-import { Colors, bgColorClass } from '../..'
+import { type Colors, bgColorClass } from '../..'
 
 interface BadgeProps {
   className?: string
@@ -52,7 +52,7 @@ export function Badge ({
               {content}
             </span>
             {ping &&
-              <span className={classNames('animate-ping text-transparent', badgePointCls)} >
+              <span className={classNames('r-badge-ping', badgePointCls)} >
                 {content}
               </span>
             }

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { HTMLAttributes, ReactNode } from 'react'
+import { type HTMLAttributes, type ReactNode } from 'react'
 import './Typography.css'
 
 function H1 ({ children, className, ...props }: {

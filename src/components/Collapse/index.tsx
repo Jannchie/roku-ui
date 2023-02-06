@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import { HTMLAttributes, ReactNode, useRef, useState } from 'react'
+import { type HTMLAttributes, type ReactNode, useRef, useState } from 'react'
 import { useAutoSetHeight } from '../../hooks'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
-import { Panel, PanelProps } from '../Panel'
+import { Panel, type PanelProps } from '../Panel'
 
 export function Collapse ({
   children,

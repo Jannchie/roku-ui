@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Colors } from '../../utils/colors'
+import { type Colors } from '../../utils/colors'
 import { Btn } from '../Btn'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 
@@ -16,10 +16,10 @@ export function Rating ({ max, value, setValue, color = 'primary' }: {
       {range.map(d => (
         <Btn key={d} icon text
           color={d <= value ? 'primary' : 'default'}
-          onMouseEnter={() => setHover(d)} onClick={() => {
+          onMouseEnter={() => { setHover(d) }} onClick={() => {
             setValue(d)
           }}
-          onMouseLeave={() => setHover(value)}
+          onMouseLeave={() => { setHover(value) }}
         >
           <MaterialSymbolIcon fill={d <= hover} icon="star" />
         </Btn>

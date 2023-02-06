@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { HTMLAttributes, ReactNode } from 'react'
+import { type HTMLAttributes, type ReactNode } from 'react'
 import './Article.css'
 
 export function Article ({ children, className, ...others }: { children: ReactNode } & HTMLAttributes<HTMLDivElement>) {

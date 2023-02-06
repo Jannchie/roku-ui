@@ -41,8 +41,12 @@ for (const type of ['background', 'frontground']) {
 }
 export default defineConfig({
   presets: [
-    presetUno(),
-    presetTypography({}),
+    presetUno({
+      variablePrefix: 'r-',
+    }),
+    presetTypography({
+      variablePrefix: 'r-',
+    }),
   ],
   theme: {
     colors,

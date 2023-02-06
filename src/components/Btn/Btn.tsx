@@ -1,9 +1,9 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  createContext, CSSProperties, HTMLAttributes, ReactNode, useContext, useMemo,
+  createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo,
 } from 'react'
-import { Colors } from '../../utils/colors'
+import { type Colors } from '../../utils/colors'
 import { Loading } from '../../icons/Loading'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import './Btn.css'
@@ -36,7 +36,7 @@ export type ButtonProps = {
 interface BtnGroupCtxType {
   cancelable: any
   value: any
-  setValue: ((value: any) => void)
+  setValue: (value: any) => void
   activeColor: Colors
 }
 const BtnGroupCtx = createContext<BtnGroupCtxType>({
@@ -76,8 +76,8 @@ function BtnRoot ({
   const fgColor = color === 'default' ? 'fg' : color
   if (!loadingIcon) {
     loadingIcon = <Loading
-      mainClassName="stroke-[hsl(var(--r-b-3))]"
-      subClassName="stroke-[hsl(var(--r-b-2))]" />
+      mainClassName="stroke-[hsl(var(--r-background-3))]"
+      subClassName="stroke-[hsl(var(--r-background-2))]" />
   }
   if (value && value === ctx.value) {
     color = ctx.activeColor

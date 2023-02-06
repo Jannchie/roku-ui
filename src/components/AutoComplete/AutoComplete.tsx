@@ -1,8 +1,8 @@
 import './AutoComplete.css'
-import { ReactNode, useState } from 'react'
+import { type ReactNode, useState } from 'react'
 import classNames from 'classnames'
 import { TextField } from '../..'
-import { BaseProps } from '../../utils/type'
+import { type BaseProps } from '../../utils/type'
 
 export type RComboboxProps<T extends { id: number, name: string }> = {
   notFoundContent?: ReactNode
@@ -30,7 +30,7 @@ export function AutoComplete<D extends { id: number, name: string }> ({
           <TextField
             className={classNames('r-text-field')}
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => { setQuery(event.target.value) }}
           />
           <button className="r-combobox-btn" type="button">
             <span className="material-symbols-outlined">expand_more</span>

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { Colors, textColorClass } from '../..'
+import { type Colors, textColorClass } from '../..'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import { Typography } from '../Typography'
 import './Result.css'

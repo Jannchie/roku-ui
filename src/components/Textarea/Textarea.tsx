@@ -1,7 +1,7 @@
 import './Textarea.css'
 import classNames from 'classnames'
-import { TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
-import { Colors } from '../../utils/colors'
+import { type TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
+import { type Colors } from '../../utils/colors'
 
 export interface TextareaProps {
   setValue: (value: string) => void

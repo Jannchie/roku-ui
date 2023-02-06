@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { FC, HTMLAttributes, ReactNode } from 'react'
-import { Colors } from '../../..'
+import { type FC, type HTMLAttributes, type ReactNode } from 'react'
+import { type Colors } from '../../..'
 import { MaterialSymbolIcon } from '../../MaterialSymbolIcon'
 import { TextField } from '../../TextField'
 import './Appbar.css'

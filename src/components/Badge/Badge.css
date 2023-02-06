@@ -68,3 +68,7 @@
 .r-badge-point-with-content.r-badge-point-top-left {
   @apply -ml-3;
 }
+
+.r-badge-ping {
+  @apply animate-ping text-transparent;
+}

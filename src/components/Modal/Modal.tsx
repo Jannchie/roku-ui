@@ -1,8 +1,8 @@
 import './Modal.css'
-import { ReactNode, useCallback, useRef, useState } from 'react'
+import { type ReactNode, useCallback, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useOnClickOutside } from '../../hooks'
-import { BaseProps } from '../../utils/type'
+import { type BaseProps } from '../../utils/type'
 import classNames from 'classnames'
 
 export type ModalProps = {

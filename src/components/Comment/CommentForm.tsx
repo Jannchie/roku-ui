@@ -1,5 +1,5 @@
 import { Btn, Textarea } from '../..'
-import { CommentData } from './CommentTypes'
+import { type CommentData } from './CommentTypes'
 
 export function CommentForm ({
   replyTo, input, setInput, onSend,

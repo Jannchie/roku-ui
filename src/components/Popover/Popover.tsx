@@ -1,8 +1,8 @@
 import './Popover.css'
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ReactNode, useState } from 'react'
-import { BaseProps } from '../../utils/type'
+import { type ReactNode, useState } from 'react'
+import { type BaseProps } from '../../utils/type'
 
 function Content ({
   children,

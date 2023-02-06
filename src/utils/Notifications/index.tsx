@@ -1,10 +1,10 @@
 import './style.css'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  ReactNode, useCallback, useEffect, useRef, useState,
+  type ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react'
 import classNames from 'classnames'
-import { Colors, MaterialSymbolIcon, Notice } from '../..'
+import { type Colors, MaterialSymbolIcon, Notice } from '../..'
 
 interface NotificationConfig {
   left?: boolean
@@ -50,7 +50,7 @@ export const push = (notice: ReactNode, config?: PushConfig): void => {
       'No notification event listener, you should add at least one Notifications Component to your app.',
     )
   }
-  nEventMgr.onPush.forEach((cb) => cb(notice, config))
+  nEventMgr.onPush.forEach((cb) => { cb(notice, config) })
 }
 export const pushNotice = (config: PushConfig & NoticeConfig) => {
   let { existsMS, closable = false } = config
@@ -88,7 +88,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       close={
         closable
           ? () => {
-            nEventMgr.onRemove.forEach((cb) => cb(n))
+            nEventMgr.onRemove.forEach((cb) => { cb(n) })
           }
           : undefined
       }

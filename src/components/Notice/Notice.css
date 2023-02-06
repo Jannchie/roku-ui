@@ -1,5 +1,5 @@
 .r-notice-wrapper {
-  @apply bg-b-2 border-b-1;
+  @apply bg-background-2 border-border-2 border;
   @apply text-sm rounded-xl;
 }
 

@@ -1,5 +1,10 @@
 import { Anchor } from '../../src'
 
 export default function Demo () {
-  return <Anchor href="#">A Link</Anchor>
+  return (
+    <div className="flex gap-2">
+      <Anchor href="#">A Link</Anchor>
+      <Anchor >A Link Without Href</Anchor>
+    </div>
+  )
 }

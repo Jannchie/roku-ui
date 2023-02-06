@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { FC, ReactNode, useState } from 'react'
-import { Colors } from '../..'
+import { type FC, type ReactNode, useState } from 'react'
+import { type Colors } from '../..'
 
 export interface SwitchProps {
   value: boolean
@@ -17,7 +17,7 @@ export const Switch: FC<SwitchProps> = ({
   label,
 }: SwitchProps) => {
   const [clicking, setClicking] = useState(false)
-  const colorStyle = value ? `hsl(var(--r-${color}-2))` : 'hsl(var(--r-b-2))'
+  const colorStyle = value ? `hsl(var(--r-${color}-2))` : 'hsl(var(--r-background-2))'
   let labelSize = 'text-sm'
   let h = 1.25
   if (size === 'sm') {
@@ -50,7 +50,7 @@ export const Switch: FC<SwitchProps> = ({
           e.preventDefault()
           setClicking(false)
         }}
-        onClick={() => setValue(!value)}
+        onClick={() => { setValue(!value) }}
       />
       {label && <span className={labelSize}>{label}</span>}
     </div>

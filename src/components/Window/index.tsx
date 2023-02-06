@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { HTMLAttributes, ReactNode } from 'react'
-import { Colors } from '../../utils/colors'
+import { type HTMLAttributes, type ReactNode } from 'react'
+import { type Colors } from '../../utils/colors'
 import { Panel } from '../Panel'
 
 export function Window ({

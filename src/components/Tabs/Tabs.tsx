@@ -1,10 +1,10 @@
 import './Tabs.css'
 import {
-  ReactNode, useEffect, useRef, useState,
+  type ReactNode, useEffect, useRef, useState,
 } from 'react'
 import classNames from 'classnames'
-import { bgColorClass, Colors, textColorClass, useAutoSetHeight } from '../..'
-import { BaseProps } from '../../utils/type'
+import { bgColorClass, type Colors, textColorClass, useAutoSetHeight } from '../..'
+import { type BaseProps } from '../../utils/type'
 
 // eslint-disable-next-line react/no-unused-prop-types
 function Item ({ children }: { label: ReactNode, children?: ReactNode }) {

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { HTMLMotionProps, motion, useMotionValue, useSpring } from 'framer-motion'
+import { type HTMLMotionProps, motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { Colors } from '../..'
+import { type Colors } from '../..'
 
 type DynamicValueProps = {
   value: number

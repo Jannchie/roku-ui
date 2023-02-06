@@ -1,5 +1,5 @@
 import { hsl } from 'd3-color'
-import { Theme, ThemeColorObject } from '.'
+import { type Theme, type ThemeColorObject } from '.'
 function isThemeColor (color: any): color is ThemeColorObject {
   return typeof color?.base === 'string'
 }

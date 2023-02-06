@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Btn, Colors } from '../../src'
+import { Btn, type Colors } from '../../src'
 
 export default function BtnLoadingDemo () {
   const [loading, setLoading] = useState(true)

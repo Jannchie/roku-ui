@@ -1,5 +1,5 @@
 import {
-  RefObject, useEffect, useLayoutEffect, useRef,
+  type RefObject, useEffect, useLayoutEffect, useRef,
 } from 'react'
 
 export const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -58,7 +58,7 @@ export function useEventListener<
     }
 
     // Create event listener that calls handler function stored in ref
-    const eventListener: typeof handler = (event) => savedHandler.current(event)
+    const eventListener: typeof handler = (event) => { savedHandler.current(event) }
 
     targetElement.addEventListener(eventName, eventListener, options)
 

@@ -1,7 +1,7 @@
 import classnames from 'classnames'
-import { HTMLAttributes, ReactNode } from 'react'
-import { Panel } from '../..'
-import { BaseProps } from '../../utils/type'
+import { type HTMLAttributes, type ReactNode } from 'react'
+import { type Colors, Panel } from '../..'
+import { type BaseProps } from '../../utils/type'
 
 type CardProps = {
   title?: ReactNode
@@ -12,6 +12,7 @@ type CardProps = {
   shadow?: boolean
   border?: boolean
   divider?: boolean
+  backgroundColor?: Colors
 } & BaseProps & Omit<HTMLAttributes<HTMLDivElement>, 'color'>
 
 export function Card ({
@@ -25,6 +26,7 @@ export function Card ({
   divider,
   shadow,
   border,
+  backgroundColor = 'background',
   ...other
 }: CardProps) {
   const cardClass = classnames(
@@ -35,13 +37,14 @@ export function Card ({
       'r-card-shadow': shadow,
       'r-card-border': border,
     },
+    `bg-${backgroundColor}-2`,
     className,
   )
   if (children) {
     return <div className={cardClass}>{children}</div>
   }
   return (
-    <Panel className={cardClass} {...other} >
+    <Panel className={cardClass} {...other}>
       {title && (
         <div className="r-card-title">
           <div className="title-line">{title}</div>

@@ -1,4 +1,4 @@
-import { Theme } from '../Theme'
+import { type Theme } from '../Theme'
 
 export const defaultLight: Theme = {
   k: 0.4,
@@ -12,7 +12,11 @@ export const defaultLight: Theme = {
   border: '#BBB',
   primary: '#0284c7',
   secondary: '#059669',
-  default: '#d4d4d8',
+  default: {
+    base: '#eee',
+    darker: '#ececec',
+    lighter: '#f6f6f6',
+  },
   success: '#059669',
   warning: '#ea580c',
   danger: '#dc2626',

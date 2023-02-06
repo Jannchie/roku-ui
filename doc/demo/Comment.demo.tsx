@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CommentDataWithReplies, CommentData, CommentComponent, Btn } from '../../src'
+import { type CommentDataWithReplies, type CommentData, CommentComponent, Btn } from '../../src'
 
 export default function CommentDemo () {
   const raw: CommentDataWithReplies[] = [
