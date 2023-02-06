@@ -17,7 +17,7 @@ export const Switch: FC<SwitchProps> = ({
   label,
 }: SwitchProps) => {
   const [clicking, setClicking] = useState(false)
-  const colorStyle = value ? `hsl(var(--r-${color}-2))` : 'hsl(var(--r-background-2))'
+  const colorStyle = value ? `hsl(var(--r-${color}-2))` : 'hsl(var(--r-b-2))'
   let labelSize = 'text-sm'
   let h = 1.25
   if (size === 'sm') {

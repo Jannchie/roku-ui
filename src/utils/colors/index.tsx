@@ -46,7 +46,7 @@ export function hoverBgColorClass (color?: Colors): string {
     return ''
   }
   if (color === 'default') {
-    return 'bg-frontground-1'
+    return 'bg-f-1'
   }
   return classNames(
     `hover:bg-${color}-1`,
@@ -78,11 +78,11 @@ export function ringColorClass (color?: Colors): string {
     return ''
   }
   if (color === 'default') {
-    return 'ring-frontground-1'
+    return 'ring-f-1'
   }
   return classNames(
     `ring-${color}-2`,
-    'ring-offset-background-2',
+    'ring-offset-b-2',
     'ring',
   )
 }
@@ -92,7 +92,7 @@ export function outlineColorClass (color?: Colors): string {
     return ''
   }
   if (color === 'default') {
-    return 'outline-frontground-1'
+    return 'outline-f-1'
   }
   return classNames(
     `outline-${color}-2`,

@@ -9,7 +9,7 @@
 }
 
 .r-textarea-extra-info {
-  @apply absolute top-full mt-1 text-frontground-2;
+  @apply absolute top-full mt-1 text-f-2;
 }
 
 .r-textarea-border-solid {

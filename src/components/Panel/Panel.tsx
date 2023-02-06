@@ -16,7 +16,7 @@ export function Panel ({
   padding,
   ...others
 }: PanelProps & HTMLAttributes<HTMLDivElement>) {
-  const bgCls = color ? `bg-${color}-2` : 'bg-background-2'
+  const bgCls = color ? `bg-${color}-2` : 'bg-b-2'
   const borderCls = `border-${color ?? 'border'}-1`
   return (
     <div

@@ -63,7 +63,7 @@ export function Comment ({
   }
   return (
     <div
-      className="flex flex-col bg-background-3 rounded py-2 px-4 gap-2"
+      className="flex flex-col bg-b-3 rounded py-2 px-4 gap-2"
     >
       <div className="flex flex-col gap-1">
         <div
@@ -73,9 +73,9 @@ export function Comment ({
           <div className="font-bold">
             {name}
           </div>
-          {data.time && <div className="text-frontground-3">{data.time}</div>}
+          {data.time && <div className="text-f-3">{data.time}</div>}
         </div>
-        <div className="text-frontground-2 not-prose">
+        <div className="text-f-2 not-prose">
           <Markdown>
             {data.content.replaceAll('\n', '\n\n')}
           </Markdown>

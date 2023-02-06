@@ -51,7 +51,7 @@ export function Modal ({
             {background && (
               <motion.div
                 animate={{ opacity: 1 }}
-                className={classNames('r-modal-bg', { 'r-modal-background-blur': backgroundBlur })}
+                className={classNames('r-modal-bg', { 'r-modal-b-blur': backgroundBlur })}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}

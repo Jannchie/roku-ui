@@ -34,11 +34,11 @@
 }
 
 .r-text-field-border {
-  @apply border-border-1 hover:bg-background-1 focus-within:bg-background-1;
+  @apply border-border-1 hover:bg-b-1 focus-within:bg-b-1;
 }
 
 .r-text-field-fill {
-  @apply hover:bg-background-1 bg-background-1/50;
+  @apply hover:bg-b-1 bg-b-1/50;
 }
 
 .r-text-field-ring {

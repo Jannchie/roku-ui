@@ -76,8 +76,8 @@ function BtnRoot ({
   const fgColor = color === 'default' ? 'fg' : color
   if (!loadingIcon) {
     loadingIcon = <Loading
-      mainClassName="stroke-[hsl(var(--r-background-3))]"
-      subClassName="stroke-[hsl(var(--r-background-2))]" />
+      mainClassName="stroke-[hsl(var(--r-b-3))]"
+      subClassName="stroke-[hsl(var(--r-b-2))]" />
   }
   if (value && value === ctx.value) {
     color = ctx.activeColor

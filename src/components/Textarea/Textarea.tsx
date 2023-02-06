@@ -35,7 +35,7 @@ export function Textarea ({
           'r-textarea',
           `r-textarea-border-${border}`,
           'border-border-2',
-          `hover:bg-background-1 bg-background-1/50 ring-${color}-2`,
+          `hover:bg-b-1 bg-b-1/50 ring-${color}-2`,
         )}
         style={{
           height: h,

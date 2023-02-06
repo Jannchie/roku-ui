@@ -28,8 +28,8 @@ export function AvatarRoot ({
   if (typeof ring === 'string') {
     ringColor = ring
   }
-  const bgClass = `bg-${color}-2 text-frontground-2`
-  const ringClass = ring ? `ring-${ringColor}-2 ring-offset-background-2` : ''
+  const bgClass = `bg-${color}-2 text-f-2`
+  const ringClass = ring ? `ring-${ringColor}-2 ring-offset-b-2` : ''
   let { style } = others
   if (typeof size === 'number') {
     style = {

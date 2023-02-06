@@ -1,10 +1,10 @@
 .r-notice-wrapper {
-  @apply bg-background-2 border-background-1;
+  @apply bg-b-2 border-b-1;
   @apply text-sm rounded-xl;
 }
 
 .r-notice-desc {
-  @apply text-frontground-3;
+  @apply text-f-3;
 }
 
 .r-notice-icon {

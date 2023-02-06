@@ -19,7 +19,7 @@
   @apply shadow;
 }
 
-.r-modal-background-blur {
+.r-modal-b-blur {
   @apply backdrop-blur;
 }
 

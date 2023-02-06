@@ -16,12 +16,12 @@
 
 .r-popover-content {
   @apply px-2 py-1 rounded whitespace-nowrap;
-  background-color: hsl(var(--r-background-2));
+  background-color: hsl(var(--r-b-2));
 }
 
 .r-popover-indicator {
   @apply absolute left-1/2 pointer-events-none;
-  fill: hsl(var(--r-background-2));
+  fill: hsl(var(--r-b-2));
   transform: translateX(-5px);
 }
 
