@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply bg-b-1;
+  @apply bg-background-3;
 }
 
 .material-symbols-outlined {

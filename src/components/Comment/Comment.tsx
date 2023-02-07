@@ -63,7 +63,7 @@ export function Comment ({
   }
   return (
     <div
-      className="flex flex-col bg-b-3 rounded py-2 px-4 gap-2"
+      className="flex flex-col bg-background-3 rounded py-2 px-4 gap-2"
     >
       <div className="flex flex-col gap-1">
         <div

@@ -7,6 +7,10 @@
   @apply flex;
 }
 
+.r-badge-inner {
+  @apply relative;
+}
+
 .r-badge-point-dot {
   @apply w-2 h-2;
 }

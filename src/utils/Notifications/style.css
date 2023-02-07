@@ -6,6 +6,7 @@
   left: 50%;
   right: auto;
   transform: translateX(-50%);
+  @apply md:w-40ch w-full p-2;
 }
 
 .r-notification.r-top {

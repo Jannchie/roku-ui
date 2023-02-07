@@ -2,7 +2,7 @@ import './Progress.css'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 import { type BaseProps } from '../../utils/type'
-import { bgColorClass, type Colors, isColor } from '../..'
+import { type Colors, isColor } from '../..'
 
 type ProgressProps = {
   color?: Colors | string
@@ -27,9 +27,9 @@ export function Progress ({
 }: ProgressProps) {
   let bgCls: string | undefined
   if (isColor(color)) {
-    bgCls = bgColorClass(color)
+    bgCls = `bg-${color}-2`
   }
-  const wrapperCls = classNames(className, 'r-progress-wrapper dark:bg-default-800 bg-default-50')
+  const wrapperCls = classNames(className, 'r-progress-wrapper')
   let precent = 25
   if (!infinite) {
     precent = Math.min((value / total) * 100, 100)

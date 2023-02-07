@@ -1,0 +1,11 @@
+.r-collapse-wrapper {
+  @apply cursor-pointer text-lg flex items-center justify-between;
+}
+
+.r-collapse-close {
+  @apply h-[0%] leading-[0] overflow-hidden transition-all;
+}
+
+.r-collapse-open {
+  @apply h-[100%]  transition-all;
+}

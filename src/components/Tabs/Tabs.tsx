@@ -3,7 +3,7 @@ import {
   type ReactNode, useEffect, useRef, useState,
 } from 'react'
 import classNames from 'classnames'
-import { bgColorClass, type Colors, textColorClass, useAutoSetHeight } from '../..'
+import { type Colors, useAutoSetHeight } from '../..'
 import { type BaseProps } from '../../utils/type'
 
 // eslint-disable-next-line react/no-unused-prop-types
@@ -36,8 +36,8 @@ function List ({
     width: number
     left: number
   }>({ left: 0, width: 0 })
-  const indicatorColor = bgColorClass(color)
-  const textColor = textColorClass(color)
+  const indicatorColor = `bg-${color}-2`
+  const textColor = `text-${color}-2`
   useEffect(() => {
     if (tabList.current != null) {
       const tabBtn = tabList.current.children[

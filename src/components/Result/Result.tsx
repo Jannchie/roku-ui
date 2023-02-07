@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { type Colors, textColorClass } from '../..'
+import { type Colors } from '../..'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import { Typography } from '../Typography'
 import './Result.css'
@@ -21,14 +21,14 @@ export function Result ({
     sizeNumber = 128
   }
   return (
-    <div className={classNames('flex flex-col text-center', {
-      [textColorClass(color)]: true,
+    <div className={classNames('r-result-wrapper', {
+      [`text-${color}-2`]: true,
     })}
     >
       <MaterialSymbolIcon size={sizeNumber} icon={icon} />
-      <Typography.H3 className={classNames('r-result-title')}>
+      <Typography.H4 className={classNames('r-result-title')}>
         {title}
-      </Typography.H3>
+      </Typography.H4>
       <div className={classNames('r-result-desc')}>
         {description}
       </div>

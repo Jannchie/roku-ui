@@ -32,7 +32,7 @@ export function Collapse ({
     <Panel padding onClick={() => {
       if (setE) setE(!e)
     }} {...props}>
-      <div className={classNames('cursor-pointer text-lg flex items-center justify-between')}>
+      <div className={classNames('r-collapse-wrapper')}>
         {header}
         {icon && (
           <div style={{
@@ -44,8 +44,8 @@ export function Collapse ({
         )}
       </div>
       <div ref={compRef} className={classNames({
-        'h-[0%] leading-[0] overflow-hidden transition-all': !e,
-        'h-[100%]  transition-all': e,
+        'r-collapse-close': !e,
+        'r-collapse-open': e,
       })}>
         {children}
       </div>
