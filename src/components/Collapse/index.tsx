@@ -3,7 +3,7 @@ import { type HTMLAttributes, type ReactNode, useRef, useState } from 'react'
 import { useAutoSetHeight } from '../../hooks'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import { Panel, type PanelProps } from '../Panel'
-
+import './Collapse.css'
 export function Collapse ({
   children,
   className,

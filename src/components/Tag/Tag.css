@@ -27,13 +27,10 @@
 }
 .r-tag-clickable {
   cursor: pointer;
-  /* @apply active:bg-opacity-100 active:text-white dark:active:bg-opacity-100 dark:hover:text-white hover:bg-opacity-20 dark:hover:bg-opacity-20 cursor-pointer; */
-  /* @apply active:dark:text-default-800; */
 }
 
 .r-tag-group {
   @apply flex divide-x;
-  /* @apply divide-default-500/10; */
 }
 .r-tag-group .r-tag {
   @apply rounded-none;

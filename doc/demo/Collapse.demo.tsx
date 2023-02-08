@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Collapse } from '../../src/components/Collapse'
+import { Collapse } from '../../src'
 
 export default function Demo () {
   const [expanded, setExpanded] = useState(false)

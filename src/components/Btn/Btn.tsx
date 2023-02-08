@@ -26,6 +26,8 @@ export type ButtonProps = {
   children?: ReactNode
   className?: string
   icon?: boolean
+  scale?: boolean
+  contrast?: boolean
   loadingIcon?: ReactNode
   leadingIcon?: ReactNode
   left?: boolean
@@ -55,6 +57,8 @@ function BtnRoot ({
   loading = false,
   disabled = false,
   border = false,
+  contrast = false,
+  scale = false,
   rounded = false,
   ring = false,
   filled = true,
@@ -82,6 +86,7 @@ function BtnRoot ({
   if (value && value === ctx.value) {
     color = ctx.activeColor
   }
+
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -90,11 +95,12 @@ function BtnRoot ({
     { 'r-btn-rounded': rounded },
     { 'r-btn-dash': dash },
     { 'r-btn-ring': ring },
-    { 'r-btn-filled': filled && !text },
-    { 'r-btn-text': text },
-    { 'active:scale-[0.98]': true },
-    { [`text-${fgColor}-2 hover:text-${hColor === 'default' ? 'fg' : hColor}-1 hover:bg-${hColor}-1/10`]: text },
-    { [`bg-${color}-2 hover:bg-${color}-1 text-${color === 'default' ? 'frontground' : 'background'}-2`]: !text },
+    { 'r-btn-filled': filled && !text && !contrast },
+    { 'r-btn-text': text || contrast },
+    { 'active:scale-[0.98]': scale },
+    { [`text-${fgColor}-2 hover:text-${hColor === 'default' ? 'fg' : hColor}-1 hover:bg-${hColor}-1/25`]: text },
+    { [`bg-${color}-2 hover:bg-${color}-1 text-${color === 'default' ? 'frontground' : 'background'}-2`]: !text && !contrast },
+    { [`hover:bg-${hColor}-2 active:bg-${hColor}-${hColor !== 'default' ? 3 : 1}`]: contrast },
     { [`border-${color}-1`]: border },
     { 'border-transparent': !border },
     className,

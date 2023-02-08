@@ -7,7 +7,7 @@
   @apply outline-none;
 }
 
-.r-panel>.r-btn {
+.r-panel > .r-btn {
   @apply rounded-lg;
 }
 

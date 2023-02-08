@@ -156,6 +156,11 @@ export const router = [{
   icon: 'radio',
   element: <Page />,
 }, {
+  path: 'title-bar',
+  title: '标题栏（Title Bar）',
+  icon: 'window',
+  element: <Page />,
+}, {
   path: 'test',
   title: '测试用',
   icon: 'science',
