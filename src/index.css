@@ -10,6 +10,16 @@ body {
   @apply bg-background-3;
 }
 
+::-moz-selection {
+  background: hsl(var(--r-frontground-2));
+  color: hsl(var(--r-background-2));
+}
+
+::selection {
+  background: hsl(var(--r-frontground-2));
+  color: hsl(var(--r-background-2));
+}
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
