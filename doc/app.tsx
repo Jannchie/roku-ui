@@ -4,7 +4,7 @@ import {
 import { NavLink, useLocation, useOutlet } from 'react-router-dom'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import {
-  Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, Tag, useOnClickOutside, useTheme,
+  Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, Panel, Tag, useOnClickOutside, useTheme,
 } from '../src'
 import useWindowSize, { type WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
@@ -13,38 +13,46 @@ import { router } from './router'
 function getNavItem (icon: string, hover: boolean, title: string, width: number) {
   return function ActivableBtn ({ isActive }: { isActive: boolean }) {
     return (
-      <Btn
-        left
-        text
-        style={{
-          transition: 'all color 0.3s ease-in-out',
-        }}
-        color={isActive ? 'primary' : 'default'}
-      >
-        <div style={{
-          display: 'flex',
-          gap: 16,
-        }}
+      <div style={{ display: 'flex', justifyItems: 'center', alignItems: 'center' }}>
+        <Btn
+          left
+          text
+          icon
+          style={{
+            margin: '0 8px',
+            transition: 'all color 0.1s ease-in-out',
+          }}
+          color={isActive ? 'primary' : 'default'}
         >
-          <MaterialSymbolIcon
-            style={{
-            }}
-            icon={icon}
-          />
           <div style={{
+            display: 'flex',
+            gap: 16,
+          }}
+          >
+            <MaterialSymbolIcon
+              style={{
+              }}
+              icon={icon}
+            />
+          </div>
+
+        </Btn>
+        <div
+          style={{
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
             textAlign: 'left',
-            transition: 'opacity 0.3s ease-in-out, width 0.3s ease-in-out',
+            transition: 'opacity 0.3s ease-in-out, width 0.1s ease-in-out',
             width: hover ? `${width - 72}px` : '0px',
             opacity: hover ? 1 : 0,
+            fontSize: '0.8rem',
+            color: isActive ? 'hsl(var(--r-primary-2)' : 'hsl(var(--r-frontend-2)',
           }}
-          >
-            {title}
-          </div>
+        >
+          {title}
         </div>
-      </Btn>
+      </div>
     )
   }
 }
@@ -160,7 +168,7 @@ function LeftMenu ({
   const [hover, setHover] = useState(false)
   return size.width > 640
     ? (
-      <div
+      <Panel
         style={{
           maxHeight: '100vh',
           position: 'sticky',
@@ -168,8 +176,10 @@ function LeftMenu ({
           display: 'flex',
           flexDirection: 'column',
           marginTop: 100,
-          padding: 8,
-          transition: 'all 0.3s ease-in-out',
+          marginLeft: 8,
+          marginBottom: 8,
+          padding: '16px 0',
+          transition: 'all 0.1s ease-in-out',
           minWidth: hover ? width : 54,
           overflowY: 'auto',
           overflowX: 'hidden',
@@ -186,7 +196,7 @@ function LeftMenu ({
             {getNavItem(route.icon, hover, route.title, width)}
           </NavLink>
         ))}
-      </div>
+      </Panel>
     )
     : <div
       ref={ref}
@@ -197,7 +207,7 @@ function LeftMenu ({
         position: 'fixed',
         padding: 8,
         left: showMenu ? 0 : -width,
-        transition: 'all 0.3s ease-in-out',
+        transition: 'all 0.1s ease-in-out',
         width,
         overflowY: 'auto',
         overflowX: 'hidden',

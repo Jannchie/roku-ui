@@ -11,13 +11,13 @@ body {
 }
 
 ::-moz-selection {
-  background: hsl(var(--r-frontground-2));
-  color: hsl(var(--r-background-2));
+  background: hsl(var(--r-frontground-1));
+  color: hsl(var(--r-background-1));
 }
 
 ::selection {
-  background: hsl(var(--r-frontground-2));
-  color: hsl(var(--r-background-2));
+  background: hsl(var(--r-frontground-1));
+  color: hsl(var(--r-background-1));
 }
 
 .material-symbols-outlined {
