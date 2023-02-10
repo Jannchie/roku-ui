@@ -4,7 +4,7 @@
 }
 
 .r-appbar-border {
-  @apply border-b;
+  @apply border-b border-border-2;
 }
 
 [data-theme="dark"] .r-appbar-pattern {
