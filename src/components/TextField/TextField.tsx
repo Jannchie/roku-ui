@@ -32,6 +32,7 @@ export function TextField ({
   placeholder,
   textAlign = 'left',
   border = true,
+  style,
   borderType = 'solid',
   color = 'primary',
   value, setValue,
@@ -43,9 +44,9 @@ export function TextField ({
   } else if (setValue != null) {
     onChange = (e: ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) }
   }
-
   return (
     <span
+      style={style}
       className={classnames(
         className,
         'r-text-field-wrapper',
