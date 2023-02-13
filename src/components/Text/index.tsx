@@ -5,7 +5,7 @@ export function Text ({ children, size = 'md', weight = 'medium', className, ...
   size?: 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
   weight?: 'normal' | 'bold' | 'medium'
 }) {
-  return (<span className={classNames('r-text', {
+  return (<span className={classNames(className, 'r-text', {
     'r-text-bold': weight === 'bold',
     'r-text-medium': weight === 'medium',
     'r-text-normal': weight === 'normal',
