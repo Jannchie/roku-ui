@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { type HTMLAttributes } from 'react'
 
-export function Flex ({ children, className, direction, justify, align, wrap, gap, ...others }: {
+export function Flex ({ children, style, className, direction, justify, align, wrap, gap, ...others }: {
   direction?: 'row' | 'column'
   justify?: 'start' | 'center' | 'end' | 'between' | 'around'
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
@@ -17,7 +17,7 @@ export function Flex ({ children, className, direction, justify, align, wrap, ga
         alignItems: align,
         flexWrap: wrap,
         gap,
-        ...others.style,
+        ...style,
       }}
       className={classNames(
         'r-flex',
