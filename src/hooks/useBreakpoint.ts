@@ -1,4 +1,4 @@
-import { useScreen } from './useScreen'
+import useWindowSize from './useWindowSize'
 
 const breakpoints = [
   { name: 'sm', value: 640 },
@@ -9,10 +9,10 @@ const breakpoints = [
 ]
 
 export function useBreakpoint (): 'sm' | 'md' | 'lg' | 'xl' | '2xl' {
-  const screen = useScreen()
+  const { width } = useWindowSize()
   if (screen) {
     for (const breakpoint of breakpoints) {
-      if (screen.width < breakpoint.value) {
+      if (width < breakpoint.value) {
         return breakpoint.name as 'sm' | 'md' | 'lg' | 'xl' | '2xl'
       }
     }
