@@ -1,0 +1,30 @@
+.r-text-xxl {
+  @apply lg:text-9xl sm:text-8xl text-5xl;
+}
+.r-text-xl {
+  @apply lg:text-8xl sm:text-6xl text-3xl;
+}
+.r-text-lg {
+  @apply lg:text-4xl sm:text-3xl text-2xl;
+}
+.r-text-md {
+  @apply text-base;
+}
+.r-text-sm {
+  @apply text-sm;
+}
+.r-text-xs {
+  @apply text-xs;
+}
+
+.r-text-bold {
+  @apply font-bold;
+}
+
+.r-text-medium {
+  @apply font-medium;
+}
+
+.r-text-light {
+  @apply font-light;
+}

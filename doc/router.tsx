@@ -161,6 +161,11 @@ export const router = [{
   icon: 'window',
   element: <Page />,
 }, {
+  path: 'text',
+  title: '文本（Text）',
+  icon: 'format_size',
+  element: <Page />,
+}, {
   path: 'test',
   title: '测试用',
   icon: 'science',
