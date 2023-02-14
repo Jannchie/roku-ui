@@ -6,6 +6,7 @@ overrides:
 
 specifiers:
   '@babel/core': ^7.20.12
+  '@jannchie/eslint-config': ^1.0.0
   '@types/d3-color': ^3.1.0
   '@types/node': ^18.13.0
   '@types/prismjs': ^1.26.0
@@ -52,6 +53,7 @@ dependencies:
 
 devDependencies:
   '@babel/core': 7.20.12
+  '@jannchie/eslint-config': 1.0.0_eslint@8.33.0
   '@types/d3-color': 3.1.0
   '@types/node': 18.13.0
   '@types/prismjs': 1.26.0
@@ -604,6 +606,14 @@ packages:
       local-pkg: 0.4.3
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@jannchie/eslint-config/1.0.0_eslint@8.33.0:
+    resolution: {integrity: sha512-KZlxuiR2QnfRWXF+pnM79znaPvl3DrNMGyFw2lnLIbog0wiXwTdNFN7GjKG/D5NoEi61dpNSHwsdvn6w2RcWeg==}
+    peerDependencies:
+      eslint: '>= 8'
+    dependencies:
+      eslint: 8.33.0
     dev: true
 
   /@jridgewell/gen-mapping/0.1.1:
