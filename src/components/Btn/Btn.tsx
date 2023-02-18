@@ -12,7 +12,7 @@ import { Typography } from '../Typography'
 export type ButtonProps = {
   label?: string
   size?: 'xs' | 'sm' | 'md' | 'lg'
-  style?: CSSProperties
+  style?: CSSProperties & { '--r-btn-glory-color'?: string }
   rounded?: boolean
   color?: Colors
   hoverColor?: Colors
@@ -33,6 +33,7 @@ export type ButtonProps = {
   left?: boolean
   value?: any
   right?: boolean
+  gloryColor?: string
 } & HTMLAttributes<HTMLButtonElement>
 
 interface BtnGroupCtxType {
@@ -53,6 +54,7 @@ function BtnRoot ({
   size = 'md',
   color = 'default',
   hoverColor,
+  gloryColor,
   dash = false,
   loading = false,
   disabled = false,
@@ -86,7 +88,9 @@ function BtnRoot ({
   if (value && value === ctx.value) {
     color = ctx.activeColor
   }
-
+  if (gloryColor) {
+    style = { ...style, '--r-btn-glory-color': gloryColor }
+  }
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -94,6 +98,7 @@ function BtnRoot ({
     { 'r-btn-icon-border': icon && border },
     { 'r-btn-rounded': rounded },
     { 'r-btn-dash': dash },
+    { 'r-btn-blur': gloryColor },
     { 'r-btn-ring': ring },
     { 'r-btn-filled': filled && !text && !contrast },
     { 'r-btn-text': text || contrast },

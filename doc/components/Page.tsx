@@ -3,6 +3,7 @@ import Markdown from 'markdown-to-jsx'
 import { Demo } from './Demo'
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { DemoNoBG } from './DemoNoBG'
 
 const DocNotice = ({ type, content }: {
   type: 'info' | 'warning' | 'danger'
@@ -28,6 +29,7 @@ export function Page ({ md = '' }: { md?: string, path?: string }) {
           overrides: {
             Article: { component: Article },
             Demo: { component: Demo },
+            DemoNoBG: { component: DemoNoBG },
             Notice: { component: DocNotice },
           },
         }}>

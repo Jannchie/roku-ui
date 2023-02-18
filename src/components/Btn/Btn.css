@@ -1,22 +1,43 @@
 .r-btn {
+  @apply relative;
   @apply border;
   @apply min-w-max;
   @apply h-fit transition;
   @apply text-sm rounded-2xl;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
   @apply outline-none;
+  overflow: visible;
 }
 
-.r-panel > .r-btn {
+.r-btn {
+  @apply rounded-lg;
+}
+
+.r-panel .r-btn {
   @apply rounded-lg;
 }
 
 .r-btn-main {
-  @apply flex items-center;
+  @apply flex items-center z-2 relative;
 }
 
 .r-btn-center {
   @apply justify-center;
+}
+
+.r-btn-blur::after {
+  @apply rounded-lg;
+  background: var(--r-btn-glory-color);
+}
+
+.r-btn-blur::after {
+  @apply opacity-0;
+  content: "";
+  @apply absolute w-full h-full left-0 top-0 transition -z-1;
+  overflow: visible;
+}
+.r-btn-blur:hover::after {
+  @apply blur-16 opacity-100;
 }
 
 .r-btn-left {
@@ -56,27 +77,27 @@
 }
 
 .r-btn-icon.r-btn-lg {
-  @apply p-2;
+  @apply p-2 text-lg;
 }
 
 .r-btn-xs {
-  @apply p-0.5 text-xs rounded-sm;
+  @apply p-0.5 text-xs;
 }
 
 .r-btn-sm {
-  @apply p-1 rounded !leading-none;
+  @apply p-1 !leading-none;
 }
 
-.r-btn-sm .r-typography-btn {
+.r-btn-sm {
   @apply leading-4;
 }
 
 .r-btn-md {
-  @apply p-2 rounded;
+  @apply p-2 text-sm;
 }
 
 .r-btn-lg {
-  @apply p-2 text-base rounded;
+  @apply p-2 text-base;
 }
 .r-btn-block {
   @apply w-full;
@@ -87,7 +108,15 @@
 }
 
 .r-btn-group {
-  @apply flex border rounded transform transition overflow-hidden;
+  @apply flex border transform transition overflow-hidden;
+}
+
+.r-panel .r-btn-group {
+  @apply rounded-lg;
+}
+
+.r-btn-group {
+  @apply rounded-xl;
 }
 
 .r-btn-group .r-btn {
