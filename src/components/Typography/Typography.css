@@ -25,7 +25,3 @@
 .r-typography-p {
   @apply text-sm mb-2;
 }
-
-.r-typography-btn {
-  @apply text-sm;
-}

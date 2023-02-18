@@ -7,6 +7,7 @@ export function MaterialSymbolIcon ({
   type = 'rounded',
   className,
   style = {},
+  fill,
   ...props
 }: {
   icon: string
@@ -21,7 +22,7 @@ export function MaterialSymbolIcon ({
   const clsName = classNames(
     `material-symbols-${type}`,
     'select-none',
-    { filled: props.fill },
+    { filled: fill },
     { 'r-icon-xs': size === 'xs' },
     { 'r-icon-sm': size === 'sm' },
     { 'r-icon-md': size === 'md' },

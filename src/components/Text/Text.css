@@ -28,3 +28,12 @@
 .r-text-light {
   @apply font-light;
 }
+
+.r-editable-line-ok-btn {
+  @apply text-sm;
+}
+
+.r-editable-line-cancel-btn {
+  @apply text-sm;
+}
+

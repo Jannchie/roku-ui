@@ -1,6 +1,6 @@
 .r-notice-wrapper {
   @apply bg-background-2 border-border-2 border;
-  @apply text-sm rounded-xl;
+  @apply text-sm;
 }
 
 .r-notice-desc {

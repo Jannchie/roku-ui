@@ -18,7 +18,7 @@ export function Anchor ({
         className,
         'r-anchor',
         { 'r-anchor-clickable': props.href !== undefined || props.onClick !== undefined },
-        `decoration-${color}-2 hover:decoration-${color}-2 hover:text-${color}-2`,
+        { [`decoration-${color}-2 hover:decoration-${color}-2 hover:text-${color}-2`]: props.href !== undefined || props.onClick !== undefined },
       )}
     >
       {children}
