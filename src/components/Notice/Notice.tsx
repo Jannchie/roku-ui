@@ -65,9 +65,9 @@ export function Notice ({
     wrapperClass,
   )
   const mainTextColorCls = `text-${color}-2`
-  const descCls = classNames('r-notice-desc truncate', descClass)
+  const descCls = classNames('r-notice-desc', descClass)
   const titleCls = classNames(
-    'r-notice-title truncate',
+    'r-notice-title',
     mainTextColorCls,
     titleClass,
   )
@@ -87,7 +87,7 @@ export function Notice ({
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className={iconCls}>{icon}</div>
-            <div className="truncate">
+            <div>
               <div className={titleCls}>{title}</div>
               <div className={descCls}>{desc}</div>
             </div>

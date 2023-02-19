@@ -53,10 +53,10 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
   ],
-  rules: [
-    [/^bg-(.*)-(\d*)(\/(.*))?$/, ([, c, d, e], { theme }) => {
-      if (!e && colorType.indexOf(c) !== -1) { if (theme.colors[c]) { return { background: `hsl(var(--r-${c}-${d}), ${e ?? 1})` } } }
-    }, { noMerge: true }],
-  ],
+  // rules: [
+  //   [/^bg-(.*)-(\d*)(\/(.*))?$/, ([, c, d, e], { theme }) => {
+  //     if (!e && colorType.indexOf(c) !== -1) { if (theme.colors[c]) { return { background: `hsl(var(--r-${c}-${d}), ${e ?? 1})` } } }
+  //   }, { noMerge: true }],
+  // ],
   safelist: saveList,
 })

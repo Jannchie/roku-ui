@@ -32,27 +32,27 @@
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@unocss/reset": "^0.49.4",
+    "@unocss/reset": "^0.49.7",
     "classnames": "^2.3.2",
     "d3-color": "^3.1.0",
-    "framer-motion": "^9.0.2"
+    "framer-motion": "^9.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@jannchie/eslint-config": "^1.0.0",
+    "@jannchie/eslint-config": "^1.1.0",
     "@types/d3-color": "^3.1.0",
-    "@types/node": "^18.13.0",
+    "@types/node": "^18.14.0",
     "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "@types/react-test-renderer": "^18.0.0",
     "@types/react-transition-group": "^4.4.5",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
-    "@unocss/preset-typography": "^0.49.4",
-    "@unocss/transformer-directives": "^0.49.4",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "@unocss/preset-typography": "^0.49.7",
+    "@unocss/transformer-directives": "^0.49.7",
     "@vitejs/plugin-react": "^3.1.0",
-    "eslint": "^8.33.0",
+    "eslint": "^8.34.0",
     "eslint-config-standard-with-typescript": "^34.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
@@ -68,11 +68,11 @@
     "react-router-dom": "^6.8.1",
     "react-test-renderer": "^18.2.0",
     "react-transition-group": "^4.4.5",
-    "terser": "^5.16.3",
+    "terser": "^5.16.4",
     "typescript": "^4.9.5",
-    "unocss": "^0.49.4",
-    "vite": "^4.1.1",
-    "vite-plugin-dts": "^1.7.2"
+    "unocss": "^0.49.7",
+    "vite": "^4.1.2",
+    "vite-plugin-dts": "2.0.0-beta.1"
   },
   "license": "MIT"
 }
