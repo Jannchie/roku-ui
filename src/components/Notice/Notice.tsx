@@ -7,8 +7,8 @@ import './Notice.css'
 
 export interface NoticeProps {
   color?: Colors
-  title?: string
-  desc?: string
+  title?: ReactNode
+  desc?: ReactNode
   wrapperClass?: string
   titleClass?: string
   descClass?: string
