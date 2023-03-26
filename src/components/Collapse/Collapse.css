@@ -3,9 +3,9 @@
 }
 
 .r-collapse-close {
-  @apply h-[0%] leading-[0] overflow-hidden transition-all;
+  @apply h-[0%] leading-[0] overflow-hidden;
 }
 
 .r-collapse-open {
-  @apply h-[100%]  transition-all;
+  @apply h-[100%];
 }

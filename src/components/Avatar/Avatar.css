@@ -1,5 +1,5 @@
 .r-avatar {
-  @apply relative overflow-hidden transition text-sm justify-center items-center flex;
+  @apply relative overflow-hidden text-sm justify-center items-center flex;
 }
 
 .r-avatar-outline {

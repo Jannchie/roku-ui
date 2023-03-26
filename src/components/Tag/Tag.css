@@ -1,5 +1,5 @@
 .r-tag {
-  @apply border border-transparent inline-flex transition cursor-default rounded bg-opacity-10 dark:bg-opacity-10 items-center;
+  @apply border border-transparent inline-flex cursor-default rounded bg-opacity-10 dark:bg-opacity-10 items-center;
 }
 
 .r-tag.r-tag-text {

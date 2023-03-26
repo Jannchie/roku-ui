@@ -23,13 +23,13 @@ function Item ({
   const { current } = useContext(ctx)
   return (
     <li
-      className={classNames('flex items-center whitespace-nowrap gap-2 transition-all', {
+      className={classNames('flex items-center whitespace-nowrap gap-2', {
         'text-primary-1': current >= index,
         'text-f-3': current < index,
       })}
       {...props}
     >
-      {children}
+      { children }
     </li>
   )
 }
@@ -42,7 +42,7 @@ function Container ({
   return (
     <ctx.Provider value={{ current }}>
       <ul {...props} className="r-step-container flex gap-2 justify-between items-stretch">
-        {children}
+        { children }
       </ul>
     </ctx.Provider>
   )

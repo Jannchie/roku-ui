@@ -26,22 +26,19 @@ export default function Demo () {
         style={{
           background: '#000',
           borderRadius: '9999px',
-          transition: 'all .3s',
           width: size * 4,
           height: size,
         }}
         translating={translating}>
         <div
-          style={
-            {
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }
-          }>
-          {state === 0
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          { state === 0
             ? ''
             : (
               <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>

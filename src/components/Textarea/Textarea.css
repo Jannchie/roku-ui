@@ -1,8 +1,7 @@
 .r-textarea {
   @apply text-sm p-[9px] py-[8px] resize-none border-border-2;
-  @apply outline-none rounded focus:ring-1 transition;
+  @apply outline-none rounded focus:ring-1;
   @apply border focus:border-transparent;
-  @apply transition-all duration-300;
 }
 .r-textarea::-webkit-scrollbar {
   display: auto;

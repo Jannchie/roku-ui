@@ -85,13 +85,11 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       outlined
       progress
       shadow
-      close={
-        closable
-          ? () => {
-            nEventMgr.onRemove.forEach((cb) => { cb(n) })
-          }
-          : undefined
-      }
+      close={closable
+        ? () => {
+          nEventMgr.onRemove.forEach((cb) => { cb(n) })
+        }
+        : undefined}
       desc={desc}
       existMS={existsMS}
       icon={icon}
@@ -254,7 +252,7 @@ export function Notifications ({
         })}
       >
         <AnimatePresence>
-          {notices
+          { notices
             .sort((a, b) => b.key - a.key)
             .map((notice, i) => (
               <motion.div
@@ -262,11 +260,11 @@ export function Notifications ({
                 layout
                 {...getNoticeAnimate(i)}
                 style={{ order: -notice.key }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.15 }}
               >
-                {notice.value}
+                { notice.value }
               </motion.div>
-            ))}
+            )) }
         </AnimatePresence>
       </div>
     </div>

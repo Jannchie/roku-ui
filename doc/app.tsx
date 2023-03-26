@@ -50,7 +50,7 @@ function getNavItem (icon: string, hover: boolean, title: string, width: number)
             color: isActive ? 'hsl(var(--r-primary-2)' : 'hsl(var(--r-frontend-2)',
           }}
         >
-          {title}
+          { title }
         </div>
       </div>
     )
@@ -72,7 +72,7 @@ function DocLayout () {
         Roku UI
       </span>
       <Tag size="sm">
-        Ver.{APP_VERSION}
+        Ver.{ APP_VERSION }
       </Tag>
     </div>)}
     leading={size.width < 640
@@ -120,34 +120,32 @@ function DocLayout () {
       style={{
         minHeight: '100vh',
       }}
-      innerLeft={<LeftMenu size={size} showMenu={ showMenu} setShowMenu={setShowMenu} />}
+      innerLeft={<LeftMenu size={size} showMenu={showMenu} setShowMenu={setShowMenu} />}
       header={appbar}
-      main={
-        <SwitchTransition
-          mode="out-in"
+      main={<SwitchTransition
+        mode="out-in"
+      >
+        <Transition
+          key={location.pathname}
+          unmountOnExit
+          nodeRef={pageBodyRef}
+          timeout={timeoutMS}
         >
-          <Transition
-            key={location.pathname}
-            unmountOnExit
-            nodeRef={pageBodyRef}
-            timeout={timeoutMS}
-          >
-            {(state) => {
-              return <div ref={pageBodyRef} style={{
-                marginTop: 100,
-                minHeight: 'calc(100vh - 100px - 29px)',
-                transition: `all ${timeoutMS}ms ease-out`,
-                opacity: state === 'entered' ? undefined : 0,
-                transform: state === 'entered' ? undefined : 'translateY(10px)',
-              }}>
-                {outlet}
-              </div>
-            }}
-          </Transition>
-        </SwitchTransition>
-      }
+          { (state) => {
+            return <div ref={pageBodyRef} style={{
+              marginTop: 100,
+              minHeight: 'calc(100vh - 100px - 29px)',
+              transition: `all ${timeoutMS}ms ease-out`,
+              opacity: state === 'entered' ? undefined : 0,
+              transform: state === 'entered' ? undefined : 'translateY(10px)',
+            }}>
+              { outlet }
+            </div>
+          } }
+        </Transition>
+      </SwitchTransition>}
       footer={(
-        <Footer>Jannchie Studio @ { new Date().getFullYear()}</Footer>
+        <Footer>Jannchie Studio @ { new Date().getFullYear() }</Footer>
       )}
     />
   )
@@ -187,15 +185,15 @@ function LeftMenu ({
         onMouseEnter={() => { setHover(true) }}
         onMouseLeave={() => { setHover(false) }}
       >
-        {router.filter(d => d.path !== 'test').map((route) => (
+        { router.filter(d => d.path !== 'test').map((route) => (
           <NavLink
             key={route.path}
             end
             to={route.path}
           >
-            {getNavItem(route.icon, hover, route.title, width)}
+            { getNavItem(route.icon, hover, route.title, width) }
           </NavLink>
-        ))}
+        )) }
       </Panel>
     )
     : <div
@@ -213,13 +211,13 @@ function LeftMenu ({
         overflowX: 'hidden',
       }}
     >
-      {router.filter(d => d.path !== 'test').map((route) => (
+      { router.filter(d => d.path !== 'test').map((route) => (
         <NavLink
           key={route.path}
           to={route.path}
         >
-          {getNavItem(route.icon, true, route.title, width)}
+          { getNavItem(route.icon, true, route.title, width) }
         </NavLink>
-      ))}
+      )) }
     </div>
 }

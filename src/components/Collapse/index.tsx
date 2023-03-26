@@ -33,21 +33,20 @@ export function Collapse ({
       if (setE) setE(!e)
     }} {...props}>
       <div className={classNames('r-collapse-wrapper')}>
-        {header}
-        {icon && (
+        { header }
+        { icon && (
           <div style={{
-            transition: 'transform 0.3s',
             transform: `rotate(${e ? 180 : 0}deg)`,
           }} >
-            {icon}
+            { icon }
           </div>
-        )}
+        ) }
       </div>
       <div ref={compRef} className={classNames({
         'r-collapse-close': !e,
         'r-collapse-open': e,
       })}>
-        {children}
+        { children }
       </div>
     </Panel>
   )

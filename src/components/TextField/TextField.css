@@ -1,5 +1,5 @@
 .r-text-field {
-  @apply w-full transition outline-none bg-transparent;
+  @apply w-full outline-none bg-transparent;
 }
 
 .r-text-field-wrapper-sm {
@@ -26,10 +26,9 @@
 }
 
 .r-text-field-wrapper {
-  @apply transition;
   @apply rounded-lg;
   @apply inline-flex;
-  @apply outline-none rounded transition;
+  @apply outline-none rounded;
   @apply border border-transparent;
 }
 

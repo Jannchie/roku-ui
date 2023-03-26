@@ -10,7 +10,7 @@ import { type BaseProps } from '../../utils/type'
 function Item ({ children }: { label: ReactNode, children?: ReactNode }) {
   return (
     <div>
-      {children}
+      { children }
     </div>
   )
 }
@@ -67,7 +67,7 @@ function List ({
   return (
     <>
       <div ref={tabList} className="r-tab-list">
-        {data.map((d, i) => (
+        { data.map((d, i) => (
           <button
             // eslint-disable-next-line react/no-array-index-key
             key={i}
@@ -108,18 +108,18 @@ function List ({
               }
             }}
           >
-            { d.key}
+            { d.key }
           </button>
-        ))}
+        )) }
       </div>
-      {type === 'indicator' && (
+      { type === 'indicator' && (
         <div className="h-0.5 dark:bg-default-800 bg-default-50">
           <div
             className={classNames('r-tab-indicator', indicatorColor)}
             style={indicatorStyle}
           />
         </div>
-      )}
+      ) }
     </>
   )
 }
@@ -179,7 +179,7 @@ export function TabsRoot (props: RTabsProps) {
           display: selectedIndex === i ? 'block' : 'none',
         }}
       >
-        {d.value}
+        { d.value }
       </div>
     ))
   useEffect(
@@ -198,8 +198,8 @@ export function TabsRoot (props: RTabsProps) {
           onChange(i)
         }}
       />
-      <div ref={wrapperRef} className="transition-all r-tab-panels dark:text-white mt-2 overflow-hidden">
-        {tabComps.filter((_, i) => i === selectedIndex)}
+      <div ref={wrapperRef} className="r-tab-panels transition-height mt-2 overflow-hidden">
+        { tabComps.filter((_, i) => i === selectedIndex) }
       </div>
     </div>
   )

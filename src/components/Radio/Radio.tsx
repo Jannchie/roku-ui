@@ -21,17 +21,16 @@ function RadioRoot ({
         onChange={() => { setValue(value) }}
       />
       <AnimatePresence>
-        {checked && (
+        { checked && (
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 0.5 }}
             exit={{ scale: 0 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
             className={classNames('absolute w-4 h-4 flex justify-center items-center rounded-full', `hover:bg-${color}-1 bg-${color}-2`)}
           />
-        )}
+        ) }
       </AnimatePresence>
-      {label}
+      { label }
     </label>
   )
 }
@@ -43,7 +42,7 @@ function Group ({
   return (
     <RadioCtx.Provider value={ctx}>
       <fieldset className={classNames('r-input-radio-group', className)}>
-        {children}
+        { children }
       </fieldset>
     </RadioCtx.Provider>
   )

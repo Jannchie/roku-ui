@@ -2,7 +2,7 @@
   @apply flex;
 }
 .holy-grail-main-wrapper {
-  @apply transition flex-grow relative flex-col flex h-full;
+  @apply flex-grow relative flex-col flex h-full;
 }
 
 .holy-grail-main {

@@ -31,7 +31,7 @@ export const Switch: FC<SwitchProps> = ({
     <div className="inline-flex items-center gap-2">
       <input
         type="checkbox"
-        className={classNames('appearance-none cursor-pointer rounded-full transition-all border', {
+        className={classNames('appearance-none cursor-pointer rounded-full border', {
           'w-[3rem] h-[1.5rem]': size === 'lg',
           'w-[2.5rem] h-[1.25rem]': size === 'md',
           'w-[2rem] h-[1rem]': size === 'sm',

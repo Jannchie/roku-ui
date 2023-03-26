@@ -1,5 +1,5 @@
 .r-panel {
-  @apply transition rounded-2xl;
+  @apply rounded-2xl;
 }
 
 .r-panel .r-panel {

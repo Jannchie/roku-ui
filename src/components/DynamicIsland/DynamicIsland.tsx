@@ -4,7 +4,7 @@ import { type HTMLAttributes, type ReactNode } from 'react'
 export const DynamicIsland = ({
   children,
   translating,
-  durationMS = 300,
+  durationMS = 150,
   className,
   ...others
 }: {
@@ -14,7 +14,7 @@ export const DynamicIsland = ({
 } & HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
-      className={classNames('overflow-hidden', className)}
+      className={classNames('overflow-hidden', className, 'transition-all')}
       {...others}
     >
       <div style={{
@@ -22,7 +22,7 @@ export const DynamicIsland = ({
         filter: `blur(${translating ? 8 : 0}px)`,
         height: '100%',
       }}>
-        {children}
+        { children }
       </div>
     </div>
   )

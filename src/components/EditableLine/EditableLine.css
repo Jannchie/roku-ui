@@ -1,5 +1,5 @@
 .r-editable-line > .r-text-field-wrapper {
-  @apply transition focus:ring-1 ring-0;
+  @apply focus:ring-1 ring-0;
 }
 .r-editable-line:not(.r-editable-line-editing) > .r-text-field-wrapper {
   @apply !border-transparent;

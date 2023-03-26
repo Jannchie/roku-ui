@@ -2,11 +2,8 @@
   color-scheme: dark;
 }
 
-[data-theme="dark"] > * {
-  /* @apply text-default-200; */
-}
-
 body {
+  @apply transition-all;
   @apply bg-background-3;
 }
 

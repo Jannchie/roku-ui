@@ -28,25 +28,21 @@ export const Demo = ({ name, prose = false }: {
   return (
     <Panel
       border
-      className={ prose ? '' : 'not-prose'}
+      className={prose ? '' : 'not-prose'}
       style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}>
-      <div ref={compRef} style={{
-        transitionProperty: 'height',
-        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-        transitionDuration: '300ms',
-      }}>
+      <div ref={compRef} >
         <div>
           <Suspense fallback={<div style={{ height: '8rem', display: 'flex', justifyContent: 'center', padding: '1rem' }}><Loading /></div>}>
             <div
               className="comp-wrapper"
             >
-              {comp}
+              { comp }
             </div>
           </Suspense>
         </div>
       </div>
       <div className="line-numbers">
-        {code &&
+        { code &&
           <pre
             style={{
               margin: 0,
@@ -63,7 +59,7 @@ export const Demo = ({ name, prose = false }: {
               ref={ref}
               className="language-tsx"
             >
-              {code}
+              { code }
             </code>
           </pre>
         }

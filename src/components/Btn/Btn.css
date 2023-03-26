@@ -2,7 +2,7 @@
   @apply relative;
   @apply border;
   @apply min-w-max;
-  @apply h-fit transition;
+  @apply h-fit;
   @apply text-sm rounded-2xl;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
   @apply outline-none;
@@ -33,7 +33,7 @@
 .r-btn-blur::after {
   @apply opacity-0;
   content: "";
-  @apply absolute w-full h-full left-0 top-0 transition -z-1;
+  @apply absolute w-full h-full left-0 top-0 -z-1;
   overflow: visible;
 }
 .r-btn-blur:hover::after {
@@ -108,7 +108,7 @@
 }
 
 .r-btn-group {
-  @apply flex border transform transition overflow-hidden;
+  @apply flex border transform overflow-hidden;
 }
 
 .r-panel .r-btn-group {
@@ -143,30 +143,24 @@
 .r-btn-loading-enter {
   opacity: 0;
   width: 0px;
-  transition: all 0.2s ease-in-out;
 }
 .r-btn-loading-enter-active {
   opacity: 1;
   width: 20px;
-  transition: all 0.2s ease-in-out;
 }
 .r-btn-loading-enter-done {
   opacity: 1;
   width: 20px;
-  transition: all 0.2s ease-in-out;
 }
 .r-btn-loading-exit {
   opacity: 1;
   width: 20px;
-  transition: all 0.2s ease-in-out;
 }
 .r-btn-loading-exit-active {
   width: 0px;
-  transition: all 0.2s ease-in-out;
 }
 .r-btn-loading-exit-done {
   opacity: 1;
   display: none;
-  transition: all 0.2s ease-in-out;
   width: 0px;
 }

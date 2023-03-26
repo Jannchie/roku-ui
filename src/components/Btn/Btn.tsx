@@ -139,7 +139,7 @@ function BtnRoot ({
         <div
           className={loadingFinalClass}
         >
-          {loading ? loadingIcon : children}
+          { loading ? loadingIcon : children }
         </div>
       </button>
     )
@@ -159,7 +159,7 @@ function BtnRoot ({
         { 'r-btn-center': !left && !right },
       )}
       >
-        {leadingIcon
+        { leadingIcon
           ? (
             <div
               className={classNames(loadingFinalClass, 'r-btn-leading-icon')}
@@ -167,12 +167,12 @@ function BtnRoot ({
                 fontSize: size === 'sm' ? '1rem' : '1.5rem',
               }}
             >
-              {loading ? loadingIcon : leadingIcon}
+              { loading ? loadingIcon : leadingIcon }
             </div>
           )
           : (
             <AnimatePresence>
-              {loading && (
+              { loading && (
                 <motion.div
                   layout
                   animate={{
@@ -195,13 +195,13 @@ function BtnRoot ({
                     bounce: 0,
                   }}
                 >
-                  {loadingIcon}
+                  { loadingIcon }
                 </motion.div>
-              )}
+              ) }
             </AnimatePresence>
-          )}
+          ) }
         <Typography.Button>
-          {body}
+          { body }
         </Typography.Button>
       </div>
     </button>
@@ -232,7 +232,7 @@ function Group ({
             'r-btn-group',
           )}
         >
-          {children}
+          { children }
         </div>
       </div>
     </BtnGroupCtx.Provider>
@@ -262,7 +262,7 @@ function Counter ({
     `group-hover:bg-${color}-1/10 group-hover:text-${color}-1`,
   )
   const textCls = classNames(
-    `r-btn-counter-value transition group-hover:text-${color}-1`,
+    `r-btn-counter-value group-hover:text-${color}-1`,
   )
   return (
     <button
@@ -279,7 +279,7 @@ function Counter ({
             : icon
         }
       </div>
-      <Typography.Button className={textCls}>{value}</Typography.Button>
+      <Typography.Button className={textCls}>{ value }</Typography.Button>
     </button>
   )
 }
