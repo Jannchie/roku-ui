@@ -1,6 +1,6 @@
 {
   "name": "roku-ui",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "type": "module",
   "types": "./dist/types/index.d.ts",
   "main": "./dist/roku-ui.umd.cjs",
