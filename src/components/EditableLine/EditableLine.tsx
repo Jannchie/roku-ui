@@ -39,7 +39,6 @@ export function EditableLine ({
       })}
     >
       <TextField
-        border
         size={size}
         borderType={borderType}
         className={className}
@@ -53,7 +52,7 @@ export function EditableLine ({
           setEditing(true)
         }}
       />
-      {editing && (
+      { editing && (
         <motion.div
           animate={{
             opacity: 1,
@@ -74,7 +73,7 @@ export function EditableLine ({
               }
             }}
           >
-            {okBtnContent}
+            { okBtnContent }
           </Btn>
           <Btn
             border
@@ -85,10 +84,10 @@ export function EditableLine ({
               setValue(tempValue.current)
             }}
           >
-            {cancelBtnContent}
+            { cancelBtnContent }
           </Btn>
         </motion.div>
-      )}
+      ) }
     </div>
   )
 }
