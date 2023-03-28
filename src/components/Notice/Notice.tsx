@@ -48,7 +48,7 @@ export function Notice ({
   outlined,
   dense,
   blur,
-  icon = <MaterialSymbolIcon icon="check_circle" />,
+  icon,
   existMS = 3000,
   progressValue,
   progressTotal = 100,
@@ -86,13 +86,15 @@ export function Notice ({
       <div className={classNames(dense ? 'p-2' : 'p-4')}>
         <div className="flex justify-between">
           <div className="flex items-center">
-            <div className={iconCls}>{icon}</div>
+            { icon &&
+              <div className={iconCls}>{ icon }</div>
+            }
             <div>
-              <div className={titleCls}>{title}</div>
-              <div className={descCls}>{desc}</div>
+              <div className={titleCls}>{ title }</div>
+              <div className={descCls}>{ desc }</div>
             </div>
           </div>
-          {(close != null) && (
+          { (close != null) && (
             <Btn
               icon
               text
@@ -101,12 +103,12 @@ export function Notice ({
             >
               <MaterialSymbolIcon icon="close" />
             </Btn>
-          )}
+          ) }
         </div>
       </div>
-      {progress && progressValue === undefined
+      { progress && progressValue === undefined
         ? <Progress blur={blur} durationMS={existMS} color={color} />
-        : <Progress blur={blur} value={progressValue} total={progressTotal} color={color} />}
+        : <Progress blur={blur} value={progressValue} total={progressTotal} color={color} /> }
     </Panel>
   )
 }

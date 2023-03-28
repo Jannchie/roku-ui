@@ -6,6 +6,10 @@
   @apply rounded-lg;
 }
 
+.r-modal-panel .r-panel {
+  @apply rounded-2xl;
+}
+
 .r-panel-padding {
   @apply p-2;
 }

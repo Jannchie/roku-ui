@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { type HTMLAttributes } from 'react'
 import { type Colors } from '../..'
+import { defaults } from '../../utils/defaults'
 import './Panel.css'
 export interface PanelProps {
   color?: Colors
@@ -12,7 +13,7 @@ export interface PanelProps {
 export function Panel ({
   color,
   className,
-  border,
+  border = defaults.border,
   children,
   padding,
   bgOpacity,
@@ -37,7 +38,7 @@ export function Panel ({
         className,
       )}
     >
-      {children}
+      { children }
     </div>
   )
 }

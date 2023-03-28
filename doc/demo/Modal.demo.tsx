@@ -21,11 +21,9 @@ export default function Demo () {
           title="A Modal"
           subtitle="This is a modal."
           body="This is a modal body."
-          actions={
-            <Btn onClick={() => {
-              setShow(false)
-            }}>Close</Btn>
-          } />
+          actions={<Btn onClick={() => {
+            setShow(false)
+          }}>Close</Btn>} />
       </Modal>
     </>
   )

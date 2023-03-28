@@ -1,5 +1,5 @@
 .r-notice-wrapper {
-  @apply bg-background-2 border-border-2 border;
+  @apply bg-background-2;
   @apply text-sm;
 }
 

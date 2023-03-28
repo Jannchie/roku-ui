@@ -41,18 +41,18 @@ export function Card ({
     className,
   )
   if (children) {
-    return <div className={cardClass}>{children}</div>
+    return <div className={cardClass}>{ children }</div>
   }
   return (
     <Panel className={cardClass} {...other}>
-      {title && (
+      { title && (
         <div className="r-card-title">
-          <div className="title-line">{title}</div>
-          <div className="subtitle-line">{subtitle}</div>
+          <div className="title-line">{ title }</div>
+          <div className="subtitle-line">{ subtitle }</div>
         </div>
-      )}
-      {body && <div className="r-card-body">{body}</div>}
-      {actions && <div className="r-card-actions">{actions}</div>}
+      ) }
+      { body && <div className="r-card-body">{ body }</div> }
+      { actions && <div className="r-card-actions">{ actions }</div> }
     </Panel>
   )
 }
