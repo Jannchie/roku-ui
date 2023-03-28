@@ -22,13 +22,13 @@ export function Textarea ({
   }, [height])
   return (
     <>
-      {maxLength && (
+      { maxLength && (
         <div className={classNames('r-textarea-extra-info')}>
-          {textarea.current?.value.length}
+          { textarea.current?.value.length }
           /
-          {maxLength}
+          { maxLength }
         </div>
-      )}
+      ) }
       <textarea
         ref={textarea}
         className={classNames(className,
@@ -51,7 +51,6 @@ export function Textarea ({
             targetCopy.style.visibility = 'hidden'
             document.body.appendChild(targetCopy)
             const newHeight = targetCopy.scrollHeight
-            console.log(newHeight)
             if (newHeight !== height) {
               if (!maxHeight || newHeight < maxHeight) {
                 setHeight(newHeight + 2)

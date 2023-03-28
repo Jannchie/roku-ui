@@ -1,8 +1,13 @@
 .r-textarea {
-  @apply text-sm p-[9px] py-[8px] resize-none border-border-2;
-  @apply outline-none rounded focus:ring-1;
+  @apply text-sm p-[9px] py-[8px] resize-none border-border-2 transition-height;
+  @apply outline-none rounded-xl focus:ring-1;
   @apply border focus:border-transparent;
 }
+
+.r-panel .r-textarea {
+  @apply rounded-lg;
+}
+
 .r-textarea::-webkit-scrollbar {
   display: auto;
 }
