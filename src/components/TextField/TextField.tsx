@@ -15,10 +15,9 @@ export type TextFieldProps = {
   size?: 'sm' | 'md' | 'lg'
   placeholder?: string
   borderType?: 'dash' | 'solid' | 'dot'
-  border?: boolean
+  text?: boolean
   setValue?: Dispatch<SetStateAction<any>>
   textAlign?: 'left' | 'center' | 'right'
-  ring?: boolean
   format?: (value: string) => string
   color?: Colors
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'suffix'>
@@ -28,17 +27,18 @@ export function TextField ({
   prefix,
   suffix,
   size = 'md',
-  ring = true,
   placeholder,
   textAlign = 'left',
-  border = true,
+  text = false,
   style,
   borderType = 'solid',
   color = 'primary',
-  value, setValue,
+  value,
+  setValue,
   ...inputProps
 }: TextFieldProps) {
   let onChange
+  const border = !text
   if (inputProps.onChange != null) {
     onChange = inputProps.onChange
   } else if (setValue != null) {
@@ -55,12 +55,11 @@ export function TextField ({
         {
           'r-text-field-border': border,
           'r-text-field-fill': !border,
-          'r-text-field-ring': ring,
         },
-        { [`ring-${color}-2`]: color },
+        { [`focus-within:ring ring-${color}-2`]: color },
       )}
     >
-      {prefix && <div className="r-text-field-prefix">{prefix}</div>}
+      { prefix && <div className="r-text-field-prefix">{ prefix }</div> }
       <input
         className={classnames('r-text-field', {
           'text-center': textAlign === 'center',
@@ -72,7 +71,7 @@ export function TextField ({
         onChange={onChange}
         {...inputProps}
       />
-      {suffix && <div className="r-text-field-suffix">{suffix}</div>}
+      { suffix && <div className="r-text-field-suffix">{ suffix }</div> }
     </span>
   )
 }

@@ -1,51 +1,49 @@
 .r-text-field {
-  @apply w-full outline-none bg-transparent;
+  @apply w-full outline-none bg-transparent p-2;
 }
 
 .r-text-field-wrapper-sm {
   @apply text-xs;
+}
+
+.r-text-field-wrapper-sm .r-text-field {
   @apply p-1;
 }
 
 .r-text-field-wrapper-md {
   @apply text-sm;
-  @apply p-2;
 }
 
 .r-text-field-wrapper-lg {
   @apply text-base;
-  @apply p-2;
 }
 
 .r-text-field-prefix {
-  @apply min-w-fit pr-1;
+  @apply min-w-fit p-2 pr-1;
 }
 
 .r-text-field-suffix {
-  @apply min-w-fit pl-1;
+  @apply min-w-fit p-2 pl-1;
 }
 
 .r-text-field-wrapper {
-  @apply rounded-lg;
+  @apply rounded-xl;
   @apply inline-flex;
-  @apply outline-none rounded;
   @apply border border-transparent;
+  @apply transition-border-color;
+}
+
+.r-panel .r-text-field-wrapper {
+  @apply rounded-lg;
 }
 
 .r-text-field-border {
-  @apply border-border-1 hover:bg-background-1 focus-within:bg-background-1;
-}
-
-.r-text-field-fill {
-  @apply hover:bg-background-1 bg-background-1/50;
-}
-
-.r-text-field-ring {
-  @apply focus-within:!border-transparent focus-within:ring-1;
+  @apply transition-shadow;
+  @apply border-border-1 bg-background-1 hover:bg-background-2 focus-within:bg-background-2;
 }
 
 .r-text-field-wrapper:focus-within {
-  /* @apply dark:border-default-400 border-default-800; */
+  @apply border-default-800;
 }
 
 .r-text-field-dash {
@@ -63,6 +61,7 @@
 .r-text-field-transparent {
   @apply border-transparent;
 }
+
 
 [data-theme="dark"] ::-ms-reveal {
   filter: invert(90%);
