@@ -43,21 +43,21 @@ export function Badge ({
   return (
     <span className={classNames('r-badge-wrapper', className)} {...others}>
       <div className="r-badge-inner">
-        {children}
-        {show && (
+        { children }
+        { show && (
           <>
             <span
               className={badgePointCls}
             >
-              {content}
+              { content }
             </span>
-            {ping &&
+            { ping &&
               <span className={classNames('r-badge-ping', badgePointCls)} >
-                {content}
+                { content }
               </span>
             }
           </>
-        )}
+        ) }
       </div>
     </span>
   )

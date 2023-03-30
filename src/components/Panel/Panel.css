@@ -11,7 +11,11 @@
 }
 
 .r-panel-padding {
-  @apply p-2;
+  @apply p-3;
+}
+
+.r-panel .r-panel-padding {
+  @apply p-2
 }
 
 .r-panel-border {
