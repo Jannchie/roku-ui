@@ -4,7 +4,7 @@
 }
 
 .r-notice-desc {
-  @apply text-f-3;
+  @apply text-frontground-2;
 }
 
 .r-notice-icon {

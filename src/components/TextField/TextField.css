@@ -42,10 +42,6 @@
   @apply border-border-1 bg-background-1 hover:bg-background-2 focus-within:bg-background-2;
 }
 
-.r-text-field-wrapper:focus-within {
-  @apply border-default-800;
-}
-
 .r-text-field-dash {
   @apply border-dashed;
 }
