@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 import unocss from 'unocss/vite'
+import postnest from 'postcss-nesting'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   switch (command) {
@@ -11,6 +12,13 @@ export default defineConfig(({ command, mode }) => {
         plugins: [react(), unocss()],
         define: {
           APP_VERSION: JSON.stringify(process.env.npm_package_version),
+        },
+        css: {
+          postcss: {
+            plugins: [
+              postnest(),
+            ],
+          },
         },
         assetsInclude: ['**/*.md', 'doc/assets'],
         input: {
@@ -38,6 +46,14 @@ export default defineConfig(({ command, mode }) => {
         }
         default: {
           return {
+            css: {
+              postcss: {
+                plugins: [
+                  postnest({
+                  }),
+                ],
+              },
+            },
             esbuild: {
               minifyIdentifiers: false,
             },

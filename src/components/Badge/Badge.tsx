@@ -52,7 +52,7 @@ export function Badge ({
               { content }
             </span>
             { ping &&
-              <span className={classNames('r-badge-ping', badgePointCls)} >
+              <span className={classNames('animate-ping text-transparent', badgePointCls)} >
                 { content }
               </span>
             }

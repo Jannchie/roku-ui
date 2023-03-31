@@ -10,6 +10,7 @@ export default function TagBaseDemo () {
       <Tag >OBOG</Tag>
       <Tag color="secondary">PRO</Tag>
       <Tag color="danger">Owner</Tag>
+      <span className="text-base">123</span>
     </div>
   )
 }

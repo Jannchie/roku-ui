@@ -16,7 +16,6 @@
 .r-text-xs {
   @apply text-xs;
 }
-
 .r-text-bold {
   @apply font-bold;
 }

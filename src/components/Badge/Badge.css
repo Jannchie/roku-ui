@@ -29,10 +29,6 @@
 .r-badge-point-bottom-right {
   @apply bottom-0 right-0;
 }
-
-.r-badge-point-ping {
-  @apply animate-ping;
-}
 .r-badge-point-sm {
   @apply w-2 h-2;
   @apply -m-1;
@@ -71,8 +67,4 @@
 }
 .r-badge-point-with-content.r-badge-point-top-left {
   @apply -ml-3;
-}
-
-.r-badge-ping {
-  @apply animate-ping text-transparent;
 }

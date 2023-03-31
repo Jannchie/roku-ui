@@ -8,6 +8,12 @@
 
 <Demo name="TagBase" />
 
+## 标签大小
+
+我们可以调节标签的大小——通过 `size` 属性。
+
+<Demo name="TagSize" />
+
 ## 有边框的标签
 
 我们可以为他加上边框——通过 `border` 属性。
@@ -34,7 +40,13 @@
 
 ## 可关闭的标签
 
-啊，我还没做。
+<Demo name="TagClosable" />
+
+## 标签组
+
+一个没啥用的功能，就是把标签组合在一起。
+
+<Demo name="TagGroup" />
 
 ## 自定义样式
 

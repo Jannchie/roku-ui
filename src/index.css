@@ -29,3 +29,5 @@ body {
   --un-b-opacity: 1;
   --un-border-opacity: 1;
 }
+
+* { box-sizing: border-box; }

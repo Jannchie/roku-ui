@@ -68,10 +68,10 @@ function DocLayout () {
       display: 'flex',
       gap: 8,
     }}>
-      <span>
+      <span className="text-base">
         Roku UI
       </span>
-      <Tag size="sm">
+      <Tag color="primary">
         Ver.{ APP_VERSION }
       </Tag>
     </div>)}

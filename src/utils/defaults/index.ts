@@ -1,3 +1,3 @@
 export const defaults = {
-  border: true,
+  border: false,
 }
