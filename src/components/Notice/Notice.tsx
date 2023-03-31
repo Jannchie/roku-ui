@@ -60,7 +60,7 @@ export function Notice ({
     { 'shadow-lg shadow-black/5': shadow },
     'overflow-hidden',
     { dense },
-    { border: outlined },
+    { 'border border-border-2': outlined },
     className,
     wrapperClass,
   )
