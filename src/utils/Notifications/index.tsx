@@ -23,8 +23,8 @@ interface PushConfig {
 }
 
 export interface NoticeConfig {
-  title: string
-  desc?: string
+  title: ReactNode
+  desc?: ReactNode
   type?: 'success' | 'danger' | 'warning' | 'info'
   existsMS?: number
   progressBar?: boolean

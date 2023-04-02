@@ -54,7 +54,7 @@ export function Notice ({
   progressTotal = 100,
   close,
   ...others
-}: NoticeProps & PanelProps & HTMLAttributes<HTMLDivElement>) {
+}: NoticeProps & PanelProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>) {
   const wrapperCls = classNames(
     'r-notice-wrapper',
     { 'shadow-lg shadow-black/5': shadow },
