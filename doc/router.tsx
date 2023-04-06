@@ -6,6 +6,11 @@ export const router = [{
   icon: 'home',
   element: <Page md={HomeMD} />,
 }, {
+  path: 'auto-complete',
+  title: '补选框（Auto Complete）',
+  icon: 'inventory_2',
+  element: <Page />,
+}, {
   path: 'anchor',
   title: '锚点（Anchor）',
   icon: 'anchor',

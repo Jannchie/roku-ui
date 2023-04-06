@@ -1,7 +1,8 @@
 .r-combobox-options {
   @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md;
-  @apply py-1 text-base shadow-lg focus:outline-none sm:text-sm;
+  @apply text-base focus:outline-none sm:text-sm z-1;
   /* @apply bg-2; */
+  @apply border border-border-1 leading-0;
 }
 
 .r-combobox-btn {
@@ -12,6 +13,11 @@
   @apply relative cursor-default select-none py-2 px-4;
 }
 
+.r-combobox-item {
+  @apply relative cursor-default select-none py-2 px-4 block w-full text-left cursor-pointer;
+}
+
+
 .r-combobox {
-  @apply relative h-min;
+  @apply relative inline-block h-min;
 }
