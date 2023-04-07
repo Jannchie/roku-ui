@@ -5,6 +5,10 @@ export default function Demo () {
       { id: 1, name: 'Apple' },
       { id: 2, name: 'Banana' },
       { id: 3, name: 'Orange' },
-    ]} />
+
+    ]}
+    getKey={(d) => d.name}
+    getFilter={(query) => (d) => d.name.toLowerCase().includes(query.toLowerCase())}
+    />
   )
 }

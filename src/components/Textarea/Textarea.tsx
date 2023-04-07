@@ -34,7 +34,7 @@ export function Textarea ({
         className={classNames(className,
           'r-textarea',
           `r-textarea-border-${border}`,
-          `hover:bg-background-1 bg-background-1/50 ring-${color}-2`,
+          `hover:bg-background-2 bg-background-1 ring-${color}-2`,
         )}
         style={{
           height: h,

@@ -4,22 +4,24 @@ import classNames from 'classnames'
 import { type Colors, TextField, useOnClickOutside } from '../..'
 import { type BaseProps } from '../../utils/type'
 
-export type RComboboxProps<T extends { id: number, name: string }> = {
+export type RComboboxProps<T> = {
   notFoundContent?: ReactNode
   color?: Colors
+  getKey?: (d: T) => string
   getFilter?: (query: string) => (d: T) => boolean
   data: T[]
 } & BaseProps
 
-export function AutoComplete<T extends { id: number, name: string }> ({
+export function AutoComplete<T> ({
   data,
   id,
   className,
   style,
   color = 'default',
   notFoundContent = 'No results found',
+  getKey = (d: T) => d as any,
   getFilter = (query: string) => {
-    return (d: T): boolean => d.name
+    return (d: T): boolean => getKey(d)
       .toLowerCase()
       .replace(/\s+/g, '')
       .includes(query.toLowerCase().replace(/\s+/g, ''))
@@ -57,7 +59,7 @@ export function AutoComplete<T extends { id: number, name: string }> ({
                 )}>{ notFoundContent }</div>
               )
               : (
-                filteredData.map((d) => <OptionItem<T> key={d.id} setFocused={setFocused} color={color} data={d} setData={setQuery} />)
+                filteredData.map((d) => <OptionItem<T> key={getKey(d)} setFocused={setFocused} color={color} data={d} getKey={getKey} setKey={setQuery} />)
               ) }
           </div>
         )
@@ -66,7 +68,19 @@ export function AutoComplete<T extends { id: number, name: string }> ({
   )
 }
 
-function OptionItem <T extends { id: number, name: string }> ({ color, data, setData, setFocused }: { color: string, data: T, setData: (v: string) => void, setFocused: (v: boolean) => void }) {
+function OptionItem<T> ({
+  color,
+  data,
+  setKey,
+  getKey,
+  setFocused,
+}: {
+  color: string
+  data: T
+  setKey: (v: string) => void
+  getKey: (d: T) => string
+  setFocused: (v: boolean) => void
+}) {
   const [hover, setHover] = useState(false)
   return <button
     className={classNames(
@@ -76,12 +90,12 @@ function OptionItem <T extends { id: number, name: string }> ({ color, data, set
         'bg-background-2': !hover,
       })}
     onClickCapture={() => {
-      setData(data.name)
+      setKey(getKey(data))
       setFocused(false)
     }}
     onMouseEnter={() => { setHover(true) }}
     onMouseLeave={() => { setHover(false) }}
   >
-    { data.name }
+    { getKey(data) }
   </button>
 }
