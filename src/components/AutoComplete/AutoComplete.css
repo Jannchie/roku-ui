@@ -21,3 +21,7 @@
 .r-combobox {
   @apply relative inline-block h-min;
 }
+
+.r-combobox-text {
+  @apply cursor-auto;
+}

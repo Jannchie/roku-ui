@@ -1,5 +1,5 @@
 .r-text-field {
-  @apply w-full outline-none bg-transparent p-2;
+  @apply w-full outline-none bg-transparent p-2\;
 }
 
 .r-text-field-wrapper-sm {
@@ -19,16 +19,16 @@
 }
 
 .r-text-field-prefix {
-  @apply min-w-fit p-2 pr-1;
+  @apply min-w-fit inline-block;
 }
 
 .r-text-field-suffix {
-  @apply min-w-fit p-2 pl-1;
+  @apply min-w-fit inline-block;
 }
 
 .r-text-field-wrapper {
   @apply rounded-xl;
-  @apply inline-flex;
+  @apply inline-flex justify-center items-center gap-2 p-2;
   @apply border border-transparent;
   @apply transition-border-color;
 }
@@ -39,7 +39,7 @@
 
 .r-text-field-border {
   @apply transition-shadow;
-  @apply border-border-1 bg-background-1 hover:bg-background-2 focus-within:bg-background-2;
+  @apply border-border-1 bg-background-1 hover: bg-background-2 focus-within:bg-background-2;
 }
 
 .r-text-field-dash {
