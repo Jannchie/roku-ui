@@ -31,6 +31,7 @@ export function AutoComplete<T> ({
       .replace(/\s+/g, '')
       .includes(query.toLowerCase().replace(/\s+/g, ''))
   },
+  ...others
 }: RComboboxProps<T>) {
   const [query, setQuery] = useState('')
   const filteredData = (query === '') || options.map(getKey).includes(query)
@@ -43,7 +44,7 @@ export function AutoComplete<T> ({
   })
   const [focusIndex, setFocusIndex] = useState(-1)
   return (
-    <div ref={wrapper} id={id} className={classNames('r-combobox', className)} style={style}>
+    <div ref={wrapper} id={id} className={classNames('r-combobox', className)} {...others} >
       <TextField
         suffix={focused && (
           <Btn
@@ -141,8 +142,13 @@ function OptionComponent<T> ({
   setFocusIndex: (v: number) => void
 } & HTMLAttributes<HTMLButtonElement>) {
   const [hover, setHover] = useState(false)
+  const self = useRef<HTMLButtonElement>(null)
+  if (focus) { 
+    self.current?.scrollIntoView({ block: 'nearest' })
+  }
   return <button
     {...props}
+    ref={self}
     className={classNames(
       'r-combobox-item',
       {
