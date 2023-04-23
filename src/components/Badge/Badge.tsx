@@ -27,7 +27,7 @@ export function Badge ({
   circle = false,
   content = '',
   ...others
-}: BadgeProps & HTMLAttributes<HTMLSpanElement>) {
+}: BadgeProps & Omit<HTMLAttributes<HTMLSpanElement>, 'content'>) {
   const colorCls = `bg-${color}-2`
   const badgePointCls = classNames(
     'r-badge-point',
