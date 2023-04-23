@@ -56,6 +56,7 @@ export function AutoComplete<T> ({
             </svg>
           </Btn>
         )}
+        className="r-combobox-input"
         color={color}
         value={query}
         onClick={() => { setFocused(true) }}
