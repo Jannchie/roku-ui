@@ -87,6 +87,7 @@ export function AutoComplete<T> ({
         onKeyDown={(event) => {
           event.stopPropagation()
           switch (event.key) {
+            case 'Escape': setShow(false); return
             case 'ArrowDown': {
               event.preventDefault()
               if (focusIndex < filteredData.length - 1) {
@@ -139,7 +140,6 @@ export function AutoComplete<T> ({
                     setFocusIndex={setFocusIndex}
                     focus={focusIndex === i}
                     selfIndex={i}
-                    focusIndex={focusIndex}
                     setValue={setValue}
                     setShow={setShow}
                     color={color}
@@ -164,7 +164,6 @@ function OptionComponent<T> ({
   getKey,
   setShow,
   focus,
-  focusIndex,
   setFocusIndex,
   filteredData,
   selfIndex,
@@ -177,7 +176,6 @@ function OptionComponent<T> ({
   getKey: (d: T) => string
   setValue: (d: T) => void
   setShow: (v: boolean) => void
-  focusIndex: number
   filteredData: T[]
   selfIndex: number
   setFocusIndex: (v: number) => void
@@ -195,25 +193,6 @@ function OptionComponent<T> ({
         [`bg-${color}-2`]: focus,
         'bg-background-2': !focus,
       })}
-    onKeyUp={(event) => {
-      event.preventDefault()
-      event.stopPropagation()
-      switch (event.key) {
-        case 'ArrowDown': {
-          if (focusIndex < filteredData.length - 1) {
-            event.preventDefault()
-            setFocusIndex(focusIndex + 1)
-          }
-          return
-        }
-        case 'ArrowUp': {
-          if (focusIndex > 0) {
-            event.preventDefault()
-            setFocusIndex(focusIndex - 1)
-          }
-        }
-      }
-    }}
     onClick={() => {
       const key = getKey(data)
       setKey(key)
