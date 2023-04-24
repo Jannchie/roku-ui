@@ -26,6 +26,6 @@
   @apply cursor-auto;
 }
 
-.r-combobox-input {
+.r-combobox-input.r-text-field-wrapper {
   @apply w-full;
 }

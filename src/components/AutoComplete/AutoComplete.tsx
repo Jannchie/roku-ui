@@ -1,5 +1,5 @@
 import './AutoComplete.css'
-import { type ReactNode, useState, useRef, type HTMLAttributes } from 'react'
+import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect } from 'react'
 import classNames from 'classnames'
 import { type Colors, TextField, useOnClickOutside, Btn } from '../..'
 import { type BaseProps } from '../../utils/type'
@@ -9,13 +9,13 @@ export type RComboboxProps<T> = {
   options: T[]
   notFoundContent?: ReactNode
   color?: Colors
-  defaultValue?: T
+  value?: T
   getKey?: (d: T) => string
   getFilter?: (query: string) => (d: T) => boolean
 } & BaseProps
 
 export function AutoComplete<T> ({
-  defaultValue,
+  value,
   setValue,
   options,
   id,
@@ -35,7 +35,12 @@ export function AutoComplete<T> ({
   },
   ...others
 }: RComboboxProps<T>) {
-  const [query, setQuery] = useState(defaultValue ? getKey(defaultValue) : '')
+  const [query, setQuery] = useState(value ? getKey(value) : '')
+
+  useEffect(() => {
+    setQuery(value ? getKey(value) : '')
+  }, [getKey, value])
+
   const filteredData = (query === '') || options.map(getKey).includes(query)
     ? options
     : options.filter(getFilter(query))
