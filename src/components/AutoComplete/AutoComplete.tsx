@@ -1,5 +1,5 @@
 import './AutoComplete.css'
-import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect } from 'react'
+import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect, useLayoutEffect } from 'react'
 import classNames from 'classnames'
 import { type Colors, TextField, useOnClickOutside, Btn } from '../..'
 import { type BaseProps } from '../../utils/type'
@@ -9,13 +9,13 @@ export type RComboboxProps<T> = {
   options: T[]
   notFoundContent?: ReactNode
   color?: Colors
-  value?: T
+  defaultValue?: T
   getKey?: (d: T) => string
   getFilter?: (query: string) => (d: T) => boolean
 } & BaseProps
 
 export function AutoComplete<T> ({
-  value,
+  defaultValue,
   setValue,
   options,
   id,
@@ -35,12 +35,7 @@ export function AutoComplete<T> ({
   },
   ...others
 }: RComboboxProps<T>) {
-  const [query, setQuery] = useState(value ? getKey(value) : '')
-
-  useEffect(() => {
-    setQuery(value ? getKey(value) : '')
-  }, [getKey, value])
-
+  const [query, setQuery] = useState(defaultValue ? getKey(defaultValue) : '')
   const filteredData = (query === '') || options.map(getKey).includes(query)
     ? options
     : options.filter(getFilter(query))
@@ -49,10 +44,25 @@ export function AutoComplete<T> ({
   useOnClickOutside(wrapper, () => {
     setFocused(false)
   })
+  useEffect(() => {
+    shouldReopen.current = false
+    setQuery(defaultValue ? getKey(defaultValue) : '')
+  }, [defaultValue, getKey])
+
+  const shouldReopen = useRef(true)
+  useEffect(() => {
+    if (shouldReopen.current) {
+      setFocused(true)
+    } else {
+      shouldReopen.current = true
+    }
+    setFocusIndex(-1)
+  }, [query])
   const [focusIndex, setFocusIndex] = useState(-1)
   return (
     <div ref={wrapper} id={id} className={classNames('r-combobox', className)} {...others} >
       <TextField
+        value={query}
         suffix={focused && (
           <Btn
             icon
@@ -66,30 +76,35 @@ export function AutoComplete<T> ({
         )}
         className="r-combobox-input"
         color={color}
-        value={query}
-        onClick={() => { setFocused(true) }}
-        onKeyUp={(event) => {
-          event.preventDefault()
+        onClick={() => {
+          setFocused(true)
+          shouldReopen.current = true
+        }}
+        onKeyDown={(event) => {
           event.stopPropagation()
           switch (event.key) {
             case 'ArrowDown': {
+              event.preventDefault()
               if (focusIndex < filteredData.length - 1) {
                 setFocusIndex(focusIndex + 1)
               }
               return
             }
             case 'ArrowUp': {
+              event.preventDefault()
               if (focusIndex > 0) {
                 setFocusIndex(focusIndex - 1)
               }
               return
             }
             case 'Enter': {
+              event.preventDefault()
               if (focusIndex >= 0) {
                 setValue(filteredData[focusIndex])
-                setQuery(getKey(filteredData[focusIndex]))
                 setFocused(false)
+                shouldReopen.current = false
               }
+              setFocusIndex(-1)
             }
           }
         }}
@@ -169,7 +184,6 @@ function OptionComponent<T> ({
         case 'ArrowDown': {
           if (focusIndex < filteredData.length - 1) {
             event.preventDefault()
-            event.stopPropagation()
             setFocusIndex(focusIndex + 1)
           }
           return
@@ -177,7 +191,6 @@ function OptionComponent<T> ({
         case 'ArrowUp': {
           if (focusIndex > 0) {
             event.preventDefault()
-            event.stopPropagation()
             setFocusIndex(focusIndex - 1)
           }
         }

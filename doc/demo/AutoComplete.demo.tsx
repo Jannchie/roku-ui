@@ -1,16 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { AutoComplete } from '../../src'
 export default function Demo () {
   const [value, setValue] = useState<{ id: number, name: string }>()
+  const options = useMemo(() => [
+    { id: 1, name: 'Apple' },
+    { id: 2, name: 'Banana' },
+    { id: 3, name: 'Orange' },
+  ], [])
+  useEffect(() => {
+    setValue(options[0])
+  }, [options])
   return (
     <>
       <div>{ value?.name }</div>
       <AutoComplete
-        options={[
-          { id: 1, name: 'Apple' },
-          { id: 2, name: 'Banana' },
-          { id: 3, name: 'Orange' },
-        ]}
+        defaultValue={value}
+        options={options}
         getKey={(d) => d.name}
         getFilter={(query) => (d) => d.name.toLowerCase().includes(query.toLowerCase())}
         setValue={setValue} />
