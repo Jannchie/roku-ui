@@ -1,5 +1,9 @@
 .r-text-field {
-  @apply w-full outline-none bg-transparent p-2\;
+  @apply w-full outline-none bg-transparent flex-shrink;
+}
+
+.r-text-field-wrapper {
+  @apply w-48;
 }
 
 .r-text-field-wrapper-sm {

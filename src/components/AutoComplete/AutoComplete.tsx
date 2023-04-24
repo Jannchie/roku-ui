@@ -9,11 +9,13 @@ export type RComboboxProps<T> = {
   options: T[]
   notFoundContent?: ReactNode
   color?: Colors
+  defaultValue?: T
   getKey?: (d: T) => string
   getFilter?: (query: string) => (d: T) => boolean
 } & BaseProps
 
 export function AutoComplete<T> ({
+  defaultValue,
   setValue,
   options,
   id,
@@ -33,7 +35,7 @@ export function AutoComplete<T> ({
   },
   ...others
 }: RComboboxProps<T>) {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(defaultValue ? getKey(defaultValue) : '')
   const filteredData = (query === '') || options.map(getKey).includes(query)
     ? options
     : options.filter(getFilter(query))
@@ -143,8 +145,8 @@ function OptionComponent<T> ({
 } & HTMLAttributes<HTMLButtonElement>) {
   const [hover, setHover] = useState(false)
   const self = useRef<HTMLButtonElement>(null)
-  if (focus) { 
-    self.current?.scrollIntoView({ block: 'nearest' })
+  if (focus) {
+    self.current?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
   }
   return <button
     {...props}
