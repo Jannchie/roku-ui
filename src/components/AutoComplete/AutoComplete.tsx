@@ -20,7 +20,6 @@ export function AutoComplete<T> ({
   options,
   id,
   className,
-  style,
   color = 'default',
   notFoundContent = <div className={classNames(
     'r-combobox-item r-combobox-text',
@@ -105,9 +104,9 @@ export function AutoComplete<T> ({
             case 'Enter': {
               event.preventDefault()
               if (focusIndex >= 0) {
+                shouldReopen.current = false
                 setValue(filteredData[focusIndex])
                 setShow(false)
-                shouldReopen.current = false
               }
               setFocusIndex(-1)
             }
