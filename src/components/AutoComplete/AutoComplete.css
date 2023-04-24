@@ -19,7 +19,7 @@
 
 
 .r-combobox {
-  @apply relative inline-block h-min;
+  @apply relative inline-block h-min w-48;
 }
 
 .r-combobox-text {

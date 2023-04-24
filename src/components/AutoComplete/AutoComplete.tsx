@@ -1,5 +1,5 @@
 import './AutoComplete.css'
-import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect, useLayoutEffect } from 'react'
+import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect, useCallback } from 'react'
 import classNames from 'classnames'
 import { type Colors, TextField, useOnClickOutside, Btn } from '../..'
 import { type BaseProps } from '../../utils/type'
@@ -26,33 +26,37 @@ export function AutoComplete<T> ({
     'r-combobox-item r-combobox-text',
     'bg-background-2',
   )}>{ 'No results found' }</div>,
-  getKey = (d: T) => d as any,
-  getFilter = (query: string) => {
-    return (d: T): boolean => getKey(d)
+  getKey,
+  getFilter,
+  ...others
+}: RComboboxProps<T>) {
+  const defaultGetKey = useCallback((d: T) => String(d), [])
+  const defaultGetFilter = (query: string) => {
+    return (d: T): boolean => trueGetKey(d)
       .toLowerCase()
       .replace(/\s+/g, '')
       .includes(query.toLowerCase().replace(/\s+/g, ''))
-  },
-  ...others
-}: RComboboxProps<T>) {
-  const [query, setQuery] = useState(defaultValue ? getKey(defaultValue) : '')
-  const filteredData = (query === '') || options.map(getKey).includes(query)
+  }
+  const trueFilter = getFilter ?? defaultGetFilter
+  const trueGetKey = getKey ?? defaultGetKey
+  const [query, setQuery] = useState(defaultValue ? trueGetKey(defaultValue) : '')
+  const filteredData = (query === '') || options.map(trueGetKey).includes(query)
     ? options
-    : options.filter(getFilter(query))
-  const [focused, setFocused] = useState(false)
+    : options.filter(trueFilter(query))
+  const [show, setShow] = useState(false)
   const wrapper = useRef<HTMLDivElement>(null)
   useOnClickOutside(wrapper, () => {
-    setFocused(false)
+    setShow(false)
   })
   useEffect(() => {
     shouldReopen.current = false
-    setQuery(defaultValue ? getKey(defaultValue) : '')
-  }, [defaultValue, getKey])
+    setQuery(defaultValue ? trueGetKey(defaultValue) : '')
+  }, [defaultValue, trueGetKey])
 
   const shouldReopen = useRef(true)
   useEffect(() => {
     if (shouldReopen.current) {
-      setFocused(true)
+      setShow(true)
     } else {
       shouldReopen.current = true
     }
@@ -63,11 +67,11 @@ export function AutoComplete<T> ({
     <div ref={wrapper} id={id} className={classNames('r-combobox', className)} {...others} >
       <TextField
         value={query}
-        suffix={focused && (
+        suffix={show && (
           <Btn
             icon
             text style={{ display: 'flex', height: 20, width: 20, padding: 0 }} color={color}
-            onClick={() => { setQuery(''); setFocused(false) }} >
+            onClick={() => { setQuery(''); setShow(false) }} >
             <svg width="20" height="20" viewBox="0 0 28 28">
               <line x1="8" y1="20" x2="20" y2="8" stroke="currentColor" strokeWidth="2"/>
               <line x1="8" y1="8" x2="20" y2="20" stroke="currentColor" strokeWidth="2"/>
@@ -77,7 +81,7 @@ export function AutoComplete<T> ({
         className="r-combobox-input"
         color={color}
         onClick={() => {
-          setFocused(true)
+          setShow(true)
           shouldReopen.current = true
         }}
         onKeyDown={(event) => {
@@ -101,7 +105,7 @@ export function AutoComplete<T> ({
               event.preventDefault()
               if (focusIndex >= 0) {
                 setValue(filteredData[focusIndex])
-                setFocused(false)
+                setShow(false)
                 shouldReopen.current = false
               }
               setFocusIndex(-1)
@@ -110,26 +114,39 @@ export function AutoComplete<T> ({
         }}
         onFocus={() => {
           setFocusIndex(-1)
-          setFocused(true)
+          setShow(true)
         }}
         onChange={(event) => {
           setQuery(event.target.value)
-          const option = options.find(getFilter(event.target.value))
-          if (option && getKey(option) === event.target.value) {
+          const option = options.find(trueFilter(event.target.value))
+          if (option && trueGetKey(option) === event.target.value) {
             setValue(option)
           }
         }}
       />
       {
         (
-          <div className={classNames('r-combobox-options', { hidden: !focused })}>
+          <div className={classNames('r-combobox-options', { hidden: !show })}>
             { filteredData.length === 0 && query !== ''
               ? (
                 notFoundContent
               )
               : (
                 filteredData.map((d, i) => {
-                  return <OptionComponent<T> key={getKey(d)} filteredData={filteredData} setFocusIndex={setFocusIndex} focus={focusIndex === i} focusIndex={focusIndex} setValue={setValue} setFocused={setFocused} color={color} data={d} getKey={getKey} setKey={setQuery} />
+                  return <OptionComponent<T>
+                    key={trueGetKey(d)}
+                    filteredData={filteredData}
+                    setFocusIndex={setFocusIndex}
+                    focus={focusIndex === i}
+                    selfIndex={i}
+                    focusIndex={focusIndex}
+                    setValue={setValue}
+                    setShow={setShow}
+                    color={color}
+                    data={d}
+                    getKey={trueGetKey}
+                    setKey={setQuery}
+                  />
                 })
               ) }
           </div>
@@ -145,11 +162,12 @@ function OptionComponent<T> ({
   setKey,
   setValue,
   getKey,
-  setFocused,
+  setShow,
   focus,
   focusIndex,
   setFocusIndex,
   filteredData,
+  selfIndex,
   ...props
 }: {
   color: string
@@ -158,12 +176,12 @@ function OptionComponent<T> ({
   setKey: (v: string) => void
   getKey: (d: T) => string
   setValue: (d: T) => void
-  setFocused: (v: boolean) => void
+  setShow: (v: boolean) => void
   focusIndex: number
   filteredData: T[]
+  selfIndex: number
   setFocusIndex: (v: number) => void
 } & HTMLAttributes<HTMLButtonElement>) {
-  const [hover, setHover] = useState(false)
   const self = useRef<HTMLButtonElement>(null)
   if (focus) {
     self.current?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
@@ -174,8 +192,8 @@ function OptionComponent<T> ({
     className={classNames(
       'r-combobox-item',
       {
-        [`bg-${color}-2`]: hover || focus,
-        'bg-background-2': !hover && !focus,
+        [`bg-${color}-2`]: focus,
+        'bg-background-2': !focus,
       })}
     onKeyUp={(event) => {
       event.preventDefault()
@@ -199,11 +217,10 @@ function OptionComponent<T> ({
     onClick={() => {
       const key = getKey(data)
       setKey(key)
-      setFocused(false)
+      setShow(false)
       setValue(data)
     }}
-    onMouseEnter={() => { setHover(true) }}
-    onMouseLeave={() => { setHover(false) }}
+    onMouseMove={() => { setFocusIndex(selfIndex) }}
   >
     { getKey(data) }
   </button>
