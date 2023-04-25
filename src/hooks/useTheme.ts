@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react'
-import { defaultDark, defaultLight } from '../utils/theme'
-import { registTheme } from '../utils/theme/utils'
+import { usePrefersColorScheme } from './usePrefersColorScheme'
 
 export function useTheme () {
-  registTheme('dark', defaultDark)
-  registTheme('light', defaultLight)
-  const [theme, setTheme] = useState<string>()
+  const preferred = usePrefersColorScheme()
+  const [theme, setTheme] = useState<'system' | 'dark' | 'light'>('system')
   useEffect(() => {
-    if (theme) {
-      document.documentElement.setAttribute('data-theme', theme)
-      localStorage.setItem('roku.ui.theme', theme)
+    if (theme === 'system') {
+      document.documentElement.setAttribute('data-theme', preferred)
     } else {
-      let localTheme = localStorage.getItem('roku.ui.theme')
-      if (!localTheme) {
-        localTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-      }
-      setTheme(localTheme)
+      document.documentElement.setAttribute('data-theme', theme)
     }
-  }, [theme])
+  }, [preferred, theme])
   return { theme, setTheme }
 }
