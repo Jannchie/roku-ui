@@ -10,11 +10,11 @@
 }
 
 .r-btn {
-  @apply rounded-lg;
+  @apply rounded;
 }
 
 .r-panel .r-btn {
-  @apply rounded-lg;
+  @apply rounded;
 }
 
 .r-btn-main {
