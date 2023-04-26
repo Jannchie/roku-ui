@@ -21,7 +21,7 @@ export function Textarea ({
     setH(height)
   }, [height])
   return (
-    <>
+    <div className={classNames('r-textarea-wrapper', className)}>
       { maxLength && (
         <div className={classNames('r-textarea-extra-info')}>
           { textarea.current?.value.length }
@@ -31,7 +31,7 @@ export function Textarea ({
       ) }
       <textarea
         ref={textarea}
-        className={classNames(className,
+        className={classNames(
           'r-textarea',
           `r-textarea-border-${border}`,
           `hover:bg-background-2 bg-background-1 ring-${color}-2`,
@@ -63,6 +63,6 @@ export function Textarea ({
         }}
         {...props}
       />
-    </>
+    </div>
   )
 }

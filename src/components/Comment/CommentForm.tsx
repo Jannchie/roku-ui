@@ -15,7 +15,7 @@ export function CommentForm ({
         { (replyTo != null)
           ? (
             <span>
-            回复
+              回复
               { replyTo.user.name }
             </span>
           )

@@ -1,9 +1,13 @@
+.r-textarea-wrapper {
+  @apply relative;
+}
+
 .r-textarea {
   @apply text-sm p-[9px] py-[8px] resize-none border-border-2 transition-height;
-  @apply outline-none rounded-xl 
-  @apply focus:ring-1 transition-shadow;
-  @apply hover:bg-background-2 focus:bg-background-2;
-  @apply border focus:border-transparent;
+  @apply outline-none rounded;
+  @apply focus: ring-1 transition-shadow;
+  @apply hover: bg-background-2 focus:bg-background-2;
+  @apply border focus: border-transparent;
 }
 
 .r-panel .r-textarea {
