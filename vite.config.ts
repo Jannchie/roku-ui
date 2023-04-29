@@ -49,8 +49,7 @@ export default defineConfig(({ command, mode }) => {
             css: {
               postcss: {
                 plugins: [
-                  postnest({
-                  }),
+                  postnest({}),
                 ],
               },
             },
@@ -64,20 +63,25 @@ export default defineConfig(({ command, mode }) => {
                 name: 'RokuUI',
               },
               rollupOptions: {
-                external: ['react', 'react-dom'],
+                external: ['react', 'react-dom', 'react/jsx-runtime'],
                 output: {
                   globals: {
                     react: 'React',
                     'react-dom': 'ReactDOM',
+                    'react/jsx-runtime': 'jsxRuntime',
                   },
                 },
               },
               target: 'modules',
             },
-            plugins: [react(), unocss(), dts({
-              outputDir: 'dist/types',
-              include: ['./src/**/*.ts(x)?'],
-            })],
+            plugins: [
+              react(),
+              unocss(),
+              dts({
+                outputDir: 'dist/types',
+                include: ['./src/**/*.ts(x)?'],
+              }),
+            ],
           }
         }
       }

@@ -33,7 +33,7 @@ export function Page ({ md = '' }: { md?: string, path?: string }) {
             Notice: { component: DocNotice },
           },
         }}>
-          {body}
+          { body }
         </Markdown>
       </Article>
     </div>

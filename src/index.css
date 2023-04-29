@@ -2,8 +2,7 @@
   color-scheme: dark;
 }
 
-body {
-  @apply transition-all;
+:root {
   @apply bg-background-3;
 }
 

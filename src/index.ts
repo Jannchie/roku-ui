@@ -1,8 +1,8 @@
 import './index.css'
 import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'
-
 export * from './components/Anchor'
+export * from './components/ThemeTogger'
 export * from './components/AutoComplete'
 export * from './components/Avatar'
 export * from './components/Badge'

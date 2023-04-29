@@ -1,10 +1,16 @@
 import HomeMD from './markdown/home.md?raw'
 import { Page } from './components/Page'
+import { TablerMoon } from '@roku-ui/icons-tabler'
 export const router = [{
   path: '/',
   title: '主页',
   icon: 'home',
   element: <Page md={HomeMD} />,
+}, {
+  path: 'theme-toggle',
+  title: '主题切换器（Theme Toggle）',
+  icon: <TablerMoon />,
+  element: <Page />,
 }, {
   path: 'auto-complete',
   title: '补选框（Auto Complete）',

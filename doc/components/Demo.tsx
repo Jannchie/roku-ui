@@ -15,6 +15,7 @@ export const Demo = ({ name, prose = false }: {
         setCode(module.default.replace('../../src', 'roku-ui'))
       })
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err)
     }
   }, [name])

@@ -1,5 +1,5 @@
 import {
-  useState, useRef,
+  useState, useRef, type ReactNode,
 } from 'react'
 import { NavLink, useLocation, useOutlet } from 'react-router-dom'
 import { SwitchTransition, Transition } from 'react-transition-group'
@@ -10,7 +10,7 @@ import useWindowSize, { type WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
 import { router } from './router'
 
-function getNavItem (icon: string, hover: boolean, title: string, width: number) {
+function getNavItem (icon: ReactNode, hover: boolean, title: string, width: number) {
   return function ActivableBtn ({ isActive }: { isActive: boolean }) {
     return (
       <div style={{ display: 'flex', justifyItems: 'center', alignItems: 'center' }}>
@@ -28,11 +28,7 @@ function getNavItem (icon: string, hover: boolean, title: string, width: number)
             gap: 16,
           }}
           >
-            <MaterialSymbolIcon
-              style={{
-              }}
-              icon={icon}
-            />
+            { typeof icon === 'string' ? <MaterialSymbolIcon icon={icon} /> : icon }
           </div>
 
         </Btn>
@@ -204,7 +200,6 @@ function LeftMenu ({
         position: 'fixed',
         padding: 8,
         left: showMenu ? 0 : -width,
-        transition: 'all 0.1s ease-in-out',
         width,
         overflowY: 'auto',
         overflowX: 'hidden',
