@@ -28,9 +28,178 @@ body {
 :root {
   --un-b-opacity: 1;
   --un-border-opacity: 1;
+  box-sizing: border-box;
+}
+@media (prefers-color-scheme: dark) {
+  :root([data-theme="light"]) {
+    --r-background: 0, 0%, 99%;
+    --r-background-1: 0, 0%, 100%;
+    --r-background-2: 0, 0%, 99%;
+    --r-background-3: 0, 0%, 97%;
+    --r-frontground: 240, 5%, 10%;
+    --r-frontground-1: 240, 5%, 11%;
+    --r-frontground-2: 240, 5%, 10%;
+    --r-frontground-3: 240, 5%, 6%;
+    --r-border: 0, 0%, 73%;
+    --r-border-1: 0, 0%, 84%;
+    --r-border-2: 0, 0%, 73%;
+    --r-border-3: 0, 0%, 47%;
+    --r-primary: 200, 98%, 39%;
+    --r-primary-1: 200, 98%, 45%;
+    --r-primary-2: 200, 98%, 39%;
+    --r-primary-3: 200, 98%, 25%;
+    --r-secondary: 161, 93%, 30%;
+    --r-secondary-1: 161, 93%, 35%;
+    --r-secondary-2: 161, 93%, 30%;
+    --r-secondary-3: 161, 93%, 19%;
+    --r-default: 0, 0%, 93%;
+    --r-default-1: 0, 0%, 96%;
+    --r-default-2: 0, 0%, 93%;
+    --r-default-3: 0, 0%, 92%;
+    --r-success: 161, 93%, 30%;
+    --r-success-1: 161, 93%, 35%;
+    --r-success-2: 161, 93%, 30%;
+    --r-success-3: 161, 93%, 19%;
+    --r-warning: 20, 90%, 48%;
+    --r-warning-1: 20, 90%, 55%;
+    --r-warning-2: 20, 90%, 48%;
+    --r-warning-3: 20, 90%, 31%;
+    --r-danger: 0, 72%, 50%;
+    --r-danger-1: 0, 72%, 58%;
+    --r-danger-2: 0, 72%, 50%;
+    --r-danger-3: 0, 72%, 32%;
+    --r-info: 198, 88%, 48%;
+    --r-info-1: 198, 88%, 55%;
+    --r-info-2: 198, 88%, 48%;
+    --r-info-3: 198, 88%, 31%;
+  }
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --r-background: 240, 5%, 10%;
+    --r-background-1: 240, 5%, 11%;
+    --r-background-2: 240, 5%, 10%;
+    --r-background-3: 240, 5%, 6%;
+    --r-frontground: 240, 4%, 83%;
+    --r-frontground-1: 240, 4%, 98%;
+    --r-frontground-2: 240, 4%, 83%;
+    --r-frontground-3: 240, 4%, 51%;
+    --r-border: 0, 0%, 13%;
+    --r-border-1: 0, 0%, 15%;
+    --r-border-2: 0, 0%, 13%;
+    --r-border-3: 0, 0%, 8%;
+    --r-primary: 200, 98%, 39%;
+    --r-primary-1: 200, 98%, 46%;
+    --r-primary-2: 200, 98%, 39%;
+    --r-primary-3: 200, 98%, 24%;
+    --r-secondary: 161, 93%, 30%;
+    --r-secondary-1: 161, 93%, 35%;
+    --r-secondary-2: 161, 93%, 30%;
+    --r-secondary-3: 161, 93%, 18%;
+    --r-default: 240, 3%, 15%;
+    --r-default-1: 240, 3%, 18%;
+    --r-default-2: 240, 3%, 15%;
+    --r-default-3: 240, 3%, 9%;
+    --r-success: 161, 93%, 30%;
+    --r-success-1: 161, 93%, 35%;
+    --r-success-2: 161, 93%, 30%;
+    --r-success-3: 161, 93%, 18%;
+    --r-warning: 20, 90%, 48%;
+    --r-warning-1: 20, 90%, 56%;
+    --r-warning-2: 20, 90%, 48%;
+    --r-warning-3: 20, 90%, 29%;
+    --r-danger: 0, 72%, 50%;
+    --r-danger-1: 0, 72%, 59%;
+    --r-danger-2: 0, 72%, 50%;
+    --r-danger-3: 0, 72%, 31%;
+    --r-info: 198, 88%, 48%;
+    --r-info-1: 198, 88%, 56%;
+    --r-info-2: 198, 88%, 48%;
+    --r-info-3: 198, 88%, 29%;
+  }
 }
 
-* { box-sizing: border-box; }
-
-[data-theme="dark"] {color-scheme: dark;--r-background: 240, 5%, 10%;--r-background-1: 240, 5%, 11%;--r-background-2: 240, 5%, 10%;--r-background-3: 240, 5%, 6%;--r-frontground: 240, 4%, 83%;--r-frontground-1: 240, 4%, 98%;--r-frontground-2: 240, 4%, 83%;--r-frontground-3: 240, 4%, 51%;--r-border: 0, 0%, 13%;--r-border-1: 0, 0%, 15%;--r-border-2: 0, 0%, 13%;--r-border-3: 0, 0%, 8%;--r-primary: 200, 98%, 39%;--r-primary-1: 200, 98%, 46%;--r-primary-2: 200, 98%, 39%;--r-primary-3: 200, 98%, 24%;--r-secondary: 161, 93%, 30%;--r-secondary-1: 161, 93%, 35%;--r-secondary-2: 161, 93%, 30%;--r-secondary-3: 161, 93%, 18%;--r-default: 240, 3%, 15%;--r-default-1: 240, 3%, 18%;--r-default-2: 240, 3%, 15%;--r-default-3: 240, 3%, 9%;--r-success: 161, 93%, 30%;--r-success-1: 161, 93%, 35%;--r-success-2: 161, 93%, 30%;--r-success-3: 161, 93%, 18%;--r-warning: 20, 90%, 48%;--r-warning-1: 20, 90%, 56%;--r-warning-2: 20, 90%, 48%;--r-warning-3: 20, 90%, 29%;--r-danger: 0, 72%, 50%;--r-danger-1: 0, 72%, 59%;--r-danger-2: 0, 72%, 50%;--r-danger-3: 0, 72%, 31%;--r-info: 198, 88%, 48%;--r-info-1: 198, 88%, 56%;--r-info-2: 198, 88%, 48%;--r-info-3: 198, 88%, 29%;}
-[data-theme="light"] {--r-background: 0, 0%, 99%;--r-background-1: 0, 0%, 100%;--r-background-2: 0, 0%, 99%;--r-background-3: 0, 0%, 97%;--r-frontground: 240, 5%, 10%;--r-frontground-1: 240, 5%, 11%;--r-frontground-2: 240, 5%, 10%;--r-frontground-3: 240, 5%, 6%;--r-border: 0, 0%, 73%;--r-border-1: 0, 0%, 84%;--r-border-2: 0, 0%, 73%;--r-border-3: 0, 0%, 47%;--r-primary: 200, 98%, 39%;--r-primary-1: 200, 98%, 45%;--r-primary-2: 200, 98%, 39%;--r-primary-3: 200, 98%, 25%;--r-secondary: 161, 93%, 30%;--r-secondary-1: 161, 93%, 35%;--r-secondary-2: 161, 93%, 30%;--r-secondary-3: 161, 93%, 19%;--r-default: 0, 0%, 93%;--r-default-1: 0, 0%, 96%;--r-default-2: 0, 0%, 93%;--r-default-3: 0, 0%, 92%;--r-success: 161, 93%, 30%;--r-success-1: 161, 93%, 35%;--r-success-2: 161, 93%, 30%;--r-success-3: 161, 93%, 19%;--r-warning: 20, 90%, 48%;--r-warning-1: 20, 90%, 55%;--r-warning-2: 20, 90%, 48%;--r-warning-3: 20, 90%, 31%;--r-danger: 0, 72%, 50%;--r-danger-1: 0, 72%, 58%;--r-danger-2: 0, 72%, 50%;--r-danger-3: 0, 72%, 32%;--r-info: 198, 88%, 48%;--r-info-1: 198, 88%, 55%;--r-info-2: 198, 88%, 48%;--r-info-3: 198, 88%, 31%;}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --r-background: 240, 5%, 10%;
+  --r-background-1: 240, 5%, 11%;
+  --r-background-2: 240, 5%, 10%;
+  --r-background-3: 240, 5%, 6%;
+  --r-frontground: 240, 4%, 83%;
+  --r-frontground-1: 240, 4%, 98%;
+  --r-frontground-2: 240, 4%, 83%;
+  --r-frontground-3: 240, 4%, 51%;
+  --r-border: 0, 0%, 13%;
+  --r-border-1: 0, 0%, 15%;
+  --r-border-2: 0, 0%, 13%;
+  --r-border-3: 0, 0%, 8%;
+  --r-primary: 200, 98%, 39%;
+  --r-primary-1: 200, 98%, 46%;
+  --r-primary-2: 200, 98%, 39%;
+  --r-primary-3: 200, 98%, 24%;
+  --r-secondary: 161, 93%, 30%;
+  --r-secondary-1: 161, 93%, 35%;
+  --r-secondary-2: 161, 93%, 30%;
+  --r-secondary-3: 161, 93%, 18%;
+  --r-default: 240, 3%, 15%;
+  --r-default-1: 240, 3%, 18%;
+  --r-default-2: 240, 3%, 15%;
+  --r-default-3: 240, 3%, 9%;
+  --r-success: 161, 93%, 30%;
+  --r-success-1: 161, 93%, 35%;
+  --r-success-2: 161, 93%, 30%;
+  --r-success-3: 161, 93%, 18%;
+  --r-warning: 20, 90%, 48%;
+  --r-warning-1: 20, 90%, 56%;
+  --r-warning-2: 20, 90%, 48%;
+  --r-warning-3: 20, 90%, 29%;
+  --r-danger: 0, 72%, 50%;
+  --r-danger-1: 0, 72%, 59%;
+  --r-danger-2: 0, 72%, 50%;
+  --r-danger-3: 0, 72%, 31%;
+  --r-info: 198, 88%, 48%;
+  --r-info-1: 198, 88%, 56%;
+  --r-info-2: 198, 88%, 48%;
+  --r-info-3: 198, 88%, 29%;
+}
+:root[data-theme="light"] {
+  --r-background: 0, 0%, 99%;
+  --r-background-1: 0, 0%, 100%;
+  --r-background-2: 0, 0%, 99%;
+  --r-background-3: 0, 0%, 97%;
+  --r-frontground: 240, 5%, 10%;
+  --r-frontground-1: 240, 5%, 11%;
+  --r-frontground-2: 240, 5%, 10%;
+  --r-frontground-3: 240, 5%, 6%;
+  --r-border: 0, 0%, 73%;
+  --r-border-1: 0, 0%, 84%;
+  --r-border-2: 0, 0%, 73%;
+  --r-border-3: 0, 0%, 47%;
+  --r-primary: 200, 98%, 39%;
+  --r-primary-1: 200, 98%, 45%;
+  --r-primary-2: 200, 98%, 39%;
+  --r-primary-3: 200, 98%, 25%;
+  --r-secondary: 161, 93%, 30%;
+  --r-secondary-1: 161, 93%, 35%;
+  --r-secondary-2: 161, 93%, 30%;
+  --r-secondary-3: 161, 93%, 19%;
+  --r-default: 0, 0%, 93%;
+  --r-default-1: 0, 0%, 96%;
+  --r-default-2: 0, 0%, 93%;
+  --r-default-3: 0, 0%, 92%;
+  --r-success: 161, 93%, 30%;
+  --r-success-1: 161, 93%, 35%;
+  --r-success-2: 161, 93%, 30%;
+  --r-success-3: 161, 93%, 19%;
+  --r-warning: 20, 90%, 48%;
+  --r-warning-1: 20, 90%, 55%;
+  --r-warning-2: 20, 90%, 48%;
+  --r-warning-3: 20, 90%, 31%;
+  --r-danger: 0, 72%, 50%;
+  --r-danger-1: 0, 72%, 58%;
+  --r-danger-2: 0, 72%, 50%;
+  --r-danger-3: 0, 72%, 32%;
+  --r-info: 198, 88%, 48%;
+  --r-info-1: 198, 88%, 55%;
+  --r-info-2: 198, 88%, 48%;
+  --r-info-3: 198, 88%, 31%;
+}

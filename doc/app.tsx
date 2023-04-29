@@ -20,7 +20,6 @@ function getNavItem (icon: string, hover: boolean, title: string, width: number)
           icon
           style={{
             margin: '0 8px',
-            transition: 'all color 0.1s ease-in-out',
           }}
           color={isActive ? 'primary' : 'default'}
         >
@@ -114,7 +113,7 @@ function DocLayout () {
   const pageBodyRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
   const outlet = useOutlet()
-  const timeoutMS = 200
+  const timeoutMS = 150
   return (
     <HolyGrail
       style={{
@@ -177,7 +176,7 @@ function LeftMenu ({
           marginLeft: 8,
           marginBottom: 8,
           padding: '16px 0',
-          transition: 'all 0.1s ease-in-out',
+          transition: 'min-width 0.1s ease-in-out',
           minWidth: hover ? width : 54,
           overflowY: 'auto',
           overflowX: 'hidden',
