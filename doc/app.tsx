@@ -60,10 +60,11 @@ function DocLayout () {
     <Appbar
       style={{ position: 'fixed', top: 0, width: '100%' }}
       varient="pattern"
-      title={(<div style={{
-        display: 'flex',
-        gap: 8,
-      }}
+      title={(<div
+        style={{
+          display: 'flex',
+          gap: 8,
+        }}
       >
         <span className="text-base">
           Roku UI
@@ -131,39 +132,43 @@ function DocLayout () {
       style={{
         minHeight: '100vh',
       }}
-      innerLeft={<LeftMenu
-        size={size}
-        showMenu={showMenu}
-        setShowMenu={setShowMenu}
-                 />}
+      innerLeft={(
+        <LeftMenu
+          size={size}
+          showMenu={showMenu}
+          setShowMenu={setShowMenu}
+        />
+      )}
       header={appbar}
-      main={<SwitchTransition
-        mode="out-in"
-      >
-        <Transition
-          key={location.pathname}
-          unmountOnExit
-          nodeRef={pageBodyRef}
-          timeout={timeoutMS}
+      main={(
+        <SwitchTransition
+          mode="out-in"
         >
-          { (state) => {
-            return (
-              <div
-                ref={pageBodyRef}
-                style={{
-                  marginTop: 100,
-                  minHeight: 'calc(100vh - 100px - 29px)',
-                  transition: `all ${timeoutMS}ms ease-out`,
-                  opacity: state === 'entered' ? undefined : 0,
-                  transform: state === 'entered' ? undefined : 'translateY(10px)',
-                }}
-              >
-                { outlet }
-              </div>
-            )
-          } }
-        </Transition>
-      </SwitchTransition>}
+          <Transition
+            key={location.pathname}
+            unmountOnExit
+            nodeRef={pageBodyRef}
+            timeout={timeoutMS}
+          >
+            { (state) => {
+              return (
+                <div
+                  ref={pageBodyRef}
+                  style={{
+                    marginTop: 100,
+                    minHeight: 'calc(100vh - 100px - 29px)',
+                    transition: `all ${timeoutMS}ms ease-out`,
+                    opacity: state === 'entered' ? undefined : 0,
+                    transform: state === 'entered' ? undefined : 'translateY(10px)',
+                  }}
+                >
+                  { outlet }
+                </div>
+              )
+            } }
+          </Transition>
+        </SwitchTransition>
+      )}
       footer={(
         <Footer>
           Jannchie Studio @

@@ -132,6 +132,7 @@ with second line.`,
     setInput('')
   }
   const onLoadMore = () => {
+    // eslint-disable-next-line no-console
     console.log('onLoadMore')
   }
   return (
@@ -152,7 +153,6 @@ with second line.`,
               style={{ minWidth: 48 }}
               value={target.likes}
               onClick={() => {
-                console.log('like', target)
                 if (target.liked) {
                   target.like = 0
                   target.liked = false

@@ -8,7 +8,6 @@ export default function CounterBtnDemo () {
       <Btn.Group
         value={value}
         setValue={(e) => {
-          console.log(e)
           setValue(e)
         }}
         activeColor="primary"

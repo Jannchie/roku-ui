@@ -5,6 +5,7 @@ export default function Demo () {
     <Appbar
       varient="default"
       searchCallback={(val) => {
+        // eslint-disable-next-line no-console
         console.log(val)
       }}
       title="Search"

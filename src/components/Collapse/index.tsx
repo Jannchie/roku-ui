@@ -13,7 +13,7 @@ export function Collapse ({
   icon = <MaterialSymbolIcon
     size="lg"
     icon="expand_more"
-         />,
+  />,
   ...props
 }: {
   header?: ReactNode
