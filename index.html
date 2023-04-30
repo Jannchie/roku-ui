@@ -16,17 +16,6 @@
 
   <body>
     <div id="root"></div>
-    <script type="module">
-      const theme = localStorage.getItem("roku.theme");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      if (!theme) {
-        document.documentElement.setAttribute("data-theme", "default");
-      } else {
-        document.documentElement.setAttribute("data-theme", theme);
-      }
-    </script>
     <script type="module" src="doc/main.tsx"></script>
     <script type="module" src="doc/assets/prism.js"></script>
     <link rel="stylesheet" href="doc/assets/prism.css" />

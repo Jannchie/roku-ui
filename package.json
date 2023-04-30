@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@roku-ui/icons-bxl": "^2.1.4",
+    "@roku-ui/icons-material-symbols": "^0.0.1682660269",
     "@roku-ui/icons-tabler": "^2.17.0",
     "@tabler/icons-react": "^2.17.0",
     "@unocss/reset": "^0.51.8",

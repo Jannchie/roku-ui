@@ -8,6 +8,9 @@ dependencies:
   '@roku-ui/icons-bxl':
     specifier: ^2.1.4
     version: 2.1.4(react-dom@18.2.0)(react@18.2.0)
+  '@roku-ui/icons-material-symbols':
+    specifier: ^0.0.1682660269
+    version: 0.0.1682660269(react-dom@18.2.0)(react@18.2.0)
   '@roku-ui/icons-tabler':
     specifier: ^2.17.0
     version: 2.17.0(react-dom@18.2.0)(react@18.2.0)
@@ -104,10 +107,10 @@ devDependencies:
     specifier: ^11.2.2
     version: 11.2.2(postcss@8.4.23)
   react:
-    specifier: ^18.2.0
+    specifier: ^16.8.0 || ^17.0.0 || ^18.0.0
     version: 18.2.0
   react-dom:
-    specifier: ^18.2.0
+    specifier: ^16.8.0 || ^17.0.0 || ^18.0.0
     version: 18.2.0(react@18.2.0)
   react-element-to-jsx-string:
     specifier: ^15.0.0
@@ -825,6 +828,16 @@ packages:
 
   /@roku-ui/icons-bxl@2.1.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-7PsMSA40tI8a3/mhknFnEEZncasv2+3m9XULI5H0ZQlZG5BNvMsaH7wjxAoDSCCpYnOJeMvYyGvTj1sSvht0Pw==}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@roku-ui/icons-material-symbols@0.0.1682660269(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-831gZtxYykQ75ypE0lmJYdbd+HpD3alnwzhyfcfaDgSM4OPaX0xaM/+R8Kn/3oLVyIi5oGdFKyF8TPm/VJV6Og==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
