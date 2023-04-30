@@ -7,12 +7,17 @@ export default function Demo () {
     <>
       <Btn onClick={() => {
         setShow(true)
-      }}>Open</Btn>
+      }}
+      >
+        Open
+      </Btn>
       <Modal
         preventClickOutside
         background
         backgroundBlur
-        show={show} setShow={setShow} >
+        show={show}
+        setShow={setShow}
+      >
         <Card
           shadow
           style={{
@@ -23,7 +28,11 @@ export default function Demo () {
           body="This is a modal body."
           actions={<Btn onClick={() => {
             setShow(false)
-          }}>Close</Btn>} />
+          }}
+          >
+            Close
+          </Btn>}
+        />
       </Modal>
     </>
   )

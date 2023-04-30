@@ -24,7 +24,10 @@ export function AutoComplete<T> ({
   notFoundContent = <div className={classNames(
     'r-combobox-item r-combobox-text',
     'bg-background-2',
-  )}>{ 'No results found' }</div>,
+  )}
+  >
+    { 'No results found' }
+  </div>,
   getKey,
   getFilter,
   ...others
@@ -63,17 +66,43 @@ export function AutoComplete<T> ({
   }, [query])
   const [focusIndex, setFocusIndex] = useState(-1)
   return (
-    <div ref={wrapper} id={id} className={classNames('r-combobox', className)} {...others} >
+    <div
+      ref={wrapper}
+      id={id}
+      className={classNames('r-combobox', className)}
+      {...others}
+    >
       <TextField
         value={query}
         suffix={show && (
           <Btn
             icon
-            text style={{ display: 'flex', height: 20, width: 20, padding: 0 }} color={color}
-            onClick={() => { setQuery(''); setShow(false) }} >
-            <svg width="20" height="20" viewBox="0 0 28 28">
-              <line x1="8" y1="20" x2="20" y2="8" stroke="currentColor" strokeWidth="2"/>
-              <line x1="8" y1="8" x2="20" y2="20" stroke="currentColor" strokeWidth="2"/>
+            text
+            style={{ display: 'flex', height: 20, width: 20, padding: 0 }}
+            color={color}
+            onClick={() => { setQuery(''); setShow(false) }}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 28 28"
+            >
+              <line
+                x1="8"
+                y1="20"
+                x2="20"
+                y2="8"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <line
+                x1="8"
+                y1="8"
+                x2="20"
+                y2="20"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
             </svg>
           </Btn>
         )}
@@ -133,19 +162,21 @@ export function AutoComplete<T> ({
               )
               : (
                 filteredData.map((d, i) => {
-                  return <OptionComponent<T>
-                    key={trueGetKey(d)}
-                    filteredData={filteredData}
-                    setFocusIndex={setFocusIndex}
-                    focus={focusIndex === i}
-                    selfIndex={i}
-                    setValue={setValue}
-                    setShow={setShow}
-                    color={color}
-                    data={d}
-                    getKey={trueGetKey}
-                    setKey={setQuery}
-                  />
+                  return (
+                    <OptionComponent<T>
+                      key={trueGetKey(d)}
+                      filteredData={filteredData}
+                      setFocusIndex={setFocusIndex}
+                      focus={focusIndex === i}
+                      selfIndex={i}
+                      setValue={setValue}
+                      setShow={setShow}
+                      color={color}
+                      data={d}
+                      getKey={trueGetKey}
+                      setKey={setQuery}
+                    />
+                  )
                 })
               ) }
           </div>
@@ -183,23 +214,25 @@ function OptionComponent<T> ({
   if (focus) {
     self.current?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
   }
-  return <button
-    {...props}
-    ref={self}
-    className={classNames(
-      'r-combobox-item',
-      {
-        [`bg-${color}-2`]: focus,
-        'bg-background-2': !focus,
-      })}
-    onClick={() => {
-      const key = getKey(data)
-      setKey(key)
-      setShow(false)
-      setValue(data)
-    }}
-    onMouseMove={() => { setFocusIndex(selfIndex) }}
-  >
-    { getKey(data) }
-  </button>
+  return (
+    <button
+      {...props}
+      ref={self}
+      className={classNames(
+        'r-combobox-item',
+        {
+          [`bg-${color}-2`]: focus,
+          'bg-background-2': !focus,
+        })}
+      onClick={() => {
+        const key = getKey(data)
+        setKey(key)
+        setShow(false)
+        setValue(data)
+      }}
+      onMouseMove={() => { setFocusIndex(selfIndex) }}
+    >
+      { getKey(data) }
+    </button>
+  )
 }

@@ -14,14 +14,18 @@ export default function Demo () {
       alignItems: 'center',
       flexDirection: 'column',
       gap: 16,
-    }}>
+    }}
+    >
       <Btn onClick={() => {
         state === 0 ? setState(1) : setState(0)
         setTranslating(true)
         setTimeout(() => {
           setTranslating(false)
         }, 300)
-      }}>Click</Btn>
+      }}
+      >
+        Click
+      </Btn>
       <DynamicIsland
         style={{
           background: '#000',
@@ -29,7 +33,8 @@ export default function Demo () {
           width: size * 4,
           height: size,
         }}
-        translating={translating}>
+        translating={translating}
+      >
         <div
           style={{
             width: '100%',
@@ -37,7 +42,8 @@ export default function Demo () {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-          }}>
+          }}
+        >
           { state === 0
             ? ''
             : (
@@ -50,7 +56,8 @@ export default function Demo () {
                 />
                 <div style={{
                   color: '#666',
-                }}>
+                }}
+                >
                   电量不足（3%）
                 </div>
               </div>

@@ -1,7 +1,6 @@
 import { type HTMLAttributes } from 'react'
 
 export function Icon ({ children, data }: { data: string } & HTMLAttributes<HTMLElement>) {
-  console.log(data)
   return (
     <i
       style={{
@@ -11,6 +10,7 @@ export function Icon ({ children, data }: { data: string } & HTMLAttributes<HTML
       }}
       className="h-[1em] w-[1em] inline-block"
     >
-      {children}
-    </i>)
+      { children }
+    </i>
+  )
 }

@@ -66,7 +66,10 @@ function List ({
 
   return (
     <>
-      <div ref={tabList} className="r-tab-list">
+      <div
+        ref={tabList}
+        className="r-tab-list"
+      >
         { data.map((d, i) => (
           <button
             // eslint-disable-next-line react/no-array-index-key
@@ -188,7 +191,11 @@ export function TabsRoot (props: RTabsProps) {
     },
   )
   return (
-    <div className={classNames(className, 'relative')} id={id} style={style}>
+    <div
+      className={classNames(className, 'relative')}
+      id={id}
+      style={style}
+    >
       <List
         color={color}
         data={data}
@@ -198,7 +205,10 @@ export function TabsRoot (props: RTabsProps) {
           onChange(i)
         }}
       />
-      <div ref={wrapperRef} className="r-tab-panels transition-height mt-2 overflow-hidden">
+      <div
+        ref={wrapperRef}
+        className="r-tab-panels transition-height mt-2 overflow-hidden"
+      >
         { tabComps.filter((_, i) => i === selectedIndex) }
       </div>
     </div>

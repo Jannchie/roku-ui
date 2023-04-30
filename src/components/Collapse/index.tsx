@@ -10,7 +10,10 @@ export function Collapse ({
   header,
   expanded,
   setExpanded,
-  icon = <MaterialSymbolIcon size="lg" icon="expand_more" />,
+  icon = <MaterialSymbolIcon
+    size="lg"
+    icon="expand_more"
+         />,
   ...props
 }: {
   header?: ReactNode
@@ -29,23 +32,31 @@ export function Collapse ({
     setE = setInternelExpanded
   }
   return (
-    <Panel padding onClick={() => {
-      if (setE) setE(!e)
-    }} {...props}>
+    <Panel
+      padding
+      onClick={() => {
+        if (setE) setE(!e)
+      }}
+      {...props}
+    >
       <div className={classNames('r-collapse-wrapper')}>
         { header }
         { icon && (
           <div style={{
             transform: `rotate(${e ? 180 : 0}deg)`,
-          }} >
+          }}
+          >
             { icon }
           </div>
         ) }
       </div>
-      <div ref={compRef} className={classNames({
-        'r-collapse-close': !e,
-        'r-collapse-open': e,
-      })}>
+      <div
+        ref={compRef}
+        className={classNames({
+          'r-collapse-close': !e,
+          'r-collapse-open': e,
+        })}
+      >
         { children }
       </div>
     </Panel>

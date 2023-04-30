@@ -6,7 +6,8 @@ export default function Demo () {
       display: 'flex',
       justifyContent: 'center',
       gap: 16,
-    }}>
+    }}
+    >
       <Badge>
         <Btn color="primary">
           <MaterialSymbolIcon icon="notifications" />

@@ -22,8 +22,11 @@ export function CommentList ({
     }
   }, [isBottom, onLoadMore])
   return (
-    <div ref={listContent} className="flex flex-col gap-4  max-h-screen overflow-y-auto">
-      {data.map((item) => (
+    <div
+      ref={listContent}
+      className="flex flex-col gap-4  max-h-screen overflow-y-auto"
+    >
+      { data.map((item) => (
         <Comment
           key={item.id}
           refoldable={refoldable}
@@ -32,11 +35,14 @@ export function CommentList ({
           actions={(generateActions != null) ? generateActions(item) : null}
           {...commentOptions}
         />
-      ))}
-      {loading &&
+      )) }
+      { loading &&
           (
-            <Progress infinite style={{ height: 2 }} />
-          )}
+            <Progress
+              infinite
+              style={{ height: 2 }}
+            />
+          ) }
     </div>
   )
 }

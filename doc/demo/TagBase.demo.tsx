@@ -6,7 +6,8 @@ export default function TagBaseDemo () {
       display: 'flex',
       alignItems: 'center',
       gap: 8,
-    }}>
+    }}
+    >
       <Tag >OBOG</Tag>
       <Tag color="secondary">PRO</Tag>
       <Tag color="danger">Owner</Tag>

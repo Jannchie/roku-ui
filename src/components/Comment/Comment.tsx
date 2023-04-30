@@ -32,9 +32,16 @@ export function Comment ({
   let { avatar, name } = data.user
   if (typeof name === 'string') {
     if (data.user.link) {
-      name = <Anchor href={data.user.link} target="_blank">{name}</Anchor>
+      name = (
+        <Anchor
+          href={data.user.link}
+          target="_blank"
+        >
+          { name }
+        </Anchor>
+      )
     } else {
-      name = <Anchor>{name}</Anchor>
+      name = <Anchor>{ name }</Anchor>
     }
   }
   if (typeof avatar === 'string') {
@@ -69,39 +76,39 @@ export function Comment ({
         <div
           className="flex gap-2 items-center mb-2 text-sm"
         >
-          {avatar}
+          { avatar }
           <div className="font-bold">
-            {name}
+            { name }
           </div>
-          {data.time && <div className="text-f-3">{data.time}</div>}
+          { data.time && <div className="text-f-3">{ data.time }</div> }
         </div>
         <div className="text-f-2 not-prose">
           <Markdown>
-            {data.content.replaceAll('\n', '\n\n')}
+            { data.content.replaceAll('\n', '\n\n') }
           </Markdown>
         </div>
         { actions &&
           (
             <div className="flex">
-              {actions}
+              { actions }
             </div>
-          )}
+          ) }
       </div>
-      {(replies != null) && (
+      { (replies != null) && (
         <div
           ref={repliesDetail}
           className={classNames(
             'rounded flex flex-col gap-2',
           )}
         >
-          {!showMore && replies.slice(0, maxReplies).map((reply) => (
+          { !showMore && replies.slice(0, maxReplies).map((reply) => (
             <div
               key={`${reply.id}`}
             >
               <SimpleComment data={reply} />
             </div>
-          ))}
-          {showMore && replies.map((reply) => (
+          )) }
+          { showMore && replies.map((reply) => (
             <div
               key={`${reply.id}`}
             >
@@ -110,8 +117,8 @@ export function Comment ({
                 data={reply}
               />
             </div>
-          ))}
-          {replies.length > maxReplies && !showMore && (
+          )) }
+          { replies.length > maxReplies && !showMore && (
             <div>
               <Btn
                 text
@@ -120,12 +127,12 @@ export function Comment ({
                 className="text-xs"
                 onClick={() => { setShowMore(!showMore) }}
               >
-                {getMoreRepliesBtnText(replies.length - maxReplies)}
+                { getMoreRepliesBtnText(replies.length - maxReplies) }
               </Btn>
             </div>
-          )}
+          ) }
         </div>
-      )}
+      ) }
     </div>
   )
 }

@@ -28,7 +28,10 @@ export function CommentComponent (
   } & HTMLAttributes<HTMLDivElement>,
 ) {
   return (
-    <div {...props} className={classNames('relative flex flex-col gap-4 m-auto h-full', className)}>
+    <div
+      {...props}
+      className={classNames('relative flex flex-col gap-4 m-auto h-full', className)}
+    >
       <CommentList
         loading={loading}
         generateActions={generateActions}

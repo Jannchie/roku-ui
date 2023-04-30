@@ -52,7 +52,7 @@ export const Switch: FC<SwitchProps> = ({
         }}
         onClick={() => { setValue(!value) }}
       />
-      {label && <span className={labelSize}>{label}</span>}
+      { label && <span className={labelSize}>{ label }</span> }
     </div>
   )
 }

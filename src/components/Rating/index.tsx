@@ -13,17 +13,24 @@ export function Rating ({ max, value, setValue, color = 'primary' }: {
   const [hover, setHover] = useState(value)
   return (
     <div className="flex">
-      {range.map(d => (
-        <Btn key={d} icon text
+      { range.map(d => (
+        <Btn
+          key={d}
+          icon
+          text
           color={d <= value ? 'primary' : 'default'}
-          onMouseEnter={() => { setHover(d) }} onClick={() => {
+          onMouseEnter={() => { setHover(d) }}
+          onClick={() => {
             setValue(d)
           }}
           onMouseLeave={() => { setHover(value) }}
         >
-          <MaterialSymbolIcon fill={d <= hover} icon="star" />
+          <MaterialSymbolIcon
+            fill={d <= hover}
+            icon="star"
+          />
         </Btn>
-      ))}
+      )) }
     </div>
   )
 }

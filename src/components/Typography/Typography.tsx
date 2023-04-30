@@ -10,7 +10,7 @@ function H1 ({ children, className, ...props }: {
       className={classNames('r-typography-h1', className)}
       {...props}
     >
-      {children}
+      { children }
     </h1>
   )
 }
@@ -23,7 +23,7 @@ function H2 ({ children, className, ...props }: {
       className={classNames('r-typography-h2', className)}
       {...props}
     >
-      {children}
+      { children }
 
     </h2>
   )
@@ -37,7 +37,7 @@ function H3 ({ children, className, ...props }: {
       className={classNames('r-typography-h3', className)}
       {...props}
     >
-      {children}
+      { children }
     </h3>
   )
 }
@@ -50,7 +50,7 @@ function H4 ({ children, className, ...props }: {
       className={classNames('r-typography-h4', className)}
       {...props}
     >
-      {children}
+      { children }
     </h4>
   )
 }
@@ -63,7 +63,7 @@ function H5 ({ children, className, ...props }: {
       className={classNames('r-typography-h5', className)}
       {...props}
     >
-      {children}
+      { children }
 
     </h5>
   )
@@ -77,7 +77,7 @@ function H6 ({ children, className, ...props }: {
       className={classNames('r-typography-h6', className)}
       {...props}
     >
-      {children}
+      { children }
     </h6>
   )
 }
@@ -90,7 +90,7 @@ function P ({ children, className, ...props }: {
       className={classNames('r-typography-p', className)}
       {...props}
     >
-      {children}
+      { children }
     </p>
   )
 }
@@ -102,7 +102,7 @@ function Caption ({ children, className, ...props }: {
       className={classNames('r-typography-caption', className)}
       {...props}
     >
-      {children}
+      { children }
     </span>
   )
 }
@@ -114,7 +114,7 @@ function Button ({ children, className, ...props }: {
       className={classNames('r-typography-btn', className)}
       {...props}
     >
-      {children}
+      { children }
     </span>
   )
 }

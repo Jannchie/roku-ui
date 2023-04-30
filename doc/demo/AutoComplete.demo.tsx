@@ -18,7 +18,8 @@ export default function Demo () {
         options={options}
         getKey={(d) => d.name}
         getFilter={(query) => (d) => d.name.toLowerCase().includes(query.toLowerCase())}
-        setValue={setValue} />
+        setValue={setValue}
+      />
     </>
   )
 }

@@ -30,8 +30,12 @@ export function MaterialSymbolIcon ({
     className,
   )
   return (
-    <i className={clsName} style={styl} {...props}>
-      {props.icon}
+    <i
+      className={clsName}
+      style={styl}
+      {...props}
+    >
+      { props.icon }
     </i>
   )
 }

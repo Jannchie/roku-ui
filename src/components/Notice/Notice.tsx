@@ -82,7 +82,10 @@ export function Notice ({
   })
   const iconCls = classNames('r-notice-icon', mainTextColorCls)
   return (
-    <Panel {...others} className={wrapperCls}>
+    <Panel
+      {...others}
+      className={wrapperCls}
+    >
       <div className={classNames(dense ? 'p-2' : 'p-4')}>
         <div className="flex justify-between">
           <div className="flex items-center">
@@ -107,8 +110,21 @@ export function Notice ({
         </div>
       </div>
       { progress && progressValue === undefined
-        ? <Progress blur={blur} durationMS={existMS} color={color} />
-        : <Progress blur={blur} value={progressValue} total={progressTotal} color={color} /> }
+        ? (
+          <Progress
+            blur={blur}
+            durationMS={existMS}
+            color={color}
+          />
+        )
+        : (
+          <Progress
+            blur={blur}
+            value={progressValue}
+            total={progressTotal}
+            color={color}
+          />
+        ) }
     </Panel>
   )
 }

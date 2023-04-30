@@ -41,7 +41,10 @@ function Container ({
 }: StepContainerProps) {
   return (
     <ctx.Provider value={{ current }}>
-      <ul {...props} className="r-step-container flex gap-2 justify-between items-stretch">
+      <ul
+        {...props}
+        className="r-step-container flex gap-2 justify-between items-stretch"
+      >
         { children }
       </ul>
     </ctx.Provider>

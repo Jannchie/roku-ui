@@ -8,7 +8,8 @@ export default function TestDemo () {
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-    }}>
+    }}
+    >
       <Reorder.Group
         style={{
           display: 'flex',
@@ -17,16 +18,20 @@ export default function TestDemo () {
         values={data}
         onReorder={setData}
       >
-        {data.map((item) => (
-          <Reorder.Item key={item} value={item}>
+        { data.map((item) => (
+          <Reorder.Item
+            key={item}
+            value={item}
+          >
             <Panel
               style={{
                 width: 200,
               }}
             >
-              {item}
+              { item }
             </Panel>
-          </Reorder.Item>))
+          </Reorder.Item>
+        ))
         }
       </Reorder.Group>
     </div>

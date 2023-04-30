@@ -11,7 +11,12 @@ export function ThemeToggle () {
     case 'system':
       icon = <TablerSunMoon />
   }
-  return <Btn icon onClick={toggleTheme}>
-    { icon }
-  </Btn>
+  return (
+    <Btn
+      icon
+      onClick={toggleTheme}
+    >
+      { icon }
+    </Btn>
+  )
 }

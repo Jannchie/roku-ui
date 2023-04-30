@@ -41,7 +41,10 @@ export function Badge ({
   )
 
   return (
-    <span className={classNames('r-badge-wrapper', className)} {...others}>
+    <span
+      className={classNames('r-badge-wrapper', className)}
+      {...others}
+    >
       <div className="r-badge-inner">
         { children }
         { show && (

@@ -13,12 +13,24 @@ export default function RadioDemo () {
     }}
     >
       <div>
-        Value is {value}
+        Value is
+        { ' ' }
+        { value }
       </div>
       <div>
-        <Radio.Group value={value} setValue={setValue} >
-          <Radio label="AAA" value="A" color="primary" />
-          <Radio label="BBB" value="B" />
+        <Radio.Group
+          value={value}
+          setValue={setValue}
+        >
+          <Radio
+            label="AAA"
+            value="A"
+            color="primary"
+          />
+          <Radio
+            label="BBB"
+            value="B"
+          />
         </Radio.Group>
       </div>
     </div>

@@ -29,8 +29,12 @@ export function DynamicValue ({
     setDisplayValue(format(v))
   })
   return (
-    <motion.span style={style} className={classNames('r-digital', className, `text-${color}`)} {...others}>
-      {displayValue}
+    <motion.span
+      style={style}
+      className={classNames('r-digital', className, `text-${color}`)}
+      {...others}
+    >
+      { displayValue }
     </motion.span>
   )
 }

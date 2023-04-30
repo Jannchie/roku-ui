@@ -7,7 +7,11 @@ export default function Demo () {
     <>
       <Step.Container current={current}>
         <Step.Item index={0}>Step 1</Step.Item>
-        <Step.Item index={1} > <MaterialSymbolIcon icon="favorite" /> </Step.Item>
+        <Step.Item index={1} >
+          { ' ' }
+          <MaterialSymbolIcon icon="favorite" />
+          { ' ' }
+        </Step.Item>
         <Step.Item index={2}>Step 3</Step.Item>
       </Step.Container>
       <div style={{ display: 'flex', gap: 16, marginTop: 16 }}>

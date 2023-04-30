@@ -44,11 +44,14 @@ export function Modal ({
   }, [hide, preventClickOutside, setShow])
   useOnClickOutside(ref, onHide)
   return (
-    <div className={className} style={style}>
+    <div
+      className={className}
+      style={style}
+    >
       <AnimatePresence>
-        {show && (
+        { show && (
           <div className="absolute inset-0 z-10">
-            {background && (
+            { background && (
               <motion.div
                 animate={{ opacity: 1 }}
                 className={classNames('r-modal-bg', { 'r-modal-b-blur': backgroundBlur })}
@@ -57,7 +60,7 @@ export function Modal ({
                 transition={{ duration: 0.15 }}
                 onClick={onHide}
               />
-            )}
+            ) }
             <div className={classNames('r-modal-panel-wrapper', { 'r-shake': shakeing })}>
               <div className="r-modal-panel">
                 <motion.div
@@ -68,12 +71,12 @@ export function Modal ({
                   initial={{ opacity: 0, scale: 0.8 }}
                   transition={{ delay: 0.1, duration: 0.15 }}
                 >
-                  {children}
+                  { children }
                 </motion.div>
               </div>
             </div>
           </div>
-        )}
+        ) }
       </AnimatePresence>
     </div>
   )

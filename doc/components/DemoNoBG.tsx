@@ -27,7 +27,10 @@ export const DemoNoBG = ({ name, prose = false }: {
     }
   }, [code])
   return (
-    <Flex direction="column" gap="1rem">
+    <Flex
+      direction="column"
+      gap="1rem"
+    >
       <div>
         <div>
           <Suspense fallback={<div style={{ height: '8rem', display: 'flex', justifyContent: 'center', padding: '1rem' }}><Loading /></div>}>
@@ -40,7 +43,8 @@ export const DemoNoBG = ({ name, prose = false }: {
       <Panel
         border
         className={prose ? '' : 'not-prose'}
-        style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}>
+        style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}
+      >
         <div ref={compRef} />
         <div className="line-numbers">
           { code &&

@@ -81,9 +81,12 @@ function BtnRoot ({
   const hColor = hoverColor ?? color
   const fgColor = color === 'default' ? 'fg' : color
   if (!loadingIcon) {
-    loadingIcon = <Loading
-      mainClassName="stroke-[hsl(var(--r-background-3))]"
-      subClassName="stroke-[hsl(var(--r-background-2))]" />
+    loadingIcon = (
+      <Loading
+        mainClassName="stroke-[hsl(var(--r-background-3))]"
+        subClassName="stroke-[hsl(var(--r-background-2))]"
+      />
+    )
   }
   if (value && value === ctx.value) {
     color = ctx.activeColor
@@ -274,7 +277,11 @@ function Counter ({
         {
           typeof icon === 'string'
             ? (
-              <MaterialSymbolIcon size={size} icon={icon} fill={fill} />
+              <MaterialSymbolIcon
+                size={size}
+                icon={icon}
+                fill={fill}
+              />
             )
             : icon
         }

@@ -17,10 +17,18 @@ export function Window ({
   os?: 'mac' | 'win'
 } & HTMLAttributes<HTMLDivElement>) {
   return (
-    <Panel border color={color} className={classNames(props.className)} {...props}>
-      <TitleBar title={title} os={os} />
+    <Panel
+      border
+      color={color}
+      className={classNames(props.className)}
+      {...props}
+    >
+      <TitleBar
+        title={title}
+        os={os}
+      />
       <div className="mx-2 mb-2">
-        {children}
+        { children }
       </div>
     </Panel>
   )

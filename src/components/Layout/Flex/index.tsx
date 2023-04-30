@@ -27,8 +27,9 @@ export function Flex ({ children, style, className, direction, justify, align, w
         },
         className,
       )}
-      {...others}>
-      {children}
+      {...others}
+    >
+      { children }
     </div>
   )
 }

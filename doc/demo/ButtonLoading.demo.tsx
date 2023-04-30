@@ -16,7 +16,7 @@ export default function BtnLoadingDemo () {
           setLoading((val) => !val)
         }}
       >
-        {loading ? 'Loading' : 'Click'}
+        { loading ? 'Loading' : 'Click' }
       </Btn>
       <Btn
         color="success"

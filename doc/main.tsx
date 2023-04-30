@@ -16,10 +16,17 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <RokuProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />}>
+          <Route
+            path="/"
+            element={<App />}
+          >
             {
               router.map((route) => (
-                <Route key={route.path} path={route.path} element={route.element} />
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                />
               ))
             }
           </Route>

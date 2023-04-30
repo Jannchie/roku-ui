@@ -1,5 +1,10 @@
 import { Appbar } from '../../src'
 
 export default function Demo () {
-  return <Appbar border title="Appbar"/>
+  return (
+    <Appbar
+      border
+      title="Appbar"
+    />
+  )
 }

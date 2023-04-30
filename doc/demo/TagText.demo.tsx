@@ -6,10 +6,30 @@ export default function TagTextDemo () {
       display: 'flex',
       alignItems: 'center',
       gap: 8,
-    }}>
-      <Tag text rounded border>OBOG</Tag>
-      <Tag rounded text color="secondary">PRO</Tag>
-      <Tag text border color="danger" onClick={() => {}}>Owner</Tag>
+    }}
+    >
+      <Tag
+        text
+        rounded
+        border
+      >
+        OBOG
+      </Tag>
+      <Tag
+        rounded
+        text
+        color="secondary"
+      >
+        PRO
+      </Tag>
+      <Tag
+        text
+        border
+        color="danger"
+        onClick={() => {}}
+      >
+        Owner
+      </Tag>
     </div>
   )
 }

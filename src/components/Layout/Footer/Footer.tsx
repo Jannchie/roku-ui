@@ -7,8 +7,11 @@ export function Footer ({
   ...others
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <footer { ...others } className={classNames('r-footer-wrapper border-b-2', others.className)}>
-      {children}
+    <footer
+      {...others}
+      className={classNames('r-footer-wrapper border-b-2', others.className)}
+    >
+      { children }
     </footer>
   )
 }

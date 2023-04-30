@@ -9,6 +9,7 @@ export default function Demo () {
       setValue={setValue}
       placeholder="请输入单行文本"
       prefix="前缀"
-      color="danger" />
+      color="danger"
+    />
   )
 }

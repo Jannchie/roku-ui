@@ -5,7 +5,8 @@ export default function Demo () {
   return (
     <Btn onClick={() => {
       setTheme(theme === 'light' ? 'dark' : 'light')
-    }}>
+    }}
+    >
       Btn with Popover
     </Btn>
   )

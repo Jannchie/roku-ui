@@ -16,12 +16,16 @@ function Content ({
   return (
     <div className="z-50">
       <div className="r-popover-content">
-        {children}
+        { children }
       </div>
-      <svg className={classNames('r-popover-indicator', {
-        'r-popover-indicator-left': left,
-        'r-popover-indicator-right': right,
-      })} width={10} height={5} >
+      <svg
+        className={classNames('r-popover-indicator', {
+          'r-popover-indicator-left': left,
+          'r-popover-indicator-right': right,
+        })}
+        width={10}
+        height={5}
+      >
         <path
           d="m0 0c5 6 5 6 10 0z"
         />
@@ -47,7 +51,7 @@ export function PopoverRoot ({
       onMouseLeave={() => { setShow(false) }}
     >
       <AnimatePresence>
-        {show && (
+        { show && (
           <motion.div
             className={classNames('r-popover-content-wrapper', other.className)}
             style={{
@@ -58,17 +62,16 @@ export function PopoverRoot ({
             exit={{ opacity: 0 }}
             {...other}
           >
-            {content}
+            { content }
           </motion.div>
-        )}
+        ) }
       </AnimatePresence>
-      <span className={
-        classNames(
-          'r-popover-wrapper',
-          { 'r-popover-main-underline': underline },
-        )
-      }>
-        {children}
+      <span className={classNames(
+        'r-popover-wrapper',
+        { 'r-popover-main-underline': underline },
+      )}
+      >
+        { children }
       </span>
     </span>
   )

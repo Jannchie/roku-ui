@@ -25,12 +25,15 @@ export function Result ({
       [`text-${color}-2`]: true,
     })}
     >
-      <MaterialSymbolIcon size={sizeNumber} icon={icon} />
+      <MaterialSymbolIcon
+        size={sizeNumber}
+        icon={icon}
+      />
       <Typography.H4 className={classNames('r-result-title')}>
-        {title}
+        { title }
       </Typography.H4>
       <div className={classNames('r-result-desc')}>
-        {description}
+        { description }
       </div>
     </div>
   )

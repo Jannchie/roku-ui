@@ -21,7 +21,7 @@ export function Anchor ({
         { [`decoration-${color}-2 hover:decoration-${color}-2 hover:text-${color}-2`]: props.href !== undefined || props.onClick !== undefined },
       )}
     >
-      {children}
+      { children }
     </a>
   )
 }

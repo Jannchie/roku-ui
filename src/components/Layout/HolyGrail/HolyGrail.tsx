@@ -16,7 +16,10 @@ export function HolyGrail (args: {
   footer?: ReactNode
 }) {
   return (
-    <div className="holy-grail-wrapper" style={args.style}>
+    <div
+      className="holy-grail-wrapper"
+      style={args.style}
+    >
       { args.outerLeft && (args.outerLeft) }
       <div className="holy-grail-main-wrapper">
         { args.header && (args.header) }

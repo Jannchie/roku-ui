@@ -27,28 +27,31 @@ export const Appbar: FC<AppbarAttributes> = ({
   ...others
 }: AppbarAttributes) => {
   return (
-    <header className={classNames(
-      'r-appbar-wrapper',
-      `r-appbar-${varient}`,
-      { 'r-appbar-border': border },
-      { [`bg-${color}-2`]: varient === 'default' },
-      { [`bg-${color}-2/25`]: varient === 'blur' },
-      { [`bg-${color}-2/10`]: varient === 'pattern' },
-      others.className,
-    )} {...others}>
+    <header
+      className={classNames(
+        'r-appbar-wrapper',
+        `r-appbar-${varient}`,
+        { 'r-appbar-border': border },
+        { [`bg-${color}-2`]: varient === 'default' },
+        { [`bg-${color}-2/25`]: varient === 'blur' },
+        { [`bg-${color}-2/10`]: varient === 'pattern' },
+        others.className,
+      )}
+      {...others}
+    >
       <div className="r-appbar-leading">
-        {leading}
+        { leading }
         <div className="r-appbar-title">
           <div className="r-appbar-title__icon">
-            {icon}
+            { icon }
           </div>
           <div>
-            {title}
+            { title }
           </div>
         </div>
       </div>
       <div className="r-appbar-tailing">
-        {(searchCallback != null) && (
+        { (searchCallback != null) && (
           <div>
             <TextField
               prefix={<MaterialSymbolIcon icon="search" />}
@@ -58,8 +61,8 @@ export const Appbar: FC<AppbarAttributes> = ({
               }}
             />
           </div>
-        )}
-        {tailing}
+        ) }
+        { tailing }
       </div>
 
     </header>

@@ -6,7 +6,10 @@ export default function Demo () {
   return (
     <>
       <TitleBar title={<div style={{ userSelect: 'none' }}>Title Bar </div>} />
-      <TitleBar os="mac" title={<div style={{ userSelect: 'none' }}>Title Bar </div>} />
+      <TitleBar
+        os="mac"
+        title={<div style={{ userSelect: 'none' }}>Title Bar </div>}
+      />
     </>
   )
 }

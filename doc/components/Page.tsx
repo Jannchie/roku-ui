@@ -9,7 +9,14 @@ const DocNotice = ({ type, content }: {
   type: 'info' | 'warning' | 'danger'
   content: string
 }) => {
-  return <Notice color={type} title={type.toUpperCase()} desc={content} className="my-2" />
+  return (
+    <Notice
+      color={type}
+      title={type.toUpperCase()}
+      desc={content}
+      className="my-2"
+    />
+  )
 }
 export function Page ({ md = '' }: { md?: string, path?: string }) {
   const { pathname } = useLocation()
@@ -32,7 +39,8 @@ export function Page ({ md = '' }: { md?: string, path?: string }) {
             DemoNoBG: { component: DemoNoBG },
             Notice: { component: DocNotice },
           },
-        }}>
+        }}
+        >
           { body }
         </Markdown>
       </Article>

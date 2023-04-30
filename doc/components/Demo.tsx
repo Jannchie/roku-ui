@@ -30,7 +30,8 @@ export const Demo = ({ name, prose = false }: {
     <Panel
       border
       className={prose ? '' : 'not-prose'}
-      style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}>
+      style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}
+    >
       <div ref={compRef} >
         <div>
           <Suspense fallback={<div style={{ height: '8rem', display: 'flex', justifyContent: 'center', padding: '1rem' }}><Loading /></div>}>

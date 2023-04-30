@@ -21,7 +21,8 @@ export const DynamicIsland = ({
         transition: `filter ${durationMS}ms`,
         filter: `blur(${translating ? 8 : 0}px)`,
         height: '100%',
-      }}>
+      }}
+      >
         { children }
       </div>
     </div>

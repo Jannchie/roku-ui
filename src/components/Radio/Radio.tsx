@@ -12,7 +12,11 @@ function RadioRoot ({
   const { val, setValue } = useContext(RadioCtx)
   const checked = val === value
   return (
-    <label htmlFor={id} className={classNames('r-input-radio-wrapper flex items-center', `text-${color}-2 hover:text-${color}-1`, className)} {...others} >
+    <label
+      htmlFor={id}
+      className={classNames('r-input-radio-wrapper flex items-center', `text-${color}-2 hover:text-${color}-1`, className)}
+      {...others}
+    >
       <input
         id={id}
         type="radio"

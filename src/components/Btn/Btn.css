@@ -56,9 +56,6 @@
   @apply focus:ring-1;
 }
 
-.r-btn.r-btn-filled {
-}
-
 .r-btn-icon {
   line-height: 0px;
   @apply !rounded-full;

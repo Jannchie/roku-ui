@@ -49,10 +49,16 @@ export function AvatarRoot ({
     ringClass,
   )
   const image = others.src
-    ? <img style={style} {...others} alt={others.alt ?? 'Avatar'} />
+    ? (
+      <img
+        style={style}
+        {...others}
+        alt={others.alt ?? 'Avatar'}
+      />
+    )
     : (
       <div style={style}>
-        {children}
+        { children }
       </div>
     )
 
@@ -70,20 +76,23 @@ export function AvatarRoot ({
           }}
           onClick={onClick}
         >
-          {image}
+          { image }
         </div>
       )
       : (
         <div className={avatarClass}>
-          {image}
+          { image }
         </div>
       )
   )
 }
 
 const Group = ({ children, className, ...others }: HTMLAttributes<HTMLDivElement>) => (
-  <div className={classNames('r-avatar-group', className)} {...others}>
-    {children}
+  <div
+    className={classNames('r-avatar-group', className)}
+    {...others}
+  >
+    { children }
   </div>
 )
 

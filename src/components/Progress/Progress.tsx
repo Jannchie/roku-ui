@@ -51,9 +51,7 @@ export function Progress ({
         {
           blur && (
             <motion.div
-              animate={
-                { left: ['0%', '10%', '90%', '100%'], width: ['0%', '10%', '10%', '0%'] }
-              }
+              animate={{ left: ['0%', '10%', '90%', '100%'], width: ['0%', '10%', '10%', '0%'] }}
               className={classNames(bgCls, 'absolute', 'r-progress-bar blur-md')}
               transition={{
                 duration: 1,
@@ -142,7 +140,7 @@ export function Progress ({
         ...style,
       }}
     >
-      {progressMain}
+      { progressMain }
     </div>
   )
 }

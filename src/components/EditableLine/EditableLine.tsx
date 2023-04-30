@@ -30,8 +30,22 @@ export function EditableLine ({
 }: EditableLineProps) {
   const [editing, setEditing] = useState(false)
   const tempValue = useRef(value)
-  if (!okBtnContent) okBtnContent = <MaterialSymbolIcon icon="check" size={size} />
-  if (!cancelBtnContent) cancelBtnContent = <MaterialSymbolIcon icon="close" size={size} />
+  if (!okBtnContent) {
+    okBtnContent = (
+      <MaterialSymbolIcon
+        icon="check"
+        size={size}
+      />
+    )
+  }
+  if (!cancelBtnContent) {
+    cancelBtnContent = (
+      <MaterialSymbolIcon
+        icon="close"
+        size={size}
+      />
+    )
+  }
   return (
     <div
       className={classnames('r-editable-line', 'flex', 'gap-2', {
