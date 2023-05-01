@@ -5,7 +5,7 @@ import {
   type InputHTMLAttributes,
   type ReactNode, type SetStateAction,
 } from 'react'
-import { type Colors } from '../..'
+import { type Color } from '../..'
 
 export type TextFieldProps = {
   className?: string
@@ -19,7 +19,7 @@ export type TextFieldProps = {
   setValue?: Dispatch<SetStateAction<any>>
   textAlign?: 'left' | 'center' | 'right'
   format?: (value: string) => string
-  color?: Colors
+  color?: Color
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'suffix'>
 
 export function TextField ({
@@ -56,7 +56,7 @@ export function TextField ({
           'r-text-field-border': border,
           'r-text-field-fill': !border,
         },
-        { [`focus-within:ring ring-${color}-2`]: color },
+        { [`focus-within:border-${color}-2`]: color },
       )}
     >
       { prefix && <div className="r-text-field-prefix">{ prefix }</div> }

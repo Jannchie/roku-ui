@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 
-export type Colors =
+export type Color =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -11,7 +11,7 @@ export type Colors =
   | 'background'
   | 'frontground'
 
-export function isColor (color?: string | Colors): color is Colors {
+export function isColor (color?: string | Color): color is Color {
   const colors = [
     'primary',
     'secondary',
@@ -27,7 +27,7 @@ export function isColor (color?: string | Colors): color is Colors {
   return colors.includes(color)
 }
 
-export function textColorClass (color?: Colors): string {
+export function textColorClass (color?: Color): string {
   if (color === undefined) {
     return ''
   }

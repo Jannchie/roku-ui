@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { type FC, type HTMLAttributes, type ReactNode } from 'react'
-import { type Colors } from '../../..'
+import { type Color } from '../../..'
 import { MaterialSymbolIcon } from '../../MaterialSymbolIcon'
 import { TextField } from '../../TextField'
 import './Appbar.css'
@@ -8,7 +8,7 @@ import './Appbar.css'
 type AppbarAttributes = {
   varient?: 'default' | 'blur' | 'transparent' | 'pattern'
   border?: boolean
-  color?: Colors
+  color?: Color
   icon?: ReactNode
   title?: ReactNode
   leading?: ReactNode

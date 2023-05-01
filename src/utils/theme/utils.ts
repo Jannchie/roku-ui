@@ -1,10 +1,19 @@
 import { hsl } from 'd3-color'
-import { type Theme, type ThemeColorObject } from '.'
+import { defaultDark, defaultLight, type Theme, type ThemeColorObject } from '.'
 function isThemeColor (color: any): color is ThemeColorObject {
   return typeof color?.base === 'string'
 }
 
+export const themeMap = new Map<string, Theme>()
+
 export function registTheme (name: string, theme: Theme) {
+  themeMap.set(name, theme)
+}
+
+registTheme('light', defaultLight)
+registTheme('dark', defaultDark)
+
+export function AppendTheme (name: string, theme: Theme) {
   if (typeof document !== 'undefined') {
     let style = document.getElementById(`theme-${name}`)
     if (style) {

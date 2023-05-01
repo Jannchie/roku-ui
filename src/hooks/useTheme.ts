@@ -1,12 +1,14 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { usePrefersColorScheme } from './usePrefersColorScheme'
+import { themeMap } from '../utils/theme/utils'
+import { RokuContext } from '../core'
 
 type ThemeValue = 'system' | 'dark' | 'light'
 
 export function useTheme (localstorageKey: string = 'roku.theme') {
   const preferred = usePrefersColorScheme()
   let defaultTheme: ThemeValue = 'system'
-  const [theme, setThemeValue] = useState<ThemeValue>(defaultTheme)
+  const { theme, setTheme: setThemeValue } = useContext(RokuContext)
   if (typeof localStorage !== 'undefined') {
     const savedTheme = localStorage.getItem(localstorageKey)
     if (savedTheme) {
@@ -23,12 +25,12 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
     if (savedTheme) {
       setThemeValue(savedTheme as ThemeValue)
     }
-  }, [localstorageKey])
+  }, [localstorageKey, setThemeValue])
 
   const setTheme = useCallback((theme: ThemeValue) => {
     localStorage.setItem(localstorageKey, theme)
     setThemeValue(theme)
-  }, [localstorageKey])
+  }, [localstorageKey, setThemeValue])
 
   const toggleTheme = useCallback(() => {
     if (theme === 'system') {
@@ -40,4 +42,21 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
     }
   }, [setTheme, theme])
   return { theme, setTheme, toggleTheme }
+}
+
+export function useTrueTheme () {
+  const { theme } = useTheme()
+  const preferredTheme = usePrefersColorScheme()
+  if (theme === 'system') {
+    return preferredTheme
+  }
+  return theme
+}
+
+export function useThemeData (name?: string) {
+  const theme = useTrueTheme()
+  if (!name) {
+    return themeMap.get(theme)
+  }
+  return themeMap.get(name)
 }

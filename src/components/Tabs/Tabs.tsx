@@ -3,7 +3,7 @@ import {
   type ReactNode, useEffect, useRef, useState,
 } from 'react'
 import classNames from 'classnames'
-import { type Colors, useAutoSetHeight } from '../..'
+import { type Color, useAutoSetHeight } from '../..'
 import { type BaseProps } from '../../utils/type'
 
 // eslint-disable-next-line react/no-unused-prop-types
@@ -27,7 +27,7 @@ function List ({
     value: ReactNode
   }>
   selectedIndex: number
-  color: Colors
+  color: Color
   type: 'fill' | 'indicator'
   onChange: (index: number) => void
 }) {
@@ -130,7 +130,7 @@ type RTabsProps = {
   selectedIndex: number
   onChange: (index: number) => void
   type?: 'fill' | 'indicator'
-  color?: Colors
+  color?: Color
   children: ReactNode
 } & BaseProps
 

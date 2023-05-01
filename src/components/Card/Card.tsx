@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
-import { type Colors, Panel } from '../..'
+import { type Color, Panel } from '../..'
 import { type BaseProps } from '../../utils/type'
 
 type CardProps = {
@@ -12,7 +12,7 @@ type CardProps = {
   shadow?: boolean
   border?: boolean
   divider?: boolean
-  backgroundColor?: Colors
+  backgroundColor?: Color
 } & BaseProps & Omit<HTMLAttributes<HTMLDivElement>, 'color'>
 
 export function Card ({

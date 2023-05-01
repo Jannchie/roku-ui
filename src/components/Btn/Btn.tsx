@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import {
   createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo,
 } from 'react'
-import { type Colors } from '../../utils/colors'
+import { type Color } from '../../utils/colors'
 import { Loading } from '../../icons/Loading'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import './Btn.css'
@@ -14,8 +14,8 @@ export type ButtonProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg'
   style?: CSSProperties & { '--r-btn-glory-color'?: string }
   rounded?: boolean
-  color?: Colors
-  hoverColor?: Colors
+  color?: Color
+  hoverColor?: Color
   filled?: boolean
   border?: boolean
   dash?: boolean
@@ -40,7 +40,7 @@ interface BtnGroupCtxType {
   cancelable: any
   value: any
   setValue: (value: any) => void
-  activeColor: Colors
+  activeColor: Color
 }
 const BtnGroupCtx = createContext<BtnGroupCtxType>({
   value: undefined,
@@ -106,8 +106,8 @@ function BtnRoot ({
     { 'r-btn-filled': filled && !text && !contrast },
     { 'r-btn-text': text || contrast },
     { 'active:scale-[0.98]': scale },
-    { [`text-${fgColor}-2 hover:text-${hColor === 'default' ? 'fg' : hColor}-1 hover:bg-${hColor}-1/25`]: text },
-    { [`bg-${color}-2 hover:bg-${color}-1 text-${color === 'default' ? 'frontground' : 'background'}-2`]: !text && !contrast },
+    { [`text-${fgColor}-2 hover:text-${hColor}-1 hover:bg-${hColor}-1/25`]: text },
+    { [`bg-${color}-2 hover:bg-${color}-1 text-${'background'}-2`]: !text && !contrast },
     { [`hover:bg-${hColor}-2 active:bg-${hColor}-${hColor !== 'default' ? 3 : 1}`]: contrast },
     { [`border-${color}-1`]: border },
     { 'border-transparent': !border },
@@ -217,7 +217,7 @@ interface BtnGroup {
   cancelable?: boolean
   value: any
   setValue: (val: any) => void
-  activeColor?: Colors
+  activeColor?: Color
 }
 function Group ({
   className, children, value, setValue, activeColor = 'primary', cancelable,
@@ -253,7 +253,7 @@ function Counter ({
 }: {
   value: number
   icon: string | ReactNode
-  color?: Colors
+  color?: Color
   active?: boolean
   fill?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg'

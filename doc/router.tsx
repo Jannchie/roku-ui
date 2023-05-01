@@ -1,6 +1,6 @@
 import HomeMD from './markdown/home.md?raw'
 import { Page } from './components/Page'
-import { Tabler123, TablerAnchor, TablerArticle, TablerCircleCheck, TablerCursorText, TablerHome, TablerInputSearch, TablerLayoutNavbar, TablerMessage, TablerMoon, TablerRectangle, TablerRectangleFilled, TablerTag, TablerTypography, TablerUserCircle, TablerWindow } from '@roku-ui/icons-tabler'
+import { Tabler123, TablerAnchor, TablerArticle, TablerCircleCheck, TablerCursorText, TablerHome, TablerInputSearch, TablerLayoutNavbar, TablerList, TablerMessage, TablerMoon, TablerRectangle, TablerRectangleFilled, TablerTag, TablerTypography, TablerUserCircle, TablerWindow } from '@roku-ui/icons-tabler'
 import { MaterialSymbolsArrowRightAlt, MaterialSymbolsArticle, MaterialSymbolsCampaign, MaterialSymbolsDriveFileRenameOutline, MaterialSymbolsExpandMore, MaterialSymbolsFormatSize, MaterialSymbolsLandscape, MaterialSymbolsLiveHelp, MaterialSymbolsMarkChatUnread, MaterialSymbolsNotifications, MaterialSymbolsRadio, MaterialSymbolsScience, MaterialSymbolsSmartphone, MaterialSymbolsStar, MaterialSymbolsTab, MaterialSymbolsToggleOn, MaterialSymbolsViewDay, MaterialSymbolsWebAsset, MaterialSymbolsWindow } from '@roku-ui/icons-material-symbols'
 export const router = [{
   path: '/',
@@ -11,6 +11,11 @@ export const router = [{
   path: 'theme-toggle',
   title: '主题切换器（Theme Toggle）',
   icon: <TablerMoon />,
+  element: <Page />,
+}, {
+  path: 'list',
+  title: '列表（List）',
+  icon: <TablerList />,
   element: <Page />,
 }, {
   path: 'auto-complete',

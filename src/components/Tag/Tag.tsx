@@ -1,14 +1,14 @@
 import './Tag.css'
 import { type MouseEvent, type KeyboardEvent, type ReactNode } from 'react'
 import classNames from 'classnames'
-import { type Colors } from '../../utils/colors'
+import { type Color } from '../../utils/colors'
 import { defaults } from '../../utils/defaults'
 import { Btn } from '../Btn'
 
 type ChipProps = {
   className?: string
   children?: ReactNode
-  color?: Colors
+  color?: Color
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   text?: boolean
   border?: boolean

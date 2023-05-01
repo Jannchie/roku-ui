@@ -1,10 +1,11 @@
 import { presetTypography, presetUno, transformerDirectives, defineConfig } from 'unocss'
 const saveList = []
-const variants = ['hover', 'active', 'group-hover', 'focus-within']
+const variants = ['hover', 'active', 'group-hover', 'focus-within', 'focus']
 const utilities = ['border', 'bg', 'text', 'ring', 'outlined', 'decoration']
 const colorType = ['primary', 'secondary', 'default', 'success', 'danger', 'warning', 'info', 'background', 'frontground', 'border']
 const colorLevel = [1, 2, 3]
 const opacityLevel = [10, 25, 50, 75, 90]
+
 const colors = {}
 for (const utility of utilities) {
   for (const type of colorType) {
@@ -53,10 +54,5 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
   ],
-  // rules: [
-  //   [/^bg-(.*)-(\d*)(\/(.*))?$/, ([, c, d, e], { theme }) => {
-  //     if (!e && colorType.indexOf(c) !== -1) { if (theme.colors[c]) { return { background: `hsl(var(--r-${c}-${d}), ${e ?? 1})` } } }
-  //   }, { noMerge: true }],
-  // ],
   safelist: saveList,
 })

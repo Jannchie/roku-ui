@@ -37,13 +37,8 @@
   @apply transition-border-color;
 }
 
-.r-panel .r-text-field-wrapper {
-  @apply rounded-sm;
-}
-
 .r-text-field-border {
-  @apply transition-shadow;
-  @apply border-border-1 bg-background-1 hover: bg-background-2 focus-within:bg-background-2;
+  @apply border-border-2 bg-background-2;
 }
 
 .r-text-field-dash {
@@ -61,7 +56,6 @@
 .r-text-field-transparent {
   @apply border-transparent;
 }
-
 
 [data-theme="dark"] ::-ms-reveal {
   filter: invert(90%);

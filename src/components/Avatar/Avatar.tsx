@@ -3,15 +3,15 @@ import {
   type MouseEvent, type KeyboardEvent, type ReactNode, type ImgHTMLAttributes, type HTMLAttributes,
 } from 'react'
 import classNames from 'classnames'
-import { type Colors } from '../..'
+import { type Color } from '../..'
 
 type AvatarProps = {
   className?: string
   children?: ReactNode
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number
-  ring?: Colors | boolean
+  ring?: Color | boolean
   square?: boolean
-  color?: Colors
+  color?: Color
   onClick?: (e: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>) => void
 } & ImgHTMLAttributes<HTMLImageElement>
 export function AvatarRoot ({

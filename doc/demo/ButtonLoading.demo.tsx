@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Btn, type Colors } from '../../src'
+import { Btn, type Color } from '../../src'
 
 export default function BtnLoadingDemo () {
   const [loading, setLoading] = useState(true)
-  const [color, setColor] = useState<Colors>('primary')
+  const [color, setColor] = useState<Color>('primary')
   return (
     <div className="flex flex-col items-center gap-2">
       <Btn

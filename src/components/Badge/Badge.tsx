@@ -1,11 +1,11 @@
 import './Badge.css'
 import { type HTMLAttributes, type ReactNode } from 'react'
 import classNames from 'classnames'
-import { type Colors } from '../..'
+import { type Color } from '../..'
 
 interface BadgeProps {
   className?: string
-  color?: Colors
+  color?: Color
   children?: ReactNode
   dot?: boolean
   show?: boolean

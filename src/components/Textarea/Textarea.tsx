@@ -1,18 +1,19 @@
 import './Textarea.css'
 import classNames from 'classnames'
 import { type TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
-import { type Colors } from '../../utils/colors'
+import { type Color } from '../../utils/colors'
 
 export interface TextareaProps {
   setValue: (value: string) => void
   maxLength?: number
   maxHeight?: number
+  autoResize?: boolean
   border?: 'solid' | 'dashed' | 'dotted' | 'transparent'
-  color?: Colors
+  color?: Color
 }
 
 export function Textarea ({
-  className, value, setValue, maxLength, maxHeight, border = 'solid', color = 'primary', ...props
+  autoResize = true, className, value, setValue, maxLength, maxHeight, border = 'solid', color = 'primary', ...props
 }: TextareaProps & TextareaHTMLAttributes<HTMLTextAreaElement>) {
   const textarea = useRef<HTMLTextAreaElement>(null)
   const [height, setHeight] = useState<number>(38)
@@ -34,7 +35,8 @@ export function Textarea ({
         className={classNames(
           'r-textarea',
           `r-textarea-border-${border}`,
-          `hover:bg-background-2 bg-background-1 ring-${color}-2`,
+          `focus:border-${color}-2`,
+          { 'r-no-resize': autoResize },
         )}
         style={{
           height: h,
@@ -43,6 +45,7 @@ export function Textarea ({
         value={value}
         onInput={(e) => {
           e.stopPropagation()
+          e.preventDefault()
           setValue(e.currentTarget.value)
           // only update height if it's changed
           if (height !== e.currentTarget.scrollHeight) {

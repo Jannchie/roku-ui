@@ -1,7 +1,7 @@
 .r-input-radio {
   @apply w-4 h-4 mr-2 relative cursor-pointer;
   @apply rounded-full appearance-none;
-  @apply border-2;
+  @apply border;
 }
 
 .r-input-radio-wrapper {

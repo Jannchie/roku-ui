@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { type Colors } from '../../utils/colors'
+import { type Color } from '../../utils/colors'
 import { Btn } from '../Btn'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 
 export function Rating ({ max, value, setValue, color = 'primary' }: {
   max: number
   value: number
-  color?: Colors
+  color?: Color
   setValue: (value: number) => void
 }) {
   const range = Array.from({ length: max }, (_, i) => i + 1)

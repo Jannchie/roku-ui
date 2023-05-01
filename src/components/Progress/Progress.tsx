@@ -2,10 +2,10 @@ import './Progress.css'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
 import { type BaseProps } from '../../utils/type'
-import { type Colors, isColor } from '../..'
+import { type Color, isColor } from '../..'
 
 type ProgressProps = {
-  color?: Colors | string
+  color?: Color | string
   total?: number
   value?: number
   durationMS?: number

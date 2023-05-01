@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { type Colors } from '../..'
+import { type Color } from '../..'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import { Typography } from '../Typography'
 import './Result.css'
@@ -9,7 +9,7 @@ export function Result ({
 }: {
   icon: string
   title: string
-  color?: Colors
+  color?: Color
   size?: 'sm' | 'md' | 'lg'
   description?: string
 }) {

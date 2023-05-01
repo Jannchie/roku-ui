@@ -4,50 +4,19 @@ import {
 import { NavLink, useLocation, useOutlet } from 'react-router-dom'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import {
-  Appbar, Btn, Footer, HolyGrail, MaterialSymbolIcon, Panel, Tag, ThemeToggle, useOnClickOutside, useTheme,
+  Appbar, Btn, Footer, HolyGrail, Icon, List, ListBase, MaterialSymbolIcon, Panel, Tag, ThemeToggle, useOnClickOutside,
 } from '../src'
 import useWindowSize, { type WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
 import { router } from './router'
 
-function getNavItem (icon: ReactNode, hover: boolean, title: string, width: number) {
+function getNavItem (icon: ReactNode, title: string) {
   return function ActivableBtn ({ isActive }: { isActive: boolean }) {
     return (
-      <div style={{ display: 'flex', justifyItems: 'center', alignItems: 'center' }}>
-        <Btn
-          left
-          text
-          icon
-          style={{
-            margin: '0 8px',
-          }}
-          color={isActive ? 'primary' : 'default'}
-        >
-          <div style={{
-            display: 'flex',
-            gap: 16,
-          }}
-          >
-            { typeof icon === 'string' ? <MaterialSymbolIcon icon={icon} /> : icon }
-          </div>
-
-        </Btn>
-        <div
-          style={{
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-            textAlign: 'left',
-            transition: 'opacity 0.3s ease-in-out, width 0.1s ease-in-out',
-            width: hover ? `${width - 72}px` : '0px',
-            opacity: hover ? 1 : 0,
-            fontSize: '0.8rem',
-            color: isActive ? 'hsl(var(--r-primary-2)' : 'hsl(var(--r-frontend-2)',
-          }}
-        >
-          { title }
-        </div>
-      </div>
+      <List.Item
+        title={title}
+        icon={<Icon color={isActive ? 'primary' : 'default'}>{ icon }</Icon>}
+      />
     )
   }
 }
@@ -57,6 +26,7 @@ function DocLayout () {
   const [showMenu, setShowMenu] = useState(false)
   const appbar = (
     <Appbar
+      border
       style={{ position: 'fixed', top: 0, width: '100%' }}
       varient="pattern"
       title={(<div
@@ -122,11 +92,13 @@ function DocLayout () {
         minHeight: '100vh',
       }}
       innerLeft={(
-        <LeftMenu
-          size={size}
-          showMenu={showMenu}
-          setShowMenu={setShowMenu}
-        />
+        <div style={{ width: 280 }}>
+          <LeftMenu
+            size={size}
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+          />
+        </div>
       )}
       header={appbar}
       main={(
@@ -145,25 +117,24 @@ function DocLayout () {
                   ref={pageBodyRef}
                   style={{
                     marginTop: 100,
-                    minHeight: 'calc(100vh - 100px - 29px)',
+                    minHeight: 'calc(100vh - 100px)',
                     transition: `transform ${timeoutMS}ms ease-out, opacity ${timeoutMS}ms ease-out`,
                     opacity: state === 'entered' ? undefined : 0,
                     transform: state === 'entered' ? undefined : 'translateY(10px)',
                   }}
                 >
                   { outlet }
+                  <Footer>
+                    Jannchie Studio @
+                    { ' ' }
+                    { new Date().getFullYear() }
+                  </Footer>
                 </div>
+
               )
             } }
           </Transition>
         </SwitchTransition>
-      )}
-      footer={(
-        <Footer>
-          Jannchie Studio @
-          { ' ' }
-          { new Date().getFullYear() }
-        </Footer>
       )}
     />
   )
@@ -181,37 +152,24 @@ function LeftMenu ({
   useOnClickOutside(ref, () => {
     setShowMenu(false)
   })
-  const [hover, setHover] = useState(false)
   return size.width > 640
     ? (
       <Panel
-        style={{
-          maxHeight: '100vh',
-          position: 'sticky',
-          top: 54,
-          display: 'flex',
-          flexDirection: 'column',
-          marginTop: 100,
-          marginLeft: 8,
-          marginBottom: 8,
-          padding: '16px 0',
-          transition: 'min-width 0.1s ease-in-out',
-          minWidth: hover ? width : 54,
-          overflowY: 'auto',
-          overflowX: 'hidden',
-        }}
-        onMouseEnter={() => { setHover(true) }}
-        onMouseLeave={() => { setHover(false) }}
+        className="border-border-2"
+        border={false}
+        style={{ borderRadius: 0, borderRightWidth: 1, top: 57, maxHeight: 'calc(100vh - 57px)', position: 'fixed', overflowY: 'auto' }}
       >
-        { router.filter(d => d.path !== 'test').map((route) => (
-          <NavLink
-            key={route.path}
-            end
-            to={route.path}
-          >
-            { getNavItem(route.icon, hover, route.title, width) }
-          </NavLink>
-        )) }
+        <List >
+          { router.filter(d => d.path !== 'test').map((route) => (
+            <NavLink
+              key={route.path}
+              end
+              to={route.path}
+            >
+              { getNavItem(route.icon, route.title) }
+            </NavLink>
+          )) }
+        </List>
       </Panel>
     )
     : (
@@ -234,7 +192,7 @@ function LeftMenu ({
             key={route.path}
             to={route.path}
           >
-            { getNavItem(route.icon, true, route.title, width) }
+            { getNavItem(route.icon, route.title) }
           </NavLink>
         )) }
       </div>

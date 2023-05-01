@@ -1,14 +1,14 @@
 import './AutoComplete.css'
 import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect, useCallback } from 'react'
 import classNames from 'classnames'
-import { type Colors, TextField, useOnClickOutside, Btn } from '../..'
+import { type Color, TextField, useOnClickOutside, Btn } from '../..'
 import { type BaseProps } from '../../utils/type'
 
 export type RComboboxProps<T> = {
   setValue: (d: T) => void
   options: T[]
   notFoundContent?: ReactNode
-  color?: Colors
+  color?: Color
   defaultValue?: T
   getKey?: (d: T) => string
   getFilter?: (query: string) => (d: T) => boolean

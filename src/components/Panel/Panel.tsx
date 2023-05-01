@@ -1,10 +1,10 @@
 import classNames from 'classnames'
 import { type HTMLAttributes } from 'react'
-import { type Colors } from '../..'
+import { type Color } from '../..'
 import { defaults } from '../../utils/defaults'
 import './Panel.css'
 export interface PanelProps {
-  color?: Colors
+  color?: Color
   border?: boolean
   padding?: boolean
   bgOpacity?: 10 | 25 | 50 | 75 | 90

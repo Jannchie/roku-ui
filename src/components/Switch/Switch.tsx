@@ -1,23 +1,28 @@
 import classNames from 'classnames'
 import { type FC, type ReactNode, useState } from 'react'
-import { type Colors } from '../..'
-
+import { type Color } from '../..'
+import './Switch.css'
+import { TablerCheck, TablerMinus } from '@roku-ui/icons-tabler'
 export interface SwitchProps {
   value: boolean
   setValue: (value: boolean) => void
-  color?: Colors
+  color?: Color
+  normalColor?: Color
   size?: 'lg' | 'sm' | 'md'
   label?: ReactNode
+  bgIcon?: boolean
 }
 export const Switch: FC<SwitchProps> = ({
   value,
   setValue,
   size = 'md',
-  color = 'frontground',
+  color = 'primary',
+  normalColor = 'frontground',
   label,
+  bgIcon = false,
 }: SwitchProps) => {
   const [clicking, setClicking] = useState(false)
-  const colorStyle = value ? `hsl(var(--r-${color}-2))` : 'hsl(var(--r-background-2))'
+  const colorStyle = value ? `hsl(var(--r-${color}-2))` : `hsl(var(--r-${normalColor}-2))`
   let labelSize = 'text-sm'
   let h = 1.25
   if (size === 'sm') {
@@ -28,17 +33,21 @@ export const Switch: FC<SwitchProps> = ({
     h = 1.5
   }
   return (
-    <div className="inline-flex items-center gap-2">
+    <div className={classNames(
+      'r-switch-wrapper',
+    )}
+    >
+
       <input
         type="checkbox"
-        className={classNames('appearance-none cursor-pointer rounded-full border', {
-          'w-[3rem] h-[1.5rem]': size === 'lg',
-          'w-[2.5rem] h-[1.25rem]': size === 'md',
-          'w-[2rem] h-[1rem]': size === 'sm',
-          [`border-${color}-2`]: true,
-          [`bg-${color}-2`]: !value,
-          'bg-2': value,
-        })}
+        className={classNames(
+          'r-switch-input',
+          `r-switch-input-${size}`,
+          {
+            [`border-${color}-2`]: value,
+            [`border-${normalColor === 'background' ? 'default' : normalColor}-2`]: !value,
+            'bg-white': true,
+          })}
         style={{
           boxShadow: `calc(${h}rem * ${(value ? 1 : -1) * (clicking ? 0.75 : 1)}) 0 0 2px ${colorStyle} inset,0 0 0 2px ${colorStyle} inset`,
         }}
@@ -52,6 +61,26 @@ export const Switch: FC<SwitchProps> = ({
         }}
         onClick={() => { setValue(!value) }}
       />
+      { bgIcon && <div
+        className={classNames('r-switch-icon-wrapper')}
+        style={{
+          transform: value ? 'translateX(2px) rotate(0deg) ' : `translateX(${h}rem) rotate(360deg)`,
+        }}
+      >
+        { !value
+          ? (
+            <TablerMinus
+              color={`hsl(var(--r-${normalColor}-1))`}
+              width={`${h - 0.2}rem`}
+            />
+          )
+          : (
+            <TablerCheck
+              color={`hsl(var(--r-${color}-1))`}
+              width={`${h - 0.2}rem`}
+            />
+          ) }
+      </div> }
       { label && <span className={labelSize}>{ label }</span> }
     </div>
   )

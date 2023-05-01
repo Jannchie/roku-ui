@@ -1,16 +1,28 @@
 import './Anchor.css'
 import classNames from 'classnames'
 import { type AnchorHTMLAttributes } from 'react'
-import { type Colors } from '../..'
+import { type Color } from '../..'
+import { TablerExternalLink } from '@roku-ui/icons-tabler'
 
 export function Anchor ({
   color = 'primary',
   children,
   className,
+  showExternalIcon = 'auto',
   ...props
 }: {
-  color?: Colors
+  color?: Color
+  showExternalIcon?: 'auto' | boolean
 } & AnchorHTMLAttributes<HTMLAnchorElement>) {
+  function isExternalLink (url: string): boolean {
+    try {
+      const currentHost = window.location.host
+      const urlHost = new URL(url).host
+      return urlHost !== currentHost
+    } catch {
+      return false
+    }
+  }
   return (
     <a
       {...props}
@@ -22,6 +34,9 @@ export function Anchor ({
       )}
     >
       { children }
+      { (showExternalIcon === true || (showExternalIcon === 'auto' && isExternalLink(props.href ?? ''))) &&
+        <TablerExternalLink style={{ height: '1em', display: 'inline' }} />
+      }
     </a>
   )
 }

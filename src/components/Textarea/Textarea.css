@@ -3,15 +3,14 @@
 }
 
 .r-textarea {
-  @apply text-sm p-[9px] py-[8px] resize-none border-border-2 transition-height;
-  @apply outline-none rounded;
-  @apply focus:ring-1 transition-shadow;
-  @apply hover:bg-background-2 focus:bg-background-2;
-  @apply border focus:border-transparent;
+  @apply transition-border-color;
+  @apply border rounded border-border-2;
+  @apply bg-background-1 text-sm p-[9px] py-[8px];
+  @apply outline-none;
 }
-
-.r-panel .r-textarea {
-  @apply rounded-lg;
+.r-textarea.r-no-resize {
+  @apply transition-border-color,height;
+  @apply resize-none overflow-hidden;
 }
 
 .r-textarea::-webkit-scrollbar {

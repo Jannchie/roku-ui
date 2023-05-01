@@ -1,12 +1,12 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, type ReactNode, useEffect } from 'react'
 import {
-  Btn, type Colors, MaterialSymbolIcon, Panel, type PanelProps, Progress,
+  Btn, type Color, MaterialSymbolIcon, Panel, type PanelProps, Progress,
 } from '../..'
 import './Notice.css'
 
 export interface NoticeProps {
-  color?: Colors
+  color?: Color
   title?: ReactNode
   desc?: ReactNode
   wrapperClass?: string

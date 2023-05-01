@@ -23,3 +23,9 @@
 通过 `color` 属性可以设置开关的颜色。
 
 <Demo name="SwitchColor" />
+
+## 常时颜色
+
+通过 `normalColor` 属性可以设置开关激活状态的颜色。
+
+<Demo name="SwitchNormalColor" />

@@ -1,14 +1,61 @@
 import { type HTMLAttributes } from 'react'
+import { type Color } from '../../utils/colors'
+import { type Size, type Rounded } from '../../utils/type'
+import { defaults } from '../../utils/defaults'
+import classNames from 'classnames'
 
-export function Icon ({ children, data }: { data: string } & HTMLAttributes<HTMLElement>) {
+function sizeClassName (size: Size) {
+  switch (size) {
+    case 'xs':
+      return 'h-4 w-4 text-xs p-0.5'
+    case 'sm':
+      return 'h-5 w-5 text-sm p-0.75'
+    case 'base':
+      return 'h-6 w-6 text-base p-1'
+    case 'md':
+      return 'h-8 w-8 text-md p-1.25'
+    case 'lg':
+      return 'h-10 w-10 text-lg p-1.5'
+    case 'xl':
+      return 'h-12 w-12 text-xl p-2'
+  }
+}
+
+function roundedClassName (rounded: Rounded) {
+  switch (rounded) {
+    case 'none':
+      return ''
+    case 'xs':
+      return 'rounded-xs'
+    case 'sm':
+      return 'rounded-sm'
+    case 'md':
+      return 'rounded-md'
+    case 'base':
+      return 'rounded'
+    case 'lg':
+      return 'rounded-lg'
+    case 'xl':
+      return 'rounded-xl'
+    case 'full':
+      return 'rounded-full'
+  }
+}
+
+export function Icon ({
+  children,
+  color = 'default',
+  rounded = defaults.rounded,
+  size = 'base',
+}: {
+  varient?: any
+  color?: Color
+  rounded?: Rounded
+  size?: Size
+} & HTMLAttributes<HTMLElement>) {
   return (
     <i
-      style={{
-        WebkitMaskImage: `url(${data})`,
-        WebkitMaskSize: '100% 100%',
-        backgroundColor: 'currentcolor',
-      }}
-      className="h-[1em] w-[1em] inline-block"
+      className={classNames(sizeClassName(size), roundedClassName(rounded), `inline-block bg-${color}-2/25 text-${color}-2`)}
     >
       { children }
     </i>

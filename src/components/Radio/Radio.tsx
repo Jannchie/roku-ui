@@ -1,20 +1,20 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, type HTMLAttributes, useContext, useMemo } from 'react'
-import { type Colors } from '../../utils/colors'
+import { type Color } from '../../utils/colors'
 import './Radio.css'
 
 const RadioCtx = createContext<{ val: any, setValue: (value: any) => void }>({ val: '', setValue: () => { } })
 
 function RadioRoot ({
   id, className, value, label, color = 'frontground', ...others
-}: { value: any, label: string, color?: Colors } & HTMLAttributes<HTMLLabelElement>) {
+}: { value: any, label: string, color?: Color } & HTMLAttributes<HTMLLabelElement>) {
   const { val, setValue } = useContext(RadioCtx)
   const checked = val === value
   return (
     <label
       htmlFor={id}
-      className={classNames('r-input-radio-wrapper flex items-center', `text-${color}-2 hover:text-${color}-1`, className)}
+      className={classNames('r-input-radio-wrapper', `text-${color}-2 hover:text-${color}-1`, className)}
       {...others}
     >
       <input
@@ -28,7 +28,7 @@ function RadioRoot ({
         { checked && (
           <motion.span
             initial={{ scale: 0 }}
-            animate={{ scale: 0.5 }}
+            animate={{ scale: 0.25 }}
             exit={{ scale: 0 }}
             className={classNames('absolute w-4 h-4 flex justify-center items-center rounded-full', `hover:bg-${color}-1 bg-${color}-2`)}
           />

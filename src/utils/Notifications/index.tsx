@@ -4,7 +4,7 @@ import {
   type ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react'
 import classNames from 'classnames'
-import { type Colors, MaterialSymbolIcon, Notice } from '../..'
+import { type Color, MaterialSymbolIcon, Notice } from '../..'
 
 interface NotificationConfig {
   left?: boolean
@@ -57,7 +57,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
   const { title, desc, type } = config
 
   if (!existsMS) existsMS = 3000
-  let mainColor: Colors
+  let mainColor: Color
   let icon: ReactNode = ''
   switch (type) {
     case 'success': {

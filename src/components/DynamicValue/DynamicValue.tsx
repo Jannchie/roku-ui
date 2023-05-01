@@ -1,12 +1,12 @@
 import classNames from 'classnames'
 import { type HTMLMotionProps, motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { type Colors } from '../..'
+import { type Color } from '../..'
 
 type DynamicValueProps = {
   value: number
   format?: (value: number) => string
-  color?: Colors
+  color?: Color
 } & HTMLMotionProps<'span'>
 export function DynamicValue ({
   className,

@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
-import { type Colors } from '../../utils/colors'
+import { type Color } from '../../utils/colors'
 import { Panel } from '../Panel'
 import { TitleBar } from '../TitleBar'
 
@@ -13,7 +13,7 @@ export function Window ({
 }: {
   title?: ReactNode
   children: ReactNode
-  color?: Colors
+  color?: Color
   os?: 'mac' | 'win'
 } & HTMLAttributes<HTMLDivElement>) {
   return (
