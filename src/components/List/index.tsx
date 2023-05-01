@@ -1,12 +1,12 @@
 import { Flex } from '../Layout/Flex'
-import { type HTMLAttributes, type ReactNode } from 'react'
+import { forwardRef, type HTMLAttributes, type ReactNode } from 'react'
 import classNames from 'classnames'
 import { type Color } from '../../utils/colors'
 
 export function ListBase ({ className, children, ...others }: { children?: ReactNode } & HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={classNames('inline-block p-2 min-w-36', className)}
+      className={classNames('p-2 min-w-36', className)}
       {...others}
     >
       { children }
@@ -25,25 +25,32 @@ function ListTitle ({ children, className, ...others }: HTMLAttributes<HTMLDivEl
   )
 }
 
-function ListItem ({ icon, title, className, color = 'default', ...others }: { color: Color, icon?: ReactNode, title?: ReactNode } & HTMLAttributes<HTMLDivElement>) {
+const ListItem = forwardRef((
+  { children, icon, title, className, hover, color = 'default', ...others }: { color?: Color, icon?: ReactNode, title?: ReactNode, hover?: boolean } & HTMLAttributes<HTMLDivElement>,
+  ref: any,
+) => {
   return (
     <Flex
-      className={classNames(`hover:bg-${color}-2/10 p-2 rounded cursor-pointer`, className)}
+      ref={ref}
+      className={classNames('p-2 rounded cursor-pointer', className, { [`hover:bg-${color}-2/10`]: typeof hover === 'undefined', 'bg-frontground-2/10': hover })}
       gap=".5rem"
       align="center"
       {...others}
     >
-      { icon }
-      {
-        title && (
-          <div className="text-sm text-frontground-2 p-0.5">
-            { title }
-          </div>
-        )
-      }
+      { children ?? <>
+        { icon }
+        {
+          title && (
+            <div className="text-sm text-frontground-2 p-0.5">
+              { title }
+            </div>
+          )
+        }
+      </> }
     </Flex>
   )
-}
+})
+ListItem.displayName = 'ListItem'
 
 export const List = Object.assign(ListBase, {
   Title: ListTitle,

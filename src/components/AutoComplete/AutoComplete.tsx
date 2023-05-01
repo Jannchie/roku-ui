@@ -1,7 +1,7 @@
 import './AutoComplete.css'
 import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect, useCallback } from 'react'
 import classNames from 'classnames'
-import { type Color, TextField, useOnClickOutside, Btn } from '../..'
+import { type Color, TextField, useOnClickOutside, Btn, List, Panel } from '../..'
 import { type BaseProps } from '../../utils/type'
 
 export type RComboboxProps<T> = {
@@ -155,31 +155,33 @@ export function AutoComplete<T> ({
       />
       {
         (
-          <div className={classNames('r-combobox-options', { hidden: !show })}>
-            { filteredData.length === 0 && query !== ''
-              ? (
-                notFoundContent
-              )
-              : (
-                filteredData.map((d, i) => {
-                  return (
-                    <OptionComponent<T>
-                      key={trueGetKey(d)}
-                      filteredData={filteredData}
-                      setFocusIndex={setFocusIndex}
-                      focus={focusIndex === i}
-                      selfIndex={i}
-                      setValue={setValue}
-                      setShow={setShow}
-                      color={color}
-                      data={d}
-                      getKey={trueGetKey}
-                      setKey={setQuery}
-                    />
-                  )
-                })
-              ) }
-          </div>
+          <Panel className={classNames('r-combobox-options', { hidden: !show })}>
+            <List>
+              { filteredData.length === 0 && query !== ''
+                ? (
+                  notFoundContent
+                )
+                : (
+                  filteredData.map((d, i) => {
+                    return (
+                      <OptionComponent<T>
+                        key={trueGetKey(d)}
+                        filteredData={filteredData}
+                        setFocusIndex={setFocusIndex}
+                        focus={focusIndex === i}
+                        selfIndex={i}
+                        setValue={setValue}
+                        setShow={setShow}
+                        color={color}
+                        data={d}
+                        getKey={trueGetKey}
+                        setKey={setQuery}
+                      />
+                    )
+                  })
+                ) }
+            </List>
+          </Panel>
         )
       }
     </div>
@@ -209,21 +211,20 @@ function OptionComponent<T> ({
   filteredData: T[]
   selfIndex: number
   setFocusIndex: (v: number) => void
-} & HTMLAttributes<HTMLButtonElement>) {
+} & HTMLAttributes<HTMLDivElement>) {
   const self = useRef<HTMLButtonElement>(null)
   if (focus) {
     self.current?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
   }
   return (
-    <button
+    <List.Item
       {...props}
       ref={self}
       className={classNames(
         'r-combobox-item',
-        {
-          [`bg-${color}-2`]: focus,
-          'bg-background-2': !focus,
-        })}
+        { 'r-combobox-focused': focus },
+      )}
+      hover={focus}
       onClick={() => {
         const key = getKey(data)
         setKey(key)
@@ -233,6 +234,6 @@ function OptionComponent<T> ({
       onMouseMove={() => { setFocusIndex(selfIndex) }}
     >
       { getKey(data) }
-    </button>
+    </List.Item>
   )
 }

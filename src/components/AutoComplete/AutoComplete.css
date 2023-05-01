@@ -10,11 +10,11 @@
 }
 
 .r-combobox-not-found {
-  @apply relative cursor-default select-none py-2 px-4;
+  @apply relative cursor-default select-none;
 }
 
 .r-combobox-item {
-  @apply relative cursor-default select-none py-2 px-4 block w-full text-left cursor-pointer;
+  @apply relative cursor-default select-none block w-full text-left cursor-pointer;
 }
 
 .r-combobox {
@@ -27,4 +27,8 @@
 
 .r-combobox-input.r-text-field-wrapper {
   @apply w-full;
+}
+
+.r-combobox-focused {
+  @apply bg-frontground-2/10;
 }
