@@ -9,6 +9,12 @@ import { App } from './app'
 import { router } from './router'
 import { RokuProvider, defaults } from '../src'
 
+import './assets/PrismJS.css'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-tsx'
+import 'prismjs/plugins/line-numbers/prism-line-numbers.min.js'
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+
 defaults.border = true
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

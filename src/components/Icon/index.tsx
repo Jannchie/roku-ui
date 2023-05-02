@@ -47,6 +47,8 @@ export function Icon ({
   color = 'default',
   rounded = defaults.rounded,
   size = 'base',
+  className,
+  ...others
 }: {
   varient?: any
   color?: Color
@@ -55,7 +57,8 @@ export function Icon ({
 } & HTMLAttributes<HTMLElement>) {
   return (
     <i
-      className={classNames(sizeClassName(size), roundedClassName(rounded), `inline-block bg-${color}-2/25 text-${color}-2`)}
+      {...others}
+      className={classNames(className, sizeClassName(size), roundedClassName(rounded), `inline-block bg-${color}-2/25 text-${color}-2`)}
     >
       { children }
     </i>

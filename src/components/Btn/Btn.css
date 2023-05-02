@@ -3,17 +3,16 @@
   @apply border;
   @apply min-w-max;
   @apply h-fit;
-  @apply text-sm rounded-2xl;
+  @apply text-sm;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
-  @apply outline-none;
   overflow: visible;
 }
 
-.r-btn {
-  @apply rounded;
+.r-btn-filled {
+  @apply text-white color-white;
 }
 
-.r-panel .r-btn {
+.r-btn {
   @apply rounded;
 }
 
@@ -26,7 +25,7 @@
 }
 
 .r-btn-blur::after {
-  @apply rounded-lg;
+  @apply rounded;
   background: var(--r-btn-glory-color);
 }
 
@@ -52,8 +51,8 @@
   @apply rounded-full;
 }
 
-.r-btn-ring {
-  @apply focus:ring-1;
+.r-btn-outline {
+  @apply focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-2;
 }
 
 .r-btn-icon {
@@ -78,11 +77,11 @@
 }
 
 .r-btn-xs {
-  @apply p-0.5 text-xs;
+  @apply p-0.75 text-xs;
 }
 
 .r-btn-sm {
-  @apply p-1 !leading-none;
+  @apply p-1 text-xs !leading-none;
 }
 
 .r-btn-sm {
@@ -122,7 +121,7 @@
 }
 
 .r-btn-leading-icon {
-  @apply mr-2;
+  @apply leading-[0];
 }
 .r-loading-xs {
   @apply h-3 w-3;

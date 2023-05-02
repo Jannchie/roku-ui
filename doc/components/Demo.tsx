@@ -1,6 +1,9 @@
 import { type ReactNode, useEffect, useState, lazy, Suspense, useRef } from 'react'
-import { Loading, Panel } from '../../src'
+import { Btn, Loading, Panel } from '../../src'
 import './Demo.css'
+import Prism from 'prismjs'
+import { TablerCopy } from '@roku-ui/icons-tabler'
+
 export const Demo = ({ name, prose = false }: {
   name: string
   prose?: boolean
@@ -23,7 +26,7 @@ export const Demo = ({ name, prose = false }: {
   const ref = useRef<HTMLPreElement>(null)
   useEffect(() => {
     if (ref.current) {
-      window.Prism.highlightElement(ref.current, false, (e) => { })
+      Prism.highlightElement(ref.current, false)
     }
   }, [code])
   return (
@@ -43,29 +46,35 @@ export const Demo = ({ name, prose = false }: {
           </Suspense>
         </div>
       </div>
-      <div className="line-numbers">
-        { code &&
-          <pre
-            style={{
-              margin: 0,
-              borderTopLeftRadius: 0,
-              borderTopRightRadius: 0,
-              overflowX: 'auto',
-              fontFamily: 'monospace',
-              fontSize: 12,
-              background: '#1e1e1e',
-              borderRadius: '0 0 1rem 1rem',
-            }}
-          >
-            <code
-              ref={ref}
-              className="language-tsx"
-            >
-              { code }
-            </code>
-          </pre>
-        }
-      </div>
+      { code &&
+      <pre
+        style={{
+          margin: 0,
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: 0,
+          overflowX: 'auto',
+          fontSize: 12,
+          borderRadius: '0 0 1rem 1rem',
+        }}
+        tabIndex={-1}
+      >
+        <Btn
+          text
+          style={{ position: 'absolute', right: '1rem', color: 'white' }}
+          onClick={() => {
+            void navigator.clipboard.writeText(code)
+          }}
+        >
+          <TablerCopy width="1rem" />
+        </Btn>
+        <code
+          ref={ref}
+          className="language-tsx line-numbers"
+        >
+          { code }
+        </code>
+      </pre>
+      }
     </Panel>
   )
 }

@@ -10,6 +10,39 @@ export default function AllBtnDemo () {
     >
       <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
         <Btn
+          normal
+          border
+          label="Primary"
+        />
+      </div>
+      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
+        <Btn
+          contrast
+          color="primary"
+          label="Primary"
+        />
+        <Btn
+          contrast
+          color="success"
+          label="Success"
+        />
+        <Btn
+          contrast
+          color="danger"
+          label="Danger"
+        />
+        <Btn
+          contrast
+          color="warning"
+          label="Warning"
+        />
+        <Btn
+          contrast
+          label="Default"
+        />
+      </div>
+      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
+        <Btn
           color="primary"
           label="Primary"
         />

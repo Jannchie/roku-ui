@@ -1,7 +1,7 @@
 import { presetTypography, presetUno, transformerDirectives, defineConfig } from 'unocss'
 const saveList = []
 const variants = ['hover', 'active', 'group-hover', 'focus-within', 'focus']
-const utilities = ['border', 'bg', 'text', 'ring', 'outlined', 'decoration']
+const utilities = ['border', 'bg', 'text', 'ring', 'outline', 'decoration']
 const colorType = ['primary', 'secondary', 'default', 'success', 'danger', 'warning', 'info', 'background', 'frontground', 'border']
 const colorLevel = [1, 2, 3]
 const opacityLevel = [10, 25, 50, 75, 90]

@@ -1,6 +1,8 @@
 import { type ReactNode, useEffect, useState, lazy, Suspense, useRef } from 'react'
 import { Flex, Loading, Panel } from '../../src'
 import './Demo.css'
+import Prism from 'prismjs'
+
 export const DemoNoBG = ({ name, prose = false }: {
   name: string
   prose?: boolean
@@ -23,7 +25,7 @@ export const DemoNoBG = ({ name, prose = false }: {
   const ref = useRef<HTMLPreElement>(null)
   useEffect(() => {
     if (ref.current) {
-      window.Prism.highlightElement(ref.current, false, (e) => { })
+      Prism.highlightElement(ref.current, false)
     }
   }, [code])
   return (
@@ -46,7 +48,9 @@ export const DemoNoBG = ({ name, prose = false }: {
         style={{ padding: 0, maxWidth: 'calc(100vw - 16px)' }}
       >
         <div ref={compRef} />
-        <div className="line-numbers">
+        <div
+          className="line-numbers"
+        >
           { code &&
           <pre
             style={{
@@ -57,6 +61,7 @@ export const DemoNoBG = ({ name, prose = false }: {
               background: '#1e1e1e',
               borderRadius: '1rem',
             }}
+            tabIndex={-1}
           >
             <code
               ref={ref}

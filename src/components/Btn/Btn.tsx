@@ -4,27 +4,30 @@ import {
   createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo,
 } from 'react'
 import { type Color } from '../../utils/colors'
-import { Loading } from '../../icons/Loading'
+// import { Loading } from '../../icons/Loading'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import './Btn.css'
 import { Typography } from '../Typography'
+import { SvgSpinners90RingWithBg } from '@roku-ui/icons-svg-spinners'
+
+type ButtonType = 'fill' | 'text' | 'default' | 'contrast'
 
 export type ButtonProps = {
+  variant?: ButtonType
+  text?: boolean
+  fill?: boolean
+  normal?: boolean
   label?: string
   size?: 'xs' | 'sm' | 'md' | 'lg'
   style?: CSSProperties & { '--r-btn-glory-color'?: string }
   rounded?: boolean
   color?: Color
   hoverColor?: Color
-  filled?: boolean
   border?: boolean
   dash?: boolean
-  text?: boolean
   disabled?: boolean
   loading?: boolean
-  ring?: boolean
-  children?: ReactNode
-  className?: string
+  outline?: boolean
   icon?: boolean
   scale?: boolean
   contrast?: boolean
@@ -42,6 +45,30 @@ interface BtnGroupCtxType {
   setValue: (value: any) => void
   activeColor: Color
 }
+
+function getTrueBtnVariant ({ fill, text, variant, normal, contrast }: ButtonProps): ButtonType {
+  switch (variant) {
+    case 'fill':
+      return 'fill'
+    case 'text':
+      return 'text'
+    case 'default':
+      return 'default'
+    default:
+      if (text) {
+        return 'text'
+      } else if (normal) {
+        return 'default'
+      } else if (fill) {
+        return 'fill'
+      } else if (contrast) {
+        return 'contrast'
+      } else {
+        return 'default'
+      }
+  }
+}
+
 const BtnGroupCtx = createContext<BtnGroupCtxType>({
   value: undefined,
   setValue: () => { },
@@ -52,19 +79,21 @@ const BtnGroupCtx = createContext<BtnGroupCtxType>({
 function BtnRoot ({
   label,
   size = 'md',
+  variant,
+  fill = true,
+  text,
   color = 'default',
+  contrast = false,
+  normal = false,
   hoverColor,
   gloryColor,
+  border = false,
   dash = false,
   loading = false,
   disabled = false,
-  border = false,
-  contrast = false,
   scale = false,
   rounded = false,
-  ring = false,
-  filled = true,
-  text = false,
+  outline = true,
   style,
   children,
   onClick,
@@ -82,10 +111,7 @@ function BtnRoot ({
   const fgColor = color === 'default' ? 'fg' : color
   if (!loadingIcon) {
     loadingIcon = (
-      <Loading
-        mainClassName="stroke-[hsl(var(--r-background-3))]"
-        subClassName="stroke-[hsl(var(--r-background-2))]"
-      />
+      <SvgSpinners90RingWithBg />
     )
   }
   if (value && value === ctx.value) {
@@ -94,32 +120,33 @@ function BtnRoot ({
   if (gloryColor) {
     style = { ...style, '--r-btn-glory-color': gloryColor }
   }
+
+  const trueBtnVariant = getTrueBtnVariant({ variant, fill, text, normal })
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
+    { [`r-btn-filled bg-${color}-2`]: trueBtnVariant === 'fill' },
+    { 'bg-background-2 border-border-2': trueBtnVariant === 'default' },
+    { [`border-${color}-1`]: border && trueBtnVariant !== 'default' },
+    { [`text-${fgColor}-2 hover:text-${hColor}-1 hover:bg-${hColor}-1/25`]: trueBtnVariant === 'text' },
+    { [`hover:bg-${hColor}-2 active:bg-${hColor}-${hColor !== 'default' ? 3 : 1}`]: trueBtnVariant === 'contrast' },
     { 'r-btn-icon': icon },
     { 'r-btn-icon-border': icon && border },
     { 'r-btn-rounded': rounded },
     { 'r-btn-dash': dash },
     { 'r-btn-blur': gloryColor },
-    { 'r-btn-ring': ring },
-    { 'r-btn-filled': filled && !text && !contrast },
-    { 'r-btn-text': text || contrast },
+    { [`outline-${color}-2 r-btn-outline`]: outline },
     { 'active:scale-[0.98]': scale },
-    { [`text-${fgColor}-2 hover:text-${hColor}-1 hover:bg-${hColor}-1/25`]: text },
-    { [`bg-${color}-2 hover:bg-${color}-1 text-${'background'}-2`]: !text && !contrast },
-    { [`hover:bg-${hColor}-2 active:bg-${hColor}-${hColor !== 'default' ? 3 : 1}`]: contrast },
-    { [`border-${color}-1`]: border },
     { 'border-transparent': !border },
     className,
   )
   const body = children ?? label
-  const loadingFinalClass = classNames('leading-[0]', {
+  const loadingFinalClass = classNames({
     'r-loading-xs': size === 'xs',
     'r-loading-sm': size === 'sm',
     'r-loading-md': size === 'md',
     'r-loading-lg': size === 'lg',
-  })
+  }, 'r-btn-leading-icon')
   const clickCallback = onClick ?? (() => {
     if (value) {
       if (ctx.value !== value) {
@@ -129,6 +156,18 @@ function BtnRoot ({
       }
     }
   })
+  function getRemBySize (size: 'xs' | 'sm' | 'md' | 'lg') {
+    switch (size) {
+      case 'xs':
+        return '0.5rem'
+      case 'sm':
+        return '0.75rem'
+      case 'md':
+        return '1rem'
+      case 'lg':
+        return '1.25rem'
+    }
+  }
   if (icon) {
     return (
       <button
@@ -165,7 +204,7 @@ function BtnRoot ({
         { leadingIcon
           ? (
             <div
-              className={classNames(loadingFinalClass, 'r-btn-leading-icon')}
+              className={classNames(loadingFinalClass)}
               style={{
                 fontSize: size === 'sm' ? '1rem' : '1.5rem',
               }}
@@ -180,8 +219,8 @@ function BtnRoot ({
                   layout
                   animate={{
                     marginRight: size === 'sm' ? 4 : 8,
-                    width: size === 'lg' ? 20 : 16,
-                    height: size === 'lg' ? 20 : 16,
+                    width: getRemBySize(size),
+                    height: getRemBySize(size),
                   }}
                   className={loadingFinalClass}
                   exit={{
