@@ -1,4 +1,4 @@
-import { Btn } from '../../src'
+import { Btn, Flex } from '../../src'
 
 export default function AllBtnDemo () {
   return (
@@ -8,81 +8,51 @@ export default function AllBtnDemo () {
       gap: 8,
     }}
     >
-      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
+      <Flex gap="8px">
         <Btn
           normal
           border
-          label="Primary"
+          label="Normal"
         />
-      </div>
-      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
+        <Btn
+          text
+          border
+          label="Text"
+        />
+        <Btn
+          fill
+          border
+          label="Fill"
+        />
         <Btn
           contrast
+          border
+          label="Contrast"
+        />
+      </Flex>
+      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
+        <Btn
+          fill
           color="primary"
           label="Primary"
         />
         <Btn
-          contrast
+          fill
           color="success"
           label="Success"
         />
         <Btn
-          contrast
+          fill
           color="danger"
           label="Danger"
         />
         <Btn
-          contrast
+          fill
           color="warning"
           label="Warning"
         />
         <Btn
-          contrast
-          label="Default"
-        />
-      </div>
-      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
-        <Btn
-          color="primary"
-          label="Primary"
-        />
-        <Btn
-          color="success"
-          label="Success"
-        />
-        <Btn
-          color="danger"
-          label="Danger"
-        />
-        <Btn
-          color="warning"
-          label="Warning"
-        />
-        <Btn label="Default" />
-      </div>
-      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
-        <Btn
-          border
-          color="primary"
-          label="Primary"
-        />
-        <Btn
-          border
-          color="success"
-          label="Success"
-        />
-        <Btn
-          border
-          color="danger"
-          label="Danger"
-        />
-        <Btn
-          border
-          color="warning"
-          label="Warning"
-        />
-        <Btn
-          border
+          fill
           label="Default"
         />
       </div>

@@ -57,8 +57,6 @@ function getTrueBtnVariant ({ fill, text, variant, normal, contrast }: ButtonPro
     default:
       if (text) {
         return 'text'
-      } else if (normal) {
-        return 'default'
       } else if (fill) {
         return 'fill'
       } else if (contrast) {
@@ -80,11 +78,11 @@ function BtnRoot ({
   label,
   size = 'md',
   variant,
-  fill = true,
+  fill = false,
   text,
   color = 'default',
   contrast = false,
-  normal = false,
+  normal = true,
   hoverColor,
   gloryColor,
   border = false,
@@ -120,7 +118,6 @@ function BtnRoot ({
   if (gloryColor) {
     style = { ...style, '--r-btn-glory-color': gloryColor }
   }
-
   const trueBtnVariant = getTrueBtnVariant({ variant, fill, text, normal })
   const btnClass = classNames(
     'r-btn',

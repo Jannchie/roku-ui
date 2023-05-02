@@ -60,6 +60,7 @@ export const DemoNoBG = ({ name, prose = false }: {
               fontSize: 12,
               background: '#1e1e1e',
               borderRadius: '1rem',
+              zIndex: 0,
             }}
             tabIndex={-1}
           >

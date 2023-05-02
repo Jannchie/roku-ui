@@ -1,7 +1,7 @@
 import HomeMD from './markdown/home.md?raw'
 import { Page } from './components/Page'
-import { Tabler123, TablerAnchor, TablerArticle, TablerCircleCheck, TablerCursorText, TablerHome, TablerInputSearch, TablerLayoutNavbar, TablerList, TablerMessage, TablerMoon, TablerRectangle, TablerRectangleFilled, TablerTag, TablerTypography, TablerUserCircle, TablerWindow } from '@roku-ui/icons-tabler'
-import { MaterialSymbolsArrowRightAlt, MaterialSymbolsArticle, MaterialSymbolsCampaign, MaterialSymbolsDriveFileRenameOutline, MaterialSymbolsExpandMore, MaterialSymbolsFormatSize, MaterialSymbolsLandscape, MaterialSymbolsLiveHelp, MaterialSymbolsMarkChatUnread, MaterialSymbolsNotifications, MaterialSymbolsRadio, MaterialSymbolsScience, MaterialSymbolsSmartphone, MaterialSymbolsStar, MaterialSymbolsTab, MaterialSymbolsToggleOn, MaterialSymbolsViewDay, MaterialSymbolsWebAsset, MaterialSymbolsWindow } from '@roku-ui/icons-material-symbols'
+import { Tabler123, TablerAnchor, TablerArticle, TablerCircleCheck, TablerCursorText, TablerHome, TablerIcons, TablerInputSearch, TablerLayoutNavbar, TablerList, TablerMessage, TablerMoon, TablerRectangle, TablerRectangleFilled, TablerStar, TablerTag, TablerTypography, TablerUserCircle, TablerWindow } from '@roku-ui/icons-tabler'
+import { MaterialSymbolsArrowRightAlt, MaterialSymbolsArticle, MaterialSymbolsCampaign, MaterialSymbolsDriveFileRenameOutline, MaterialSymbolsExpandMore, MaterialSymbolsFormatSize, MaterialSymbolsLandscape, MaterialSymbolsLiveHelp, MaterialSymbolsMarkChatUnread, MaterialSymbolsNotifications, MaterialSymbolsRadio, MaterialSymbolsScience, MaterialSymbolsSmartphone, MaterialSymbolsTab, MaterialSymbolsToggleOn, MaterialSymbolsViewDay, MaterialSymbolsWebAsset, MaterialSymbolsWindow } from '@roku-ui/icons-material-symbols'
 export const router = [{
   path: '/',
   title: '主页',
@@ -160,12 +160,12 @@ export const router = [{
 }, {
   path: 'icon',
   title: '图标（Icon）',
-  icon: <MaterialSymbolsScience />,
+  icon: <TablerIcons />,
   element: <Page />,
 }, {
   path: 'rating',
   title: '评分（Rating）',
-  icon: <MaterialSymbolsStar />,
+  icon: <TablerStar />,
   element: <Page />,
 }, {
   path: 'radio',

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { type Color } from '../../utils/colors'
 import { Btn } from '../Btn'
-import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
+import { TablerStar, TablerStarFilled } from '@roku-ui/icons-tabler'
 
 export function Rating ({ max, value, setValue, color = 'primary' }: {
   max: number
@@ -25,10 +25,11 @@ export function Rating ({ max, value, setValue, color = 'primary' }: {
           }}
           onMouseLeave={() => { setHover(value) }}
         >
-          <MaterialSymbolIcon
-            fill={d <= hover}
-            icon="star"
-          />
+          {
+            d <= hover
+              ? <TablerStarFilled />
+              : <TablerStar />
+          }
         </Btn>
       )) }
     </div>

@@ -9,7 +9,7 @@
 }
 
 .r-btn-filled {
-  @apply text-white color-white;
+  @apply text-background-2;
 }
 
 .r-btn {
