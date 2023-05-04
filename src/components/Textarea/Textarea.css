@@ -1,9 +1,9 @@
 .r-textarea-wrapper {
-  @apply relative;
+  @apply relative leading-0;
 }
 
 .r-textarea {
-  @apply transition-border-color;
+  @apply transition-border-color w-full;
   @apply border rounded border-border-2;
   @apply bg-background-1 text-sm p-[9px] py-[8px];
   @apply outline-none;

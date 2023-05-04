@@ -23,7 +23,7 @@ export function Panel ({
   if (bgOpacity) {
     bgCls = `${bgCls}/${bgOpacity}`
   }
-  const borderCls = `border-${color ?? 'border'}-1`
+  const borderCls = `border-${color ?? 'border'}-2`
   return (
     <div
       {...others}
