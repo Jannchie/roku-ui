@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import { type HTMLAttributes, type ReactNode, useRef, useState } from 'react'
+import { type HTMLAttributes, type ReactNode, useRef, useState, useEffect } from 'react'
 import { useAutoSetHeight } from '../../hooks'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
-import { Panel, type PanelProps } from '../Panel'
+import { type PanelProps } from '../Panel'
 import './Collapse.css'
 export function Collapse ({
   children,
@@ -21,9 +21,8 @@ export function Collapse ({
   expanded?: boolean
   icon?: ReactNode
   setExpanded?: (expanded: boolean) => void
-} & PanelProps & HTMLAttributes<HTMLDivElement>) {
-  const compRef = useRef(null)
-  useAutoSetHeight(compRef)
+} & PanelProps & HTMLAttributes<HTMLButtonElement>) {
+  const compRef = useRef<HTMLDivElement>(null)
   const [internelExpanded, setInternelExpanded] = useState(expanded)
   let e = expanded
   let setE = setExpanded
@@ -31,34 +30,44 @@ export function Collapse ({
     e = internelExpanded
     setE = setInternelExpanded
   }
+
+  const [h, setH] = useState(0)
+  useEffect(() => {
+    if (compRef.current) {
+      const height = compRef.current.scrollHeight
+      setH(height)
+    }
+  }, [])
   return (
-    <Panel
-      padding
+    <button
       onClick={() => {
         if (setE) setE(!e)
       }}
       {...props}
     >
-      <div className={classNames('r-collapse-wrapper')}>
-        { header }
+      <div className={classNames('r-collapse-title')}>
         { icon && (
-          <div style={{
-            transform: `rotate(${e ? 180 : 0}deg)`,
-          }}
+          <div
+            className="transition-transform"
+            style={{
+              transform: `rotate(${e ? 360 : 270}deg)`,
+            }}
           >
             { icon }
           </div>
         ) }
+        { header }
       </div>
       <div
         ref={compRef}
         className={classNames({
           'r-collapse-close': !e,
-          'r-collapse-open': e,
+          'r-collapse-content': true,
         })}
+        style={{ height: !e ? 0 : h }}
       >
         { children }
       </div>
-    </Panel>
+    </button>
   )
 }
