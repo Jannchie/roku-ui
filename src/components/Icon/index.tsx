@@ -13,11 +13,11 @@ function sizeClassName (size: Size) {
     case 'base':
       return 'h-6 w-6 text-base p-1'
     case 'md':
-      return 'h-8 w-8 text-md p-1.25'
+      return 'h-8 w-8 text-base p-1.25'
     case 'lg':
       return 'h-10 w-10 text-lg p-1.5'
     case 'xl':
-      return 'h-12 w-12 text-xl p-2'
+      return 'h-12 w-12 text-xl p-1.75'
   }
 }
 
@@ -42,15 +42,29 @@ function roundedClassName (rounded: Rounded) {
   }
 }
 
+export type IconVariant = 'default' | 'fill' | 'text'
+
+function variantClassName (variant?: IconVariant, color: Color = 'default') {
+  switch (variant) {
+    case 'fill':
+      return `bg-${color}-2 text-background-2`
+    case 'text':
+      return `text-${color}-2`
+    default:
+      return `bg-${color}-2/25 text-${color}-2`
+  }
+}
+
 export function Icon ({
-  children,
+  variant,
   color = 'default',
   rounded = defaults.rounded,
   size = 'base',
+  children,
   className,
   ...others
 }: {
-  varient?: any
+  variant?: IconVariant
   color?: Color
   rounded?: Rounded
   size?: Size
@@ -58,7 +72,7 @@ export function Icon ({
   return (
     <i
       {...others}
-      className={classNames(className, sizeClassName(size), roundedClassName(rounded), `inline-block bg-${color}-2/25 text-${color}-2`)}
+      className={classNames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-block')}
     >
       { children }
     </i>
