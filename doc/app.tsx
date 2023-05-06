@@ -94,7 +94,7 @@ function DocLayout () {
         minHeight: '100vh',
       }}
       innerLeft={(
-        <div style={{ width: 280 }}>
+        <div style={{ width: size.width < 640 ? 0 : 280 }}>
           <LeftMenu
             size={size}
             showMenu={showMenu}
@@ -104,7 +104,6 @@ function DocLayout () {
       )}
       header={appbar}
       main={(
-
         <SwitchTransition
           mode="out-in"
         >
@@ -120,11 +119,10 @@ function DocLayout () {
                   <div
                     ref={pageBodyRef}
                     style={{
-                      marginTop: 100,
-                      paddingBottom: 100,
+                      padding: '150px 0.25rem',
                       marginBottom: 50,
                       background: 'hsl(var(--r-background-3))',
-                      minHeight: 'calc(100vh - 200px - 50px)',
+                      minHeight: 'calc(100vh - 50px)',
                       transition: `transform ${timeoutMS}ms ease-out, opacity ${timeoutMS}ms ease-out`,
                       opacity: state === 'entered' ? undefined : 0,
                       transform: state === 'entered' ? undefined : 'translateY(10px)',

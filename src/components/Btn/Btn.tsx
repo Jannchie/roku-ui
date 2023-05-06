@@ -55,6 +55,8 @@ function getTrueBtnVariant ({ fill, text, variant, contrast, light }: ButtonProp
       return 'text'
     case 'light':
       return 'light'
+    case 'contrast':
+      return 'contrast'
     case 'default':
       return 'default'
     default:
@@ -124,7 +126,7 @@ function BtnRoot ({
   if (gloryColor) {
     style = { ...style, '--r-btn-glory-color': gloryColor }
   }
-  const trueBtnVariant = getTrueBtnVariant({ variant, fill, text, normal })
+  const trueBtnVariant = getTrueBtnVariant({ variant, fill, text, normal, contrast })
   const btnClass = classNames(
     'r-btn',
     `r-btn-${size}`,
@@ -133,7 +135,7 @@ function BtnRoot ({
     { [`border-${color}-1`]: border && trueBtnVariant !== 'default' },
     { [`text-${fgColor}-2 hover:text-${hColor}-1`]: trueBtnVariant === 'text' },
     { [`text-${fgColor}-2 hover:text-${hColor}-1 hover:bg-${hColor}-1/25`]: trueBtnVariant === 'light' },
-    { [`hover:bg-${hColor}-2 active:bg-${hColor}-${hColor !== 'default' ? 3 : 1}`]: trueBtnVariant === 'contrast' },
+    { [`hover:bg-${hColor}-2`]: trueBtnVariant === 'contrast' },
     { 'r-btn-icon': icon },
     { 'r-btn-icon-border': icon && border },
     { 'r-btn-rounded': rounded },

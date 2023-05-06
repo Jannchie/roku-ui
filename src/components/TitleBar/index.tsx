@@ -1,7 +1,9 @@
-import classNames from 'classnames'
 import { type ReactNode } from 'react'
 import { Btn } from '../Btn'
-import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
+import { TablerBoxMultiple, TablerX } from '@roku-ui/icons-tabler'
+import { MaterialSymbolsMinimize } from '@roku-ui/icons-material-symbols'
+import classNames from 'classnames'
+import { useTheme } from '../../hooks'
 
 export function TitleBar ({
   logo,
@@ -58,7 +60,7 @@ export function WindowTitleBar ({
   title?: ReactNode
   logo?: ReactNode
 }) {
-  const theme = document.documentElement.dataset.theme
+  const { theme } = useTheme()
   return (
     <>
       <div className="flex-grow-2 w-1/5">
@@ -68,14 +70,23 @@ export function WindowTitleBar ({
         { title }
       </div>
       <div className="flex-grow-2 flex justify-end w-1/5">
-        <Btn contrast><MaterialSymbolIcon icon="minimize" /></Btn>
-        <Btn contrast><MaterialSymbolIcon icon="chrome_maximize" /></Btn>
+        <Btn
+          contrast
+          hoverColor="default"
+        >
+          <MaterialSymbolsMinimize width={16} />
+        </Btn>
+        <Btn
+          contrast
+        >
+          <TablerBoxMultiple width={16} />
+        </Btn>
         <Btn
           contrast
           className={classNames({ 'hover:text-white': theme === 'light' })}
           hoverColor="danger"
         >
-          <MaterialSymbolIcon icon="close" />
+          <TablerX width={16} />
         </Btn>
       </div>
     </>
