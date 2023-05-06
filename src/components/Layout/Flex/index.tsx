@@ -1,19 +1,20 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, forwardRef } from 'react'
 
-export const Flex = forwardRef(({ col, children, style, className, direction, justify, align, wrap, gap, ...others }: {
+export const Flex = forwardRef(({ col, children, style, className, inline, direction, justify, align, wrap, gap, ...others }: {
   direction?: 'row' | 'column'
   justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around'
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline'
   wrap?: 'wrap' | 'nowrap' | 'wrap-reverse'
   gap?: number | string
   col?: boolean
+  inline?: boolean
 } & HTMLAttributes<HTMLDivElement>, ref?: React.LegacyRef<HTMLDivElement>) => {
   return (
     <div
       ref={ref}
       style={{
-        display: 'flex',
+        display: inline ? 'inline-flex' : 'flex',
         flexDirection: col ? 'column' : direction,
         justifyContent: justify,
         alignItems: align,

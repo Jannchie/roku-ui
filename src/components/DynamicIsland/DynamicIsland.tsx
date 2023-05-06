@@ -17,11 +17,13 @@ export const DynamicIsland = ({
       className={classNames('overflow-hidden', className, 'transition-all')}
       {...others}
     >
-      <div style={{
-        transition: `filter ${durationMS}ms`,
-        filter: `blur(${translating ? 8 : 0}px)`,
-        height: '100%',
-      }}
+      <div
+        className="transition-filter,opacity"
+        style={{
+          transitionDuration: `${durationMS}ms`,
+          filter: `blur(${translating ? 8 : 0}px)`,
+          height: '100%',
+        }}
       >
         { children }
       </div>

@@ -1,9 +1,10 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, type ReactNode, useEffect } from 'react'
 import {
-  Btn, type Color, MaterialSymbolIcon, Panel, type PanelProps, Progress,
+  Btn, type Color, Panel, type PanelProps, Progress,
 } from '../..'
 import './Notice.css'
+import { TablerX } from '@roku-ui/icons-tabler'
 
 export interface NoticeProps {
   color?: Color
@@ -104,7 +105,7 @@ export function Notice ({
               className="!rounded-full dark:!text-default-400 hover:!bg-opacity-10 hover:!text-default-900 dark:hover:!text-default-200"
               onClick={close}
             >
-              <MaterialSymbolIcon icon="close" />
+              <TablerX />
             </Btn>
           ) }
         </div>

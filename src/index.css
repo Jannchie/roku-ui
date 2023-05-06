@@ -53,9 +53,9 @@
   --r-secondary-2: 161, 93%, 30%;
   --r-secondary-3: 161, 93%, 18%;
   --r-default: 240, 3%, 50%;
-  --r-default-1: 240, 3%, 90%;
-  --r-default-2: 240, 3%, 80%;
-  --r-default-3: 240, 3%, 10%;
+  --r-default-1: 240, 3%, 60%;
+  --r-default-2: 240, 3%, 50%;
+  --r-default-3: 240, 3%, 30%;
   --r-success: 161, 93%, 30%;
   --r-success-1: 161, 93%, 35%;
   --r-success-2: 161, 93%, 30%;
@@ -94,10 +94,10 @@
   --r-secondary-1: 161, 93%, 35%;
   --r-secondary-2: 161, 93%, 30%;
   --r-secondary-3: 161, 93%, 19%;
-  --r-default: 0, 0%, 60%;
-  --r-default-1: 0, 0%, 25%;
-  --r-default-2: 0, 0%, 20%;
-  --r-default-3: 0, 0%, 15%;
+  --r-default: 0, 0%, 10%;
+  --r-default-1: 0, 0%, 5%;
+  --r-default-2: 0, 0%, 10%;
+  --r-default-3: 0, 0%, 20%;
   --r-success: 161, 93%, 30%;
   --r-success-1: 161, 93%, 35%;
   --r-success-2: 161, 93%, 30%;

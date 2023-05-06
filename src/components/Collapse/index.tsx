@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, type ReactNode, useRef, useState, useEffect } from 'react'
-import { useAutoSetHeight } from '../../hooks'
 import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import { type PanelProps } from '../Panel'
 import './Collapse.css'

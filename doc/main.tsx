@@ -9,12 +9,12 @@ import { App } from './app'
 import { router } from './router'
 import { RokuProvider, defaults } from '../src'
 
+import { Page } from './components/Page'
 import './assets/PrismJS.css'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-tsx'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.min.js'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
-
 defaults.border = true
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 <Route
                   key={route.path}
                   path={route.path}
-                  element={route.element}
+                  element={route.element ? route.element : <Page />}
                 />
               ))
             }

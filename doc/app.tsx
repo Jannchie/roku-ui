@@ -104,6 +104,7 @@ function DocLayout () {
       )}
       header={appbar}
       main={(
+
         <SwitchTransition
           mode="out-in"
         >
@@ -115,18 +116,23 @@ function DocLayout () {
           >
             { (state) => {
               return (
-                <div
-                  ref={pageBodyRef}
-                  style={{
-                    marginTop: 100,
-                    minHeight: 'calc(100vh - 100px)',
-                    transition: `transform ${timeoutMS}ms ease-out, opacity ${timeoutMS}ms ease-out`,
-                    opacity: state === 'entered' ? undefined : 0,
-                    transform: state === 'entered' ? undefined : 'translateY(10px)',
-                  }}
-                >
-                  { outlet }
-                  <Footer>
+                <div>
+                  <div
+                    ref={pageBodyRef}
+                    style={{
+                      marginTop: 100,
+                      paddingBottom: 100,
+                      marginBottom: 50,
+                      background: 'hsl(var(--r-background-3))',
+                      minHeight: 'calc(100vh - 200px - 50px)',
+                      transition: `transform ${timeoutMS}ms ease-out, opacity ${timeoutMS}ms ease-out`,
+                      opacity: state === 'entered' ? undefined : 0,
+                      transform: state === 'entered' ? undefined : 'translateY(10px)',
+                    }}
+                  >
+                    { outlet }
+                  </div>
+                  <Footer style={{ position: 'fixed', bottom: 0, zIndex: -1, height: 50 }}>
                     Jannchie Studio @
                     { ' ' }
                     { new Date().getFullYear() }

@@ -1,6 +1,6 @@
 .r-badge-point {
   @apply absolute rounded-full pointer-events-none;
-  @apply w-4 h-4 text-xs z-10;
+  @apply w-4 h-4 text-xs z-10 text-white;
 }
 
 .r-badge-wrapper {

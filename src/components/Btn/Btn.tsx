@@ -10,13 +10,14 @@ import './Btn.css'
 import { Typography } from '../Typography'
 import { SvgSpinners90RingWithBg } from '@roku-ui/icons-svg-spinners'
 
-type ButtonType = 'fill' | 'text' | 'default' | 'contrast'
+type ButtonType = 'fill' | 'text' | 'default' | 'contrast' | 'light'
 
 export type ButtonProps = {
   variant?: ButtonType
   text?: boolean
   fill?: boolean
   normal?: boolean
+  light?: boolean
   label?: string
   size?: 'xs' | 'sm' | 'md' | 'lg'
   style?: CSSProperties & { '--r-btn-glory-color'?: string }
@@ -46,12 +47,14 @@ interface BtnGroupCtxType {
   activeColor: Color
 }
 
-function getTrueBtnVariant ({ fill, text, variant, normal, contrast }: ButtonProps): ButtonType {
+function getTrueBtnVariant ({ fill, text, variant, contrast, light }: ButtonProps): ButtonType {
   switch (variant) {
     case 'fill':
       return 'fill'
     case 'text':
       return 'text'
+    case 'light':
+      return 'light'
     case 'default':
       return 'default'
     default:
@@ -61,6 +64,8 @@ function getTrueBtnVariant ({ fill, text, variant, normal, contrast }: ButtonPro
         return 'fill'
       } else if (contrast) {
         return 'contrast'
+      } else if (light) {
+        return 'light'
       } else {
         return 'default'
       }
@@ -88,6 +93,7 @@ function BtnRoot ({
   border = false,
   dash = false,
   loading = false,
+  light = false,
   disabled = false,
   scale = false,
   rounded = false,
@@ -125,7 +131,8 @@ function BtnRoot ({
     { [`r-btn-filled bg-${color}-2`]: trueBtnVariant === 'fill' },
     { 'bg-background-2 border-border-2': trueBtnVariant === 'default' },
     { [`border-${color}-1`]: border && trueBtnVariant !== 'default' },
-    { [`text-${fgColor}-2 hover:text-${hColor}-1 hover:bg-${hColor}-1/25`]: trueBtnVariant === 'text' },
+    { [`text-${fgColor}-2 hover:text-${hColor}-1`]: trueBtnVariant === 'text' },
+    { [`text-${fgColor}-2 hover:text-${hColor}-1 hover:bg-${hColor}-1/25`]: trueBtnVariant === 'light' },
     { [`hover:bg-${hColor}-2 active:bg-${hColor}-${hColor !== 'default' ? 3 : 1}`]: trueBtnVariant === 'contrast' },
     { 'r-btn-icon': icon },
     { 'r-btn-icon-border': icon && border },
