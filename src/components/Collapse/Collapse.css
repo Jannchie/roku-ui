@@ -1,3 +1,7 @@
+.r-collapse-wrapper {
+  @apply block;
+}
+
 .r-collapse-title {
   @apply cursor-pointer text-lg flex items-center justify-between relative;
 }

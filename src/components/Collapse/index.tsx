@@ -39,6 +39,7 @@ export function Collapse ({
   }, [])
   return (
     <button
+      className={classNames(className, 'r-collapse-wrapper')}
       onClick={() => {
         if (setE) setE(!e)
       }}
