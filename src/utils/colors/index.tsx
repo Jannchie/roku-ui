@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-
+import { hsl } from 'd3-color'
 export type Color =
   | 'primary'
   | 'secondary'
@@ -34,4 +34,11 @@ export function textColorClass (color?: Color): string {
   return classNames(
     `text-${color}-2`,
   )
+}
+
+export function isDarkColor (color: string): boolean {
+  const d3Color = hsl(color)
+  const { r, g, b } = d3Color.rgb()
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000
+  return brightness < 128
 }

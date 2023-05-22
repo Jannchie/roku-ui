@@ -44,7 +44,7 @@ function roundedClassName (rounded: Rounded) {
 
 export type IconVariant = 'default' | 'fill' | 'text'
 
-function variantClassName (variant?: IconVariant, color: Color = 'default') {
+function variantClassName (variant?: IconVariant, color: Color = 'frontground') {
   switch (variant) {
     case 'fill':
       return `bg-${color}-2 text-background-2`
@@ -57,7 +57,7 @@ function variantClassName (variant?: IconVariant, color: Color = 'default') {
 
 export function Icon ({
   variant,
-  color = 'default',
+  color = 'frontground',
   rounded = defaults.rounded,
   size = 'base',
   children,

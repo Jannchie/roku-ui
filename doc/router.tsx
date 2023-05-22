@@ -1,4 +1,4 @@
-import { Tabler123, TablerAnchor, TablerArticle, TablerCircleCheck, TablerCursorText, TablerHome, TablerIcons, TablerInputSearch, TablerLayoutNavbar, TablerList, TablerMessage, TablerMoon, TablerRectangle, TablerRectangleFilled, TablerSquareToggle, TablerStar, TablerTag, TablerTypography, TablerUserCircle, TablerWindow } from '@roku-ui/icons-tabler'
+import { Tabler123, TablerAnchor, TablerArticle, TablerCircleCheck, TablerColorPicker, TablerCursorText, TablerHome, TablerIcons, TablerInputSearch, TablerLayoutNavbar, TablerList, TablerMessage, TablerMoon, TablerRectangle, TablerRectangleFilled, TablerSquareToggle, TablerStar, TablerTag, TablerTypography, TablerUserCircle, TablerWindow } from '@roku-ui/icons-tabler'
 import { MaterialSymbolsArrowRightAlt, MaterialSymbolsArticle, MaterialSymbolsCampaign, MaterialSymbolsDriveFileRenameOutline, MaterialSymbolsExpandMore, MaterialSymbolsFormatSize, MaterialSymbolsLiveHelp, MaterialSymbolsMarkChatUnread, MaterialSymbolsNotifications, MaterialSymbolsRadio, MaterialSymbolsScience, MaterialSymbolsSmartphone, MaterialSymbolsTab, MaterialSymbolsToggleOn, MaterialSymbolsViewDay, MaterialSymbolsWebAsset, MaterialSymbolsWindow } from '@roku-ui/icons-material-symbols'
 import { Page } from './components/Page'
 import HomeMD from './markdown/home.md?raw'
@@ -7,6 +7,11 @@ export const router = [{
   title: '主页',
   icon: <TablerHome />,
   element: <Page md={HomeMD} />,
+}, {
+  path: '/theme',
+  title: '主题（Theme）',
+  icon: <TablerColorPicker />,
+  element: <Page />,
 }, {
   path: 'theme-toggle',
   title: '主题切换器（Theme Toggle）',

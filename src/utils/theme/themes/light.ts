@@ -1,6 +1,6 @@
-import { type Theme } from '../Theme'
+import { type InputTheme } from '../Theme'
 
-export const defaultLight: Theme = {
+export const defaultLight: InputTheme = {
   k: 0.4,
   dark: false,
   background: {

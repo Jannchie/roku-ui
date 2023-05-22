@@ -1,9 +1,9 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { usePrefersColorScheme } from './usePrefersColorScheme'
-import { themeMap } from '../utils/theme/utils'
+import { getFullThemeData, themeMap } from '../utils/theme/utils'
 import { RokuContext } from '../core'
 
-type ThemeValue = 'system' | 'dark' | 'light'
+type ThemeValue = 'system' | 'dark' | 'light' | string
 
 export function useTheme (localstorageKey: string = 'roku.theme') {
   const preferred = usePrefersColorScheme()
@@ -12,7 +12,7 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
   if (typeof localStorage !== 'undefined') {
     const savedTheme = localStorage.getItem(localstorageKey)
     if (savedTheme) {
-      defaultTheme = savedTheme as ThemeValue
+      defaultTheme = savedTheme
     }
     if (defaultTheme === 'system') {
       document.documentElement.setAttribute('data-theme', preferred)
@@ -23,7 +23,7 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
   useEffect(() => {
     const savedTheme = localStorage.getItem(localstorageKey)
     if (savedTheme) {
-      setThemeValue(savedTheme as ThemeValue)
+      setThemeValue(savedTheme)
     }
   }, [localstorageKey, setThemeValue])
 
@@ -55,8 +55,9 @@ export function useTrueTheme () {
 
 export function useThemeData (name?: string) {
   const theme = useTrueTheme()
-  if (!name) {
-    return themeMap.get(theme)
+  const data = themeMap.get(name ?? theme)
+  if (!data) {
+    throw new Error(`theme ${name ?? theme} not found`)
   }
-  return themeMap.get(name)
+  return getFullThemeData(data)
 }

@@ -14,6 +14,7 @@ type ButtonType = 'fill' | 'text' | 'default' | 'contrast' | 'light'
 
 export type ButtonProps = {
   variant?: ButtonType
+  active?: 'translate' | 'scale'
   text?: boolean
   fill?: boolean
   normal?: boolean
@@ -89,6 +90,7 @@ function BtnRoot ({
   text,
   color = 'default',
   contrast = false,
+  active,
   normal = true,
   hoverColor,
   gloryColor,
@@ -112,9 +114,13 @@ function BtnRoot ({
   right,
   ...others
 }: ButtonProps) {
+  // const isDark = isDarkColor(color)
+  // const themeData = useThemeData()
+  // console.log(themeData)
+  // console.log(isDark, color)
   const ctx = useContext(BtnGroupCtx)
   const hColor = hoverColor ?? color
-  const fgColor = color === 'default' ? 'fg' : color
+  const fgColor = 'frontground'
   if (!loadingIcon) {
     loadingIcon = (
       <SvgSpinners90RingWithBg />
@@ -129,6 +135,10 @@ function BtnRoot ({
   const trueBtnVariant = getTrueBtnVariant({ variant, fill, text, normal, contrast })
   const btnClass = classNames(
     'r-btn',
+    {
+      'translate-y-[1px]': active === 'translate',
+      'scale-[0.99]': active === 'scale',
+    },
     `r-btn-${size}`,
     { [`r-btn-filled bg-${color}-2`]: trueBtnVariant === 'fill' },
     { 'bg-background-2 border-border-2': trueBtnVariant === 'default' },

@@ -4,8 +4,8 @@ import './ToggleGroup.css'
 import classNames from 'classnames'
 import { type Color } from '../..'
 
-function ToggleGroupRoot<T> ({ children, value, setValue, data, item, color = 'default' }: { color?: Color, children?: Iterable<ReactNode>, value: T, setValue: (s: T) => void, data: T[], item?: (t: T) => ReactNode } & HTMLAttributes<HTMLDivElement>) {
-  const defaultItem = useCallback((t: T) => String(t), [])
+function ToggleGroupRoot<T> ({ children, value, setValue, data, item, color = 'default' }: { color?: Color, children?: Iterable<ReactNode>, value: T, setValue: (s: T) => void, data: T[], item?: (t: T, i: number) => ReactNode } & HTMLAttributes<HTMLDivElement>) {
+  const defaultItem = useCallback((t: T, _: number) => String(t), [])
   const trueItem = item ?? defaultItem
   return (
     <Flex
@@ -22,7 +22,7 @@ function ToggleGroupRoot<T> ({ children, value, setValue, data, item, color = 'd
           })}
           onClick={() => { setValue(child) }}
         >
-          { trueItem(child) }
+          { trueItem(child, i) }
         </button>
       )) }
     </Flex>

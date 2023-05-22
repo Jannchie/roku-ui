@@ -15,7 +15,7 @@ function getNavItem (icon: ReactNode, title: string) {
     return (
       <List.Item
         title={title}
-        icon={<Icon color={isActive ? 'primary' : 'default'}>{ icon }</Icon>}
+        icon={<Icon color={isActive ? 'primary' : 'frontground'}>{ icon }</Icon>}
       />
     )
   }
