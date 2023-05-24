@@ -64,6 +64,7 @@ export function AutoComplete<T> ({
     }
     setFocusIndex(-1)
   }, [query])
+
   const [focusIndex, setFocusIndex] = useState(-1)
   return (
     <div
@@ -120,6 +121,8 @@ export function AutoComplete<T> ({
               event.preventDefault()
               if (focusIndex < filteredData.length - 1) {
                 setFocusIndex(focusIndex + 1)
+              } else {
+                setFocusIndex(0)
               }
               return
             }
@@ -127,6 +130,8 @@ export function AutoComplete<T> ({
               event.preventDefault()
               if (focusIndex > 0) {
                 setFocusIndex(focusIndex - 1)
+              } else {
+                setFocusIndex(filteredData.length - 1)
               }
               return
             }
@@ -135,6 +140,7 @@ export function AutoComplete<T> ({
               if (focusIndex >= 0) {
                 shouldReopen.current = false
                 setValue(filteredData[focusIndex])
+                setQuery(trueGetKey(filteredData[focusIndex]))
                 setShow(false)
               }
               setFocusIndex(-1)

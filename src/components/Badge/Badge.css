@@ -51,10 +51,10 @@
   @apply -m-1;
 }
 .r-badge-point-with-content {
-  @apply !w-auto !h-auto px-1 py-0.5;
+  @apply !w-auto !h-auto p-0.5;
 }
 .r-badge-point-with-content {
-  @apply !w-auto !h-auto px-1 py-0.5;
+  @apply !w-auto !h-auto p-0.5;
 }
 .r-badge-point-with-content.r-badge-point-bottom-right {
   @apply right-auto -ml-3;
