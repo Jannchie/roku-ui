@@ -10,23 +10,15 @@ export default function AllBtnDemo () {
     >
       <Flex gap="8px">
         <Btn
-          normal
-          border
-          label="Normal"
-        />
-        <Btn
-          text
-          border
-          label="Text"
-        />
-        <Btn
           fill
-          border
           label="Fill"
         />
         <Btn
+          text
+          label="Text"
+        />
+        <Btn
           contrast
-          border
           label="Contrast"
         />
       </Flex>
@@ -59,32 +51,6 @@ export default function AllBtnDemo () {
       <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
         <Btn
           text
-          hoverColor="primary"
-          label="Primary"
-        />
-        <Btn
-          text
-          hoverColor="success"
-          label="Success"
-        />
-        <Btn
-          text
-          hoverColor="danger"
-          label="Danger"
-        />
-        <Btn
-          text
-          hoverColor="warning"
-          label="Warning"
-        />
-        <Btn
-          text
-          label="Default"
-        />
-      </div>
-      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
-        <Btn
-          text
           color="primary"
           label="Primary"
         />
@@ -105,6 +71,33 @@ export default function AllBtnDemo () {
         />
         <Btn
           text
+          color="default"
+          label="Default"
+        />
+      </div>
+      <div style={{ flexWrap: 'wrap', display: 'flex', gap: 8 }}>
+        <Btn
+          contrast
+          color="primary"
+          label="Primary"
+        />
+        <Btn
+          contrast
+          color="success"
+          label="Success"
+        />
+        <Btn
+          contrast
+          color="danger"
+          label="Danger"
+        />
+        <Btn
+          contrast
+          color="warning"
+          label="Warning"
+        />
+        <Btn
+          contrast
           label="Default"
         />
       </div>

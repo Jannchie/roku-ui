@@ -1,24 +1,24 @@
 import { type InputTheme } from '../Theme'
 
 export const defaultLight: InputTheme = {
-  k: 0.4,
+  k: 0.2,
   dark: false,
   background: {
     base: '#fefefe',
     darker: '#f9f9f9',
     lighter: '#ffffff',
   },
-  frontground: '#18181b',
+  frontground: '#121212',
   border: '#BBB',
-  primary: '#0284c7',
-  secondary: '#059669',
+  primary: '#156fe6',
+  secondary: '#7464d9',
   default: {
     base: '#eee',
     darker: '#ececec',
     lighter: '#f6f6f6',
   },
-  success: '#059669',
-  warning: '#ea580c',
-  danger: '#dc2626',
-  info: '#0ea5e9',
+  success: '#01865a',
+  warning: '#c73b09',
+  danger: '#e01313',
+  info: '#0475b0',
 }

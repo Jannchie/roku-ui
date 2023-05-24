@@ -5,7 +5,6 @@ export default function Demo () {
     <Flex col>
       <Btn
         border
-        fill
         color="success"
       >
         This is a button

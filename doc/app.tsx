@@ -120,7 +120,6 @@ function DocLayout () {
                     ref={pageBodyRef}
                     style={{
                       padding: '150px 0.25rem',
-                      marginBottom: 50,
                       minHeight: 'calc(100vh - 50px)',
                       transition: `transform ${timeoutMS}ms ease-out, opacity ${timeoutMS}ms ease-out`,
                       opacity: state === 'entered' ? undefined : 0,
@@ -129,7 +128,7 @@ function DocLayout () {
                   >
                     { outlet }
                   </div>
-                  <Footer style={{ position: 'fixed', bottom: 0, zIndex: -1, height: 50 }}>
+                  <Footer style={{ height: 50 }}>
                     Jannchie Studio @
                     { ' ' }
                     { new Date().getFullYear() }

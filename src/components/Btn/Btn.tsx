@@ -52,28 +52,27 @@ interface BtnGroupCtxType {
 
 function getTrueBtnVariant ({ fill, text, variant, contrast, light }: ButtonProps): ButtonType {
   switch (variant) {
-    case 'fill':
-      return 'fill'
+    case 'default':
+      return 'default'
     case 'text':
       return 'text'
     case 'light':
       return 'light'
     case 'contrast':
       return 'contrast'
-    case 'default':
-      return 'default'
+    case 'fill':
+      return 'fill'
     default:
       if (text) {
         return 'text'
-      } else if (fill) {
-        return 'fill'
       } else if (contrast) {
         return 'contrast'
       } else if (light) {
         return 'light'
-      } else {
-        return 'default'
+      } else if (fill) {
+        return 'fill'
       }
+      return 'fill'
   }
 }
 
@@ -89,17 +88,16 @@ function BtnRoot ({
   size = 'md',
   variant,
   fill = false,
+  light = false,
   text,
   color = 'default',
   contrast = false,
   active = 'translate',
-  normal = true,
   hoverColor,
   gloryColor,
   border = false,
   dash = false,
   loading = false,
-  light = false,
   disabled = false,
   scale = false,
   rounded = false,
@@ -121,7 +119,6 @@ function BtnRoot ({
   // console.log(themeData)
   // console.log(isDark, color)
   const ctx = useContext(BtnGroupCtx)
-  const hColor = hoverColor ?? color
   const fgColor = 'frontground'
   if (!loadingIcon) {
     loadingIcon = (
@@ -134,12 +131,14 @@ function BtnRoot ({
   if (gloryColor) {
     style = { ...style, '--r-btn-glory-color': gloryColor }
   }
-  const trueBtnVariant = getTrueBtnVariant({ variant, fill, text, normal, contrast })
-
+  const trueBtnVariant = getTrueBtnVariant({ fill, text, variant, contrast, light })
   const colorBG = useColorHex(color, 2)
-  const colorFG1 = useColorHex(themeData.color.frontground.base, 1)
-  const colorFG2 = useColorHex(themeData.color.background.base, 1)
-  const colorFG = calculateContrast(colorBG, colorFG1) > calculateContrast(colorBG, colorFG2) ? 'frontground' : 'background'
+  const hColor = (trueBtnVariant !== 'fill' && color === 'default' && !hoverColor) ? 'frontground' : hoverColor ?? color
+  const hTrueColor = themeData.color[hColor].base
+  const colorFGBase = useColorHex(themeData.color.frontground.base, 1)
+  const colorBGBase = useColorHex(themeData.color.background.base, 1)
+  const colorFG = calculateContrast(colorBG, colorFGBase) > calculateContrast(colorBG, colorBGBase) ? 'frontground' : 'background'
+  const colorConstractFG = calculateContrast(hTrueColor, colorFGBase) > calculateContrast(hTrueColor, colorBGBase) ? 'frontground' : 'background'
   const btnClass = classNames(
     'r-btn',
     {
@@ -151,8 +150,7 @@ function BtnRoot ({
     { 'bg-background-2 border-border-2': trueBtnVariant === 'default' },
     { [`border-${color}-1`]: border && trueBtnVariant !== 'default' },
     { [`text-${fgColor}-2 hover:text-${hColor}-1`]: trueBtnVariant === 'text' },
-    { [`text-${fgColor}-2 hover:text-${hColor}-1 hover:bg-${hColor}-1/25`]: trueBtnVariant === 'light' },
-    { [`hover:bg-${hColor}-2`]: trueBtnVariant === 'contrast' },
+    { [`hover:bg-${hColor}-2 hover:text-${colorConstractFG}-2`]: trueBtnVariant === 'contrast' },
     { 'r-btn-icon': icon },
     { 'r-btn-icon-border': icon && border },
     { 'r-btn-rounded': rounded },
