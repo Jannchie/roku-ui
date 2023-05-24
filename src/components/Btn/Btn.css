@@ -14,10 +14,6 @@
   @apply min-w-18;
 }
 
-.r-btn-filled {
-  @apply text-white-2;
-}
-
 .r-btn-main {
   @apply flex items-center z-2 relative;
 }

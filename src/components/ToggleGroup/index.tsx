@@ -1,11 +1,22 @@
 import { type ReactNode, type HTMLAttributes, useCallback } from 'react'
 import { Flex } from '../Layout/Flex'
 import './ToggleGroup.css'
-import classNames from 'classnames'
-import { type Color } from '../..'
+import { Btn, type Color } from '../..'
 
-function ToggleGroupRoot<T> ({ children, value, setValue, data, item, color = 'default' }: { color?: Color, children?: Iterable<ReactNode>, value: T, setValue: (s: T) => void, data: T[], item?: (t: T, i: number) => ReactNode } & HTMLAttributes<HTMLDivElement>) {
-  const defaultItem = useCallback((t: T, _: number) => String(t), [])
+function ToggleGroupRoot<T> ({ children, value, setValue, data, item, body, color = 'default' }: { color?: Color, children?: Iterable<ReactNode>, value: T, setValue: (s: T) => void, data: T[], item?: (t: T, i: number) => ReactNode, body?: (t: T, i: number) => ReactNode } & HTMLAttributes<HTMLDivElement>) {
+  const defaultItem = useCallback((t: T, i: number) => {
+    return (
+      <Btn
+        key={i}
+        text={value !== t}
+        fill={value === t}
+        color={color}
+        onClick={() => { setValue(t) }}
+      >
+        { body ? body(t, i) : String(t) }
+      </Btn>
+    )
+  }, [color, body, setValue, value])
   const trueItem = item ?? defaultItem
   return (
     <Flex
@@ -13,18 +24,7 @@ function ToggleGroupRoot<T> ({ children, value, setValue, data, item, color = 'd
       gap=".25rem"
       className="r-toggle-group-wrapper"
     >
-      { Array.from(data).map((child, i) => (
-        <button
-          key={`${i}`}
-          className={classNames('r-toggle-group-item', {
-            [`r-toggle-group-item-active bg-${color}-2`]: value === child,
-            'hover:bg-frontground-2/10': value !== child,
-          })}
-          onClick={() => { setValue(child) }}
-        >
-          { trueItem(child, i) }
-        </button>
-      )) }
+      { Array.from(data).map((child, i) => trueItem(child, i)) }
     </Flex>
   )
 }

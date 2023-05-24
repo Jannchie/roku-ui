@@ -16,7 +16,7 @@ export default function Demo () {
           data={themes}
           value={theme}
           setValue={setTheme}
-          item={(_, i) => names[i]}
+          body={(_, i) => names[i]}
         />
       </div>
       <Flex

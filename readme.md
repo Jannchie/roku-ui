@@ -1,5 +1,7 @@
 # Roku UI
 
+![Install Size](https://badgen.net/packagephobia/install/roku-ui)
+
 一个 [React](https://reactjs.org/) 组件库。基于 [Uno CSS](https://github.com/unocss/unocss)、[Vite](https://cn.vitejs.dev) 等项目，很潮。
 
 > **Warning**
