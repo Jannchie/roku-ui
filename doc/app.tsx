@@ -121,7 +121,6 @@ function DocLayout () {
                     style={{
                       padding: '150px 0.25rem',
                       marginBottom: 50,
-                      background: 'hsl(var(--r-background-3))',
                       minHeight: 'calc(100vh - 50px)',
                       transition: `transform ${timeoutMS}ms ease-out, opacity ${timeoutMS}ms ease-out`,
                       opacity: state === 'entered' ? undefined : 0,
@@ -165,7 +164,7 @@ function LeftMenu ({
         border={false}
         style={{ borderRadius: 0, borderRightWidth: 1, top: 57, maxHeight: 'calc(100vh - 57px)', position: 'fixed', overflowY: 'auto' }}
       >
-        <List >
+        <List>
           { router.filter(d => d.path !== 'test').map((route) => (
             <NavLink
               key={route.path}

@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect } from 'react'
 import { usePrefersColorScheme } from './usePrefersColorScheme'
 import { getFullThemeData, themeMap } from '../utils/theme/utils'
 import { RokuContext } from '../core'
+import { hsl } from 'd3-color'
 
 type ThemeValue = 'system' | 'dark' | 'light' | string
 
@@ -60,4 +61,14 @@ export function useThemeData (name?: string) {
     throw new Error(`theme ${name ?? theme} not found`)
   }
   return getFullThemeData(data)
+}
+
+export function useColorHex (color: string, level: 1 | 2 | 3) {
+  const themeData = useThemeData()
+  if (color in themeData.color) {
+    if (level === 1) return themeData.color[color].lighter
+    if (level === 2) return themeData.color[color].base
+    if (level === 3) return themeData.color[color].darker
+  }
+  return hsl(color).formatHex()
 }

@@ -63,7 +63,7 @@ export function ChipRoot ({
   return (
     <span
       className={tagClass}
-      role="button"
+      role={onclick ? 'button' : 'text'}
       tabIndex={-1}
       onClick={onClick}
       onKeyDown={(e) => {

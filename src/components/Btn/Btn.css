@@ -5,15 +5,17 @@
   @apply h-fit;
   @apply text-sm;
   @apply disabled:grayscale disabled:contrast-50 disabled:pointer-events-none;
+  @apply rounded;
+
   overflow: visible;
+}
+
+.r-btn:not(.r-btn-icon) {
+  @apply min-w-18;
 }
 
 .r-btn-filled {
   @apply text-white-2;
-}
-
-.r-btn {
-  @apply rounded;
 }
 
 .r-btn-main {
@@ -31,8 +33,8 @@
 
 .r-btn-blur::after {
   @apply opacity-0;
-  content: "";
   @apply absolute w-full h-full left-0 top-0 -z-1;
+  content: "";
   overflow: visible;
 }
 .r-btn-blur:hover::after {

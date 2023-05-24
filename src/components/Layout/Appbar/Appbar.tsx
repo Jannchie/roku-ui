@@ -28,6 +28,7 @@ export const Appbar: FC<AppbarAttributes> = ({
 }: AppbarAttributes) => {
   return (
     <header
+      role="banner"
       className={classNames(
         'r-appbar-wrapper',
         `r-appbar-${varient}`,

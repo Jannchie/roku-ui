@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Flex, Panel, ToggleGroup, defaultDark, defaultLight, getFullThemeData } from '../../src'
+import { Flex, Panel, ToggleGroup, defaultDark, defaultLight, getConstractColor, getFullThemeData } from '../../src'
 
 export default function Demo () {
   const themes = [defaultDark, defaultLight]
@@ -40,9 +40,9 @@ export default function Demo () {
                 <Flex
                   gap=".25rem"
                 >
-                  <div style={{ borderRadius: 4, width: 20 / 9 * 16, height: 20, background: v.lighter }} />
-                  <div style={{ borderRadius: 4, width: 20 / 9 * 16, height: 20, background: v.base }} />
-                  <div style={{ borderRadius: 4, width: 20 / 9 * 16, height: 20, background: v.darker }} />
+                  <div style={{ fontFamily: 'monospace', textTransform: 'uppercase', color: getConstractColor(v.lighter), display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 4, width: 80, height: 30, background: v.lighter }} >{ v.lighter }</div>
+                  <div style={{ fontFamily: 'monospace', textTransform: 'uppercase', color: getConstractColor(v.base), display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 4, width: 80, height: 30, background: v.base }} >{ v.base }</div>
+                  <div style={{ fontFamily: 'monospace', textTransform: 'uppercase', color: getConstractColor(v.darker), display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 4, width: 80, height: 30, background: v.darker }} >{ v.darker }</div>
                 </Flex>
               </div>
             )

@@ -3,5 +3,5 @@
 }
 
 .r-toggle-group-item {
-  @apply px-1 py-0.5 rounded cursor-pointer min-w-7;
+  @apply px-2 py-1 rounded cursor-pointer min-w-7;
 }

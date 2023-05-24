@@ -9,12 +9,14 @@ import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import './Btn.css'
 import { Typography } from '../Typography'
 import { SvgSpinners90RingWithBg } from '@roku-ui/icons-svg-spinners'
+import { useColorHex, useThemeData } from '../../hooks'
+import { calculateContrast } from '../..'
 
 type ButtonType = 'fill' | 'text' | 'default' | 'contrast' | 'light'
 
 export type ButtonProps = {
   variant?: ButtonType
-  active?: 'translate' | 'scale'
+  active?: 'translate' | 'scale' | 'darken' | 'lighten'
   text?: boolean
   fill?: boolean
   normal?: boolean
@@ -90,7 +92,7 @@ function BtnRoot ({
   text,
   color = 'default',
   contrast = false,
-  active,
+  active = 'translate',
   normal = true,
   hoverColor,
   gloryColor,
@@ -115,7 +117,7 @@ function BtnRoot ({
   ...others
 }: ButtonProps) {
   // const isDark = isDarkColor(color)
-  // const themeData = useThemeData()
+  const themeData = useThemeData()
   // console.log(themeData)
   // console.log(isDark, color)
   const ctx = useContext(BtnGroupCtx)
@@ -133,14 +135,19 @@ function BtnRoot ({
     style = { ...style, '--r-btn-glory-color': gloryColor }
   }
   const trueBtnVariant = getTrueBtnVariant({ variant, fill, text, normal, contrast })
+
+  const colorBG = useColorHex(color, 2)
+  const colorFG1 = useColorHex(themeData.color.frontground.base, 1)
+  const colorFG2 = useColorHex(themeData.color.background.base, 1)
+  const colorFG = calculateContrast(colorBG, colorFG1) > calculateContrast(colorBG, colorFG2) ? 'frontground' : 'background'
   const btnClass = classNames(
     'r-btn',
     {
-      'translate-y-[1px]': active === 'translate',
-      'scale-[0.99]': active === 'scale',
+      'active:translate-y-[1px]': active === 'translate',
+      'active:scale-[0.99]': active === 'scale',
     },
     `r-btn-${size}`,
-    { [`r-btn-filled bg-${color}-2`]: trueBtnVariant === 'fill' },
+    { [`r-btn-filled bg-${color}-2 text-${colorFG}-2`]: trueBtnVariant === 'fill' },
     { 'bg-background-2 border-border-2': trueBtnVariant === 'default' },
     { [`border-${color}-1`]: border && trueBtnVariant !== 'default' },
     { [`text-${fgColor}-2 hover:text-${hColor}-1`]: trueBtnVariant === 'text' },
