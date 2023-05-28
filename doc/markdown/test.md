@@ -1,3 +1,3 @@
 # 测试用
 
-<Demo name="BtnController" />
+<Demo name="Test" />
