@@ -5,7 +5,7 @@ export const defaultDark: InputTheme = {
   dark: true,
   background: '#121212',
   frontground: '#d4d4d8',
-  border: '#222',
+  border: '#222222',
   primary: '#09AED3',
   secondary: '#A59BE4',
   default: '#27272a',

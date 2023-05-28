@@ -1,7 +1,7 @@
 import { type InputTheme } from '../Theme'
 
 export const defaultLight: InputTheme = {
-  k: 0.2,
+  k: 0.5,
   dark: false,
   background: {
     base: '#fefefe',
@@ -10,15 +10,15 @@ export const defaultLight: InputTheme = {
   },
   frontground: '#121212',
   border: '#BBB',
-  primary: '#156fe6',
-  secondary: '#7464d9',
+  primary: '#125DC0',
+  secondary: '#4F3ACF',
   default: {
     base: '#eee',
     darker: '#ececec',
     lighter: '#f6f6f6',
   },
-  success: '#01865a',
-  warning: '#c73b09',
-  danger: '#e01313',
-  info: '#0475b0',
+  success: '#01704B',
+  warning: '#A63108',
+  danger: '#BB1010',
+  info: '#036293',
 }
