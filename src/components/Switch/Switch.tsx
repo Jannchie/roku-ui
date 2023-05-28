@@ -55,6 +55,14 @@ export const Switch: FC<SwitchProps> = ({
           e.preventDefault()
           setClicking(true)
         }}
+        onMouseLeave={(e) => {
+          e.preventDefault()
+          setClicking(false)
+        }}
+        onMouseEnter={(e) => {
+          e.preventDefault()
+          setClicking(true)
+        }}
         onMouseUp={(e) => {
           e.preventDefault()
           setClicking(false)
