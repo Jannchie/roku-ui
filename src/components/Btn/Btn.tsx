@@ -85,7 +85,7 @@ const BtnGroupCtx = createContext<BtnGroupCtxType>({
   cancelable: false,
 })
 
-const _BtnRoot = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElement> & ButtonProps>(
+const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
   ({
     as,
     label,
@@ -281,7 +281,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElement>
 )
 _BtnRoot.displayName = 'Btn'
 
-const BtnRoot = createPolymorphicComponent<'button', HTMLAttributes<HTMLButtonElement> & ButtonProps>(_BtnRoot)
+const BtnRoot = createPolymorphicComponent<'button', ButtonProps>(_BtnRoot)
 
 interface BtnGroup {
   className?: string
