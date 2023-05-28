@@ -4,8 +4,8 @@ import {
   type ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react'
 import classNames from 'classnames'
-import { type Color, MaterialSymbolIcon, Notice } from '../..'
-
+import { type Color, Notice, Icon } from '../..'
+import { TablerMessage2, TablerMessage2Check, TablerMessage2Exclamation, TablerMessage2X } from '@roku-ui/icons-tabler'
 interface NotificationConfig {
   left?: boolean
   right?: boolean
@@ -62,22 +62,22 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
   switch (type) {
     case 'success': {
       mainColor = 'success'
-      icon = <MaterialSymbolIcon icon="check_circle" />
+      icon = <TablerMessage2Check />
       break
     }
     case 'danger': {
       mainColor = 'danger'
-      icon = <MaterialSymbolIcon icon="cancel" />
+      icon = <TablerMessage2X />
       break
     }
     case 'warning': {
       mainColor = 'warning'
-      icon = <MaterialSymbolIcon icon="error" />
+      icon = <TablerMessage2Exclamation />
       break
     }
     default: {
-      mainColor = 'primary'
-      icon = <MaterialSymbolIcon icon="circle_notifications" />
+      mainColor = 'info'
+      icon = <TablerMessage2 />
     }
   }
   const n = (
@@ -92,7 +92,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
         : undefined}
       desc={desc}
       existMS={existsMS}
-      icon={icon}
+      icon={<Icon color={mainColor}>{ icon }</Icon>}
       color={mainColor}
       title={title}
     />
@@ -125,14 +125,12 @@ export function Notifications ({
     if (!existsMS) {
       existsMS = defaultExistsMS ?? 3000
     }
-    if (maxCount) {
-      if (notices.length >= maxCount) {
-        if (wait) {
-          waitList.current.push([notice, config])
-          return
-        }
-        notices.pop()
+    if (maxCount && notices.length >= maxCount) {
+      if (wait) {
+        waitList.current.push([notice, config])
+        return
       }
+      notices.pop()
     }
     const currentId = id.current
 
@@ -144,15 +142,10 @@ export function Notifications ({
   }, [maxCount, notices, defaultExistsMS, wait])
 
   useEffect(() => {
-    if (wait) {
-      if (maxCount) {
-        if (waitList.current.length > 0 && notices.length < maxCount) {
-          const current = waitList.current.shift()
-
-          if (current != null) {
-            pushCallback(...current)
-          }
-        }
+    if (wait && maxCount && waitList.current.length > 0 && notices.length < maxCount) {
+      const current = waitList.current.shift()
+      if (current != null) {
+        pushCallback(...current)
       }
     }
   }, [notices, maxCount, wait, pushCallback])
@@ -246,7 +239,7 @@ export function Notifications ({
     >
       <div
         ref={noticesWrapper}
-        className={classNames('flex gap-2 h-0 r-notices-wrapper', {
+        className={classNames('r-notices-wrapper', {
           'flex-col': align === 'top',
           'flex-col-reverse': align === 'bottom',
         })}

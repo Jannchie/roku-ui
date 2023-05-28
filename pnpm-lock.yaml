@@ -11,9 +11,6 @@ devDependencies:
   '@jannchie/eslint-config':
     specifier: ^1.3.1
     version: 1.3.1(eslint@8.41.0)(typescript@5.0.4)
-  '@roku-ui/icons-bxl':
-    specifier: ^2.1.4
-    version: 2.1.4(react-dom@18.2.0)(react@18.2.0)
   '@roku-ui/icons-material-symbols':
     specifier: ^0.0.1682660269
     version: 0.0.1682660269(react-dom@18.2.0)(react@18.2.0)
@@ -794,16 +791,6 @@ packages:
   /@remix-run/router@1.6.2:
     resolution: {integrity: sha512-LzqpSrMK/3JBAVBI9u3NWtOhWNw5AMQfrUFYB0+bDHTSw17z++WJLsPsxAuK+oSddsxk4d7F/JcdDPM1M5YAhA==}
     engines: {node: '>=14'}
-    dev: true
-
-  /@roku-ui/icons-bxl@2.1.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-7PsMSA40tI8a3/mhknFnEEZncasv2+3m9XULI5H0ZQlZG5BNvMsaH7wjxAoDSCCpYnOJeMvYyGvTj1sSvht0Pw==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /@roku-ui/icons-material-symbols@0.0.1682660269(react-dom@18.2.0)(react@18.2.0):

@@ -2,6 +2,10 @@
   @apply fixed z-10;
 }
 
+.r-notices-wrapper {
+  @apply flex gap-2 h-0;
+}
+
 .r-notification.r-center {
   left: 50%;
   right: auto;

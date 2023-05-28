@@ -34,7 +34,6 @@
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@jannchie/eslint-config": "^1.3.1",
-    "@roku-ui/icons-bxl": "^2.1.4",
     "@roku-ui/icons-material-symbols": "^0.0.1682660269",
     "@roku-ui/icons-svg-spinners": "^0.0.1673787445",
     "@roku-ui/icons-tabler": "^2.17.0",
