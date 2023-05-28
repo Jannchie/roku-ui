@@ -1,5 +1,5 @@
 .r-anchor {
-  @apply flex items-center gap-1 relative decoration-dashed underline-offset-2 cursor-default;
+  @apply inline-flex items-center gap-1 relative decoration-dashed underline-offset-2 cursor-default;
 }
 
 .r-anchor-clickable {
