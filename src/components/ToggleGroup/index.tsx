@@ -8,6 +8,7 @@ function ToggleGroupRoot<T> ({ children, value, setValue, data, item, body, colo
     return (
       <Btn
         key={i}
+        size="sm"
         text={value !== t}
         fill={value === t}
         color={color}

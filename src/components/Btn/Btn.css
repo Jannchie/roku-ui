@@ -79,7 +79,7 @@
 }
 
 .r-btn-sm {
-  @apply p-1 text-xs !leading-none;
+  @apply p-2 text-xs !leading-none;
 }
 
 .r-btn-sm {

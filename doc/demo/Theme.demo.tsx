@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Btn, Flex, Panel, TextField, ToggleGroup, defaultDark, defaultLight, getConstractColor, getFullThemeData } from '../../src'
+import { Btn, Flex, TextField, ToggleGroup, defaultDark, defaultLight, getConstractColor, getFullThemeData } from '../../src'
 
 export default function Demo () {
   const themes = [defaultDark, defaultLight]
