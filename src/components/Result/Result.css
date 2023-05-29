@@ -3,5 +3,5 @@
 }
 
 .r-result-wrapper {
-  @apply flex flex-col text-center;
+  @apply flex flex-col items-center gap-2;
 }

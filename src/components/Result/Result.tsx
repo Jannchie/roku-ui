@@ -1,34 +1,31 @@
 import classNames from 'classnames'
-import { type Color } from '../..'
-import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
+import { Icon, type Color } from '../..'
 import { Typography } from '../Typography'
 import './Result.css'
+import { type ReactNode } from 'react'
+import { type Size } from '../../utils/type'
 
 export function Result ({
-  icon, title, description, size = 'md', color = 'primary',
+  icon, title, description, size = 120, color = 'primary',
 }: {
-  icon: string
+  icon: ReactNode
   title: string
   color?: Color
-  size?: 'sm' | 'md' | 'lg'
+  size?: Size
   description?: string
 }) {
-  let sizeNumber = 96
-  if (size === 'sm') {
-    sizeNumber = 64
-  }
-  if (size === 'lg') {
-    sizeNumber = 128
-  }
   return (
     <div className={classNames('r-result-wrapper', {
       [`text-${color}-2`]: true,
     })}
     >
-      <MaterialSymbolIcon
-        size={sizeNumber}
-        icon={icon}
-      />
+      <Icon
+        color={color}
+        variant="text"
+        size={size}
+      >
+        { icon }
+      </Icon>
       <Typography.H4 className={classNames('r-result-title')}>
         { title }
       </Typography.H4>

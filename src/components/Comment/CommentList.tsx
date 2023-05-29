@@ -15,10 +15,8 @@ export function CommentList ({
   // on scroll to bottom, load more comments
   const [isBottom, listContent] = useScrollBottom()
   useEffect(() => {
-    if (isBottom) {
-      if (onLoadMore != null) {
-        onLoadMore()
-      }
+    if (isBottom && onLoadMore != null) {
+      onLoadMore()
     }
   }, [isBottom, onLoadMore])
   return (

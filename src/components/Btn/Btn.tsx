@@ -1,16 +1,15 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo, forwardRef,
+  createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo, forwardRef, useRef,
 } from 'react'
 import { type Color } from '../../utils/colors'
 // import { Loading } from '../../icons/Loading'
-import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import './Btn.css'
 import { Typography } from '../Typography'
 import { SvgSpinners90RingWithBg } from '@roku-ui/icons-svg-spinners'
-import { useColorHex, useThemeData } from '../../hooks'
-import { calculateContrast } from '../..'
+import { useColorHex, useHover, useThemeData } from '../../hooks'
+import { Flex, Icon, calculateContrast } from '../..'
 import { createPolymorphicComponent } from '../../utils/polymorphic'
 
 type ButtonType = 'fill' | 'text' | 'default' | 'contrast' | 'light'
@@ -330,36 +329,30 @@ function Counter ({
   fill?: boolean
   size?: 'xs' | 'sm' | 'md' | 'lg'
 } & HTMLAttributes<HTMLButtonElement>) {
-  const iconCls = classNames(
-    `r-btn-${size}`,
-    'r-btn-icon r-btn bg-opacity-10 dark:bg-opacity-10',
-    'border-transparent',
-    `group-hover:bg-${color}-1/10 group-hover:text-${color}-1`,
-  )
-  const textCls = classNames(
-    `r-btn-counter-value group-hover:text-${color}-1`,
-  )
+  const btn = useRef(null)
+  const isHover = useHover(btn)
   return (
-    <button
+    <Btn
+      ref={btn}
+      text
+      hoverColor={color}
       {...props}
-      type="button"
-      className="r-btn-counter group text-sm flex items-center gap-2 hover:cursor-pointer"
     >
-      <div className={iconCls}>
-        {
-          typeof icon === 'string'
-            ? (
-              <MaterialSymbolIcon
-                size={size}
-                icon={icon}
-                fill={fill}
-              />
-            )
-            : icon
-        }
-      </div>
-      <Typography.Button className={textCls}>{ value }</Typography.Button>
-    </button>
+      <Flex
+        gap="0.5rem"
+        align="center"
+      >
+        <Icon
+          color={isHover ? color : 'frontground'}
+          variant="text"
+        >
+          { icon }
+        </Icon>
+        <span>
+          { value || 0 }
+        </span>
+      </Flex>
+    </Btn>
   )
 }
 export const Btn = Object.assign(BtnRoot, {

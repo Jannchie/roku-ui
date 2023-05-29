@@ -72,6 +72,9 @@ export function Icon ({
   return (
     <i
       {...others}
+      style={{
+        width: typeof size === 'number' ? size : undefined,
+      }}
       className={classNames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-block')}
     >
       { children }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { type CommentDataWithReplies, type CommentData, CommentComponent, Btn } from '../../src'
+import { TablerHeart, TablerShare3 } from '@roku-ui/icons-tabler'
 
 export default function CommentDemo () {
   const raw: CommentDataWithReplies[] = [
@@ -147,7 +148,7 @@ with second line.`,
           [
             <Btn.Counter
               key="like"
-              icon="favorite"
+              icon={<TablerHeart />}
               size="sm"
               color="danger"
               style={{ minWidth: 48 }}
@@ -165,7 +166,7 @@ with second line.`,
             />,
             <Btn.Counter
               key="reply"
-              icon="reply"
+              icon={<TablerShare3 />}
               size="sm"
               color="success"
               style={{ minWidth: 48 }}

@@ -1,3 +1,4 @@
+import { TablerCircleCheck, TablerCircleX } from '@roku-ui/icons-tabler'
 import { Result } from '../../src'
 
 export default function ResultDemo () {
@@ -10,13 +11,13 @@ export default function ResultDemo () {
     >
       <Result
         color="success"
-        icon="check_circle"
+        icon={<TablerCircleCheck />}
         title="奈斯"
         description="你成功了"
       />
       <Result
         color="danger"
-        icon="error"
+        icon={<TablerCircleX />}
         title="纳尼"
         description="我失败了"
       />

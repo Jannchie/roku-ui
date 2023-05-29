@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { MaterialSymbolIcon, Notice } from '../../src'
+import { Icon, Notice } from '../../src'
+import { TablerMessage2Check } from '@roku-ui/icons-tabler'
 
 export default function Demo () {
   const [close, onClose] = useState(false)
@@ -16,7 +17,7 @@ export default function Demo () {
             color="success"
             title="标题"
             desc="内容"
-            icon={<MaterialSymbolIcon icon="check" />}
+            icon={<Icon color="success"><TablerMessage2Check /></Icon>}
           />
         )
       }

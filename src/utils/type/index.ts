@@ -7,4 +7,4 @@ export interface BaseProps {
 
 export type Rounded = 'none' | 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | 'full'
 
-export type Size = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl'
+export type Size = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | number
