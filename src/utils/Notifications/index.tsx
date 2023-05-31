@@ -6,20 +6,11 @@ import {
 import classNames from 'classnames'
 import { type Color, Notice, Icon } from '../..'
 import { TablerMessage2, TablerMessage2Check, TablerMessage2Exclamation, TablerMessage2X } from '@roku-ui/icons-tabler'
-interface NotificationConfig {
-  left?: boolean
-  right?: boolean
-  bottom?: boolean
-  className?: string
-  defaultExistsMS?: number
-  maxCount?: number
-  stack?: boolean
-  wait?: boolean
-}
 
 interface NoticeData { key: number, value: ReactNode }
 interface PushConfig {
   existsMS?: number
+  name?: string
 }
 
 export interface NoticeConfig {
@@ -31,7 +22,7 @@ export interface NoticeConfig {
   closable?: boolean
 }
 
-export type OnPush = (notice: ReactNode, config?: PushConfig) => void
+export type OnPush = (data: any, config?: PushConfig) => void
 type OnRemove = (notice: ReactNode) => void
 
 interface NotificationsEventManager {
@@ -43,8 +34,7 @@ const nEventMgr: NotificationsEventManager = {
   onPush: [],
   onRemove: [],
 }
-
-export const push = (notice: ReactNode, config?: PushConfig): void => {
+export const push = (notice: any, config?: PushConfig): void => {
   if (nEventMgr.onPush.length === 0) {
     throw new Error(
       'No notification event listener, you should add at least one Notifications Component to your app.',
@@ -52,8 +42,9 @@ export const push = (notice: ReactNode, config?: PushConfig): void => {
   }
   nEventMgr.onPush.forEach((cb) => { cb(notice, config) })
 }
+
 export const pushNotice = (config: PushConfig & NoticeConfig) => {
-  let { existsMS, closable = false } = config
+  let { existsMS, closable = false, name } = config
   const { title, desc, type } = config
 
   if (!existsMS) existsMS = 3000
@@ -97,11 +88,41 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       title={title}
     />
   )
-  push(n, { existsMS })
+  push(n, { existsMS, name })
+}
+interface NotificationConfig {
+  left?: boolean
+  right?: boolean
+  bottom?: boolean
+  className?: string
+  defaultExistsMS?: number
+  maxCount?: number
+  stack?: boolean
+  wait?: boolean
+  name?: string
+  getNotice?: (data: any) => ReactNode
 }
 
+function isReactNode (value: any): value is ReactNode {
+  // 检查是否是React组件
+  if (typeof value === 'function' || typeof value === 'object') {
+    return 'type' in value && 'props' in value
+  }
+
+  // 检查是否是基本类型
+  return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null || value === undefined
+}
 export function Notifications ({
-  bottom, left, right, defaultExistsMS, maxCount, wait, className, stack,
+  bottom,
+  left,
+  right,
+  defaultExistsMS,
+  maxCount,
+  wait,
+  className,
+  stack,
+  getNotice,
+  name,
 }: NotificationConfig) {
   let align = 'top'
   if (bottom) {
@@ -117,7 +138,10 @@ export function Notifications ({
   const [notices, setNotices] = useState<NoticeData[]>([])
   const id = useRef(1)
   const waitList = useRef<Array<[ReactNode, PushConfig]>>([])
-  const pushCallback = useCallback<OnPush>((notice: ReactNode, config: PushConfig = {}) => {
+
+  // 当存在数据被 push 时，将其推入 notices，或者 wait list
+  const pushCallback = useCallback<OnPush>((data: any, config: PushConfig = {}) => {
+    if (name && config.name !== name) return
     let existsMS
     if (config.existsMS) {
       existsMS = config.existsMS
@@ -125,6 +149,12 @@ export function Notifications ({
     if (!existsMS) {
       existsMS = defaultExistsMS ?? 3000
     }
+    const notice = getNotice ? getNotice(data) : data
+
+    if (!isReactNode(notice)) {
+      throw new Error('You should use getNotice prop to return a ReactNode.')
+    }
+
     if (maxCount && notices.length >= maxCount) {
       if (wait) {
         waitList.current.push([notice, config])
@@ -139,8 +169,9 @@ export function Notifications ({
     setTimeout(() => {
       setNotices((val) => val.filter((n) => n.key !== currentId))
     }, existsMS)
-  }, [maxCount, notices, defaultExistsMS, wait])
+  }, [name, getNotice, maxCount, notices, defaultExistsMS, wait])
 
+  // 当 wait list 不为空，且 notices 数量小于 maxCount 时，将 wait list 中的第一个元素推入 notices
   useEffect(() => {
     if (wait && maxCount && waitList.current.length > 0 && notices.length < maxCount) {
       const current = waitList.current.shift()
@@ -150,6 +181,7 @@ export function Notifications ({
     }
   }, [notices, maxCount, wait, pushCallback])
 
+  // 移除某个 notice
   const removeCallback: OnRemove = (notice: ReactNode) => {
     setNotices((val) => val.filter((n) => n.value !== notice))
   }
@@ -161,6 +193,7 @@ export function Notifications ({
       nEventMgr.onPush.splice(nEventMgr.onPush.indexOf(pushCallback), 1)
     }
   })
+
   useEffect(() => {
     nEventMgr.onRemove.unshift(removeCallback)
     return () => {

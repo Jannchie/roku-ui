@@ -15,6 +15,7 @@ export default function Demo () {
           type,
           title: 'Message',
           desc: 'This is a message',
+          name: 'test0',
         })
       }}
       >
@@ -71,6 +72,7 @@ export default function Demo () {
         </Radio.Group>
       </div>
       <Notifications
+        name="test0"
         className="mt-2"
         stack={stack}
       />
