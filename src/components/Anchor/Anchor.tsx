@@ -8,10 +8,12 @@ export function Anchor ({
   color = 'primary',
   children,
   className,
+  dash,
   showExternalIcon = 'auto',
   ...props
 }: {
   color?: Color
+  dash?: boolean
   showExternalIcon?: 'auto' | boolean
 } & AnchorHTMLAttributes<HTMLAnchorElement>) {
   function isExternalLink (url: string): boolean {
@@ -29,6 +31,7 @@ export function Anchor ({
       className={classNames(
         className,
         'r-anchor',
+        { 'decoration-dashed': dash },
         { 'r-anchor-clickable': props.href !== undefined || props.onClick !== undefined },
         { [`decoration-${color}-2 hover:decoration-${color}-2 hover:text-${color}-2`]: props.href !== undefined || props.onClick !== undefined },
       )}
