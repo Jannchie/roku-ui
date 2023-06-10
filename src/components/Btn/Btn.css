@@ -15,7 +15,7 @@
 }
 
 .r-btn-main {
-  @apply flex items-center z-2 relative;
+  @apply flex items-center relative;
 }
 
 .r-btn-center {
