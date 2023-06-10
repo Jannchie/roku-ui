@@ -1,5 +1,5 @@
 import './select.css'
-import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect, useCallback, type MutableRefObject } from 'react'
+import { type ReactNode, useState, useRef, type HTMLAttributes, useCallback } from 'react'
 import classNames from 'classnames'
 import { type Color, TextField, useOnClickOutside, List, Panel, Icon } from '../..'
 import { type BaseProps } from '../../utils/type'
@@ -57,21 +57,18 @@ export function Select<T> ({
     setShow(false)
   })
 
-  const selected = useRef(false)
-  useEffect(() => {
-    if (!selected.current) {
-      return
-    }
-    if (options.map(trueGetKey).includes(query)) {
-      setShow(false)
-    } else {
-      setShow(true)
-    }
-    setValue(options.find((d) => trueGetKey(d) === query) ?? options[0])
-    if (autocomplete) {
-      setFocusIndex(-1)
-    }
-  }, [autocomplete, options, query, setValue, trueGetKey])
+  // useEffect(() => {
+  //   setValue(options.find((d) => trueGetKey(d) === query) ?? options[0])
+  //   if (autocomplete) {
+  //     setFocusIndex(-1)
+  //   }
+  //   if (options.map(trueGetKey).includes(query) && autocomplete) {
+  //     setShow(false)
+  //   } else {
+  //     setShow(true)
+  //   }
+  // }, [autocomplete, options, query, setValue, trueGetKey])
+
   const [focusIndex, setFocusIndex] = useState(-1)
   return (
     <div
@@ -148,13 +145,14 @@ export function Select<T> ({
                 setQuery(key)
                 setValue(filteredData[focusIndex])
                 setShow(false)
-                if (autocomplete) {
-                  selected.current = true
-                }
               }
               if (autocomplete) {
                 setFocusIndex(-1)
               }
+              return
+            }
+            default: {
+              setShow(true)
             }
           }
         }}
@@ -193,7 +191,7 @@ export function Select<T> ({
                         data={d}
                         getKey={trueGetKey}
                         setQuery={setQuery}
-                        selected={selected}
+                        autocomplete={autocomplete}
                       />
                     )
                   })
@@ -215,9 +213,9 @@ function OptionComponent<T> ({
   setShow,
   focus,
   setFocusIndex,
-  selected,
   filteredData,
   selfIndex,
+  autocomplete,
   ...props
 }: {
   color: string
@@ -228,9 +226,9 @@ function OptionComponent<T> ({
   setValue: (d: T) => void
   setShow: (v: boolean) => void
   filteredData: T[]
-  selected: MutableRefObject<boolean>
   selfIndex: number
   setFocusIndex: (v: number) => void
+  autocomplete?: boolean
 } & HTMLAttributes<HTMLDivElement>) {
   const self = useRef<HTMLButtonElement>(null)
   if (focus) {
@@ -249,7 +247,8 @@ function OptionComponent<T> ({
         event.preventDefault()
         const key = getKey(data)
         setQuery(key)
-        selected.current = true
+        setValue(data)
+        setShow(false)
       }}
       onMouseMove={() => { setFocusIndex(selfIndex) }}
     >
