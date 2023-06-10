@@ -22,7 +22,7 @@ export function Select<T> ({
   options,
   id,
   className,
-  color = 'default',
+  color = 'primary',
   notFoundContent = <div className={classNames(
     'r-combobox-item r-combobox-text',
     'bg-background-2',
