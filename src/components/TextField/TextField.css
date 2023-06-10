@@ -23,11 +23,11 @@
 }
 
 .r-text-field-prefix {
-  @apply min-w-fit inline-block;
+  @apply min-w-fit inline-block flex;
 }
 
 .r-text-field-suffix {
-  @apply min-w-fit inline-block;
+  @apply min-w-fit inline-block flex;
 }
 
 .r-text-field-wrapper {

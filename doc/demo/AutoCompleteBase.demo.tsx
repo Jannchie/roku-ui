@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { AutoComplete } from '../../src'
+import { Select } from '../../src'
 export default function Demo () {
   const [value, setValue] = useState<string>('Apple')
   const options = useMemo(() => [
@@ -11,7 +11,8 @@ export default function Demo () {
   return (
     <>
       <div>
-        <AutoComplete
+        <Select
+          autocomplete
           defaultValue={value}
           options={options}
           setValue={setValue}

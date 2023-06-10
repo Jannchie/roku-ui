@@ -14,11 +14,9 @@ export default function Demo () {
     <>
       <div>{ value?.name }</div>
       <Select
-        autocomplete
         defaultValue={value}
         options={options}
         getKey={(d) => d.name}
-        getFilter={(query) => (d) => d.name.toLowerCase().includes(query.toLowerCase())}
         setValue={setValue}
       />
     </>

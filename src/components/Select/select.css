@@ -26,7 +26,15 @@
 }
 
 .r-combobox-input.r-text-field-wrapper {
-  @apply w-full;
+  @apply w-full text-left p-0;
+}
+
+.r-combobox-input.r-text-field-wrapper input {
+  @apply p-2;
+}
+
+.r-combobox-no-filter input {
+  @apply cursor-pointer;
 }
 
 .r-combobox-focused {

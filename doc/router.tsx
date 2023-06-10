@@ -21,8 +21,8 @@ export const router = [{
   title: '列表（List）',
   icon: <TablerList />,
 }, {
-  path: 'auto-complete',
-  title: '补选框（Auto Complete）',
+  path: 'select',
+  title: '选框（Select）',
   icon: <TablerInputSearch />,
 }, {
   path: 'anchor',

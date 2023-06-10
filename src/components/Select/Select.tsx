@@ -1,10 +1,11 @@
-import './AutoComplete.css'
-import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect, useCallback } from 'react'
+import './select.css'
+import { type ReactNode, useState, useRef, type HTMLAttributes, useEffect, useCallback, type MutableRefObject } from 'react'
 import classNames from 'classnames'
-import { type Color, TextField, useOnClickOutside, Btn, List, Panel } from '../..'
+import { type Color, TextField, useOnClickOutside, List, Panel, Icon } from '../..'
 import { type BaseProps } from '../../utils/type'
+import { TablerArrowsMoveVertical } from '@roku-ui/icons-tabler'
 
-export type RComboboxProps<T> = {
+export type RSelectProps<T> = {
   setValue: (d: T) => void
   options: T[]
   notFoundContent?: ReactNode
@@ -12,9 +13,10 @@ export type RComboboxProps<T> = {
   defaultValue?: T
   getKey?: (d: T) => string
   getFilter?: (query: string) => (d: T) => boolean
+  autocomplete?: boolean
 } & BaseProps
 
-export function AutoComplete<T> ({
+export function Select<T> ({
   defaultValue,
   setValue,
   options,
@@ -30,8 +32,9 @@ export function AutoComplete<T> ({
   </div>,
   getKey,
   getFilter,
+  autocomplete,
   ...others
-}: RComboboxProps<T>) {
+}: RSelectProps<T>) {
   const defaultGetKey = useCallback((d: T) => String(d), [])
   const defaultGetFilter = (query: string) => {
     return (d: T): boolean => trueGetKey(d)
@@ -42,9 +45,11 @@ export function AutoComplete<T> ({
   const trueFilter = getFilter ?? defaultGetFilter
   const trueGetKey = getKey ?? defaultGetKey
   const [query, setQuery] = useState(defaultValue ? trueGetKey(defaultValue) : '')
-  const filteredData = (query === '') || options.map(trueGetKey).includes(query)
+  const filteredData = !autocomplete
     ? options
-    : options.filter(trueFilter(query))
+    : (query === '') || options.map(trueGetKey).includes(query)
+      ? options
+      : options.filter(trueFilter(query))
   const [show, setShow] = useState(false)
   const wrapper = useRef<HTMLDivElement>(null)
   useOnClickOutside(wrapper, () => {
@@ -64,7 +69,6 @@ export function AutoComplete<T> ({
     }
     setFocusIndex(-1)
   }, [query])
-
   const [focusIndex, setFocusIndex] = useState(-1)
   return (
     <div
@@ -74,44 +78,18 @@ export function AutoComplete<T> ({
       {...others}
     >
       <TextField
+        readOnly={!autocomplete}
         value={query}
-        suffix={show && (
-          <Btn
-            icon
-            text
-            style={{ display: 'flex', height: 20, width: 20, padding: 0 }}
-            color={color}
-            onClick={() => { setQuery(''); setShow(false) }}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 28 28"
-            >
-              <line
-                x1="8"
-                y1="20"
-                x2="20"
-                y2="8"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-              <line
-                x1="8"
-                y1="8"
-                x2="20"
-                y2="20"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-            </svg>
-          </Btn>
-        )}
-        className="r-combobox-input"
+        type="search"
+        className={classNames('r-combobox-input', {
+          'r-combobox-no-filter': !autocomplete,
+        })}
+        suffix={!autocomplete && <Icon variant="text">
+          <TablerArrowsMoveVertical />
+        </Icon>}
         color={color}
         onClick={() => {
           setShow(true)
-          shouldReopen.current = true
         }}
         onKeyDown={(event) => {
           event.stopPropagation()
@@ -182,6 +160,7 @@ export function AutoComplete<T> ({
                         data={d}
                         getKey={trueGetKey}
                         setKey={setQuery}
+                        shouldReopen={shouldReopen}
                       />
                     )
                   })
@@ -203,6 +182,7 @@ function OptionComponent<T> ({
   setShow,
   focus,
   setFocusIndex,
+  shouldReopen,
   filteredData,
   selfIndex,
   ...props
@@ -215,6 +195,7 @@ function OptionComponent<T> ({
   setValue: (d: T) => void
   setShow: (v: boolean) => void
   filteredData: T[]
+  shouldReopen: MutableRefObject<boolean>
   selfIndex: number
   setFocusIndex: (v: number) => void
 } & HTMLAttributes<HTMLDivElement>) {
@@ -233,6 +214,7 @@ function OptionComponent<T> ({
       hover={focus}
       onClick={() => {
         const key = getKey(data)
+        shouldReopen.current = false
         setKey(key)
         setShow(false)
         setValue(data)
