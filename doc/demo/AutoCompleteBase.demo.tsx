@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Select } from '../../src'
 export default function Demo () {
-  const [value, setValue] = useState<string>('Apple')
+  const [value, setValue] = useState<string | undefined>('Apple')
   const options = useMemo(() => [
     'Apple',
     'Banana',

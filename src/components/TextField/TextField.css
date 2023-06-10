@@ -3,7 +3,7 @@
 }
 
 .r-text-field-wrapper {
-  @apply w-48;
+  @apply w-48 relative;
 }
 
 .r-text-field-wrapper-sm {
@@ -23,16 +23,20 @@
 }
 
 .r-text-field-prefix {
-  @apply min-w-fit inline-block flex;
+  @apply min-w-fit inline-block flex pr-2;
 }
 
 .r-text-field-suffix {
-  @apply min-w-fit inline-block flex;
+  @apply min-w-fit inline-block flex pl-2;
+}
+
+.r-text-field-suffix-absolute {
+  @apply min-w-fit absolute right-2 inline leading-0 pointer-events-none;
 }
 
 .r-text-field-wrapper {
   @apply rounded;
-  @apply inline-flex justify-center items-center gap-2 p-2;
+  @apply inline-flex justify-center items-center p-2;
   @apply border border-transparent;
   @apply transition-border-color;
 }

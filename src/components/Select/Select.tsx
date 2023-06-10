@@ -45,6 +45,7 @@ export function Select<T> ({
   const trueFilter = getFilter ?? defaultGetFilter
   const trueGetKey = getKey ?? defaultGetKey
   const [query, setQuery] = useState(defaultValue ? trueGetKey(defaultValue) : '')
+
   const filteredData = !autocomplete
     ? options
     : (query === '') || options.map(trueGetKey).includes(query)
@@ -55,20 +56,22 @@ export function Select<T> ({
   useOnClickOutside(wrapper, () => {
     setShow(false)
   })
-  useEffect(() => {
-    shouldReopen.current = false
-    setQuery(defaultValue ? trueGetKey(defaultValue) : '')
-  }, [defaultValue, trueGetKey])
 
-  const shouldReopen = useRef(true)
+  const selected = useRef(false)
   useEffect(() => {
-    if (shouldReopen.current) {
-      setShow(true)
-    } else {
-      shouldReopen.current = true
+    if (!selected.current) {
+      return
     }
-    setFocusIndex(-1)
-  }, [query])
+    if (options.map(trueGetKey).includes(query)) {
+      setShow(false)
+    } else {
+      setShow(true)
+    }
+    setValue(options.find((d) => trueGetKey(d) === query) ?? options[0])
+    if (autocomplete) {
+      setFocusIndex(-1)
+    }
+  }, [autocomplete, options, query, setValue, trueGetKey])
   const [focusIndex, setFocusIndex] = useState(-1)
   return (
     <div
@@ -78,13 +81,19 @@ export function Select<T> ({
       {...others}
     >
       <TextField
+        suffixAbsolute
         readOnly={!autocomplete}
         value={query}
         type="search"
         className={classNames('r-combobox-input', {
           'r-combobox-no-filter': !autocomplete,
         })}
-        suffix={!autocomplete && <Icon variant="text">
+        suffix={!autocomplete && <Icon
+          style={{
+            pointerEvents: 'none',
+          }}
+          variant="text"
+        >
           <TablerArrowsMoveVertical />
         </Icon>}
         color={color}
@@ -94,13 +103,24 @@ export function Select<T> ({
         onKeyDown={(event) => {
           event.stopPropagation()
           switch (event.key) {
-            case 'Escape': setShow(false); return
+            case 'Escape':
+              setShow(false)
+              event.currentTarget.blur()
+              return
             case 'ArrowDown': {
               event.preventDefault()
               if (focusIndex < filteredData.length - 1) {
                 setFocusIndex(focusIndex + 1)
+                if (!autocomplete) {
+                  setValue(filteredData[focusIndex + 1])
+                  setQuery(trueGetKey(filteredData[focusIndex + 1]))
+                }
               } else {
                 setFocusIndex(0)
+                setValue(filteredData[0])
+                if (!autocomplete) {
+                  setQuery(trueGetKey(filteredData[0]))
+                }
               }
               return
             }
@@ -108,20 +128,33 @@ export function Select<T> ({
               event.preventDefault()
               if (focusIndex > 0) {
                 setFocusIndex(focusIndex - 1)
+                if (!autocomplete) {
+                  setValue(filteredData[focusIndex - 1])
+                  setQuery(trueGetKey(filteredData[focusIndex - 1]))
+                }
               } else {
                 setFocusIndex(filteredData.length - 1)
+                if (!autocomplete) {
+                  setValue(filteredData[filteredData.length - 1])
+                  setQuery(trueGetKey(filteredData[filteredData.length - 1]))
+                }
               }
               return
             }
             case 'Enter': {
               event.preventDefault()
               if (focusIndex >= 0) {
-                shouldReopen.current = false
+                const key = trueGetKey(filteredData[focusIndex])
+                setQuery(key)
                 setValue(filteredData[focusIndex])
-                setQuery(trueGetKey(filteredData[focusIndex]))
                 setShow(false)
+                if (autocomplete) {
+                  selected.current = true
+                }
               }
-              setFocusIndex(-1)
+              if (autocomplete) {
+                setFocusIndex(-1)
+              }
             }
           }
         }}
@@ -159,8 +192,8 @@ export function Select<T> ({
                         color={color}
                         data={d}
                         getKey={trueGetKey}
-                        setKey={setQuery}
-                        shouldReopen={shouldReopen}
+                        setQuery={setQuery}
+                        selected={selected}
                       />
                     )
                   })
@@ -176,13 +209,13 @@ export function Select<T> ({
 function OptionComponent<T> ({
   color,
   data,
-  setKey,
+  setQuery,
   setValue,
   getKey,
   setShow,
   focus,
   setFocusIndex,
-  shouldReopen,
+  selected,
   filteredData,
   selfIndex,
   ...props
@@ -190,12 +223,12 @@ function OptionComponent<T> ({
   color: string
   data: T
   focus: boolean
-  setKey: (v: string) => void
+  setQuery: (v: string) => void
   getKey: (d: T) => string
   setValue: (d: T) => void
   setShow: (v: boolean) => void
   filteredData: T[]
-  shouldReopen: MutableRefObject<boolean>
+  selected: MutableRefObject<boolean>
   selfIndex: number
   setFocusIndex: (v: number) => void
 } & HTMLAttributes<HTMLDivElement>) {
@@ -212,12 +245,11 @@ function OptionComponent<T> ({
         { 'r-combobox-focused': focus },
       )}
       hover={focus}
-      onClick={() => {
+      onClick={(event) => {
+        event.preventDefault()
         const key = getKey(data)
-        shouldReopen.current = false
-        setKey(key)
-        setShow(false)
-        setValue(data)
+        setQuery(key)
+        selected.current = true
       }}
       onMouseMove={() => { setFocusIndex(selfIndex) }}
     >

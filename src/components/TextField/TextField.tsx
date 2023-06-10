@@ -14,6 +14,7 @@ export type TextFieldProps = {
   suffix?: ReactNode
   size?: 'sm' | 'md' | 'lg'
   placeholder?: string
+  suffixAbsolute?: boolean
   borderType?: 'dash' | 'solid' | 'dot'
   text?: boolean
   setValue?: Dispatch<SetStateAction<any>>
@@ -26,6 +27,7 @@ export function TextField ({
   className,
   prefix,
   suffix,
+  suffixAbsolute,
   size = 'md',
   placeholder,
   textAlign = 'left',
@@ -71,7 +73,14 @@ export function TextField ({
         onChange={onChange}
         {...inputProps}
       />
-      { suffix && <div className="r-text-field-suffix">{ suffix }</div> }
+      { suffix && <div
+        className={classnames(
+          { 'r-text-field-suffix': !suffixAbsolute },
+          { 'r-text-field-suffix-absolute': suffixAbsolute },
+        )}
+      >
+        { suffix }
+      </div> }
     </span>
   )
 }
