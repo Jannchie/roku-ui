@@ -3,7 +3,7 @@
   @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md;
   @apply text-base focus: outline-none sm:text-sm z-1;
   /* @apply bg-2; */
-  @apply border border-border-2 leading-0;
+  @apply border border-border-2;
 }
 
 .r-combobox-btn {
