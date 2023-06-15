@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { type HTMLMotionProps, motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { type HTMLMotionProps, motion, useMotionValue, animate, useTransform } from 'framer-motion'
+import { useEffect } from 'react'
 import { type Color } from '../..'
 
 type DynamicValueProps = {
@@ -19,22 +19,19 @@ export function DynamicValue ({
   },
   ...others
 }: DynamicValueProps) {
-  const motionValue = useSpring(useMotionValue(value))
+  const count = useMotionValue(value)
+  const formated = useTransform(count, format)
   useEffect(() => {
-    if (Number.isNaN(value)) return
-    motionValue.set(value)
-  }, [motionValue, value])
-  const [displayValue, setDisplayValue] = useState(format(value))
-  motionValue.onChange((v) => {
-    setDisplayValue(format(v))
-  })
+    const controls = animate(count, value)
+    return controls.stop
+  }, [count, value])
   return (
     <motion.span
       style={style}
       className={classNames('r-digital', className, `text-${color}`)}
       {...others}
     >
-      { displayValue }
+      { formated }
     </motion.span>
   )
 }

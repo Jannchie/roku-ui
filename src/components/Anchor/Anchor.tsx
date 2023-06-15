@@ -1,4 +1,3 @@
-import './Anchor.css'
 import classNames from 'classnames'
 import { type AnchorHTMLAttributes } from 'react'
 import { type Color } from '../..'
@@ -30,9 +29,9 @@ export function Anchor ({
       {...props}
       className={classNames(
         className,
-        'r-anchor',
+        'inline-flex items-center gap-1 relative underline-offset-2 cursor-default',
         { 'decoration-dashed': dash },
-        { 'r-anchor-clickable': props.href !== undefined || props.onClick !== undefined },
+        { 'cursor-pointer underline': props.href !== undefined || props.onClick !== undefined },
         { [`decoration-${color}-2 hover:decoration-${color}-2 hover:text-${color}-2`]: props.href !== undefined || props.onClick !== undefined },
       )}
     >

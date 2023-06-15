@@ -1,8 +1,10 @@
 # Roku UI
 
-![Install Size](https://badgen.net/packagephobia/install/roku-ui)
+已在这里消耗的时间：
 
-一个 [React](https://reactjs.org/) 组件库。基于 [Uno CSS](https://github.com/unocss/unocss)、[Vite](https://cn.vitejs.dev) 等项目，很潮。
+[![CodeTime badge](https://img.shields.io/endpoint?style=social&url=https%3A%2F%2Fapi.codetime.dev%2Fshield%3Fid%3D2%26project%3Droku-ui%26in%3D0)](https://codetime.dev)
+
+这是一个 [React](https://reactjs.org/) 组件库。基于 [Uno CSS](https://github.com/unocss/unocss)、[Vite](https://cn.vitejs.dev) 等项目，很潮。
 
 > **Warning**
 >

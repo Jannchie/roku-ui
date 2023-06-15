@@ -1,4 +1,3 @@
-import './TextField.css'
 import classnames from 'classnames'
 import {
   type ChangeEvent, type Dispatch,
@@ -51,19 +50,28 @@ export function TextField ({
       style={style}
       className={classnames(
         className,
-        'r-text-field-wrapper',
-        `r-text-field-wrapper-${size}`,
-        `r-text-field-${borderType}`,
+        'min-w-32 relative rounded inline-flex justify-center items-center border transition-border-color',
         {
-          'r-text-field-border': border,
-          'r-text-field-fill': !border,
+          'text-xs': size === 'sm',
+          'text-sm': size === 'md',
+          'text-base': size === 'lg',
+        },
+        {
+          'border border-border-2': border,
+          'border-transparent': !border,
+          'border-dashed': borderType === 'dash',
+          'border-solid': borderType === 'solid',
+          'border-dotted': borderType === 'dot',
+        },
+        {
+          'border-border-2 bg-background-2': border,
         },
         { [`focus-within:border-${color}-2`]: color },
       )}
     >
-      { prefix && <div className="r-text-field-prefix">{ prefix }</div> }
+      { prefix && <div className="min-w-fit inline-block flex pr-2">{ prefix }</div> }
       <input
-        className={classnames('r-text-field', {
+        className={classnames('p-2 w-full outline-none bg-transparent flex-shrink', {
           'text-center': textAlign === 'center',
           'text-left': textAlign === 'left',
           'text-right': textAlign === 'right',
@@ -75,8 +83,9 @@ export function TextField ({
       />
       { suffix && <div
         className={classnames(
-          { 'r-text-field-suffix': !suffixAbsolute },
-          { 'r-text-field-suffix-absolute': suffixAbsolute },
+          'min-w-fit',
+          { 'inline-block flex pl-2': !suffixAbsolute },
+          { 'absolute right-2 inline leading-0 pointer-events-none': suffixAbsolute },
         )}
       >
         { suffix }

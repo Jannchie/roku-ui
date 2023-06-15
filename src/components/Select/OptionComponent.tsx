@@ -25,8 +25,7 @@ export function OptionComponent<T> ({
       {...props}
       ref={self}
       className={classNames(
-        'r-combobox-item',
-        { 'r-combobox-focused': focus },
+        'relative cursor-default select-none block w-full text-left cursor-pointer',
       )}
       hover={focus}
       onClick={() => {

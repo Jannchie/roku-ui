@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
-import './EditableLine.css'
 import classnames from 'classnames'
 import { useRef, useState, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
-import { Btn, MaterialSymbolIcon, TextField } from '../..'
+import { Btn, TextField } from '../..'
+import { TablerCheck, TablerX } from '@roku-ui/icons-tabler'
 
 export interface EditableLineProps {
   value: string
@@ -30,27 +30,31 @@ export function EditableLine ({
 }: EditableLineProps) {
   const [editing, setEditing] = useState(false)
   const tempValue = useRef(value)
+  const getSize = (size: string) => {
+    if (size === 'sm') {
+      return '1em'
+    }
+    if (size === 'md') {
+      return '1.25rem'
+    }
+    if (size === 'lg') {
+      return '1.5rem'
+    }
+    return size
+  }
   if (!okBtnContent) {
     okBtnContent = (
-      <MaterialSymbolIcon
-        icon="check"
-        size={size}
-      />
+      <TablerCheck height={getSize(size)} />
     )
   }
   if (!cancelBtnContent) {
     cancelBtnContent = (
-      <MaterialSymbolIcon
-        icon="close"
-        size={size}
-      />
+      <TablerX height={getSize(size)} />
     )
   }
   return (
     <div
-      className={classnames('r-editable-line', 'flex', 'gap-2', {
-        'r-editable-line-editing': editing,
-      })}
+      className={classnames('flex', 'gap-2')}
     >
       <TextField
         size={size}
@@ -78,7 +82,6 @@ export function EditableLine ({
           <Btn
             border
             size={size}
-            className="r-editable-line-ok-btn"
             color="success"
             onClick={() => {
               setEditing(false)
@@ -92,7 +95,6 @@ export function EditableLine ({
           <Btn
             border
             size={size}
-            className="r-editable-line-cancel-btn"
             onClick={() => {
               setEditing(false)
               setValue(tempValue.current)

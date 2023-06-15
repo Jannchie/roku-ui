@@ -1,4 +1,3 @@
-import './Textarea.css'
 import classNames from 'classnames'
 import { type TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { type Color } from '../../utils/colors'
@@ -22,9 +21,9 @@ export function Textarea ({
     setH(height)
   }, [height])
   return (
-    <div className={classNames('r-textarea-wrapper', className)}>
+    <div className={classNames('relative leading-0', className)}>
       { maxLength && (
-        <div className={classNames('r-textarea-extra-info')}>
+        <div className={classNames('absolute top-full mt-1 text-f-2')}>
           { textarea.current?.value.length }
           /
           { maxLength }
@@ -33,10 +32,15 @@ export function Textarea ({
       <textarea
         ref={textarea}
         className={classNames(
-          'r-textarea',
-          `r-textarea-border-${border}`,
+          'transition-border-color w-full border rounded border-border-2 bg-background-1 text-sm p-[9px] py-[8px] outline-none',
+          {
+            border,
+            'border-solid': border === 'solid',
+            'border-dashed': border === 'dashed',
+            'border-dotted': border === 'dotted',
+          },
           `focus:border-${color}-2`,
-          { 'r-no-resize': autoResize },
+          { 'transition-border-color,height resize-none overflow-hidden': autoResize },
         )}
         style={{
           height: h,

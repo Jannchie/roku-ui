@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Btn, MaterialSymbolIcon, Step } from '../../src'
+import { Btn, Step } from '../../src'
 
 export default function Demo () {
   const [current, setCurrent] = useState(1)
@@ -8,9 +8,7 @@ export default function Demo () {
       <Step.Container current={current}>
         <Step.Item index={0}>Step 1</Step.Item>
         <Step.Item index={1} >
-          { ' ' }
-          <MaterialSymbolIcon icon="favorite" />
-          { ' ' }
+          ?
         </Step.Item>
         <Step.Item index={2}>Step 3</Step.Item>
       </Step.Container>

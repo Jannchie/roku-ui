@@ -1,9 +1,8 @@
 import classNames from 'classnames'
 import { type FC, type HTMLAttributes, type ReactNode } from 'react'
-import { type Color } from '../../..'
-import { MaterialSymbolIcon } from '../../MaterialSymbolIcon'
+import { Icon, type Color } from '../../..'
 import { TextField } from '../../TextField'
-import './Appbar.css'
+import { TablerSearch } from '@roku-ui/icons-tabler'
 
 type AppbarAttributes = {
   varient?: 'default' | 'blur' | 'transparent' | 'pattern'
@@ -30,9 +29,9 @@ export const Appbar: FC<AppbarAttributes> = ({
     <header
       role="banner"
       className={classNames(
-        'r-appbar-wrapper',
+        'flex text-sm w-full z-10 px-4 py-1 items-center justify-between',
         `r-appbar-${varient}`,
-        { 'r-appbar-border': border },
+        { 'border-b border-border-2': border },
         { [`bg-${color}-2`]: varient === 'default' },
         { [`bg-${color}-2/25`]: varient === 'blur' },
         { [`bg-${color}-2/10`]: varient === 'pattern' },
@@ -40,10 +39,10 @@ export const Appbar: FC<AppbarAttributes> = ({
       )}
       {...others}
     >
-      <div className="r-appbar-leading">
+      <div className="flex items-center">
         { leading }
-        <div className="r-appbar-title">
-          <div className="r-appbar-title__icon">
+        <div className="my-3 mx-2 flex">
+          <div className="mr-2">
             { icon }
           </div>
           <div>
@@ -51,11 +50,13 @@ export const Appbar: FC<AppbarAttributes> = ({
           </div>
         </div>
       </div>
-      <div className="r-appbar-tailing">
+      <div className="flex gap-2">
         { (searchCallback != null) && (
           <div>
             <TextField
-              prefix={<MaterialSymbolIcon icon="search" />}
+              prefix={<Icon >
+                <TablerSearch />
+              </Icon>}
               value={undefined}
               onChange={(e) => {
                 searchCallback(e.target.value)

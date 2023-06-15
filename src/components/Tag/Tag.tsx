@@ -1,4 +1,3 @@
-import './Tag.css'
 import { type MouseEvent, type KeyboardEvent, type ReactNode } from 'react'
 import classNames from 'classnames'
 import { type Color } from '../../utils/colors'
@@ -35,19 +34,21 @@ export function ChipRoot ({
   closeIcon,
   ...others
 }: ChipProps) {
-  // const [hover, setHover] = useState(false)
-  // const bgCls = bgColorClass(color, hover && onClick ? 50 : 10)
-  // const borderCls = borderColorClass(border ? color : undefined)
-  // const textCls = textColorClass(hover && onClick ? 'bg' : color)
   const tagClass = classNames(
     className,
-    'r-tag',
+    'border inline-flex gap-1 cursor-default rounded bg-opacity-10 dark:bg-opacity-10 items-center',
     {
-      'r-tag-clickable': onClick !== undefined,
-      'r-tag-rounded': rounded,
-      'r-tag-text': text,
+      'cursor-pointer': onClick !== undefined,
+      'rounded-full': rounded,
+      'bg-opacity-0': text,
     },
-    `r-tag-${size}`,
+    {
+      'px-0.5 py-0.25 text-xs': size === 'xs',
+      'px-1 py-0.5 text-xs': size === 'sm',
+      'px-1.5 py-0.75 text-xs': size === 'md',
+      'px-1.5 py-0.75 text-sm': size === 'lg',
+      'px-2 py-1 text-base': size === 'xl',
+    },
     {
       [`bg-${color}-2/10`]: !text,
       [`hover:bg-${color}-2/75 active:bg-${color}-2 hover:text-background-2`]: onClick && !text,
@@ -101,16 +102,4 @@ export function ChipRoot ({
   )
 }
 
-interface GroupProps {
-  className?: string
-  children?: ReactNode
-}
-export function Group ({ className, children }: GroupProps) {
-  return (
-    <span className={classNames(className, 'r-tag-group')}>
-      { children }
-    </span>
-  )
-}
-
-export const Tag = Object.assign(ChipRoot, { Group })
+export const Tag = Object.assign(ChipRoot, {})

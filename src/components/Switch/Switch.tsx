@@ -34,15 +34,18 @@ export const Switch: FC<SwitchProps> = ({
   }
   return (
     <div className={classNames(
-      'r-switch-wrapper',
+      'inline-flex items-center gap-2 relative',
     )}
     >
-
       <input
         type="checkbox"
         className={classNames(
-          'r-switch-input',
-          `r-switch-input-${size}`,
+          'appearance-none cursor-pointer rounded-full border transition-box-shadow,background-color,border-color',
+          {
+            'w-[3rem] h-[1.5rem]': size === 'lg',
+            'w-[2.5rem] h-[1.25rem]': size === 'md',
+            'w-[2rem] h-[1rem]': size === 'sm',
+          },
           {
             [`border-${color}-2`]: value,
             [`border-${normalColor === 'background' ? 'default' : normalColor}-2`]: !value,
@@ -70,7 +73,7 @@ export const Switch: FC<SwitchProps> = ({
         onClick={() => { setValue(!value) }}
       />
       { bgIcon && <div
-        className={classNames('r-switch-icon-wrapper')}
+        className={classNames('absolute transition-transform pointer-events-none')}
         style={{
           transform: value ? 'translateX(2px) rotate(0deg) ' : `translateX(${h}rem) rotate(360deg)`,
         }}

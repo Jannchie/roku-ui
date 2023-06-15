@@ -1,5 +1,5 @@
 import { type ReactNode, createContext, useState } from 'react'
-
+import '../index.css'
 export const RokuContext = createContext({ theme: 'system', setTheme: (_: string) => {} })
 
 export function RokuProvider ({ children }: { children: ReactNode }) {

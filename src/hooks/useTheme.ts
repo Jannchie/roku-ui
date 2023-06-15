@@ -1,12 +1,15 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { usePrefersColorScheme } from './usePrefersColorScheme'
-import { getFullThemeData, themeMap } from '../utils/theme/utils'
+import { getFullThemeData, themeMap, useRegistTheme } from '../utils/theme/utils'
 import { RokuContext } from '../core'
 import { hsl } from 'd3-color'
+import { defaultDark, defaultLight } from '../utils/theme'
 
 type ThemeValue = 'system' | 'dark' | 'light' | string
 
 export function useTheme (localstorageKey: string = 'roku.theme') {
+  useRegistTheme('light', defaultLight)
+  useRegistTheme('dark', defaultDark)
   const preferred = usePrefersColorScheme()
   let defaultTheme: ThemeValue = 'system'
   const { theme, setTheme: setThemeValue } = useContext(RokuContext)

@@ -1,4 +1,5 @@
-import { Badge, MaterialSymbolIcon, Btn } from '../../src'
+import { TablerCheck } from '@roku-ui/icons-tabler'
+import { Badge, Btn } from '../../src'
 
 export default function Demo () {
   return (
@@ -10,17 +11,17 @@ export default function Demo () {
     >
       <Badge size="sm">
         <Btn color="primary">
-          <MaterialSymbolIcon icon="notifications" />
+          <TablerCheck height="1em" />
         </Btn>
       </Badge>
       <Badge size="md">
         <Btn color="primary">
-          <MaterialSymbolIcon icon="notifications" />
+          <TablerCheck height="1em" />
         </Btn>
       </Badge>
       <Badge size="lg">
         <Btn color="primary">
-          <MaterialSymbolIcon icon="notifications" />
+          <TablerCheck height="1em" />
         </Btn>
       </Badge>
     </div>

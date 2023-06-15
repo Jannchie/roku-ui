@@ -1,4 +1,3 @@
-import './Tabs.css'
 import {
   type ReactNode, useEffect, useRef, useState,
 } from 'react'
@@ -68,7 +67,7 @@ function List ({
     <>
       <div
         ref={tabList}
-        className="r-tab-list"
+        className="text-sm dark:text-white children:rounded children:px-2 children:py-1 children:!outline-none"
       >
         { data.map((d, i) => (
           <button
@@ -118,7 +117,7 @@ function List ({
       { type === 'indicator' && (
         <div className="h-0.5 dark:bg-default-800 bg-default-50">
           <div
-            className={classNames('r-tab-indicator', indicatorColor)}
+            className={classNames('transition-left absolute h-0.5 rounded-md', indicatorColor)}
             style={indicatorStyle}
           />
         </div>

@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { type HTMLAttributes } from 'react'
 import { type Color } from '../..'
 import { defaults } from '../../utils/defaults'
-import './Panel.css'
+
 export interface PanelProps {
   color?: Color
   border?: boolean
@@ -28,12 +28,12 @@ export function Panel ({
     <div
       {...others}
       className={classNames(
-        'r-panel',
+        'rounded-lg',
         bgCls,
         {
           [borderCls]: border,
-          'r-panel-padding': padding,
-          'r-panel-border': border,
+          'p-3': padding,
+          border,
         },
         className,
       )}

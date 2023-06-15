@@ -1,32 +1,32 @@
 import { hsl, rgb } from 'd3-color'
-import { defaultDark, defaultLight, type InputTheme, type ThemeColorObject, type ThemeData } from '.'
+import { type InputTheme, type ThemeColorObject, type ThemeData } from '.'
+import { useEffect } from 'react'
 function isThemeColor (color: any): color is ThemeColorObject {
   return typeof color?.base === 'string'
 }
 
 export const themeMap = new Map<string, InputTheme>()
 
-export function registTheme (name: string, theme: InputTheme) {
+export function useRegistTheme (name: string, theme: InputTheme) {
   themeMap.set(name, theme)
-  appendTheme(name, theme)
+  useAppendTheme(name, theme)
 }
 
-registTheme('light', defaultLight)
-registTheme('dark', defaultDark)
-
-export function appendTheme (name: string, theme: InputTheme) {
-  if (typeof document !== 'undefined') {
-    let style = document.getElementById(`theme-${name}`)
-    if (style) {
+export function useAppendTheme (name: string, theme: InputTheme) {
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      let style = document.getElementById(`theme-${name}`)
+      if (style) {
       // already exist
-      return
+        return
+      }
+      const cssStr = getCSS(theme, name)
+      style = document.createElement('style')
+      style.id = `theme-${name}`
+      style.innerHTML = cssStr
+      document.head.appendChild(style)
     }
-    const cssStr = getCSS(theme, name)
-    style = document.createElement('style')
-    style.id = `theme-${name}`
-    style.innerHTML = cssStr
-    document.head.appendChild(style)
-  }
+  }, [name, theme])
 }
 
 export function getFullThemeData (theme: InputTheme): ThemeData {

@@ -1,5 +1,4 @@
-import './Modal.css'
-import { type ReactNode, useCallback, useRef, useState } from 'react'
+import { type ReactNode, useCallback, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useOnClickOutside } from '../../hooks'
 import { type BaseProps } from '../../utils/type'
@@ -27,13 +26,8 @@ export function Modal ({
   hide = () => {},
 }: ModalProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [shakeing, setShakeing] = useState(false)
   const onHide = useCallback(() => {
     if (preventClickOutside) {
-      setShakeing(true)
-      setTimeout(() => {
-        setShakeing(false)
-      }, 500)
       return
     }
     if (setShow) {
@@ -54,15 +48,15 @@ export function Modal ({
             { background && (
               <motion.div
                 animate={{ opacity: 1 }}
-                className={classNames('r-modal-bg', { 'r-modal-b-blur': backgroundBlur })}
+                className={classNames('fixed inset-0 bg-black bg-opacity-25', { 'backdrop-blur': backgroundBlur })}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
                 onClick={onHide}
               />
             ) }
-            <div className={classNames('r-modal-panel-wrapper', { 'r-shake': shakeing })}>
-              <div className="r-modal-panel">
+            <div className={classNames('fixed bottom-2 left-2 right-2 sm:inset-0 overflow-y-auto')}>
+              <div className="flex min-h-full items-center justify-center children:w-full sm:children:w-auto">
                 <motion.div
                   key="modal"
                   ref={ref}

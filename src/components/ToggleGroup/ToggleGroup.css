@@ -1,7 +1,0 @@
-.r-toggle-group-wrapper {
-  @apply p-1 border rounded-lg relative border-border-2;
-}
-
-.r-toggle-group-item {
-  @apply px-2 py-1 rounded cursor-pointer min-w-7;
-}

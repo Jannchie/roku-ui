@@ -59,7 +59,7 @@ export const DemoNoBG = ({ name, prose = false }: {
               fontFamily: 'monospace',
               fontSize: 12,
               background: '#1e1e1e',
-              borderRadius: '1rem',
+              borderRadius: '.5rem',
               zIndex: 0,
             }}
             tabIndex={-1}

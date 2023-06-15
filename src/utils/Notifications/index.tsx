@@ -1,4 +1,3 @@
-import './style.css'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   type ReactNode, useCallback, useEffect, useRef, useState,
@@ -264,15 +263,20 @@ export function Notifications ({
     <div
       key="r-notification"
       className={classNames(
-        'r-notification',
-        `r-${justify}`,
-        `r-${align}`,
+        'fixed z-10 md:w-40ch w-full p-2',
+        {
+          'justify-center left-1/2 right-auto -translate-x-1/2': justify === 'center',
+          'left-0': justify === 'left',
+          'right-0': justify === 'right',
+          'top-0': align === 'top',
+          'bottom-0': align === 'bottom',
+        },
         className,
       )}
     >
       <div
         ref={noticesWrapper}
-        className={classNames('r-notices-wrapper', {
+        className={classNames('flex gap-2 h-0', {
           'flex-col': align === 'top',
           'flex-col-reverse': align === 'bottom',
         })}

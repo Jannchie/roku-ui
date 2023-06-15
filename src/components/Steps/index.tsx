@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { createContext, type HTMLAttributes, type ReactElement, type ReactNode, useContext } from 'react'
-import './Steps.css'
 type StepItemProps = {
   index: number
   children?: ReactNode
@@ -43,7 +42,7 @@ function Container ({
     <ctx.Provider value={{ current }}>
       <ul
         {...props}
-        className="r-step-container flex gap-2 justify-between items-stretch"
+        className="flex gap-2 justify-between items-stretch"
       >
         { children }
       </ul>

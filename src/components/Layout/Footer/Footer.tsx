@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { type HTMLAttributes } from 'react'
-import './Footer.css'
 
 export function Footer ({
   children,
@@ -9,7 +8,7 @@ export function Footer ({
   return (
     <footer
       {...others}
-      className={classNames('r-footer-wrapper border-b-2', others.className)}
+      className={classNames('flex text-sm w-full border-t bg-background border-background-2 px-4 py-1 items-center justify-between border-b-2', others.className)}
     >
       { children }
     </footer>

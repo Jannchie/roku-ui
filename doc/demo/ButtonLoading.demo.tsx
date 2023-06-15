@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Btn, type Color } from '../../src'
+import { Btn, Icon, type Color } from '../../src'
+import { TablerCheck } from '@roku-ui/icons-tabler'
 
 export default function BtnLoadingDemo () {
   const [loading, setLoading] = useState(true)
@@ -10,7 +11,6 @@ export default function BtnLoadingDemo () {
         color={color}
         loading={loading}
         size="sm"
-        style={{ width: 128 }}
         onClick={() => {
           setColor((val) => (val === 'primary' ? 'success' : 'primary'))
           setLoading((val) => !val)
@@ -26,7 +26,7 @@ export default function BtnLoadingDemo () {
           setLoading((val) => !val)
         }}
       >
-        Loading Button Small
+        Small
       </Btn>
       <Btn
         color="info"
@@ -36,7 +36,7 @@ export default function BtnLoadingDemo () {
           setLoading((val) => !val)
         }}
       >
-        Loading Button Medium
+        Medium
       </Btn>
       <Btn
         color="secondary"
@@ -46,7 +46,7 @@ export default function BtnLoadingDemo () {
           setLoading((val) => !val)
         }}
       >
-        Loading Button Large
+        Large
       </Btn>
       <Btn
         color="danger"
@@ -56,7 +56,7 @@ export default function BtnLoadingDemo () {
           setLoading((val) => !val)
         }}
       >
-        Loading Button Large
+        Large
       </Btn>
       <Btn
         icon
@@ -67,7 +67,9 @@ export default function BtnLoadingDemo () {
           setLoading((val) => !val)
         }}
       >
-        <span className="material-symbols-rounded">check_circle</span>
+        <Icon>
+          <TablerCheck color="background"/>
+        </Icon>
       </Btn>
     </div>
   )

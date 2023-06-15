@@ -42,7 +42,7 @@ function roundedClassName (rounded: Rounded) {
   }
 }
 
-export type IconVariant = 'default' | 'fill' | 'text'
+export type IconVariant = 'default' | 'fill' | 'text' | 'dual'
 
 function variantClassName (variant?: IconVariant, color: Color = 'frontground') {
   switch (variant) {
@@ -50,14 +50,16 @@ function variantClassName (variant?: IconVariant, color: Color = 'frontground') 
       return `bg-${color}-2 text-background-2`
     case 'text':
       return `text-${color}-2`
-    default:
+    case 'dual':
       return `bg-${color}-2/25 text-${color}-2`
+    default:
+      return `text-${color}-2`
   }
 }
 
 export function Icon ({
-  variant,
-  color = 'frontground',
+  variant = 'text',
+  color,
   rounded = defaults.rounded,
   size = 'base',
   children,
@@ -69,6 +71,11 @@ export function Icon ({
   rounded?: Rounded
   size?: Size
 } & HTMLAttributes<HTMLElement>) {
+  if (variant === 'text' && !color) {
+    color = 'frontground'
+  } else if (!color) {
+    color = 'frontground'
+  }
   return (
     <i
       {...others}

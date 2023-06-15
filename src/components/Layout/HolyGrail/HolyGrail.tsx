@@ -1,5 +1,4 @@
 import { type ReactNode } from 'react'
-import './HolyGrail.css'
 
 export function HolyGrail (args: {
   style?: React.CSSProperties
@@ -17,15 +16,15 @@ export function HolyGrail (args: {
 }) {
   return (
     <div
-      className="holy-grail-wrapper"
+      className="flex"
       style={args.style}
     >
       { args.outerLeft && (args.outerLeft) }
-      <div className="holy-grail-main-wrapper">
+      <div className="flex-grow relative flex-col flex h-full;">
         { args.header && (args.header) }
-        <main className="holy-grail-main">
+        <main className="flex-grow flex items-start">
           { args.innerLeft && (args.innerLeft) }
-          <div className="holy-grail-content">
+          <div className="flex-grow h-full">
             { args.main }
           </div>
           { args.innerRight && (args.innerRight) }

@@ -1,7 +1,0 @@
-.r-result-desc {
-  @apply text-frontground-3 text-xs;
-}
-
-.r-result-wrapper {
-  @apply flex flex-col items-center gap-2;
-}

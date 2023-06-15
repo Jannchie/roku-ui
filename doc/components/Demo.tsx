@@ -54,7 +54,7 @@ export const Demo = ({ name, prose = false }: {
           borderTopRightRadius: 0,
           overflowX: 'auto',
           fontSize: 12,
-          borderRadius: '0 0 1rem 1rem',
+          borderRadius: '0 0 0.5rem 0.5rem',
           zIndex: 0,
         }}
         tabIndex={-1}

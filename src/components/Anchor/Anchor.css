@@ -1,7 +1,0 @@
-.r-anchor {
-  @apply inline-flex items-center gap-1 relative underline-offset-2 cursor-default;
-}
-
-.r-anchor-clickable {
-  @apply cursor-pointer underline;
-}

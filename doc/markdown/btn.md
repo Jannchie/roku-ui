@@ -30,13 +30,6 @@
 
 <Demo name="ButtonLoading" />
 
-## 辉光按钮
-
-需要注意的是，辉光按钮必须要保持背景透明。否则无法显示辉光效果。因此，我们不能把它放置在 `Panel` 组件之上。
-
-<DemoNoBG name="ButtonBlur" />
-
-
 ## 按钮组
 
 <Demo name="ButtonGroup" />

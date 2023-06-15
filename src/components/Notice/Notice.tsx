@@ -3,7 +3,6 @@ import { type HTMLAttributes, type ReactNode, useEffect } from 'react'
 import {
   Btn, type Color, Panel, type PanelProps, Progress,
 } from '../..'
-import './Notice.css'
 import { TablerX } from '@roku-ui/icons-tabler'
 
 export interface NoticeProps {
@@ -57,7 +56,7 @@ export function Notice ({
   ...others
 }: NoticeProps & PanelProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>) {
   const wrapperCls = classNames(
-    'r-notice-wrapper',
+    'bg-background-2 text-sm',
     { 'shadow-lg shadow-black/5': shadow },
     'overflow-hidden',
     { dense },
@@ -66,7 +65,7 @@ export function Notice ({
     wrapperClass,
   )
   const mainTextColorCls = `text-${color}-2`
-  const descCls = classNames('r-notice-desc', descClass)
+  const descCls = classNames('text-frontground-2', descClass)
   const titleCls = classNames(
     'r-notice-title',
     mainTextColorCls,
@@ -81,13 +80,13 @@ export function Notice ({
       }, existMS)
     }
   })
-  const iconCls = classNames('r-notice-icon', mainTextColorCls)
+  const iconCls = classNames('self-center mr-4 leading-none', mainTextColorCls)
   return (
     <Panel
       {...others}
       className={wrapperCls}
     >
-      <div className={classNames(dense ? 'p-2' : 'p-4')}>
+      <div className={classNames(dense ? 'p-2 pb-0' : 'p-4 pb-2')}>
         <div className="flex justify-between">
           <div className="flex items-center">
             { icon &&
@@ -110,22 +109,24 @@ export function Notice ({
           ) }
         </div>
       </div>
-      { progress && progressValue === undefined
-        ? (
-          <Progress
-            blur={blur}
-            durationMS={existMS}
-            color={color}
-          />
-        )
-        : (
-          <Progress
-            blur={blur}
-            value={progressValue}
-            total={progressTotal}
-            color={color}
-          />
-        ) }
+      <div className="p-2">
+        { progress && progressValue === undefined
+          ? (
+            <Progress
+              blur={blur}
+              durationMS={existMS}
+              color={color}
+            />
+          )
+          : (
+            <Progress
+              blur={blur}
+              value={progressValue}
+              total={progressTotal}
+              color={color}
+            />
+          ) }
+      </div>
     </Panel>
   )
 }

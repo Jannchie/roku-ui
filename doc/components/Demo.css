@@ -1,6 +1,6 @@
 .comp-wrapper {
   padding: 16px;
-  border-radius: 1rem 1rem 0rem 0rem;
+  border-radius: .5rem .5rem 0rem 0rem;
   background-color: transparent;
   background-size: 4px 4px;
   background-image: linear-gradient(
@@ -17,7 +17,7 @@
 
 .comp-wrapper-2 {
   padding: 16px;
-  border-radius: 1rem 1rem 0rem 0rem;
+  border-radius: .5rem .5rem 0rem 0rem;
   background-color: transparent;
   background-size: 0.5rem 0.5rem;
   background: conic-gradient(

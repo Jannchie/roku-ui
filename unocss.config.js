@@ -54,5 +54,8 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
   ],
+  rules: [
+    ['bg-gradient', { background: 'var(--r-bg-gradient)' }],
+  ],
   safelist: saveList,
 })

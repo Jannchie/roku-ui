@@ -1,4 +1,3 @@
-import './select.css'
 import { type ReactNode, useState, useRef, type HTMLAttributes, useCallback } from 'react'
 import classNames from 'classnames'
 import { type Color, TextField, useOnClickOutside, List, Panel, Icon } from '../..'
@@ -24,7 +23,7 @@ export function Select<T> ({
   className,
   color = 'primary',
   notFoundContent = <div className={classNames(
-    'r-combobox-item r-combobox-text',
+    'relative cursor-default select-none block w-full text-left cursor-pointer cursor-auto',
     'bg-background-2',
   )}
   >
@@ -74,7 +73,7 @@ export function Select<T> ({
     <div
       ref={wrapper}
       id={id}
-      className={classNames('r-combobox', className)}
+      className={classNames('relative inline-block h-min min-w-32', className)}
       {...others}
     >
       <TextField
@@ -82,8 +81,8 @@ export function Select<T> ({
         readOnly={!autocomplete}
         value={query}
         type="search"
-        className={classNames('r-combobox-input', {
-          'r-combobox-no-filter': !autocomplete,
+        className={classNames('w-full text-left p-0', {
+          'children:cursor-pointer': !autocomplete,
         })}
         suffix={!autocomplete && <Icon
           style={{
@@ -170,7 +169,7 @@ export function Select<T> ({
       />
       {
         (
-          <Panel className={classNames('r-combobox-options', { hidden: !show })}>
+          <Panel className={classNames('z-10 absolute mt-1 max-h-60 w-full overflow-auto rounded-md text-base focus: outline-none sm:text-sm z-1 border border-border-2', { hidden: !show })}>
             <List>
               { filteredData.length === 0 && query !== ''
                 ? (
@@ -238,10 +237,6 @@ function OptionComponent<T> ({
     <List.Item
       {...props}
       ref={self}
-      className={classNames(
-        'r-combobox-item',
-        { 'r-combobox-focused': focus },
-      )}
       hover={focus}
       onClick={(event) => {
         event.preventDefault()

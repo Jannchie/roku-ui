@@ -1,4 +1,3 @@
-import './Popover.css'
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { type ReactNode, useState } from 'react'
@@ -15,13 +14,13 @@ function Content ({
 }) {
   return (
     <div className="z-50">
-      <div className="r-popover-content">
+      <div className="px-2 py-1 rounded whitespace-nowrap bg-background-2">
         { children }
       </div>
       <svg
-        className={classNames('r-popover-indicator', {
-          'r-popover-indicator-left': left,
-          'r-popover-indicator-right': right,
+        className={classNames('absolute left-1/2 pointer-events-none translate-x-[-5px] fill-background-2', {
+          'left-1/4': left,
+          'right-1/4': right,
         })}
         width={10}
         height={5}
@@ -53,7 +52,7 @@ export function PopoverRoot ({
       <AnimatePresence>
         { show && (
           <motion.div
-            className={classNames('r-popover-content-wrapper', other.className)}
+            className={classNames('absolute bottom-full mb-4 left-1/2 translate-x-[-50%]', other.className)}
             style={{
               ...other.style,
             }}
@@ -67,8 +66,8 @@ export function PopoverRoot ({
         ) }
       </AnimatePresence>
       <span className={classNames(
-        'r-popover-wrapper',
-        { 'r-popover-main-underline': underline },
+        'relative inline-block',
+        { 'underline underline-offset-2 decoration-dotted decoration-2': underline },
       )}
       >
         { children }

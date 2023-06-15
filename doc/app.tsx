@@ -4,11 +4,12 @@ import {
 import { NavLink, useLocation, useOutlet } from 'react-router-dom'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import {
-  Appbar, Btn, Footer, HolyGrail, Icon, List, MaterialSymbolIcon, Panel, Tag, ThemeToggle, useOnClickOutside,
+  Appbar, Btn, Footer, HolyGrail, Icon, List, Panel, Tag, ThemeToggle, useOnClickOutside,
 } from '../src'
 import useWindowSize, { type WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
 import { router } from './router'
+import { TablerMenu } from '@roku-ui/icons-tabler'
 
 function getNavItem (icon: ReactNode, title: string) {
   return function ActivableBtn ({ isActive }: { isActive: boolean }) {
@@ -52,9 +53,10 @@ function DocLayout () {
               setShowMenu(!showMenu)
             }}
           >
-            <MaterialSymbolIcon
-              icon="menu"
-            />
+            <Icon>
+              <TablerMenu/>
+            </Icon>
+
           </Btn>
         )
         : null}

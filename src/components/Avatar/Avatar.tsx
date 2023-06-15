@@ -1,4 +1,3 @@
-import './Avatar.css'
 import {
   type MouseEvent, type KeyboardEvent, type ReactNode, type ImgHTMLAttributes, type HTMLAttributes,
 } from 'react'
@@ -21,7 +20,7 @@ export function AvatarRoot ({
   size = 'md',
   onClick,
   square,
-  color = 'primary',
+  color = 'background',
   ...others
 }: AvatarProps) {
   let ringColor = color
@@ -39,11 +38,21 @@ export function AvatarRoot ({
     }
   }
   const avatarClass = classNames(
-    'r-avatar',
+    'relative overflow-hidden text-sm justify-center items-center flex',
     { [`r-avatar-${size}`]: typeof size === 'string' },
-    { 'r-avatar-clickable': onClick !== undefined },
-    { 'r-avatar-outline': ring },
-    `r-avatar-${square ? 'square' : 'circle'}`,
+    {
+      'w-4 h-4': size === 'xs',
+      'w-6 h-6': size === 'sm',
+      'w-8 h-8': size === 'md',
+      'w-12 h-12': size === 'lg',
+      'w-16 h-16': size === 'xl',
+    },
+    {
+      'rounded-full': !square,
+      'rounded-xl': square,
+    },
+    { 'cursor-pointer': onClick !== undefined },
+    { 'ring-offset-2 ring-offset-background-2 ring-2': ring },
     className,
     bgClass,
     ringClass,
@@ -89,7 +98,7 @@ export function AvatarRoot ({
 
 const Group = ({ children, className, ...others }: HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={classNames('r-avatar-group', className)}
+    className={classNames('flex flex-row flex-wrap justify-center -space-x-3 children:ring-4 children:ring-background-2', className)}
     {...others}
   >
     { children }

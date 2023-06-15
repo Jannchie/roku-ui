@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import { Icon, type Color } from '../..'
-import { Typography } from '../Typography'
-import './Result.css'
+import { T } from '../Typography'
 import { type ReactNode } from 'react'
 import { type Size } from '../../utils/type'
 
@@ -15,7 +14,7 @@ export function Result ({
   description?: string
 }) {
   return (
-    <div className={classNames('r-result-wrapper', {
+    <div className={classNames('flex flex-col items-center gap-2', {
       [`text-${color}-2`]: true,
     })}
     >
@@ -26,10 +25,10 @@ export function Result ({
       >
         { icon }
       </Icon>
-      <Typography.H4 className={classNames('r-result-title')}>
+      <T.H4>
         { title }
-      </Typography.H4>
-      <div className={classNames('r-result-desc')}>
+      </T.H4>
+      <div className={classNames('text-frontground-3 text-xs')}>
         { description }
       </div>
     </div>

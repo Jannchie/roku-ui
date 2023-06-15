@@ -7,7 +7,7 @@ export default function Demo () {
   const colorList: Color[] = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']
   const sizeList: Size[] = ['xs', 'sm', 'base', 'md', 'lg', 'xl']
   const roundedList: Rounded[] = ['xs', 'sm', 'base', 'md', 'lg', 'xl', 'full']
-  const variantList: IconVariant[] = ['default', 'fill', 'text']
+  const variantList: IconVariant[] = ['default', 'fill', 'text', 'dual']
 
   const [color, setColor] = useState<Color>('default')
   const [size, setSize] = useState<Size>('base')

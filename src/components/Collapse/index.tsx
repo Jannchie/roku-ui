@@ -1,18 +1,21 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, type ReactNode, useRef, useState, useEffect } from 'react'
-import { MaterialSymbolIcon } from '../MaterialSymbolIcon'
 import { type PanelProps } from '../Panel'
-import './Collapse.css'
+import { TablerChevronDown } from '@roku-ui/icons-tabler'
+import { Icon } from '../Icon'
 export function Collapse ({
   children,
   className,
   header,
   expanded,
   setExpanded,
-  icon = <MaterialSymbolIcon
-    size="lg"
-    icon="expand_more"
-  />,
+  icon = (
+    <Icon
+      size={12}
+    >
+      <TablerChevronDown/>
+    </Icon>
+  ),
   ...props
 }: {
   header?: ReactNode
@@ -39,30 +42,27 @@ export function Collapse ({
   }, [])
   return (
     <button
-      className={classNames(className, 'r-collapse-wrapper')}
+      className={classNames(className, 'block')}
       onClick={() => {
         if (setE) setE(!e)
       }}
       {...props}
     >
-      <div className={classNames('r-collapse-title')}>
-        { icon && (
-          <div
-            className="transition-transform"
-            style={{
-              transform: `rotate(${e ? 360 : 270}deg)`,
-            }}
-          >
-            { icon }
-          </div>
-        ) }
+      <div className={classNames('cursor-pointer text-lg flex items-center gap-2 relative')}>
+        <div
+          className="transition-transform"
+          style={{
+            transform: `rotate(${e ? 360 : 270}deg)`,
+          }}
+        >
+          { icon }
+        </div>
         { header }
       </div>
       <div
         ref={compRef}
         className={classNames({
-          'r-collapse-close': !e,
-          'r-collapse-content': true,
+          'transition-height relative overflow-hidden will-change-height': true,
         })}
         style={{ height: !e ? 0 : h }}
       >

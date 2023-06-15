@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Btn, DynamicIsland, MaterialSymbolIcon } from '../../src'
+import { Btn, DynamicIsland } from '../../src'
 
 export default function Demo () {
   const [state, setState] = useState(0)
@@ -48,12 +48,6 @@ export default function Demo () {
             ? ''
             : (
               <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-                <MaterialSymbolIcon
-                  style={{
-                    color: 'red',
-                  }}
-                  icon="battery_very_low"
-                />
                 <div style={{
                   color: '#666',
                 }}

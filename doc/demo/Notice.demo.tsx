@@ -10,6 +10,7 @@ export default function Demo () {
         !close && (
           <Notice
             progress
+            blur
             progressValue={47}
             close={() => {
               onClose(true)

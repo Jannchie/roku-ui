@@ -4,9 +4,6 @@ import {
   createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo, forwardRef, useRef,
 } from 'react'
 import { type Color } from '../../utils/colors'
-// import { Loading } from '../../icons/Loading'
-import './Btn.css'
-import { Typography } from '../Typography'
 import { SvgSpinners90RingWithBg } from '@roku-ui/icons-svg-spinners'
 import { useColorHex, useHover, useThemeData } from '../../hooks'
 import { Flex, Icon, calculateContrast } from '../..'
@@ -24,7 +21,7 @@ export type ButtonProps = {
   light?: boolean
   label?: string
   size?: 'xs' | 'sm' | 'md' | 'lg'
-  style?: CSSProperties & { '--r-btn-glory-color'?: string }
+  style?: CSSProperties & { '--r-bg-gradient'?: string }
   rounded?: boolean
   color?: Color
   hoverColor?: Color
@@ -41,7 +38,6 @@ export type ButtonProps = {
   left?: boolean
   value?: any
   right?: boolean
-  gloryColor?: string
 } & HTMLAttributes<HTMLButtonElement>
 
 interface BtnGroupCtxType {
@@ -97,7 +93,6 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     contrast = false,
     active = 'translate',
     hoverColor,
-    gloryColor,
     border = false,
     dash = false,
     loading = false,
@@ -117,10 +112,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     right,
     ...others
   }, ref) => {
-  // const isDark = isDarkColor(color)
     const themeData = useThemeData()
-    // console.log(themeData)
-    // console.log(isDark, color)
     const ctx = useContext(BtnGroupCtx)
     const fgColor = 'frontground'
     if (!loadingIcon) {
@@ -131,9 +123,6 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     if (value && value === ctx.value) {
       color = ctx.activeColor
     }
-    if (gloryColor) {
-      style = { ...style, '--r-btn-glory-color': gloryColor }
-    }
     const trueBtnVariant = getTrueBtnVariant({ fill, text, variant, contrast, light })
     const colorBG = useColorHex(color, 2)
     const hColor = (trueBtnVariant !== 'fill' && color === 'default' && !hoverColor) ? 'frontground' : hoverColor ?? color
@@ -142,35 +131,41 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     const colorBGBase = useColorHex(themeData.color.background.base, 1)
     const colorFG = calculateContrast(colorBG, colorFGBase) > calculateContrast(colorBG, colorBGBase) ? 'frontground' : 'background'
     const colorConstractFG = calculateContrast(hTrueColor, colorFGBase) > calculateContrast(hTrueColor, colorBGBase) ? 'frontground' : 'background'
+    const textSizeClass = {
+      'text-xs !leading-none': size === 'xs',
+      'p-2 text-xs !leading-none': size === 'sm',
+      'p-2 text-xs': size === 'md',
+      'p-2 text-base': size === 'lg',
+    }
     const btnClass = classNames(
-      'r-btn',
+      'overflow-visible relative border min-w-max h-fit text-sm disabled:grayscale disabled:contrast-50 disabled:pointer-events-none rounded',
+      { border },
+      { 'min-w-24': !icon },
       {
         'active:translate-y-[1px]': active === 'translate',
         'active:scale-[0.99]': active === 'scale',
       },
-      `r-btn-${size}`,
-      { [`r-btn-filled bg-${color}-2 text-${colorFG}-2`]: trueBtnVariant === 'fill' },
+      textSizeClass,
+      { [`bg-${color}-2 text-${colorFG}-2`]: trueBtnVariant === 'fill' },
       { 'bg-background-2 border-border-2': trueBtnVariant === 'default' },
       { [`border-${color}-1`]: border && trueBtnVariant !== 'default' },
       { [`text-${fgColor}-2 hover:text-${hColor}-1`]: trueBtnVariant === 'text' },
       { [`hover:bg-${hColor}-2 hover:text-${colorConstractFG}-2`]: trueBtnVariant === 'contrast' },
-      { 'r-btn-icon': icon },
-      { 'r-btn-icon-border': icon && border },
-      { 'r-btn-rounded': rounded },
-      { 'r-btn-dash': dash },
-      { 'r-btn-blur': gloryColor },
-      { [`outline-${color}-2 r-btn-outline`]: outline },
+      { 'leading-[0]': icon },
+      { 'rounded-full': rounded },
+      { 'border-dashed': dash },
+      { [`outline-${color}-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-2`]: outline },
       { 'active:scale-[0.98]': scale },
       { 'border-transparent': !border },
       className,
     )
     const body = children ?? label
     const loadingFinalClass = classNames({
-      'r-loading-xs': size === 'xs',
-      'r-loading-sm': size === 'sm',
-      'r-loading-md': size === 'md',
-      'r-loading-lg': size === 'lg',
-    }, 'r-btn-leading-icon')
+      'h-3 w-3': size === 'xs',
+      'h-4 w-4': size === 'sm',
+      'h-5 w-5': size === 'md',
+      'h-6 w-6': size === 'lg',
+    }, 'leading-[0]')
     const clickCallback = onClick ?? (() => {
       if (value) {
         if (ctx.value !== value) {
@@ -205,9 +200,11 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
           {...others}
         >
           <div
-            className={loadingFinalClass}
+            className={classNames(loadingFinalClass)}
           >
-            { loading ? loadingIcon : children }
+            { loading
+              ? loadingIcon
+              : children }
           </div>
         </Element>
       )
@@ -223,10 +220,10 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         {...others}
       >
         <div className={classNames(
-          'r-btn-main',
-          { 'r-btn-left': left },
-          { 'r-btn-right': right },
-          { 'r-btn-center': !left && !right },
+          'flex items-center relative',
+          { 'justify-left': left },
+          { 'justify-right': right },
+          { 'justify-center': !left && !right },
         )}
         >
           { leadingIcon
@@ -270,9 +267,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
                 ) }
               </AnimatePresence>
             ) }
-          <Typography.Button>
-            { body }
-          </Typography.Button>
+          { body }
         </div>
       </Element>
     )
@@ -303,7 +298,7 @@ function Group ({
           className={classNames(
             className,
             `border-${activeColor}-2`,
-            'r-btn-group',
+            'flex border rounded-lg transform overflow-hidden',
           )}
         >
           { children }
@@ -317,13 +312,13 @@ function Counter ({
   value,
   size = 'md',
   color = 'primary',
-  icon = 'check_circle',
+  icon,
   fill = false,
   active = false,
   ...props
 }: {
   value: number
-  icon: string | ReactNode
+  icon: ReactNode
   color?: Color
   active?: boolean
   fill?: boolean

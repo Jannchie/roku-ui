@@ -1,7 +1,7 @@
-import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
 import { type Color, Panel } from '../..'
 import { type BaseProps } from '../../utils/type'
+import classNames from 'classnames'
 
 type CardProps = {
   title?: ReactNode
@@ -29,13 +29,13 @@ export function Card ({
   backgroundColor = 'background',
   ...other
 }: CardProps) {
-  const cardClass = classnames(
-    'r-card',
+  const cardClass = classNames(
+    'flex flex-col gap-2 rounded-lg',
     {
       'divide-y': divider,
-      'r-card-dense': dense,
-      'r-card-shadow': shadow,
-      'r-card-border': border,
+      'gap-1 rounded': dense,
+      'shadow-xl': shadow,
+      border,
     },
     `bg-${backgroundColor}-2`,
     className,
@@ -49,13 +49,29 @@ export function Card ({
       {...other}
     >
       { title && (
-        <div className="r-card-title">
-          <div className="title-line">{ title }</div>
-          <div className="subtitle-line">{ subtitle }</div>
+        <div className={classNames({
+          'p-4 pb-0 text-base': dense,
+          'p-6 pb-0 text-base': !dense,
+        })}
+        >
+          <div className="font-bold">{ title }</div>
+          <div>{ subtitle }</div>
         </div>
       ) }
-      { body && <div className="r-card-body">{ body }</div> }
-      { actions && <div className="r-card-actions">{ actions }</div> }
+      { body && <div className={classNames({
+        'p-4 text-sm': dense,
+        'p-6 text-sm': !dense,
+      })}
+      >
+        { body }
+      </div> }
+      { actions && <div className={classNames('flex gap-2 justify-end', {
+        'p-6 pt-0': !dense,
+        'p-4 pt-0 py-1 text-sm': dense,
+      })}
+      >
+        { actions }
+      </div> }
     </Panel>
   )
 }

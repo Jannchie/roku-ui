@@ -42,12 +42,6 @@
 
 <Demo name="TagClosable" />
 
-## 标签组
-
-一个没啥用的功能，就是把标签组合在一起。
-
-<Demo name="TagGroup" />
-
 ## 自定义样式
 
 你也可以通过 `style` 和 `className` 等属性进行定制。

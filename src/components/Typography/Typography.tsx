@@ -1,13 +1,12 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
-import './Typography.css'
 
 function H1 ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h1
-      className={classNames('r-typography-h1', className)}
+      className={classNames(className, 'text-4xl font-bold')}
       {...props}
     >
       { children }
@@ -20,7 +19,7 @@ function H2 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h2
-      className={classNames('r-typography-h2', className)}
+      className={classNames(className, 'text-3xl font-bold')}
       {...props}
     >
       { children }
@@ -34,7 +33,7 @@ function H3 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={classNames('r-typography-h3', className)}
+      className={classNames(className, 'text-2xl font-bold')}
       {...props}
     >
       { children }
@@ -47,7 +46,7 @@ function H4 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h4
-      className={classNames('r-typography-h4', className)}
+      className={classNames(className, 'text-xl font-bold')}
       {...props}
     >
       { children }
@@ -60,7 +59,7 @@ function H5 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h5
-      className={classNames('r-typography-h5', className)}
+      className={classNames(className, 'text-lg font-bold')}
       {...props}
     >
       { children }
@@ -74,7 +73,7 @@ function H6 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h6
-      className={classNames('r-typography-h6', className)}
+      className={classNames(className, 'text-base font-bold')}
       {...props}
     >
       { children }
@@ -87,7 +86,7 @@ function P ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={classNames('r-typography-p', className)}
+      className={classNames(className, 'text-base')}
       {...props}
     >
       { children }
@@ -99,7 +98,7 @@ function Caption ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
-      className={classNames('r-typography-caption', className)}
+      className={classNames(className, 'text-sm')}
       {...props}
     >
       { children }
@@ -111,7 +110,7 @@ function Button ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
-      className={classNames('r-typography-btn', className)}
+      className={classNames(className, 'text-base font-bold')}
       {...props}
     >
       { children }
@@ -119,6 +118,6 @@ function Button ({ children, className, ...props }: {
   )
 }
 
-export const Typography = {
+export const T = {
   H1, H2, H3, H4, H5, H6, P, Caption, Button,
 }

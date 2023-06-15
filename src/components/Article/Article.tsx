@@ -1,11 +1,10 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
-import './Article.css'
 
 export function Article ({ children, className, ...others }: { children: ReactNode } & HTMLAttributes<HTMLDivElement>) {
   return (
     <article
-      className={classNames('r-article prose', className)}
+      className={classNames('m-auto prose', className)}
       {...others}
     >
       { children }
