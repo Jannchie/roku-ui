@@ -3,7 +3,7 @@
 }
 
 :root {
-  @apply bg-background-3;
+  @apply hsl(var(--r-frontground-3));
 }
 
 ::-moz-selection {

@@ -1,10 +1,10 @@
 import classNames from 'classnames'
 import { type AnimationProps, motion } from 'framer-motion'
 import { type BaseProps } from '../../utils/type'
-import { type Color, isColor } from '../..'
+import { useColorHex } from '../../hooks'
 
 type ProgressProps = {
-  color?: Color | string
+  color?: string
   total?: number
   value?: number
   durationMS?: number
@@ -33,10 +33,7 @@ export function Progress ({
   className,
   style,
 }: ProgressProps) {
-  let bgCls: string | undefined
-  if (isColor(color)) {
-    bgCls = `bg-${color}-2`
-  }
+  const bgCls = classNames('bg-[var(--r-progress-color)]', 'rounded-lg')
   const wrapperCls = classNames(className, 'h-1 relative')
   const percent = infinite ? 25 : Math.min((value / total) * 100, 100)
   let progressMain
@@ -67,7 +64,12 @@ export function Progress ({
     <div
       className={wrapperCls}
       id={id}
-      style={{ ...style }}
+      style={{
+        ...style,
+        ...{
+          '--r-progress-color': useColorHex(color),
+        },
+      }}
     >
       { progressMain }
     </div>

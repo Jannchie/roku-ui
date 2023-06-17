@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, type HTMLAttributes, useContext, useMemo } from 'react'
 import { type Color } from '../../utils/colors'
+import { useColorHex } from '../../hooks'
 
 const RadioCtx = createContext<{ val: any, setValue: (value: any) => void }>({ val: '', setValue: () => { } })
 
@@ -10,17 +11,26 @@ function RadioRoot ({
 }: { value: any, label: string, color?: Color } & HTMLAttributes<HTMLLabelElement>) {
   const { val, setValue } = useContext(RadioCtx)
   const checked = val === value
+  const mainColor = useColorHex(color, 2)
+  const mainHoverColor = useColorHex(color, 1)
   return (
     <label
+      style={{
+        ...others.style,
+        ...{
+          '--r-main-color': mainColor,
+          '--r-main-hover-color': mainHoverColor,
+        },
+      }}
       htmlFor={id}
-      className={classNames('py-1 border border-transparent cursor-pointer flex items-center', `text-${color}-2 hover:text-${color}-1`, className)}
+      className={classNames('py-1 border border-transparent cursor-pointer flex items-center text-[var(--r-main-color)] hover:text-[var(--r-main-hover-color)]', className)}
       {...others}
     >
       <input
         id={id}
         type="radio"
         checked={checked}
-        className={classNames('w-4 h-4 mr-2 relative cursor-pointer rounded-full appearance-none border', `border-${color}-2 hover:border-${color}-1`)}
+        className={classNames('w-4 h-4 mr-2 relative cursor-pointer rounded-full appearance-none border border-[var(--r-main-color)] hover:border-[var(--r-main-hover-color)]')}
         onChange={() => { setValue(value) }}
       />
       <AnimatePresence>
@@ -29,7 +39,7 @@ function RadioRoot ({
             initial={{ scale: 0 }}
             animate={{ scale: 0.25 }}
             exit={{ scale: 0 }}
-            className={classNames('absolute w-4 h-4 flex justify-center items-center rounded-full', `hover:bg-${color}-1 bg-${color}-2`)}
+            className={classNames('absolute w-4 h-4 flex justify-center items-center rounded-full hover:bg-[var(--r-main-hover-color)] bg-[var(--r-main-color)]')}
           />
         ) }
       </AnimatePresence>

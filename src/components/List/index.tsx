@@ -2,6 +2,7 @@ import { Flex } from '../Layout/Flex'
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react'
 import classNames from 'classnames'
 import { type Color } from '../../utils/colors'
+import { getOpacityColor, useColorHex } from '../../hooks'
 
 export function ListBase ({ className, children, ...others }: { children?: ReactNode } & HTMLAttributes<HTMLDivElement>) {
   return (
@@ -32,7 +33,17 @@ const ListItem = forwardRef((
   return (
     <Flex
       ref={ref}
-      className={classNames('p-2 rounded cursor-pointer', className, { [`hover:bg-${color}-2/10`]: typeof hover === 'undefined', 'bg-frontground-2/10': hover })}
+      style={{
+        ...others.style,
+        ...{
+          '--r-color-10': getOpacityColor(useColorHex(color), 0.1),
+          '--r-fg-10': getOpacityColor(useColorHex('frontground'), 0.1),
+        },
+      }}
+      className={classNames('p-2 rounded cursor-pointer', className, {
+        'hover:bg-[var(--r-color-10)]': typeof hover === 'undefined',
+        'bg-[var(--r-fg-10)]': hover,
+      })}
       gap=".5rem"
       align="center"
       {...others}

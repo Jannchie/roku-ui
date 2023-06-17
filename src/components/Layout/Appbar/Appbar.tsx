@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { type FC, type HTMLAttributes, type ReactNode } from 'react'
-import { Icon, type Color } from '../../..'
+import { Icon, type Color, useColorHex, getOpacityColor } from '../../..'
 import { TextField } from '../../TextField'
 import { TablerSearch } from '@roku-ui/icons-tabler'
 
@@ -23,18 +23,28 @@ export const Appbar: FC<AppbarAttributes> = ({
   searchCallback,
   tailing,
   leading,
+  style,
   ...others
 }: AppbarAttributes) => {
+  const colorStyles = {
+    '--r-bg-color': useColorHex('background'),
+    '--r-bg-color-25': getOpacityColor(useColorHex('background'), 0.25),
+    '--r-bg-color-10': getOpacityColor(useColorHex('background'), 0.1),
+    '--r-border-color': useColorHex('border'),
+  }
   return (
     <header
       role="banner"
+      style={{
+        ...style,
+        ...colorStyles,
+      }}
       className={classNames(
         'flex text-sm w-full z-10 px-4 py-1 items-center justify-between',
-        `r-appbar-${varient}`,
-        { 'border-b border-border-2': border },
-        { [`bg-${color}-2`]: varient === 'default' },
-        { [`bg-${color}-2/25`]: varient === 'blur' },
-        { [`bg-${color}-2/10`]: varient === 'pattern' },
+        { 'border-b border-[var(--r-border-color)]': border },
+        { 'bg-[var(--r-bg-color)]': varient === 'default' },
+        { 'bg-[var(--r-bg-color-25)]': varient === 'blur' },
+        { 'bg-[var(--r-bg-color-10)]': varient === 'pattern' },
         others.className,
       )}
       {...others}
@@ -66,7 +76,6 @@ export const Appbar: FC<AppbarAttributes> = ({
         ) }
         { tailing }
       </div>
-
     </header>
   )
 }

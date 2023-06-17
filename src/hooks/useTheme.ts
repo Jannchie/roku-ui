@@ -11,7 +11,8 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
   useRegistTheme('light', defaultLight)
   useRegistTheme('dark', defaultDark)
   const preferred = usePrefersColorScheme()
-  const defaultTheme = useRef('system')
+  const localTheme = localStorage?.getItem(localstorageKey) ?? 'system'
+  const defaultTheme = useRef(localTheme)
   const { theme, setTheme: setThemeValue } = useContext(RokuContext)
   useEffect(() => {
     if (typeof localStorage !== 'undefined') {
@@ -68,12 +69,21 @@ export function useThemeData (name?: string) {
   return getFullThemeData(data)
 }
 
-export function useColorHex (color: string, level: 1 | 2 | 3) {
+export function useColorHex (color: string, level: 1 | 2 | 3 = 2, k = 1) {
   const themeData = useThemeData()
   if (color in themeData.color) {
     if (level === 1) return themeData.color[color].lighter
     if (level === 2) return themeData.color[color].base
     if (level === 3) return themeData.color[color].darker
   }
+  const c = hsl(color)
+  if (level === 1) return c.brighter(k).formatHex()
+  if (level === 3) return c.darker(k).formatHex()
   return hsl(color).formatHex()
+}
+
+export function getOpacityColor (color: string, opacity: number) {
+  const c = hsl(color)
+  c.opacity = opacity
+  return c.formatRgb()
 }

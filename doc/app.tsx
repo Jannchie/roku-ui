@@ -4,7 +4,7 @@ import {
 import { NavLink, useLocation, useOutlet } from 'react-router-dom'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import {
-  Appbar, Btn, Footer, HolyGrail, Icon, List, Panel, Tag, ThemeToggle, useOnClickOutside,
+  Appbar, Btn, Footer, HolyGrail, Icon, List, Panel, Tag, ThemeToggle, useColorHex, useOnClickOutside,
 } from '../src'
 import useWindowSize, { type WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
@@ -158,6 +158,7 @@ function LeftMenu ({
   useOnClickOutside(ref, () => {
     setShowMenu(false)
   })
+  const bgColor = useColorHex('background')
   return size.width > 640
     ? (
       <Panel
@@ -191,6 +192,9 @@ function LeftMenu ({
           width,
           overflowY: 'auto',
           overflowX: 'hidden',
+          ...{
+            '--r-bg-color': bgColor,
+          },
         }}
       >
         { router.filter(d => d.path !== 'test').map((route) => (

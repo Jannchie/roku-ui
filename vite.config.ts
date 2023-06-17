@@ -54,7 +54,7 @@ export default defineConfig(({ command, mode }) => {
               },
             },
             esbuild: {
-              minifyIdentifiers: false,
+              minifyIdentifiers: true,
             },
             build: {
               lib: {

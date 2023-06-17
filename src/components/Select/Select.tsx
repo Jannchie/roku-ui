@@ -24,7 +24,7 @@ export function Select<T> ({
   color = 'primary',
   notFoundContent = <div className={classNames(
     'relative cursor-default select-none block w-full text-left cursor-pointer cursor-auto',
-    'bg-background-2',
+    'bg-[var(--r-bg)]',
   )}
   >
     { 'No results found' }
@@ -55,19 +55,6 @@ export function Select<T> ({
   useOnClickOutside(wrapper, () => {
     setShow(false)
   })
-
-  // useEffect(() => {
-  //   setValue(options.find((d) => trueGetKey(d) === query) ?? options[0])
-  //   if (autocomplete) {
-  //     setFocusIndex(-1)
-  //   }
-  //   if (options.map(trueGetKey).includes(query) && autocomplete) {
-  //     setShow(false)
-  //   } else {
-  //     setShow(true)
-  //   }
-  // }, [autocomplete, options, query, setValue, trueGetKey])
-
   const [focusIndex, setFocusIndex] = useState(-1)
   return (
     <div

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { type HTMLMotionProps, motion, useMotionValue, animate, useTransform } from 'framer-motion'
 import { useEffect } from 'react'
-import { type Color } from '../..'
+import { useColorHex, type Color } from '../..'
 
 type DynamicValueProps = {
   value: number
@@ -21,14 +21,20 @@ export function DynamicValue ({
 }: DynamicValueProps) {
   const count = useMotionValue(value)
   const formated = useTransform(count, format)
+  const colorHex = useColorHex(color)
   useEffect(() => {
     const controls = animate(count, value)
     return controls.stop
   }, [count, value])
   return (
     <motion.span
-      style={style}
-      className={classNames('r-digital', className, `text-${color}`)}
+      style={{
+        ...style,
+        ...{
+          '--r-color': colorHex,
+        },
+      }}
+      className={classNames('r-digital', className, 'text-[var(--r-color)]')}
       {...others}
     >
       { formated }

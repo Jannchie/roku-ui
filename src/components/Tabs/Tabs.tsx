@@ -1,8 +1,8 @@
 import {
-  type ReactNode, useEffect, useRef, useState,
+  type ReactNode, useEffect, useRef, useState, type HTMLAttributes, type FormEventHandler,
 } from 'react'
 import classNames from 'classnames'
-import { type Color, useAutoSetHeight } from '../..'
+import { type Color, useAutoSetHeight, useColorHex } from '../..'
 import { type BaseProps } from '../../utils/type'
 
 // eslint-disable-next-line react/no-unused-prop-types
@@ -20,6 +20,8 @@ function List ({
   type,
   selectedIndex,
   onChange,
+  className,
+  ...props
 }: {
   data: Array<{
     key: ReactNode
@@ -29,14 +31,15 @@ function List ({
   color: Color
   type: 'fill' | 'indicator'
   onChange: (index: number) => void
-}) {
+} & HTMLAttributes<HTMLDivElement>) {
   const tabList = useRef<HTMLDivElement>(null)
   const [indicatorStyle, setIndicatorStyle] = useState<{
     width: number
     left: number
   }>({ left: 0, width: 0 })
-  const indicatorColor = `bg-${color}-2`
-  const textColor = `text-${color}-2`
+  const indicatorColor = 'bg-[var(--main-color)]'
+  const textColor = 'text-[var(--main-color)]'
+  const colorStyle = { '--main-color': useColorHex(color) }
   useEffect(() => {
     if (tabList.current != null) {
       const tabBtn = tabList.current.children[
@@ -67,7 +70,9 @@ function List ({
     <>
       <div
         ref={tabList}
-        className="text-sm dark:text-white children:rounded children:px-2 children:py-1 children:!outline-none"
+        style={{ ...colorStyle, ...props.style }}
+        className={classNames(className, 'text-sm children:rounded children:px-2 children:py-1 children:!outline-none')}
+        {...props}
       >
         { data.map((d, i) => (
           <button
@@ -115,7 +120,10 @@ function List ({
         )) }
       </div>
       { type === 'indicator' && (
-        <div className="h-0.5 dark:bg-default-800 bg-default-50">
+        <div
+          className="h-0.5"
+          style={{ ...colorStyle as any }}
+        >
           <div
             className={classNames('transition-left absolute h-0.5 rounded-md', indicatorColor)}
             style={indicatorStyle}
@@ -127,7 +135,7 @@ function List ({
 }
 type RTabsProps = {
   selectedIndex: number
-  onChange: (index: number) => void
+  onChange: ((index: number) => void) & FormEventHandler<HTMLDivElement>
   type?: 'fill' | 'indicator'
   color?: Color
   children: ReactNode
@@ -146,25 +154,21 @@ export function TabsRoot (props: RTabsProps) {
   } = props
   function getData () {
     const data = []
-    if ('children' in props) {
-      if (children) {
-        if (Array.isArray(props.children)) {
-          props.children.forEach((tab) => {
-            if (tab.props) {
-              data.push({
-                key: tab.props.label,
-                value: tab.props.children,
-              })
-            }
-          })
-        } else if (typeof children === 'object' && 'props' in children) {
-          if (children.props) {
+    if ('children' in props && children) {
+      if (Array.isArray(props.children)) {
+        props.children.forEach((tab) => {
+          if (tab.props) {
             data.push({
-              key: children.props.label,
-              value: children.props.children,
+              key: tab.props.label,
+              value: tab.props.children,
             })
           }
-        }
+        })
+      } else if (typeof children === 'object' && 'props' in children && children.props) {
+        data.push({
+          key: children.props.label,
+          value: children.props.children,
+        })
       }
     }
     return data
@@ -184,11 +188,6 @@ export function TabsRoot (props: RTabsProps) {
         { d.value }
       </div>
     ))
-  useEffect(
-    () => {
-
-    },
-  )
   return (
     <div
       className={classNames(className, 'relative')}
@@ -200,9 +199,7 @@ export function TabsRoot (props: RTabsProps) {
         data={data}
         selectedIndex={selectedIndex}
         type={type}
-        onChange={(i) => {
-          onChange(i)
-        }}
+        onChange={onChange}
       />
       <div
         ref={wrapperRef}

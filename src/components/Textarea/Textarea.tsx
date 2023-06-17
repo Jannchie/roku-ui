@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { type TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { type Color } from '../../utils/colors'
+import { useColorHex } from '../../hooks'
 
 export interface TextareaProps {
   setValue: (value: string) => void
@@ -20,6 +21,9 @@ export function Textarea ({
   useEffect(() => {
     setH(height)
   }, [height])
+  const bgColor = useColorHex('background', 1)
+  const borderColor = useColorHex('border', 2)
+  const mainColor = useColorHex(color, 2)
   return (
     <div className={classNames('relative leading-0', className)}>
       { maxLength && (
@@ -32,19 +36,24 @@ export function Textarea ({
       <textarea
         ref={textarea}
         className={classNames(
-          'transition-border-color w-full border rounded border-border-2 bg-background-1 text-sm p-[9px] py-[8px] outline-none',
+          'transition-border-color w-full border rounded border-[var(--r-border-color)] bg-[var(--r-bg-color)] text-sm p-[9px] py-[8px] outline-none',
           {
             border,
             'border-solid': border === 'solid',
             'border-dashed': border === 'dashed',
             'border-dotted': border === 'dotted',
           },
-          `focus:border-${color}-2`,
+          'focus:border-[var(--r-main-color)]',
           { 'transition-border-color,height resize-none overflow-hidden': autoResize },
         )}
         style={{
           height: h,
           ...props.style,
+          ...{
+            '--r-bg-color': bgColor,
+            '--r-border-color': borderColor,
+            '--r-main-color': mainColor,
+          },
         }}
         value={value}
         onInput={(e) => {

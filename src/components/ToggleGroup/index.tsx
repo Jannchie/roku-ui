@@ -1,6 +1,6 @@
 import { type ReactNode, type HTMLAttributes, useCallback } from 'react'
 import { Flex } from '../Layout/Flex'
-import { Btn, type Color } from '../..'
+import { Btn, useColorHex, type Color } from '../..'
 
 function ToggleGroupRoot<T> ({ value, setValue, data, item, body, color = 'default' }: { color?: Color, children?: Iterable<ReactNode>, value: T, setValue: (s: T) => void, data: T[], item?: (t: T, i: number) => ReactNode, body?: (t: T, i: number) => ReactNode } & HTMLAttributes<HTMLDivElement>) {
   const defaultItem = useCallback((t: T, i: number) => {
@@ -22,7 +22,12 @@ function ToggleGroupRoot<T> ({ value, setValue, data, item, body, color = 'defau
     <Flex
       inline
       gap=".25rem"
-      className="p-1 border rounded-lg relative border-border-2"
+      className="p-1 border rounded-lg relative border-[var(--r-border-color)]"
+      style={{
+        ...{
+          '--r-border-color': useColorHex('border'),
+        } as any,
+      }}
     >
       { Array.from(data).map((child, i) => trueItem(child, i)) }
     </Flex>

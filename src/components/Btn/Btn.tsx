@@ -114,7 +114,6 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
   }, ref) => {
     const themeData = useThemeData()
     const ctx = useContext(BtnGroupCtx)
-    const fgColor = 'frontground'
     if (!loadingIcon) {
       loadingIcon = (
         <SvgSpinners90RingWithBg />
@@ -126,35 +125,63 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     const trueBtnVariant = getTrueBtnVariant({ fill, text, variant, contrast, light })
     const colorBG = useColorHex(color, 2)
     const hColor = (trueBtnVariant !== 'fill' && color === 'default' && !hoverColor) ? 'frontground' : hoverColor ?? color
-    const hTrueColor = themeData.color[hColor].base
     const colorFGBase = useColorHex(themeData.color.frontground.base, 1)
     const colorBGBase = useColorHex(themeData.color.background.base, 1)
-    const colorFG = calculateContrast(colorBG, colorFGBase) > calculateContrast(colorBG, colorBGBase) ? 'frontground' : 'background'
-    const colorConstractFG = calculateContrast(hTrueColor, colorFGBase) > calculateContrast(hTrueColor, colorBGBase) ? 'frontground' : 'background'
     const textSizeClass = {
       'text-xs !leading-none': size === 'xs',
       'p-2 text-xs !leading-none': size === 'sm',
       'p-2 text-xs': size === 'md',
       'p-2 text-base': size === 'lg',
     }
+    const colorFG = calculateContrast(colorBG, colorFGBase) > calculateContrast(colorBG, colorBGBase) ? 'frontground' : 'background'
+    const fgColor = useColorHex('frontground')
+    const bgColor = useColorHex('background')
+    const mainColor = useColorHex(color)
+    const mainHoverColor = useColorHex(hColor, 3)
+    const borderColor = useColorHex(color, 3)
+    const textContrast = useColorHex(colorFG)
+    const useColorStyle = () => {
+      switch (trueBtnVariant) {
+        case 'contrast':
+          return {
+            '--r-text-color': color === 'default' ? fgColor : mainColor,
+            '--r-text-hover-color': bgColor,
+            '--r-bg-hover-color': color === 'default' ? fgColor : mainColor,
+            '--r-border-color': borderColor,
+          }
+        case 'text':
+          return {
+            '--r-text-color': color === 'default' ? fgColor : mainColor,
+            '--r-text-hover-color': mainHoverColor,
+            '--r-border-color': borderColor,
+            '--r-outline-color': mainColor,
+            '--r-bg-color': 'transparent',
+          }
+        case 'fill':
+          return {
+            '--r-bg-color': mainColor,
+            '--r-bg-hover-color': mainHoverColor,
+            '--r-border-color': borderColor,
+            '--r-text-color': textContrast,
+            '--r-text-hover-color': textContrast,
+          }
+      }
+    }
+    const colorStyle = useColorStyle()
     const btnClass = classNames(
+      textSizeClass,
+      border,
       'overflow-visible relative border min-w-max h-fit text-sm disabled:grayscale disabled:contrast-50 disabled:pointer-events-none rounded',
-      { border },
       { 'min-w-24': !icon },
       {
         'active:translate-y-[1px]': active === 'translate',
         'active:scale-[0.99]': active === 'scale',
       },
-      textSizeClass,
-      { [`bg-${color}-2 text-${colorFG}-2`]: trueBtnVariant === 'fill' },
-      { 'bg-background-2 border-border-2': trueBtnVariant === 'default' },
-      { [`border-${color}-1`]: border && trueBtnVariant !== 'default' },
-      { [`text-${fgColor}-2 hover:text-${hColor}-1`]: trueBtnVariant === 'text' },
-      { [`hover:bg-${hColor}-2 hover:text-${colorConstractFG}-2`]: trueBtnVariant === 'contrast' },
+      'hover:bg-[var(--r-bg-hover-color)] bg-[var(--r-bg-color)] border-[var(--r-border-color)] text-[var(--r-text-color)] hover:text-[var(--r-text-hover-color)]',
       { 'leading-[0]': icon },
       { 'rounded-full': rounded },
       { 'border-dashed': dash },
-      { [`outline-${color}-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-2`]: outline },
+      { 'outline-[var(--r-outline-color)] focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-2': outline },
       { 'active:scale-[0.98]': scale },
       { 'border-transparent': !border },
       className,
@@ -194,7 +221,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
           ref={ref}
           className={btnClass}
           disabled={disabled}
-          style={style}
+          style={{ ...style, ...colorStyle }}
           type="button"
           onClick={clickCallback}
           {...others}
@@ -214,7 +241,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={btnClass}
         disabled={disabled}
-        style={style}
+        style={{ ...style, ...colorStyle }}
         type="button"
         onClick={clickCallback}
         {...others}

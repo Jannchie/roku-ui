@@ -1,6 +1,6 @@
 import { type HTMLAttributes, type ReactNode } from 'react'
 import classNames from 'classnames'
-import { type Color } from '../..'
+import { useColorHex, type Color } from '../..'
 
 interface BadgeProps {
   className?: string
@@ -25,8 +25,6 @@ export function Badge ({
   content = '',
   ...others
 }: BadgeProps & Omit<HTMLAttributes<HTMLSpanElement>, 'content'>) {
-  const colorCls = `bg-${color}-2`
-
   const getTranslate = (position: string) => {
     switch (position) {
       case 'top-right':
@@ -67,12 +65,13 @@ export function Badge ({
       'w-4 h-4': size === 'lg',
     },
     { '!w-auto !h-auto px-1 py-0.5 rounded-lg': content },
-    colorCls,
+    'bg-[var(--r-color)]',
     className,
   )
-
+  const colorHex = useColorHex(color)
   return (
     <span
+      style={{ ...others.style, ...{ '--r-color': colorHex } }}
       className={classNames('flex', className)}
       {...others}
     >

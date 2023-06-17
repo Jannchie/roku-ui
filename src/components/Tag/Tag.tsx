@@ -3,6 +3,9 @@ import classNames from 'classnames'
 import { type Color } from '../../utils/colors'
 import { defaults } from '../../utils/defaults'
 import { Btn } from '../Btn'
+import { getOpacityColor, useColorHex } from '../../hooks'
+import { TablerX } from '@roku-ui/icons-tabler'
+import { calculateContrast } from '../../utils/theme/utils'
 
 type ChipProps = {
   className?: string
@@ -34,9 +37,16 @@ export function ChipRoot ({
   closeIcon,
   ...others
 }: ChipProps) {
+  const mainColorHex = useColorHex(color)
+  const mainColorOpacity25 = getOpacityColor(mainColorHex, 0.25)
+  const mainColorOpacity50 = getOpacityColor(mainColorHex, 0.5)
+  const mainColorOpacity75 = getOpacityColor(mainColorHex, 0.75)
+  const fgColor = useColorHex('frontground')
+  const bgColor = useColorHex('background')
+  const colorFG = useColorHex(calculateContrast(mainColorHex, fgColor) > calculateContrast(mainColorHex, bgColor) ? 'frontground' : 'background')
   const tagClass = classNames(
     className,
-    'border inline-flex gap-1 cursor-default rounded bg-opacity-10 dark:bg-opacity-10 items-center',
+    'border inline-flex gap-1 cursor-default rounded bg-opacity-10 items-center',
     {
       'cursor-pointer': onClick !== undefined,
       'rounded-full': rounded,
@@ -50,28 +60,34 @@ export function ChipRoot ({
       'px-2 py-1 text-base': size === 'xl',
     },
     {
-      [`bg-${color}-2/10`]: !text,
-      [`hover:bg-${color}-2/75 active:bg-${color}-2 hover:text-background-2`]: onClick && !text,
-      [`hover:bg-${color}-2/25 active:bg-${color}-2/50`]: onClick && text,
-      [`text-${color}-2`]: true,
+      'bg-[var(--r-color-25)] text-[var(--r-fg-color-25)]': !text,
+      'hover:bg-[var(--r-color-25)] active:bg-[var(--r-color-50)] text-[var(--r-fg-color)]': onClick && !text,
+      'hover:bg-[var(--r-color-25)] active:bg-[var(--r-color-50)]': onClick && text,
     },
     {
-      [`border-${color}-2`]: border,
+      'border-[var(--r-color)]': border,
       'border-transparent': !border,
-      'hover:text-b-2': onClick,
     },
   )
   return (
     <span
       className={tagClass}
+      style={{
+        ...others.style,
+        ...{
+          '--r-color': mainColorHex,
+          '--r-color-25': mainColorOpacity25,
+          '--r-color-50': mainColorOpacity50,
+          '--r-color-75': mainColorOpacity75,
+          '--r-fg-color': colorFG,
+        },
+      }}
       role={onclick ? 'button' : 'text'}
       tabIndex={-1}
       onClick={onClick}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          if (onClick != null) {
-            onClick(e)
-          }
+        if ((e.key === 'Enter' || e.key === ' ') && onClick != null) {
+          onClick(e)
         }
       }}
       {...others}
@@ -80,22 +96,12 @@ export function ChipRoot ({
       <span>{ children }</span>
       { onClose && (
         <Btn
-          text
           icon
+          color={mainColorHex}
           size="xs"
           onClick={onClose}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            viewBox="0 0 32 32"
-          >
-            <path
-              fill="currentColor"
-              d="M24 9.4L22.6 8L16 14.6L9.4 8L8 9.4l6.6 6.6L8 22.6L9.4 24l6.6-6.6l6.6 6.6l1.4-1.4l-6.6-6.6L24 9.4z"
-            />
-          </svg>
+          <TablerX />
         </Btn>
       ) }
     </span>

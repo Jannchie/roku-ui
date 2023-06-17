@@ -4,7 +4,7 @@ import {
   type InputHTMLAttributes,
   type ReactNode, type SetStateAction,
 } from 'react'
-import { type Color } from '../..'
+import { useColorHex, type Color } from '../..'
 
 export type TextFieldProps = {
   className?: string
@@ -45,9 +45,15 @@ export function TextField ({
   } else if (setValue != null) {
     onChange = (e: ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) }
   }
+  const mainColor = useColorHex(color)
+  const colorStyle = {
+    '--r-main-color': mainColor,
+    '--r-bg': useColorHex('background'),
+    '--r-border': useColorHex('border'),
+  }
   return (
     <span
-      style={style}
+      style={{ ...style, ...colorStyle }}
       className={classnames(
         className,
         'min-w-32 relative rounded inline-flex justify-center items-center border transition-border-color',
@@ -64,9 +70,9 @@ export function TextField ({
           'border-dotted': borderType === 'dot',
         },
         {
-          'border-border-2 bg-background-2': border,
+          'border-[var(--r-border)] bg-[var(--r-bg)]': border,
+          'focus-within:border-[var(--r-main-color)]': color,
         },
-        { [`focus-within:border-${color}-2`]: color },
       )}
     >
       { prefix && <div className="min-w-fit inline-block flex pr-2">{ prefix }</div> }

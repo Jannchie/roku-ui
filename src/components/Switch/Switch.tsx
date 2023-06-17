@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import { type FC, type ReactNode, useState } from 'react'
 import { type Color } from '../..'
-import './Switch.css'
 import { TablerCheck, TablerMinus } from '@roku-ui/icons-tabler'
 export interface SwitchProps {
   value: boolean

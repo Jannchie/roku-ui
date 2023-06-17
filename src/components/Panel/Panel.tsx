@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { type HTMLAttributes } from 'react'
-import { type Color } from '../..'
+import { useColorHex, type Color } from '../..'
 import { defaults } from '../../utils/defaults'
 
 export interface PanelProps {
@@ -19,24 +19,26 @@ export function Panel ({
   bgOpacity,
   ...others
 }: PanelProps & HTMLAttributes<HTMLDivElement>) {
-  let bgCls = color ? `bg-${color}-2` : 'bg-background-2'
-  if (bgOpacity) {
-    bgCls = `${bgCls}/${bgOpacity}`
-  }
-  const borderCls = `border-${color ?? 'border'}-2`
+  const borderColor = useColorHex(color ?? 'border')
+  const bgColor = useColorHex(color ?? 'background')
   return (
     <div
       {...others}
       className={classNames(
-        'rounded-lg',
-        bgCls,
+        'rounded-lg bg-[var(--r-bg-color)] border-[var(--r-border-color)]',
+        border,
         {
-          [borderCls]: border,
           'p-3': padding,
-          border,
         },
         className,
       )}
+      style={{
+        ...others.style,
+        ...{
+          '--r-border-color': borderColor,
+          '--r-bg-color': color ? `var(--r-${color}-2)` : bgColor,
+        },
+      }}
     >
       { children }
     </div>

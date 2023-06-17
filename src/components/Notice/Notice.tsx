@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { type HTMLAttributes, type ReactNode, useEffect } from 'react'
 import {
-  Btn, type Color, Panel, type PanelProps, Progress,
+  Btn, type Color, Panel, type PanelProps, Progress, useColorHex,
 } from '../..'
 import { TablerX } from '@roku-ui/icons-tabler'
 
@@ -56,11 +56,11 @@ export function Notice ({
   ...others
 }: NoticeProps & PanelProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>) {
   const wrapperCls = classNames(
-    'bg-background-2 text-sm',
+    'bg-[var(--r-bg-color)] text-sm',
     { 'shadow-lg shadow-black/5': shadow },
     'overflow-hidden',
     { dense },
-    { 'border border-border-2': outlined },
+    { 'border border-[var(--r-border-color)]': outlined },
     className,
     wrapperClass,
   )
@@ -83,6 +83,13 @@ export function Notice ({
   const iconCls = classNames('self-center mr-4 leading-none', mainTextColorCls)
   return (
     <Panel
+      style={{
+        ...others.style,
+        ...{
+          '--r-bg-color': useColorHex('background'),
+          '--r-border-color': useColorHex('border'),
+        },
+      }}
       {...others}
       className={wrapperCls}
     >
@@ -101,7 +108,6 @@ export function Notice ({
             <Btn
               icon
               text
-              className="!rounded-full dark:!text-default-400 hover:!bg-opacity-10 hover:!text-default-900 dark:hover:!text-default-200"
               onClick={close}
             >
               <TablerX />

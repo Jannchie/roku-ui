@@ -39,7 +39,6 @@ export function AvatarRoot ({
   }
   const avatarClass = classNames(
     'relative overflow-hidden text-sm justify-center items-center flex',
-    { [`r-avatar-${size}`]: typeof size === 'string' },
     {
       'w-4 h-4': size === 'xs',
       'w-6 h-6': size === 'sm',

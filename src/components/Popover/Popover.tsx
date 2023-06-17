@@ -1,24 +1,37 @@
 import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
-import { type ReactNode, useState } from 'react'
+import { type ReactNode, useState, type HTMLAttributes } from 'react'
 import { type BaseProps } from '../../utils/type'
+import { useColorHex } from '../../hooks'
 
 function Content ({
   children,
   left,
   right,
+  style,
+  ...props
 }: {
   left?: boolean
   right?: boolean
   children: ReactNode
-}) {
+} & HTMLAttributes<HTMLDivElement>) {
+  const bg = useColorHex('background')
   return (
-    <div className="z-50">
-      <div className="px-2 py-1 rounded whitespace-nowrap bg-background-2">
+    <div
+      className="z-50"
+      {...props}
+      style={{
+        ...style,
+        ...{
+          '--r-bg': bg,
+        },
+      }}
+    >
+      <div className="px-2 py-1 rounded whitespace-nowrap bg-[var(--r-bg)]">
         { children }
       </div>
       <svg
-        className={classNames('absolute left-1/2 pointer-events-none translate-x-[-5px] fill-background-2', {
+        className={classNames('absolute left-1/2 pointer-events-none translate-x-[-5px] fill-[var(--r-bg)]', {
           'left-1/4': left,
           'right-1/4': right,
         })}

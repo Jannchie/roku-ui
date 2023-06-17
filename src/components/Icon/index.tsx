@@ -3,6 +3,7 @@ import { type Color } from '../../utils/colors'
 import { type Size, type Rounded } from '../../utils/type'
 import { defaults } from '../../utils/defaults'
 import classNames from 'classnames'
+import { useColorHex } from '../../hooks'
 
 function sizeClassName (size: Size) {
   switch (size) {
@@ -47,13 +48,13 @@ export type IconVariant = 'default' | 'fill' | 'text' | 'dual'
 function variantClassName (variant?: IconVariant, color: Color = 'frontground') {
   switch (variant) {
     case 'fill':
-      return `bg-${color}-2 text-background-2`
+      return 'bg-[var(--r-main-color)] text-background-2'
     case 'text':
-      return `text-${color}-2`
+      return 'text-[var(--r-main-color)]'
     case 'dual':
-      return `bg-${color}-2/25 text-${color}-2`
+      return 'bg-[var(--r-main-opacity-color)] text-[var(--r-main-color)]'
     default:
-      return `text-${color}-2`
+      return 'text-[var(--r-main-color)]'
   }
 }
 
@@ -71,16 +72,25 @@ export function Icon ({
   rounded?: Rounded
   size?: Size
 } & HTMLAttributes<HTMLElement>) {
+  if (color === 'default') {
+    color = undefined
+  }
   if (variant === 'text' && !color) {
     color = 'frontground'
   } else if (!color) {
     color = 'frontground'
   }
+  const mainColorHex = useColorHex(color)
   return (
     <i
       {...others}
       style={{
         width: typeof size === 'number' ? size : undefined,
+        ...others.style,
+        ...{
+          '--r-main-color': mainColorHex,
+          '--r-main-opacity-color': `${mainColorHex}33`,
+        },
       }}
       className={classNames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-block')}
     >
