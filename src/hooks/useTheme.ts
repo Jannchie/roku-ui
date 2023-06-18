@@ -11,8 +11,15 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
   useRegistTheme('light', defaultLight)
   useRegistTheme('dark', defaultDark)
   const preferred = usePrefersColorScheme()
-  const localTheme = localStorage?.getItem(localstorageKey) ?? 'system'
-  const defaultTheme = useRef(localTheme)
+  const defaultTheme = useRef('dark')
+  useEffect(() => {
+    const localTheme = localStorage?.getItem(localstorageKey) ?? 'system'
+    if (localTheme === 'system') {
+      defaultTheme.current = preferred
+    } else {
+      defaultTheme.current = localTheme
+    }
+  }, [localstorageKey, preferred])
   const { theme, setTheme: setThemeValue } = useContext(RokuContext)
   useEffect(() => {
     if (typeof localStorage !== 'undefined') {
