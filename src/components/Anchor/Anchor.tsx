@@ -16,13 +16,7 @@ export function Anchor ({
   showExternalIcon?: 'auto' | boolean
 } & AnchorHTMLAttributes<HTMLAnchorElement>) {
   function isExternalLink (url: string): boolean {
-    try {
-      const currentHost = window.location.host
-      const urlHost = new URL(url).host
-      return urlHost !== currentHost
-    } catch {
-      return false
-    }
+    return url.startsWith('http')
   }
   const colorHex = useTrueColor(color)
   return (
