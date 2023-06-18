@@ -2,7 +2,7 @@ import {
   type ReactNode, useEffect, useRef, useState, type HTMLAttributes, type FormEventHandler,
 } from 'react'
 import classnames from 'classnames'
-import { type Color, useAutoSetHeight, useColorHex } from '../..'
+import { type Color, useAutoSetHeight, useTrueColor } from '../..'
 import { type BaseProps } from '../../utils/type'
 
 // eslint-disable-next-line react/no-unused-prop-types
@@ -39,7 +39,7 @@ function List ({
   }>({ left: 0, width: 0 })
   const indicatorColor = 'bg-[var(--main-color)]'
   const textColor = 'text-[var(--main-color)]'
-  const colorStyle = { '--main-color': useColorHex(color) }
+  const colorStyle = { '--main-color': useTrueColor(color) }
   useEffect(() => {
     if (tabList.current != null) {
       const tabBtn = tabList.current.children[

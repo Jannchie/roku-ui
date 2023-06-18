@@ -1,6 +1,6 @@
 import { type HTMLAttributes, type ReactNode } from 'react'
 import classnames from 'classnames'
-import { useColorHex, type Color } from '../..'
+import { useTrueColor, type Color } from '../..'
 
 interface BadgeProps {
   className?: string
@@ -68,7 +68,7 @@ export function Badge ({
     'bg-[var(--r-color)]',
     className,
   )
-  const colorHex = useColorHex(color)
+  const colorHex = useTrueColor(color)
   return (
     <span
       style={{ ...others.style, ...{ '--r-color': colorHex } }}

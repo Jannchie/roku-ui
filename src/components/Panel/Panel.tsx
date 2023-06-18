@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { type HTMLAttributes } from 'react'
-import { useColorHex, type Color } from '../..'
+import { useTrueColor, type Color } from '../..'
 import { defaults } from '../../utils/defaults'
 
 export interface PanelProps {
@@ -19,8 +19,8 @@ export function Panel ({
   bgOpacity,
   ...others
 }: PanelProps & HTMLAttributes<HTMLDivElement>) {
-  const borderColor = useColorHex(color ?? 'border')
-  const bgColor = useColorHex(color ?? 'background')
+  const borderColor = useTrueColor(color ?? 'border')
+  const bgColor = useTrueColor(color ?? 'background')
   return (
     <div
       {...others}

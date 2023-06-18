@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { type ReactNode, useState, type HTMLAttributes } from 'react'
 import { type BaseProps } from '../../utils/type'
-import { useColorHex } from '../../hooks'
+import { useTrueColor } from '../../hooks'
 
 function Content ({
   children,
@@ -15,7 +15,7 @@ function Content ({
   right?: boolean
   children: ReactNode
 } & HTMLAttributes<HTMLDivElement>) {
-  const bg = useColorHex('background')
+  const bg = useTrueColor('background')
   return (
     <div
       className="z-50"

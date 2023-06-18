@@ -3,7 +3,7 @@ import { type Color } from '../../utils/colors'
 import { type Size, type Rounded } from '../../utils/type'
 import { defaults } from '../../utils/defaults'
 import classnames from 'classnames'
-import { useColorHex } from '../../hooks'
+import { useOpacityColor, useTrueColor } from '../../hooks'
 
 function sizeClassName (size: Size) {
   switch (size) {
@@ -80,7 +80,7 @@ export function Icon ({
   } else if (!color) {
     color = 'frontground'
   }
-  const mainColorHex = useColorHex(color)
+  const mainColor = useTrueColor(color)
   return (
     <i
       {...others}
@@ -88,8 +88,8 @@ export function Icon ({
         width: typeof size === 'number' ? size : undefined,
         ...others.style,
         ...{
-          '--r-main-color': mainColorHex,
-          '--r-main-opacity-color': `${mainColorHex}33`,
+          '--r-main-color': mainColor,
+          '--r-main-opacity-color': useOpacityColor(color),
         },
       }}
       className={classnames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-block')}

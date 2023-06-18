@@ -4,7 +4,7 @@ import {
   type InputHTMLAttributes,
   type ReactNode, type SetStateAction,
 } from 'react'
-import { useColorHex, type Color } from '../..'
+import { useTrueColor, type Color } from '../..'
 
 export type TextFieldProps = {
   className?: string
@@ -49,11 +49,11 @@ export function TextField ({
   } else if (setValue != null) {
     onChange = (e: ChangeEvent<HTMLInputElement>) => { setValue(e.target.value) }
   }
-  const mainColor = useColorHex(color)
+  const mainColor = useTrueColor(color)
   const colorStyle = {
     '--r-main-color': mainColor,
-    '--r-bg': useColorHex('background'),
-    '--r-border': useColorHex('border'),
+    '--r-bg': useTrueColor('background'),
+    '--r-border': useTrueColor('border'),
   }
   return (
     <span

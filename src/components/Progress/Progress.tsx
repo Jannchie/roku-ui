@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { type AnimationProps, motion } from 'framer-motion'
 import { type BaseProps } from '../../utils/type'
-import { useColorHex } from '../../hooks'
+import { useTrueColor } from '../../hooks'
 
 type ProgressProps = {
   color?: string
@@ -67,7 +67,7 @@ export function Progress ({
       style={{
         ...style,
         ...{
-          '--r-progress-color': useColorHex(color),
+          '--r-progress-color': useTrueColor(color),
         },
       }}
     >

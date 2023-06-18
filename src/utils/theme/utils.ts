@@ -9,7 +9,7 @@ export const themeMap = new Map<string, InputTheme>()
 
 export function useRegistTheme (name: string, theme: InputTheme) {
   themeMap.set(name, theme)
-  useAppendTheme(name, theme)
+  // useAppendTheme(name, theme)
 }
 
 export function useAppendTheme (name: string, theme: InputTheme) {

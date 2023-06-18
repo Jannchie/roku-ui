@@ -2,13 +2,13 @@ import {
   type MouseEvent, type KeyboardEvent, type ReactNode, type ImgHTMLAttributes, type HTMLAttributes,
 } from 'react'
 import classnames from 'classnames'
-import { type Color } from '../..'
+import { useTrueColor, type Color } from '../..'
 
 type AvatarProps = {
   className?: string
   children?: ReactNode
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number
-  ring?: Color | boolean
+  ring?: string | boolean
   square?: boolean
   color?: Color
   onClick?: (e: MouseEvent<HTMLSpanElement> | KeyboardEvent<HTMLSpanElement>) => void
@@ -16,20 +16,18 @@ type AvatarProps = {
 export function AvatarRoot ({
   className,
   children,
-  ring,
+  ring = false,
   size = 'md',
   onClick,
   square,
   color = 'background',
   ...others
 }: AvatarProps) {
-  let ringColor = color
-  if (typeof ring === 'string') {
-    ringColor = ring
-  }
-  const bgClass = `bg-${color}-2 text-f-2`
-  const ringClass = ring ? `ring-${ringColor}-2 ring-offset-b-2` : ''
+  const bgClass = 'bg-[var(--r-main-color)] text-f-2'
+  const ringClass = ring ? 'ring-[var(--r-ring-color)] ring-offset-2 ring-offset-[hsl(var(--r-background-2))]' : ''
+  const mainColor = useTrueColor(color)
   let { style } = others
+  const ringColor = useTrueColor(ring === true ? color : (ring || 'background'))
   if (typeof size === 'number') {
     style = {
       ...others.style,
@@ -59,13 +57,28 @@ export function AvatarRoot ({
   const image = others.src
     ? (
       <img
-        style={style}
+        style={{
+          ...style,
+          ...{
+            '--r-ring-color': ringColor,
+            '--r-main-color': mainColor,
+          },
+        }}
         {...others}
         alt={others.alt ?? 'Avatar'}
       />
     )
     : (
-      <div style={style}>
+      <div
+        style={{
+          ...style,
+          ...{
+            '--r-ring-color': ringColor,
+            '--r-main-color': mainColor,
+          },
+        }}
+        className="bg-[var(--r-main-color)]"
+      >
         { children }
       </div>
     )
@@ -74,13 +87,18 @@ export function AvatarRoot ({
     (onClick != null)
       ? (
         <div
+          style={{
+            ...style,
+            ...{
+              '--r-ring-color': ringColor,
+              '--r-main-color': mainColor,
+            },
+          }}
           className={avatarClass}
           role="button"
           tabIndex={-1}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              if (onClick) { onClick(e) }
-            }
+            if (e.key === 'Enter' && onClick) { onClick(e) }
           }}
           onClick={onClick}
         >
@@ -88,7 +106,16 @@ export function AvatarRoot ({
         </div>
       )
       : (
-        <div className={avatarClass}>
+        <div
+          style={{
+            ...style,
+            ...{
+              '--r-ring-color': ringColor,
+              '--r-main-color': mainColor,
+            },
+          }}
+          className={avatarClass}
+        >
           { image }
         </div>
       )

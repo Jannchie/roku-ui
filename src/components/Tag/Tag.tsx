@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { type Color } from '../../utils/colors'
 import { defaults } from '../../utils/defaults'
 import { Btn } from '../Btn'
-import { getOpacityColor, useColorHex } from '../../hooks'
+import { useOpacityColor, useTrueColor } from '../../hooks'
 import { TablerX } from '@roku-ui/icons-tabler'
 import { calculateContrast } from '../../utils/theme/utils'
 
@@ -37,13 +37,13 @@ export function ChipRoot ({
   closeIcon,
   ...others
 }: ChipProps) {
-  const mainColorHex = useColorHex(color)
-  const mainColorOpacity25 = getOpacityColor(mainColorHex, 0.25)
-  const mainColorOpacity50 = getOpacityColor(mainColorHex, 0.5)
-  const mainColorOpacity75 = getOpacityColor(mainColorHex, 0.75)
-  const fgColor = useColorHex('frontground')
-  const bgColor = useColorHex('background')
-  const colorFG = useColorHex(calculateContrast(mainColorHex, fgColor) > calculateContrast(mainColorHex, bgColor) ? 'frontground' : 'background')
+  const mainColorHex = useTrueColor(color)
+  const mainColorOpacity25 = useOpacityColor(color, 0.25)
+  const mainColorOpacity50 = useOpacityColor(color, 0.5)
+  const mainColorOpacity75 = useOpacityColor(color, 0.75)
+  const fgColor = useTrueColor('frontground')
+  const bgColor = useTrueColor('background')
+  const colorFG = useTrueColor(calculateContrast(mainColorHex, fgColor) > calculateContrast(mainColorHex, bgColor) ? 'frontground' : 'background')
   const tagClass = classnames(
     className,
     'border inline-flex gap-1 cursor-default rounded bg-opacity-10 items-center',

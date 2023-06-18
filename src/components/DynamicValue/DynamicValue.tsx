@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { type HTMLMotionProps, motion, useMotionValue, animate, useTransform } from 'framer-motion'
 import { useEffect } from 'react'
-import { useColorHex, type Color } from '../..'
+import { useTrueColor, type Color } from '../..'
 
 type DynamicValueProps = {
   value: number
@@ -21,7 +21,7 @@ export function DynamicValue ({
 }: DynamicValueProps) {
   const count = useMotionValue(value)
   const formated = useTransform(count, format)
-  const colorHex = useColorHex(color)
+  const colorHex = useTrueColor(color)
   useEffect(() => {
     const controls = animate(count, value)
     return controls.stop

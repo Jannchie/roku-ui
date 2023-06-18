@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode, useEffect } from 'react'
 import {
-  Btn, type Color, Panel, type PanelProps, Progress, useColorHex,
+  Btn, type Color, Panel, type PanelProps, Progress, useTrueColor,
 } from '../..'
 import { TablerX } from '@roku-ui/icons-tabler'
 
@@ -86,8 +86,8 @@ export function Notice ({
       style={{
         ...others.style,
         ...{
-          '--r-bg-color': useColorHex('background'),
-          '--r-border-color': useColorHex('border'),
+          '--r-bg-color': useTrueColor('background'),
+          '--r-border-color': useTrueColor('border'),
         },
       }}
       {...others}

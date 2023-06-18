@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { type FC, type HTMLAttributes, type ReactNode } from 'react'
-import { Icon, type Color, useColorHex, getOpacityColor } from '../../..'
+import { Icon, type Color, useTrueColor, useOpacityColor } from '../../..'
 import { TextField } from '../../TextField'
 import { TablerSearch } from '@roku-ui/icons-tabler'
 
@@ -27,10 +27,10 @@ export const Appbar: FC<AppbarAttributes> = ({
   ...others
 }: AppbarAttributes) => {
   const colorStyles = {
-    '--r-bg-color': useColorHex('background'),
-    '--r-bg-color-25': getOpacityColor(useColorHex('background'), 0.25),
-    '--r-bg-color-10': getOpacityColor(useColorHex('background'), 0.1),
-    '--r-border-color': useColorHex('border'),
+    '--r-bg-color': useTrueColor('background'),
+    '--r-bg-color-25': useOpacityColor('background', 0.25),
+    '--r-bg-color-10': useOpacityColor('background', 0.1),
+    '--r-border-color': useTrueColor('border'),
   }
   return (
     <header

@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { type AnchorHTMLAttributes } from 'react'
-import { useColorHex, type Color } from '../..'
+import { useTrueColor, type Color } from '../..'
 import { TablerExternalLink } from '@roku-ui/icons-tabler'
 
 export function Anchor ({
@@ -24,7 +24,7 @@ export function Anchor ({
       return false
     }
   }
-  const colorHex = useColorHex(color)
+  const colorHex = useTrueColor(color)
   return (
     <a
       {...props}

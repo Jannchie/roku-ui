@@ -5,7 +5,7 @@ import {
 } from 'react'
 import { type Color } from '../../utils/colors'
 import { SvgSpinners90RingWithBg } from '@roku-ui/icons-svg-spinners'
-import { useColorHex, useHover, useThemeData } from '../../hooks'
+import { useTrueColor, useHover, useThemeData } from '../../hooks'
 import { Flex, Icon, calculateContrast } from '../..'
 import { createPolymorphicComponent } from '../../utils/polymorphic'
 
@@ -123,10 +123,10 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
       color = ctx.activeColor
     }
     const trueBtnVariant = getTrueBtnVariant({ fill, text, variant, contrast, light })
-    const colorBG = useColorHex(color, 2)
+    const colorBG = themeData.color[color].base
     const hColor = (trueBtnVariant !== 'fill' && color === 'default' && !hoverColor) ? 'frontground' : hoverColor ?? color
-    const colorFGBase = useColorHex(themeData.color.frontground.base, 1)
-    const colorBGBase = useColorHex(themeData.color.background.base, 1)
+    const colorFGBase = useTrueColor(themeData.color.frontground.base)
+    const colorBGBase = useTrueColor(themeData.color.background.base)
     const textSizeClass = {
       'text-xs !leading-none': size === 'xs',
       'p-2 text-xs !leading-none': size === 'sm',
@@ -134,12 +134,12 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
       'p-2 text-base': size === 'lg',
     }
     const colorFG = calculateContrast(colorBG, colorFGBase) > calculateContrast(colorBG, colorBGBase) ? 'frontground' : 'background'
-    const fgColor = useColorHex('frontground')
-    const bgColor = useColorHex('background')
-    const mainColor = useColorHex(color)
-    const mainHoverColor = useColorHex(hColor, 3)
-    const borderColor = useColorHex(color, 3)
-    const textContrast = useColorHex(colorFG)
+    const fgColor = useTrueColor('frontground')
+    const bgColor = useTrueColor('background')
+    const mainColor = useTrueColor(color)
+    const mainHoverColor = useTrueColor(hColor, 3)
+    const borderColor = useTrueColor(color, 3)
+    const textContrast = useTrueColor(colorFG)
     const useColorStyle = () => {
       switch (trueBtnVariant) {
         case 'contrast':

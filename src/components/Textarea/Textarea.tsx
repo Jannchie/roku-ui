@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { type TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { type Color } from '../../utils/colors'
-import { useColorHex } from '../../hooks'
+import { useTrueColor } from '../../hooks'
 
 export interface TextareaProps {
   setValue: (value: string) => void
@@ -21,9 +21,9 @@ export function Textarea ({
   useEffect(() => {
     setH(height)
   }, [height])
-  const bgColor = useColorHex('background', 1)
-  const borderColor = useColorHex('border', 2)
-  const mainColor = useColorHex(color, 2)
+  const bgColor = useTrueColor('background', 1)
+  const borderColor = useTrueColor('border', 2)
+  const mainColor = useTrueColor(color, 2)
   return (
     <div className={classnames('relative leading-0', className)}>
       { maxLength && (

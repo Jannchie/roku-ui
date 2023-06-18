@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, type HTMLAttributes, useContext, useMemo } from 'react'
 import { type Color } from '../../utils/colors'
-import { useColorHex } from '../../hooks'
+import { useTrueColor } from '../../hooks'
 
 const RadioCtx = createContext<{ val: any, setValue: (value: any) => void }>({ val: '', setValue: () => { } })
 
@@ -11,8 +11,8 @@ function RadioRoot ({
 }: { value: any, label: string, color?: Color } & HTMLAttributes<HTMLLabelElement>) {
   const { val, setValue } = useContext(RadioCtx)
   const checked = val === value
-  const mainColor = useColorHex(color, 2)
-  const mainHoverColor = useColorHex(color, 1)
+  const mainColor = useTrueColor(color, 2)
+  const mainHoverColor = useTrueColor(color, 1)
   return (
     <label
       style={{
