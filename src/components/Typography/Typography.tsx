@@ -1,12 +1,22 @@
 import classnames from 'classnames'
+import { type Color } from 'd3-color'
 import { type HTMLAttributes, type ReactNode } from 'react'
+import { useTrueColor } from '../../hooks'
 
-function H1 ({ children, className, ...props }: {
+function H1 ({ color, style, children, className, ...props }: {
   children: ReactNode
+  color: Color | string
 } & HTMLAttributes<HTMLHeadingElement>) {
+  const textColor = useTrueColor(color)
   return (
     <h1
-      className={classnames(className, 'text-4xl font-bold')}
+      className={classnames(className, 'text-4xl font-bold color-[var(--r-color)]')}
+      style={{
+        ...style,
+        ...{
+          '--r-color': textColor,
+        },
+      }}
       {...props}
     >
       { children }

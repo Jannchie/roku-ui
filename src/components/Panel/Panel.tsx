@@ -26,8 +26,8 @@ export function Panel ({
       {...others}
       className={classnames(
         'rounded-lg bg-[var(--r-bg-color)] border-[var(--r-border-color)]',
-        border,
         {
+          border,
           'p-3': padding,
         },
         className,
