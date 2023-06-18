@@ -8,6 +8,9 @@ import { useColorHex, type Color } from '../..'
 
 export type TextFieldProps = {
   className?: string
+  classNames?: {
+    'input': string
+  }
   value: any
   prefix?: ReactNode
   suffix?: ReactNode
@@ -24,6 +27,7 @@ export type TextFieldProps = {
 
 export function TextField ({
   className,
+  classNames,
   prefix,
   suffix,
   suffixAbsolute,
@@ -77,11 +81,13 @@ export function TextField ({
     >
       { prefix && <div className="min-w-fit inline-block flex pr-2">{ prefix }</div> }
       <input
-        className={classnames('p-2 w-full outline-none bg-transparent flex-shrink', {
-          'text-center': textAlign === 'center',
-          'text-left': textAlign === 'left',
-          'text-right': textAlign === 'right',
-        })}
+        className={classnames(
+          classNames?.input,
+          'p-2 w-full outline-none bg-transparent flex-shrink', {
+            'text-center': textAlign === 'center',
+            'text-left': textAlign === 'left',
+            'text-right': textAlign === 'right',
+          })}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

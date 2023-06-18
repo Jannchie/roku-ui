@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode, useEffect } from 'react'
 import {
   Btn, type Color, Panel, type PanelProps, Progress, useColorHex,
@@ -55,7 +55,7 @@ export function Notice ({
   close,
   ...others
 }: NoticeProps & PanelProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'>) {
-  const wrapperCls = classNames(
+  const wrapperCls = classnames(
     'bg-[var(--r-bg-color)] text-sm',
     { 'shadow-lg shadow-black/5': shadow },
     'overflow-hidden',
@@ -65,8 +65,8 @@ export function Notice ({
     wrapperClass,
   )
   const mainTextColorCls = `text-${color}-2`
-  const descCls = classNames('text-frontground-2', descClass)
-  const titleCls = classNames(
+  const descCls = classnames('text-frontground-2', descClass)
+  const titleCls = classnames(
     'r-notice-title',
     mainTextColorCls,
     titleClass,
@@ -80,7 +80,7 @@ export function Notice ({
       }, existMS)
     }
   })
-  const iconCls = classNames('self-center mr-4 leading-none', mainTextColorCls)
+  const iconCls = classnames('self-center mr-4 leading-none', mainTextColorCls)
   return (
     <Panel
       style={{
@@ -93,7 +93,7 @@ export function Notice ({
       {...others}
       className={wrapperCls}
     >
-      <div className={classNames(dense ? 'p-2 pb-0' : 'p-4 pb-2')}>
+      <div className={classnames(dense ? 'p-2 pb-0' : 'p-4 pb-0')}>
         <div className="flex justify-between">
           <div className="flex items-center">
             { icon &&

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLAttributes, forwardRef } from 'react'
 
 export const Flex = forwardRef(({ col, children, style, className, inline, direction, justify, align, wrap, gap, ...others }: {
@@ -22,7 +22,7 @@ export const Flex = forwardRef(({ col, children, style, className, inline, direc
         gap,
         ...style,
       }}
-      className={classNames(
+      className={classnames(
         'r-flex',
         {
           'flex-col': direction === 'column',

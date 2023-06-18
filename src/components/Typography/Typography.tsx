@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
 
 function H1 ({ children, className, ...props }: {
@@ -6,7 +6,7 @@ function H1 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h1
-      className={classNames(className, 'text-4xl font-bold')}
+      className={classnames(className, 'text-4xl font-bold')}
       {...props}
     >
       { children }
@@ -19,7 +19,7 @@ function H2 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h2
-      className={classNames(className, 'text-3xl font-bold')}
+      className={classnames(className, 'text-3xl font-bold')}
       {...props}
     >
       { children }
@@ -33,7 +33,7 @@ function H3 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={classNames(className, 'text-2xl font-bold')}
+      className={classnames(className, 'text-2xl font-bold')}
       {...props}
     >
       { children }
@@ -46,7 +46,7 @@ function H4 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h4
-      className={classNames(className, 'text-xl font-bold')}
+      className={classnames(className, 'text-xl font-bold')}
       {...props}
     >
       { children }
@@ -59,7 +59,7 @@ function H5 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h5
-      className={classNames(className, 'text-lg font-bold')}
+      className={classnames(className, 'text-lg font-bold')}
       {...props}
     >
       { children }
@@ -73,7 +73,7 @@ function H6 ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h6
-      className={classNames(className, 'text-base font-bold')}
+      className={classnames(className, 'text-base font-bold')}
       {...props}
     >
       { children }
@@ -86,7 +86,7 @@ function P ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={classNames(className, 'text-base')}
+      className={classnames(className, 'text-base')}
       {...props}
     >
       { children }
@@ -98,7 +98,7 @@ function Caption ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
-      className={classNames(className, 'text-sm')}
+      className={classnames(className, 'text-sm')}
       {...props}
     >
       { children }
@@ -110,7 +110,7 @@ function Button ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
-      className={classNames(className, 'text-base font-bold')}
+      className={classnames(className, 'text-base font-bold')}
       {...props}
     >
       { children }

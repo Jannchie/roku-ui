@@ -1,11 +1,11 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type FC, type HTMLAttributes, type ReactNode } from 'react'
 import { Icon, type Color, useColorHex, getOpacityColor } from '../../..'
 import { TextField } from '../../TextField'
 import { TablerSearch } from '@roku-ui/icons-tabler'
 
 type AppbarAttributes = {
-  varient?: 'default' | 'blur' | 'transparent' | 'pattern'
+  varient?: 'default' | 'blur' | 'transparent'
   border?: boolean
   color?: Color
   icon?: ReactNode
@@ -39,12 +39,11 @@ export const Appbar: FC<AppbarAttributes> = ({
         ...style,
         ...colorStyles,
       }}
-      className={classNames(
+      className={classnames(
         'flex text-sm w-full z-10 px-4 py-1 items-center justify-between',
         { 'border-b border-[var(--r-border-color)]': border },
         { 'bg-[var(--r-bg-color)]': varient === 'default' },
-        { 'bg-[var(--r-bg-color-25)]': varient === 'blur' },
-        { 'bg-[var(--r-bg-color-10)]': varient === 'pattern' },
+        { 'bg-[var(--r-bg-color-25)] backdrop-blur-xl': varient === 'blur' },
         others.className,
       )}
       {...others}

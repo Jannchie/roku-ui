@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
 
 export const DynamicIsland = ({
@@ -14,7 +14,7 @@ export const DynamicIsland = ({
 } & HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
-      className={classNames('overflow-hidden', className, 'transition-all')}
+      className={classnames('overflow-hidden', className, 'transition-all')}
       {...others}
     >
       <div

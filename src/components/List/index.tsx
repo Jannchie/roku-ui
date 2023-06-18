@@ -1,13 +1,13 @@
 import { Flex } from '../Layout/Flex'
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type Color } from '../../utils/colors'
 import { getOpacityColor, useColorHex } from '../../hooks'
 
 export function ListBase ({ className, children, ...others }: { children?: ReactNode } & HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={classNames('p-2 min-w-36', className)}
+      className={classnames('p-2 min-w-36', className)}
       {...others}
     >
       { children }
@@ -19,7 +19,7 @@ function ListTitle ({ children, className, ...others }: HTMLAttributes<HTMLDivEl
   return (
     <h2
       {...others}
-      className={classNames('p-2 text-frontground-3 text-xs', className)}
+      className={classnames('p-2 text-frontground-3 text-xs', className)}
     >
       { children }
     </h2>
@@ -40,7 +40,7 @@ const ListItem = forwardRef((
           '--r-fg-10': getOpacityColor(useColorHex('frontground'), 0.1),
         },
       }}
-      className={classNames('p-2 rounded cursor-pointer', className, {
+      className={classnames('p-2 rounded cursor-pointer', className, {
         'hover:bg-[var(--r-color-10)]': typeof hover === 'undefined',
         'bg-[var(--r-fg-10)]': hover,
       })}

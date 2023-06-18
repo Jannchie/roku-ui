@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
 import { CommentForm } from './CommentForm'
 import { CommentList } from './CommentList'
@@ -30,7 +30,7 @@ export function CommentComponent (
   return (
     <div
       {...props}
-      className={classNames('relative flex flex-col gap-4 m-auto h-full', className)}
+      className={classnames('relative flex flex-col gap-4 m-auto h-full', className)}
     >
       <CommentList
         loading={loading}

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type FC, type ReactNode, useState } from 'react'
 import { type Color } from '../..'
 import { TablerCheck, TablerMinus } from '@roku-ui/icons-tabler'
@@ -32,13 +32,13 @@ export const Switch: FC<SwitchProps> = ({
     h = 1.5
   }
   return (
-    <div className={classNames(
+    <div className={classnames(
       'inline-flex items-center gap-2 relative',
     )}
     >
       <input
         type="checkbox"
-        className={classNames(
+        className={classnames(
           'appearance-none cursor-pointer rounded-full border transition-box-shadow,background-color,border-color',
           {
             'w-[3rem] h-[1.5rem]': size === 'lg',
@@ -72,7 +72,7 @@ export const Switch: FC<SwitchProps> = ({
         onClick={() => { setValue(!value) }}
       />
       { bgIcon && <div
-        className={classNames('absolute transition-transform pointer-events-none')}
+        className={classnames('absolute transition-transform pointer-events-none')}
         style={{
           transform: value ? 'translateX(2px) rotate(0deg) ' : `translateX(${h}rem) rotate(360deg)`,
         }}

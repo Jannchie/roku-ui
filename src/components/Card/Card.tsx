@@ -1,7 +1,7 @@
 import { type HTMLAttributes, type ReactNode } from 'react'
 import { type Color, Panel } from '../..'
 import { type BaseProps } from '../../utils/type'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 type CardProps = {
   title?: ReactNode
@@ -29,7 +29,7 @@ export function Card ({
   backgroundColor = 'background',
   ...other
 }: CardProps) {
-  const cardClass = classNames(
+  const cardClass = classnames(
     'flex flex-col gap-2 rounded-lg',
     {
       'divide-y': divider,
@@ -49,7 +49,7 @@ export function Card ({
       {...other}
     >
       { title && (
-        <div className={classNames({
+        <div className={classnames({
           'p-4 pb-0 text-base': dense,
           'p-6 pb-0 text-base': !dense,
         })}
@@ -58,14 +58,14 @@ export function Card ({
           <div>{ subtitle }</div>
         </div>
       ) }
-      { body && <div className={classNames({
+      { body && <div className={classnames({
         'p-4 text-sm': dense,
         'p-6 text-sm': !dense,
       })}
       >
         { body }
       </div> }
-      { actions && <div className={classNames('flex gap-2 justify-end', {
+      { actions && <div className={classnames('flex gap-2 justify-end', {
         'p-6 pt-0': !dense,
         'p-4 pt-0 py-1 text-sm': dense,
       })}

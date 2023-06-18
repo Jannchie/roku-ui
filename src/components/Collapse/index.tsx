@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode, useRef, useState, useEffect } from 'react'
 import { type PanelProps } from '../Panel'
 import { TablerChevronDown } from '@roku-ui/icons-tabler'
@@ -42,13 +42,13 @@ export function Collapse ({
   }, [])
   return (
     <button
-      className={classNames(className, 'block')}
+      className={classnames(className, 'block')}
       onClick={() => {
         if (setE) setE(!e)
       }}
       {...props}
     >
-      <div className={classNames('cursor-pointer text-lg flex items-center gap-2 relative')}>
+      <div className={classnames('cursor-pointer text-lg flex items-center gap-2 relative')}>
         <div
           className="transition-transform"
           style={{
@@ -61,7 +61,7 @@ export function Collapse ({
       </div>
       <div
         ref={compRef}
-        className={classNames({
+        className={classnames({
           'transition-height relative overflow-hidden will-change-height': true,
         })}
         style={{ height: !e ? 0 : h }}

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLAttributes } from 'react'
 import { useColorHex, type Color } from '../..'
 import { defaults } from '../../utils/defaults'
@@ -24,7 +24,7 @@ export function Panel ({
   return (
     <div
       {...others}
-      className={classNames(
+      className={classnames(
         'rounded-lg bg-[var(--r-bg-color)] border-[var(--r-border-color)]',
         border,
         {

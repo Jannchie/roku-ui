@@ -16,7 +16,12 @@ function getNavItem (icon: ReactNode, title: string) {
     return (
       <List.Item
         title={title}
-        icon={<Icon color={isActive ? 'primary' : 'frontground'}>{ icon }</Icon>}
+        icon={<Icon
+          variant="dual"
+          color={isActive ? 'primary' : 'frontground'}
+        >
+          { icon }
+        </Icon>}
       />
     )
   }
@@ -28,8 +33,14 @@ function DocLayout () {
   const appbar = (
     <Appbar
       border
-      style={{ position: 'fixed', top: 0, width: '100%' }}
-      varient="pattern"
+      style={{
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        backgroundImage: 'radial-gradient(hsl(var(--r-background-1), 0.25) 1px, hsl(var(--r-background-2)) 1px)',
+        backgroundSize: '4px 4px',
+      }}
+      varient="blur"
       title={(<div
         style={{
           display: 'flex',

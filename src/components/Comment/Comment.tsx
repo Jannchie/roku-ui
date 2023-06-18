@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type ReactNode, useRef, useState } from 'react'
 import {
   Avatar,
@@ -97,7 +97,7 @@ export function Comment ({
       { (replies != null) && (
         <div
           ref={repliesDetail}
-          className={classNames(
+          className={classnames(
             'rounded flex flex-col gap-2',
           )}
         >

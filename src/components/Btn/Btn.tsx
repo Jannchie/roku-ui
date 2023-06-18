@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo, forwardRef, useRef,
@@ -168,7 +168,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
       }
     }
     const colorStyle = useColorStyle()
-    const btnClass = classNames(
+    const btnClass = classnames(
       textSizeClass,
       border,
       'overflow-visible relative border min-w-max h-fit text-sm disabled:grayscale disabled:contrast-50 disabled:pointer-events-none rounded',
@@ -187,7 +187,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
     )
     const body = children ?? label
-    const loadingFinalClass = classNames({
+    const loadingFinalClass = classnames({
       'h-3 w-3': size === 'xs',
       'h-4 w-4': size === 'sm',
       'h-5 w-5': size === 'md',
@@ -227,7 +227,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
           {...others}
         >
           <div
-            className={classNames(loadingFinalClass)}
+            className={classnames(loadingFinalClass)}
           >
             { loading
               ? loadingIcon
@@ -246,7 +246,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={clickCallback}
         {...others}
       >
-        <div className={classNames(
+        <div className={classnames(
           'flex items-center relative',
           { 'justify-left': left },
           { 'justify-right': right },
@@ -256,7 +256,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
           { leadingIcon
             ? (
               <div
-                className={classNames(loadingFinalClass)}
+                className={classnames(loadingFinalClass)}
                 style={{
                   fontSize: size === 'sm' ? '1rem' : '1.5rem',
                 }}
@@ -322,7 +322,7 @@ function Group ({
     <BtnGroupCtx.Provider value={ctx}>
       <div className="relative flex">
         <div
-          className={classNames(
+          className={classnames(
             className,
             `border-${activeColor}-2`,
             'flex border rounded-lg transform overflow-hidden',

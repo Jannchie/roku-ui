@@ -2,7 +2,7 @@ import { type ReactNode, useCallback, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useOnClickOutside } from '../../hooks'
 import { type BaseProps } from '../../utils/type'
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 export type ModalProps = {
   children?: ReactNode
@@ -48,18 +48,19 @@ export function Modal ({
             { background && (
               <motion.div
                 animate={{ opacity: 1 }}
-                className={classNames('fixed inset-0 bg-black bg-opacity-25', { 'backdrop-blur': backgroundBlur })}
+                className={classnames('fixed inset-0 bg-black bg-opacity-25', { 'backdrop-blur': backgroundBlur })}
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
                 onClick={onHide}
               />
             ) }
-            <div className={classNames('fixed bottom-2 left-2 right-2 sm:inset-0 overflow-y-auto')}>
-              <div className="flex min-h-full items-center justify-center children:w-full sm:children:w-auto">
+            <div className={classnames('fixed bottom-2 left-2 right-2 sm:inset-0 overflow-y-auto')}>
+              <div className="flex min-h-full items-center justify-center">
                 <motion.div
                   key="modal"
                   ref={ref}
+                  className="w-full sm:w-auto"
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   initial={{ opacity: 0, scale: 0.8 }}

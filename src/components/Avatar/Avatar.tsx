@@ -1,7 +1,7 @@
 import {
   type MouseEvent, type KeyboardEvent, type ReactNode, type ImgHTMLAttributes, type HTMLAttributes,
 } from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type Color } from '../..'
 
 type AvatarProps = {
@@ -37,7 +37,7 @@ export function AvatarRoot ({
       height: size,
     }
   }
-  const avatarClass = classNames(
+  const avatarClass = classnames(
     'relative overflow-hidden text-sm justify-center items-center flex',
     {
       'w-4 h-4': size === 'xs',
@@ -97,7 +97,7 @@ export function AvatarRoot ({
 
 const Group = ({ children, className, ...others }: HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={classNames('flex flex-row flex-wrap justify-center -space-x-3 children:ring-4 children:ring-background-2', className)}
+    className={classnames('flex flex-row flex-wrap justify-center -space-x-3 children:ring-4 children:ring-background-2', className)}
     {...others}
   >
     { children }

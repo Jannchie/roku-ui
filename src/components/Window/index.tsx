@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLAttributes, type ReactNode } from 'react'
 import { type Color } from '../../utils/colors'
 import { Panel } from '../Panel'
@@ -20,7 +20,7 @@ export function Window ({
     <Panel
       border
       color={color}
-      className={classNames(props.className)}
+      className={classnames(props.className)}
       {...props}
     >
       <TitleBar

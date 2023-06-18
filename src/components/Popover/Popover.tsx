@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import { type ReactNode, useState, type HTMLAttributes } from 'react'
 import { type BaseProps } from '../../utils/type'
@@ -31,7 +31,7 @@ function Content ({
         { children }
       </div>
       <svg
-        className={classNames('absolute left-1/2 pointer-events-none translate-x-[-5px] fill-[var(--r-bg)]', {
+        className={classnames('absolute left-1/2 pointer-events-none translate-x-[-5px] fill-[var(--r-bg)]', {
           'left-1/4': left,
           'right-1/4': right,
         })}
@@ -65,7 +65,7 @@ export function PopoverRoot ({
       <AnimatePresence>
         { show && (
           <motion.div
-            className={classNames('absolute bottom-full mb-4 left-1/2 translate-x-[-50%]', other.className)}
+            className={classnames('absolute bottom-full mb-4 left-1/2 translate-x-[-50%]', other.className)}
             style={{
               ...other.style,
             }}
@@ -78,7 +78,7 @@ export function PopoverRoot ({
           </motion.div>
         ) }
       </AnimatePresence>
-      <span className={classNames(
+      <span className={classnames(
         'relative inline-block',
         { 'underline underline-offset-2 decoration-dotted decoration-2': underline },
       )}

@@ -2,7 +2,7 @@ import { type ReactNode } from 'react'
 import { Btn } from '../Btn'
 import { TablerBoxMultiple, TablerX } from '@roku-ui/icons-tabler'
 import { MaterialSymbolsMinimize } from '@roku-ui/icons-material-symbols'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { useTheme } from '../../hooks'
 
 export function TitleBar ({
@@ -83,7 +83,7 @@ export function WindowTitleBar ({
         </Btn>
         <Btn
           contrast
-          className={classNames({ 'hover:text-white': theme === 'light' })}
+          className={classnames({ 'hover:text-white': theme === 'light' })}
           hoverColor="danger"
         >
           <TablerX width={16} />

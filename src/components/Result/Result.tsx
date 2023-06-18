@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { Icon, type Color } from '../..'
 import { T } from '../Typography'
 import { type ReactNode } from 'react'
@@ -14,7 +14,7 @@ export function Result ({
   description?: string
 }) {
   return (
-    <div className={classNames('flex flex-col items-center gap-2', {
+    <div className={classnames('flex flex-col items-center gap-2', {
       [`text-${color}-2`]: true,
     })}
     >
@@ -28,7 +28,7 @@ export function Result ({
       <T.H4>
         { title }
       </T.H4>
-      <div className={classNames('text-frontground-3 text-xs')}>
+      <div className={classnames('text-frontground-3 text-xs')}>
         { description }
       </div>
     </div>

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type AnchorHTMLAttributes } from 'react'
 import { useColorHex, type Color } from '../..'
 import { TablerExternalLink } from '@roku-ui/icons-tabler'
@@ -34,7 +34,7 @@ export function Anchor ({
           '--r-decoration-color': color ? colorHex : undefined,
         },
       }}
-      className={classNames(
+      className={classnames(
         className,
         'inline-flex items-center gap-1 relative underline-offset-2 cursor-default',
         { 'decoration-dashed': dash },

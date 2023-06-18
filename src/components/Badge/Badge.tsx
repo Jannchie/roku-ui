@@ -1,5 +1,5 @@
 import { type HTMLAttributes, type ReactNode } from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { useColorHex, type Color } from '../..'
 
 interface BadgeProps {
@@ -51,7 +51,7 @@ export function Badge ({
     }
   }
 
-  const badgePointCls = classNames(
+  const badgePointCls = classnames(
     'absolute rounded-full pointer-events-none text-xs z-10 text-white',
     {
       'top-0 -right-0': position === 'top-right',
@@ -72,7 +72,7 @@ export function Badge ({
   return (
     <span
       style={{ ...others.style, ...{ '--r-color': colorHex } }}
-      className={classNames('flex', className)}
+      className={classnames('flex', className)}
       {...others}
     >
       <div className="relative">
@@ -90,7 +90,7 @@ export function Badge ({
             </span>
             { ping &&
             <span
-              className={classNames('animate-ping text-transparent', badgePointCls)}
+              className={classnames('animate-ping text-transparent', badgePointCls)}
               style={{
                 translate: getTranslate(position),
                 ...getOffset(position),

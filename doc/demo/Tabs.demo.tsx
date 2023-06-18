@@ -7,8 +7,9 @@ export default function Demo () {
     <>
       <Tabs
         selectedIndex={tabIndex}
-        onChange={function (index: number): void {
-          setTabIndex(index)
+        onChange={(i) => {
+          typeof i === 'number' &&
+          setTabIndex(i)
         }}
       >
         <Tabs.Item label="Tab 1" >

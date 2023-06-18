@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type HTMLMotionProps, motion, useMotionValue, animate, useTransform } from 'framer-motion'
 import { useEffect } from 'react'
 import { useColorHex, type Color } from '../..'
@@ -34,7 +34,7 @@ export function DynamicValue ({
           '--r-color': colorHex,
         },
       }}
-      className={classNames('r-digital', className, 'text-[var(--r-color)]')}
+      className={classnames('r-digital', className, 'text-[var(--r-color)]')}
       {...others}
     >
       { formated }

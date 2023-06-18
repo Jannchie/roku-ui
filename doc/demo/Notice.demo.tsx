@@ -18,7 +18,12 @@ export default function Demo () {
             color="success"
             title="标题"
             desc="内容"
-            icon={<Icon color="success"><TablerMessage2Check /></Icon>}
+            icon={<Icon
+              variant="dual"
+              color="success"
+            >
+              <TablerMessage2Check />
+            </Icon>}
           />
         )
       }

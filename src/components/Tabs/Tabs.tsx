@@ -1,7 +1,7 @@
 import {
   type ReactNode, useEffect, useRef, useState, type HTMLAttributes, type FormEventHandler,
 } from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type Color, useAutoSetHeight, useColorHex } from '../..'
 import { type BaseProps } from '../../utils/type'
 
@@ -58,9 +58,9 @@ function List ({
     let btnClass = ''
     if (index === selectedIndex) {
       if (type === 'indicator') {
-        btnClass = classNames(textColor)
+        btnClass = classnames(textColor)
       } else {
-        btnClass = classNames('text-white', indicatorColor)
+        btnClass = classnames('text-white', indicatorColor)
       }
     }
     return btnClass
@@ -71,7 +71,7 @@ function List ({
       <div
         ref={tabList}
         style={{ ...colorStyle, ...props.style }}
-        className={classNames(className, 'text-sm children:rounded children:px-2 children:py-1 children:!outline-none')}
+        className={classnames(className, 'text-sm')}
         {...props}
       >
         { data.map((d, i) => (
@@ -79,7 +79,7 @@ function List ({
             // eslint-disable-next-line react/no-array-index-key
             key={i}
             aria-selected={selectedIndex === i}
-            className={getBtnClass(i)}
+            className={`${getBtnClass(i)} rounded px-2 py-1 !outline-none`}
             role="tab"
             tabIndex={-1}
             type="button"
@@ -125,7 +125,7 @@ function List ({
           style={{ ...colorStyle as any }}
         >
           <div
-            className={classNames('transition-left absolute h-0.5 rounded-md', indicatorColor)}
+            className={classnames('transition-left absolute h-0.5 rounded-md', indicatorColor)}
             style={indicatorStyle}
           />
         </div>
@@ -190,7 +190,7 @@ export function TabsRoot (props: RTabsProps) {
     ))
   return (
     <div
-      className={classNames(className, 'relative')}
+      className={classnames(className, 'relative')}
       id={id}
       style={style}
     >

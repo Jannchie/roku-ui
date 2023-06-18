@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import {
   type ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type Color, Notice, Icon } from '../..'
 import { TablerMessage2, TablerMessage2Check, TablerMessage2Exclamation, TablerMessage2X } from '@roku-ui/icons-tabler'
 
@@ -43,7 +43,7 @@ export const push = (notice: any, config?: PushConfig): void => {
 }
 
 export const pushNotice = (config: PushConfig & NoticeConfig) => {
-  let { existsMS, closable = false, name } = config
+  let { existsMS, closable = false, name = 'default' } = config
   const { title, desc, type } = config
 
   if (!existsMS) existsMS = 3000
@@ -82,7 +82,12 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
         : undefined}
       desc={desc}
       existMS={existsMS}
-      icon={<Icon color={mainColor}>{ icon }</Icon>}
+      icon={<Icon
+        variant="dual"
+        color={mainColor}
+      >
+        { icon }
+      </Icon>}
       color={mainColor}
       title={title}
     />
@@ -116,7 +121,7 @@ export function Notifications ({
   left,
   right,
   defaultExistsMS,
-  maxCount,
+  maxCount = 3,
   wait,
   className,
   stack,
@@ -262,7 +267,7 @@ export function Notifications ({
   return (
     <div
       key="r-notification"
-      className={classNames(
+      className={classnames(
         'fixed z-10 md:w-40ch w-full p-2',
         {
           'justify-center left-1/2 right-auto -translate-x-1/2': justify === 'center',
@@ -276,7 +281,7 @@ export function Notifications ({
     >
       <div
         ref={noticesWrapper}
-        className={classNames('flex gap-2 h-0', {
+        className={classnames('flex gap-2 h-0', {
           'flex-col': align === 'top',
           'flex-col-reverse': align === 'bottom',
         })}

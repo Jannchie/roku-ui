@@ -1,5 +1,5 @@
 import { useRef, type HTMLAttributes } from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { List } from '../..'
 
 export function OptionComponent<T> ({
@@ -24,7 +24,7 @@ export function OptionComponent<T> ({
     <List.Item
       {...props}
       ref={self}
-      className={classNames(
+      className={classnames(
         'relative cursor-default select-none block w-full text-left cursor-pointer',
       )}
       hover={focus}

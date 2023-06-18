@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type AnimationProps, motion } from 'framer-motion'
 import { type BaseProps } from '../../utils/type'
 import { useColorHex } from '../../hooks'
@@ -33,8 +33,8 @@ export function Progress ({
   className,
   style,
 }: ProgressProps) {
-  const bgCls = classNames('bg-[var(--r-progress-color)]', 'rounded-lg')
-  const wrapperCls = classNames(className, 'h-1 relative')
+  const bgCls = classnames('bg-[var(--r-progress-color)]', 'rounded-lg')
+  const wrapperCls = classnames(className, 'h-1 relative')
   const percent = infinite ? 25 : Math.min((value / total) * 100, 100)
   let progressMain
   if (infinite || fake) {
@@ -46,8 +46,8 @@ export function Progress ({
       : { times: [0, 0.01, 0.012, 0.2, 0.24, 0.5, 1], duration: durationMS === 0 ? 16 : durationMS / 1000 }
     progressMain = (
       <>
-        { buildMotionDiv({ className: classNames(bgCls, 'h-full'), animate, transition }) }
-        { blur && buildMotionDiv({ className: classNames(bgCls, 'absolute', 'h-full blur-md'), animate, transition }) }
+        { buildMotionDiv({ className: classnames(bgCls, 'h-full'), animate, transition }) }
+        { blur && buildMotionDiv({ className: classnames(bgCls, 'absolute', 'h-full blur-md'), animate, transition }) }
       </>
     )
   } else {
@@ -55,8 +55,8 @@ export function Progress ({
     const transition = durationMS ? { duration: durationMS / 1000, ease: 'linear' } : undefined
     progressMain = (
       <>
-        { buildMotionDiv({ className: classNames(bgCls, 'h-full', 'absolute'), animate, transition }) }
-        { blur && buildMotionDiv({ className: classNames(bgCls, 'absolute', 'h-full blur-md'), animate, transition }) }
+        { buildMotionDiv({ className: classnames(bgCls, 'h-full', 'absolute'), animate, transition }) }
+        { blur && buildMotionDiv({ className: classnames(bgCls, 'absolute', 'h-full blur-md'), animate, transition }) }
       </>
     )
   }

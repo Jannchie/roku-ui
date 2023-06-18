@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type TextareaHTMLAttributes, useEffect, useRef, useState } from 'react'
 import { type Color } from '../../utils/colors'
 import { useColorHex } from '../../hooks'
@@ -25,9 +25,9 @@ export function Textarea ({
   const borderColor = useColorHex('border', 2)
   const mainColor = useColorHex(color, 2)
   return (
-    <div className={classNames('relative leading-0', className)}>
+    <div className={classnames('relative leading-0', className)}>
       { maxLength && (
-        <div className={classNames('absolute top-full mt-1 text-f-2')}>
+        <div className={classnames('absolute top-full mt-1 text-f-2')}>
           { textarea.current?.value.length }
           /
           { maxLength }
@@ -35,7 +35,7 @@ export function Textarea ({
       ) }
       <textarea
         ref={textarea}
-        className={classNames(
+        className={classnames(
           'transition-border-color w-full border rounded border-[var(--r-border-color)] bg-[var(--r-bg-color)] text-sm p-[9px] py-[8px] outline-none',
           {
             border,

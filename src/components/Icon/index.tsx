@@ -2,7 +2,7 @@ import { type HTMLAttributes } from 'react'
 import { type Color } from '../../utils/colors'
 import { type Size, type Rounded } from '../../utils/type'
 import { defaults } from '../../utils/defaults'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { useColorHex } from '../../hooks'
 
 function sizeClassName (size: Size) {
@@ -92,7 +92,7 @@ export function Icon ({
           '--r-main-opacity-color': `${mainColorHex}33`,
         },
       }}
-      className={classNames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-block')}
+      className={classnames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-block')}
     >
       { children }
     </i>

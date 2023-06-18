@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { createContext, type HTMLAttributes, type ReactElement, type ReactNode, useContext } from 'react'
 type StepItemProps = {
   index: number
@@ -22,7 +22,7 @@ function Item ({
   const { current } = useContext(ctx)
   return (
     <li
-      className={classNames('flex items-center whitespace-nowrap gap-2', {
+      className={classnames('flex items-center whitespace-nowrap gap-2', {
         'text-primary-1': current >= index,
         'text-f-3': current < index,
       })}

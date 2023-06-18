@@ -1,5 +1,5 @@
 import { type MouseEvent, type KeyboardEvent, type ReactNode } from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type Color } from '../../utils/colors'
 import { defaults } from '../../utils/defaults'
 import { Btn } from '../Btn'
@@ -44,7 +44,7 @@ export function ChipRoot ({
   const fgColor = useColorHex('frontground')
   const bgColor = useColorHex('background')
   const colorFG = useColorHex(calculateContrast(mainColorHex, fgColor) > calculateContrast(mainColorHex, bgColor) ? 'frontground' : 'background')
-  const tagClass = classNames(
+  const tagClass = classnames(
     className,
     'border inline-flex gap-1 cursor-default rounded bg-opacity-10 items-center',
     {

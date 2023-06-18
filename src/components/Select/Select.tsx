@@ -1,5 +1,5 @@
 import { type ReactNode, useState, useRef, type HTMLAttributes, useCallback } from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import { type Color, TextField, useOnClickOutside, List, Panel, Icon } from '../..'
 import { type BaseProps } from '../../utils/type'
 import { TablerArrowsMoveVertical } from '@roku-ui/icons-tabler'
@@ -22,7 +22,7 @@ export function Select<T> ({
   id,
   className,
   color = 'primary',
-  notFoundContent = <div className={classNames(
+  notFoundContent = <div className={classnames(
     'relative cursor-default select-none block w-full text-left cursor-pointer cursor-auto',
     'bg-[var(--r-bg)]',
   )}
@@ -60,7 +60,7 @@ export function Select<T> ({
     <div
       ref={wrapper}
       id={id}
-      className={classNames('relative inline-block h-min min-w-32', className)}
+      className={classnames('relative inline-block h-min min-w-32', className)}
       {...others}
     >
       <TextField
@@ -68,9 +68,12 @@ export function Select<T> ({
         readOnly={!autocomplete}
         value={query}
         type="search"
-        className={classNames('w-full text-left p-0', {
-          'children:cursor-pointer': !autocomplete,
-        })}
+        className={classnames('w-full text-left p-0')}
+        classNames={{
+          input: classnames({
+            'cursor-pointer': !autocomplete,
+          }),
+        }}
         suffix={!autocomplete && <Icon
           style={{
             pointerEvents: 'none',
@@ -156,7 +159,7 @@ export function Select<T> ({
       />
       {
         (
-          <Panel className={classNames('z-10 absolute mt-1 max-h-60 w-full overflow-auto rounded-md text-base focus: outline-none sm:text-sm z-1 border border-border-2', { hidden: !show })}>
+          <Panel className={classnames('z-10 absolute mt-1 max-h-60 w-full overflow-auto rounded-md text-base focus: outline-none sm:text-sm z-1 border border-border-2', { hidden: !show })}>
             <List>
               { filteredData.length === 0 && query !== ''
                 ? (
