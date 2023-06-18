@@ -11,6 +11,6 @@ export const defaultDark: InputTheme = {
   default: '#27272a',
   success: '#28B570',
   warning: '#EB872A',
-  danger: '#F55454',
+  danger: '#dd8888',
   info: '#0ea5e9',
 }

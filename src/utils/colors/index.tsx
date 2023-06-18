@@ -9,4 +9,17 @@ export type Color =
   | 'info'
   | 'background'
   | 'frontground'
-  | string
+
+export function isColor (color: string): color is Color {
+  return [
+    'primary',
+    'secondary',
+    'success',
+    'default',
+    'danger',
+    'warning',
+    'info',
+    'background',
+    'frontground',
+  ].includes(color)
+}

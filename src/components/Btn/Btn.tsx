@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import {
   createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo, forwardRef, useRef,
 } from 'react'
-import { type Color } from '../../utils/colors'
+import { isColor, type Color } from '../../utils/colors'
 import { SvgSpinners90RingWithBg } from '@roku-ui/icons-svg-spinners'
 import { useTrueColor, useHover, useThemeData } from '../../hooks'
 import { Flex, Icon, calculateContrast } from '../..'
@@ -23,8 +23,8 @@ export type ButtonProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg'
   style?: CSSProperties & { '--r-bg-gradient'?: string }
   rounded?: boolean
-  color?: Color
-  hoverColor?: Color
+  color?: Color | string
+  hoverColor?: Color | string
   border?: boolean
   dash?: boolean
   disabled?: boolean
@@ -123,8 +123,8 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
       color = ctx.activeColor
     }
     const trueBtnVariant = getTrueBtnVariant({ fill, text, variant, contrast, light })
-    const colorBG = themeData.color[color].base
-    const hColor = (trueBtnVariant !== 'fill' && color === 'default' && !hoverColor) ? 'frontground' : hoverColor ?? color
+    const colorBG = isColor(color) ? themeData.color[color].base : color
+    // const hColor = (trueBtnVariant !== 'fill' && color === 'default' && !hoverColor) ? 'frontground' : hoverColor ?? color
     const colorFGBase = useTrueColor(themeData.color.frontground.base)
     const colorBGBase = useTrueColor(themeData.color.background.base)
     const textSizeClass = {
@@ -137,7 +137,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     const fgColor = useTrueColor('frontground')
     const bgColor = useTrueColor('background')
     const mainColor = useTrueColor(color)
-    const mainHoverColor = useTrueColor(hColor, 3)
+    // const mainHoverColor = useTrueColor(hColor, 3)
     const borderColor = useTrueColor(color, 3)
     const textContrast = useTrueColor(colorFG)
     const useColorStyle = () => {
@@ -152,7 +152,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         case 'text':
           return {
             '--r-text-color': color === 'default' ? fgColor : mainColor,
-            '--r-text-hover-color': mainHoverColor,
+            '--r-text-hover-color': color === 'default' ? fgColor : mainColor,
             '--r-border-color': borderColor,
             '--r-outline-color': mainColor,
             '--r-bg-color': 'transparent',
@@ -160,7 +160,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         case 'fill':
           return {
             '--r-bg-color': mainColor,
-            '--r-bg-hover-color': mainHoverColor,
+            '--r-bg-hover-color': mainColor,
             '--r-border-color': borderColor,
             '--r-text-color': textContrast,
             '--r-text-hover-color': textContrast,

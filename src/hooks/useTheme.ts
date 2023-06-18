@@ -15,6 +15,7 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
   const { theme, setTheme: setThemeValue } = useContext(RokuContext)
   const setTheme = useCallback((theme: ThemeValue) => {
     localStorage.setItem(localstorageKey, theme)
+    document.cookie = `${localstorageKey}=${theme};path=/;max-age=31536000`
     setThemeValue(theme)
   }, [localstorageKey, setThemeValue])
 
@@ -36,6 +37,8 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
       defaultTheme.current = localTheme
     }
   }, [localstorageKey, preferred])
+
+  // set theme
   useLayoutEffect(() => {
     if (typeof localStorage === 'undefined') return
     const savedTheme = localStorage.getItem(localstorageKey)
@@ -48,6 +51,8 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
       document.documentElement.setAttribute('data-theme', defaultTheme.current)
     }
   })
+
+  // read from localstorage
   useLayoutEffect(() => {
     if (typeof localStorage === 'undefined') return
     const savedTheme = localStorage.getItem(localstorageKey)
