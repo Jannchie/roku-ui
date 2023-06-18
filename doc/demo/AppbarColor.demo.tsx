@@ -9,11 +9,6 @@ export default function Demo () {
         title="Roku UI App Default"
       />
       <Appbar
-        varient="pattern"
-        style={{ backgroundImage: 'radial-gradient(hsl(var(--r-primary-2)/0.25) 1px, hsl(var(--r-primary-2)/0.75) 1px)', backgroundSize: '4px 4px' }}
-        title="Roku UI App Pattern"
-      />
-      <Appbar
         varient="blur"
         color="primary"
         title="Roku UI App Blur"

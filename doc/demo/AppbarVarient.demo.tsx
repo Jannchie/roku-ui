@@ -8,10 +8,6 @@ export default function Demo () {
         title="Roku UI App Default"
       />
       <Appbar
-        varient="pattern"
-        title="Roku UI App Pattern"
-      />
-      <Appbar
         varient="blur"
         title="Roku UI App Blur"
       />
