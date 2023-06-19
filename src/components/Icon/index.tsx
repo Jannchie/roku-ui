@@ -92,7 +92,7 @@ export function Icon ({
           '--r-main-opacity-color': useOpacityColor(color),
         },
       }}
-      className={classnames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-block')}
+      className={classnames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-flex')}
     >
       { children }
     </i>

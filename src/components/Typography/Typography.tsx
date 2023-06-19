@@ -3,9 +3,9 @@ import { type Color } from 'd3-color'
 import { type HTMLAttributes, type ReactNode } from 'react'
 import { useTrueColor } from '../../hooks'
 
-function H1 ({ color, style, children, className, ...props }: {
+function H1 ({ color = 'frontground', style, children, className, ...props }: {
   children: ReactNode
-  color: Color | string
+  color?: Color | string
 } & HTMLAttributes<HTMLHeadingElement>) {
   const textColor = useTrueColor(color)
   return (

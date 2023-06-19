@@ -171,7 +171,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     const btnClass = classnames(
       textSizeClass,
       border,
-      'overflow-visible relative border min-w-max h-fit text-sm disabled:grayscale disabled:contrast-50 disabled:pointer-events-none rounded',
+      'inline-block overflow-visible relative border min-w-max h-fit text-sm disabled:grayscale disabled:contrast-50 disabled:pointer-events-none rounded',
       { 'min-w-24': !icon },
       {
         'active:translate-y-[1px]': active === 'translate',
