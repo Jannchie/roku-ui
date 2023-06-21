@@ -75,6 +75,7 @@ export const pushNotice = (config: PushConfig & NoticeConfig) => {
       outlined
       progress
       shadow
+      className="w-full md:w-sm p-2"
       close={closable
         ? () => {
           nEventMgr.onRemove.forEach((cb) => { cb(n) })
