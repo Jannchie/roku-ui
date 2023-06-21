@@ -269,7 +269,7 @@ export function Notifications ({
     <div
       key="r-notification"
       className={classnames(
-        'fixed z-10 md:w-40ch w-full p-2',
+        'fixed z-10 md:max-w-40ch max-w-full p-2 m-auto',
         {
           'justify-center left-1/2 right-auto -translate-x-1/2': justify === 'center',
           'left-0': justify === 'left',

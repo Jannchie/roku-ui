@@ -64,11 +64,10 @@ export function Notice ({
     className,
     wrapperClass,
   )
-  const mainTextColorCls = `text-${color}-2`
   const descCls = classnames('text-frontground-2', descClass)
   const titleCls = classnames(
     'r-notice-title',
-    mainTextColorCls,
+    'text-[var(--r-main-color)]',
     titleClass,
   )
   useEffect(() => {
@@ -80,13 +79,14 @@ export function Notice ({
       }, existMS)
     }
   })
-  const iconCls = classnames('self-center mr-4 leading-none', mainTextColorCls)
+  const iconCls = classnames('self-center mr-4 leading-none')
   return (
     <Panel
       style={{
         ...others.style,
         ...{
           '--r-bg-color': useTrueColor('background'),
+          '--r-main-color': useTrueColor(color),
           '--r-border-color': useTrueColor('border'),
         },
       }}
