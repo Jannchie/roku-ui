@@ -27,34 +27,34 @@ function roundedClassName (rounded: Rounded) {
     case 'none':
       return ''
     case 'xs':
-      return 'rounded-xs'
+      return 'rounded-xs after:rounded-xs'
     case 'sm':
-      return 'rounded-sm'
+      return 'rounded-sm after:rounded-sm'
     case 'md':
-      return 'rounded-md'
+      return 'rounded-md after:rounded-md'
     case 'base':
-      return 'rounded'
+      return 'rounded after:rounded'
     case 'lg':
-      return 'rounded-lg'
+      return 'rounded-lg after:rounded-lg'
     case 'xl':
-      return 'rounded-xl'
+      return 'rounded-xl after:rounded-xl'
     case 'full':
-      return 'rounded-full'
+      return 'rounded-full after:rounded-full'
   }
 }
 
 export type IconVariant = 'default' | 'fill' | 'text' | 'dual'
 
-function variantClassName (variant?: IconVariant, color: Color = 'frontground') {
+function variantClassName (variant?: IconVariant) {
   switch (variant) {
     case 'fill':
-      return 'bg-[var(--r-main-color)] text-background-2'
+      return 'bg-[var(--r-main-color)] text-background-2 after:bg-[var(--r-main-color)]'
     case 'text':
-      return 'text-[var(--r-main-color)]'
+      return 'text-[var(--r-main-color)]  after:bg-[var(--r-main-color)]'
     case 'dual':
-      return 'bg-[var(--r-main-opacity-color)] text-[var(--r-main-color)]'
+      return 'bg-[var(--r-main-opacity-color)] text-[var(--r-main-color)] after:bg-[var(--r-main-color)]'
     default:
-      return 'text-[var(--r-main-color)]'
+      return 'text-[var(--r-main-color)] after:bg-[var(--r-main-color)]'
   }
 }
 
@@ -63,13 +63,16 @@ export function Icon ({
   color,
   rounded = defaults.rounded,
   size = 'base',
+  glory = false,
   children,
   className,
+  style,
   ...others
 }: {
   variant?: IconVariant
   color?: Color
   rounded?: Rounded
+  glory?: boolean
   size?: Size
 } & HTMLAttributes<HTMLElement>) {
   if (color === 'default') {
@@ -86,13 +89,13 @@ export function Icon ({
       {...others}
       style={{
         width: typeof size === 'number' ? size : undefined,
-        ...others.style,
+        ...style,
         ...{
           '--r-main-color': mainColor,
           '--r-main-opacity-color': useOpacityColor(color),
         },
       }}
-      className={classnames(className, variantClassName(variant, color), sizeClassName(size), roundedClassName(rounded), 'inline-flex')}
+      className={classnames(className, variantClassName(variant), sizeClassName(size), roundedClassName(rounded), 'inline-flex relative', { 'after:absolute after:opacity-25 after:inset-0 after:content-empty after:filter-blur-sm': glory })}
     >
       { children }
     </i>
