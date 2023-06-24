@@ -1,27 +1,15 @@
-import { useCallback, useContext, useLayoutEffect, useRef } from 'react'
+import { useCallback, useContext, useEffect, useLayoutEffect } from 'react'
 import { usePrefersColorScheme } from './usePrefersColorScheme'
 import { getFullThemeData, themeMap, useRegistTheme } from '../utils/theme/utils'
 import { RokuContext } from '../core'
 import { hsl } from 'd3-color'
 import { defaultDark, defaultLight } from '../utils/theme'
 
-type ThemeValue = 'system' | 'dark' | 'light' | string
-
 export function useTheme (key: string = 'roku.theme') {
   useRegistTheme('light', defaultLight)
   useRegistTheme('dark', defaultDark)
   const preferred = usePrefersColorScheme()
-  const defaultTheme = useRef('system')
-  const { theme, setTheme: setThemeValue } = useContext(RokuContext)
-  const setTheme = useCallback((theme: ThemeValue) => {
-    localStorage.setItem(key, theme)
-    if (theme === 'system') {
-      document.cookie = `${key}=${preferred};path=/;max-age=0`
-    } else {
-      document.cookie = `${key}=${theme};path=/;max-age=31536000`
-    }
-    setThemeValue(theme)
-  }, [key, preferred, setThemeValue])
+  const { theme, setTheme } = useContext(RokuContext)
 
   const toggleTheme = useCallback(() => {
     if (theme === 'system') {
@@ -32,38 +20,41 @@ export function useTheme (key: string = 'roku.theme') {
       setTheme('system')
     }
   }, [setTheme, theme])
-  useLayoutEffect(() => {
-    if (typeof localStorage === 'undefined') return
-    const localTheme = localStorage?.getItem(key) ?? 'system'
-    if (localTheme === 'system') {
-      defaultTheme.current = preferred
-    } else {
-      defaultTheme.current = localTheme
-    }
-  }, [key, preferred])
 
-  // set theme
-  useLayoutEffect(() => {
-    if (typeof localStorage === 'undefined') return
-    const savedTheme = localStorage.getItem(key)
-    if (savedTheme) {
-      defaultTheme.current = savedTheme
-    }
-    if (defaultTheme.current === 'system') {
-      document.documentElement.setAttribute('data-theme', preferred)
-    } else {
-      document.documentElement.setAttribute('data-theme', defaultTheme.current)
+  useEffect(() => {
+    // set Cookies
+    if (theme !== 'system') {
+      document.cookie = `${key}=${theme}; max-age=31536000; path=/`
+    } else if (preferred) {
+      document.cookie = `${key}.default=${preferred}; max-age=31536000; path=/`
     }
   })
 
-  // read from localstorage
+  // set theme
   useLayoutEffect(() => {
-    if (typeof localStorage === 'undefined') return
-    const savedTheme = localStorage.getItem(key)
-    if (savedTheme) {
-      setThemeValue(savedTheme)
+    if (theme === 'system') {
+      if (preferred) {
+        document.documentElement.setAttribute('data-theme', preferred)
+      }
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
     }
-  }, [key, setThemeValue])
+  })
+
+  // read from cookies
+  useLayoutEffect(() => {
+    const cookie = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith(key + '='))
+    if (cookie) {
+      const value = cookie.split('=')[1]
+      if (value === 'system' || !themeMap.has(value)) {
+        // pass
+      } else {
+        setTheme(value)
+      }
+    }
+  }, [key, preferred, setTheme])
   return { theme, setTheme, toggleTheme }
 }
 
@@ -71,7 +62,7 @@ export function useTrueTheme (): string {
   const { theme } = useTheme()
   const preferredTheme = usePrefersColorScheme()
   if (theme === 'system') {
-    return preferredTheme
+    return preferredTheme ?? 'light'
   }
   return theme
 }

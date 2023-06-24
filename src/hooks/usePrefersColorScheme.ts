@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
-type Theme = 'light' | 'dark'
-
-export function usePrefersColorScheme (): Theme {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme())
+export function usePrefersColorScheme (): string | undefined {
+  const [theme, setTheme] = useState<string | undefined>()
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -12,14 +10,17 @@ export function usePrefersColorScheme (): Theme {
     return () => { mediaQuery.removeEventListener('change', handleChange) }
   }, [])
 
-  function getInitialTheme (): Theme {
+  const getInitialTheme = useCallback(() => {
     if (typeof window !== 'undefined' && window.matchMedia) {
       return window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light'
     }
     return 'light'
-  }
-
+  }, [],
+  )
+  useEffect(() => {
+    setTheme(getInitialTheme())
+  }, [getInitialTheme])
   return theme
 }
