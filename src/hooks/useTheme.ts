@@ -13,12 +13,15 @@ export function useTheme (key: string = 'roku.theme') {
   const preferred = usePrefersColorScheme()
   const defaultTheme = useRef('system')
   const { theme, setTheme: setThemeValue } = useContext(RokuContext)
-  const trueTheme = useTrueTheme()
   const setTheme = useCallback((theme: ThemeValue) => {
     localStorage.setItem(key, theme)
-    document.cookie = `${key}=${trueTheme};path=/;max-age=31536000`
+    if (theme === 'system') {
+      document.cookie = `${key}=${preferred};path=/;max-age=0`
+    } else {
+      document.cookie = `${key}=${theme};path=/;max-age=31536000`
+    }
     setThemeValue(theme)
-  }, [key, setThemeValue, trueTheme])
+  }, [key, preferred, setThemeValue])
 
   const toggleTheme = useCallback(() => {
     if (theme === 'system') {
