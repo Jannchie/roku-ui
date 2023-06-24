@@ -16,7 +16,7 @@ export function RokuProvider ({
     className: string
     stack: boolean
   } | false }) {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('system')
   return (
     <RokuContext.Provider value={{ theme, setTheme }}>
       { useNotifications &&
