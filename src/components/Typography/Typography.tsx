@@ -1,93 +1,55 @@
 import classnames from 'classnames'
 import { type Color } from 'd3-color'
 import { type HTMLAttributes, type ReactNode } from 'react'
-import { useTrueColor } from '../../hooks'
+import { createPolymorphicComponent } from '../../utils/polymorphic'
 
-function H1 ({ color = 'frontground', style, children, className, ...props }: {
+type TextProps = {
   children: ReactNode
   color?: Color | string
-} & HTMLAttributes<HTMLHeadingElement>) {
-  const textColor = useTrueColor(color)
+} & HTMLAttributes<HTMLDivElement>
+function _Text (props: TextProps) {
+  return <div {...props} />
+}
+
+const Text = createPolymorphicComponent<'div', TextProps>(_Text)
+
+function H1 ({ className, ...props }: TextProps) {
   return (
-    <h1
-      className={classnames(className, 'text-4xl font-bold color-[var(--r-color)]')}
-      style={{
-        ...style,
-        ...{
-          '--r-color': textColor,
-        },
-      }}
+    <Text
+      as={'h1'}
+      className={classnames(className, 'text-4xl font-bold')}
       {...props}
-    >
-      { children }
-    </h1>
+    />
   )
 }
 
-function H2 ({ children, className, ...props }: {
-  children: ReactNode
-} & HTMLAttributes<HTMLHeadingElement>) {
+function H2 ({ className, ...props }: TextProps) {
   return (
-    <h2
+    <Text
+      as={'h2'}
       className={classnames(className, 'text-3xl font-bold')}
       {...props}
-    >
-      { children }
-
-    </h2>
+    />
   )
 }
 
-function H3 ({ children, className, ...props }: {
-  children: ReactNode
-} & HTMLAttributes<HTMLHeadingElement>) {
+function H3 ({ className, ...props }: TextProps) {
   return (
-    <h3
+    <Text
+      as={'h3'}
       className={classnames(className, 'text-2xl font-bold')}
       {...props}
-    >
-      { children }
-    </h3>
+    />
   )
 }
 
-function H4 ({ children, className, ...props }: {
-  children: ReactNode
-} & HTMLAttributes<HTMLHeadingElement>) {
+function H4 ({ className, ...props }: TextProps) {
   return (
-    <h4
+    <Text
+      as={'h4'}
       className={classnames(className, 'text-xl font-bold')}
       {...props}
-    >
-      { children }
-    </h4>
-  )
-}
-
-function H5 ({ children, className, ...props }: {
-  children: ReactNode
-} & HTMLAttributes<HTMLHeadingElement>) {
-  return (
-    <h5
-      className={classnames(className, 'text-lg font-bold')}
-      {...props}
-    >
-      { children }
-
-    </h5>
-  )
-}
-
-function H6 ({ children, className, ...props }: {
-  children: ReactNode
-} & HTMLAttributes<HTMLHeadingElement>) {
-  return (
-    <h6
-      className={classnames(className, 'text-base font-bold')}
-      {...props}
-    >
-      { children }
-    </h6>
+    />
   )
 }
 
@@ -96,31 +58,20 @@ function P ({ children, className, ...props }: {
 } & HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={classnames(className, 'text-base')}
+      className={classnames(className, 'text-base text-[var(--r-color)]')}
       {...props}
     >
       { children }
     </p>
   )
 }
+
 function Caption ({ children, className, ...props }: {
   children: ReactNode
 } & HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
-      className={classnames(className, 'text-sm')}
-      {...props}
-    >
-      { children }
-    </span>
-  )
-}
-function Button ({ children, className, ...props }: {
-  children: ReactNode
-} & HTMLAttributes<HTMLSpanElement>) {
-  return (
-    <span
-      className={classnames(className, 'text-base font-bold')}
+      className={classnames(className, 'text-sm text-[var(--r-color)]')}
       {...props}
     >
       { children }
@@ -129,5 +80,5 @@ function Button ({ children, className, ...props }: {
 }
 
 export const T = {
-  H1, H2, H3, H4, H5, H6, P, Caption, Button,
+  H1, H2, H3, H4, P, Caption,
 }

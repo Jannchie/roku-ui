@@ -7,17 +7,18 @@ import { defaultDark, defaultLight } from '../utils/theme'
 
 type ThemeValue = 'system' | 'dark' | 'light' | string
 
-export function useTheme (localstorageKey: string = 'roku.theme') {
+export function useTheme (key: string = 'roku.theme') {
   useRegistTheme('light', defaultLight)
   useRegistTheme('dark', defaultDark)
   const preferred = usePrefersColorScheme()
   const defaultTheme = useRef('system')
   const { theme, setTheme: setThemeValue } = useContext(RokuContext)
+  const trueTheme = useTrueTheme()
   const setTheme = useCallback((theme: ThemeValue) => {
-    localStorage.setItem(localstorageKey, theme)
-    document.cookie = `${localstorageKey}=${theme};path=/;max-age=31536000`
+    localStorage.setItem(key, theme)
+    document.cookie = `${key}=${trueTheme};path=/;max-age=31536000`
     setThemeValue(theme)
-  }, [localstorageKey, setThemeValue])
+  }, [key, setThemeValue, trueTheme])
 
   const toggleTheme = useCallback(() => {
     if (theme === 'system') {
@@ -30,18 +31,18 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
   }, [setTheme, theme])
   useLayoutEffect(() => {
     if (typeof localStorage === 'undefined') return
-    const localTheme = localStorage?.getItem(localstorageKey) ?? 'system'
+    const localTheme = localStorage?.getItem(key) ?? 'system'
     if (localTheme === 'system') {
       defaultTheme.current = preferred
     } else {
       defaultTheme.current = localTheme
     }
-  }, [localstorageKey, preferred])
+  }, [key, preferred])
 
   // set theme
   useLayoutEffect(() => {
     if (typeof localStorage === 'undefined') return
-    const savedTheme = localStorage.getItem(localstorageKey)
+    const savedTheme = localStorage.getItem(key)
     if (savedTheme) {
       defaultTheme.current = savedTheme
     }
@@ -55,15 +56,15 @@ export function useTheme (localstorageKey: string = 'roku.theme') {
   // read from localstorage
   useLayoutEffect(() => {
     if (typeof localStorage === 'undefined') return
-    const savedTheme = localStorage.getItem(localstorageKey)
+    const savedTheme = localStorage.getItem(key)
     if (savedTheme) {
       setThemeValue(savedTheme)
     }
-  }, [localstorageKey, setThemeValue])
+  }, [key, setThemeValue])
   return { theme, setTheme, toggleTheme }
 }
 
-export function useTrueTheme () {
+export function useTrueTheme (): string {
   const { theme } = useTheme()
   const preferredTheme = usePrefersColorScheme()
   if (theme === 'system') {

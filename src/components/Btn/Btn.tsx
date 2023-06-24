@@ -171,8 +171,8 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     const btnClass = classnames(
       textSizeClass,
       border,
-      'inline-block overflow-visible relative border min-w-max h-fit text-sm disabled:grayscale disabled:contrast-50 disabled:pointer-events-none rounded',
-      { 'min-w-24': !icon },
+      'inline-block overflow-visible relative border h-fit text-sm disabled:grayscale disabled:contrast-50 disabled:pointer-events-none rounded',
+      { 'min-w-16': !icon },
       {
         'active:translate-y-[1px]': active === 'translate',
         'active:scale-[0.99]': active === 'scale',
@@ -313,20 +313,27 @@ interface BtnGroup {
   activeColor?: Color
 }
 function Group ({
-  className, children, value, setValue, activeColor = 'primary', cancelable,
-}: BtnGroup) {
+  className, children, value, setValue, activeColor = 'primary', cancelable, style,
+}: BtnGroup & HTMLAttributes<HTMLDivElement>) {
   const ctx = useMemo(() => ({
     value, setValue, activeColor, cancelable,
   }), [value, setValue, activeColor, cancelable])
+  const colorStyle = {
+    '--r-main-color': useTrueColor(activeColor),
+  }
   return (
     <BtnGroupCtx.Provider value={ctx}>
       <div className="relative flex">
         <div
           className={classnames(
             className,
-            `border-${activeColor}-2`,
+            'border-[hsl(var(--r-main-color))]',
             'flex border rounded-lg transform overflow-hidden',
           )}
+          style={{
+            ...style,
+            ...colorStyle,
+          }}
         >
           { children }
         </div>
