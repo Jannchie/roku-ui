@@ -22,14 +22,15 @@ export function useTheme (key: string = 'roku.theme') {
   }, [setTheme, theme])
 
   useEffect(() => {
-    // set Cookies
-    if (theme !== 'system') {
-      document.cookie = `${key}=${theme}; max-age=31536000; path=/`
-    } else if (preferred) {
-      document.cookie = `${key}.default=${preferred}; max-age=31536000; path=/`
+    if (theme === 'system') document.cookie = 'roku.theme=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    else if (themeMap.has(theme)) document.cookie = `roku.theme=${theme}; path=/;`
+  }, [theme])
+
+  useEffect(() => {
+    if (preferred) {
+      document.cookie = `roku.theme.default=${preferred}; path=/;`
     }
   })
-
   // set theme
   useLayoutEffect(() => {
     if (theme === 'system') {
