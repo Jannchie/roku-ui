@@ -58,11 +58,13 @@ export function useTheme (key: string = 'roku.theme') {
   const setThemeAttribute = useCallback((theme: string, animation: boolean | { x: number, y: number } = false) => {
     if (theme === 'system') {
       if (preferred && document.documentElement.getAttribute('data-theme') !== preferred) {
-        if (animation) setThemeAttributeWithAnimation(preferred, typeof animation === 'boolean' ? undefined : animation)
+        // @ts-expect-error: Transition API
+        if (animation && document.startViewTransition) setThemeAttributeWithAnimation(preferred, typeof animation === 'boolean' ? undefined : animation)
         else setThemeAttributeWithTrueTheme(preferred)
       }
     } else if (document.documentElement.getAttribute('data-theme') !== theme) {
-      if (animation) setThemeAttributeWithAnimation(theme, typeof animation === 'boolean' ? undefined : animation)
+      // @ts-expect-error: Transition API
+      if (animation && document.startViewTransition) setThemeAttributeWithAnimation(theme, typeof animation === 'boolean' ? undefined : animation)
       else setThemeAttributeWithTrueTheme(theme)
     }
   }, [preferred, setThemeAttributeWithAnimation, setThemeAttributeWithTrueTheme])
