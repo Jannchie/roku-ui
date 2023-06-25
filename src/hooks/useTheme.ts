@@ -9,17 +9,7 @@ export function useTheme (key: string = 'roku.theme') {
   useRegistTheme('light', defaultLight)
   useRegistTheme('dark', defaultDark)
   const preferred = usePrefersColorScheme()
-  const { theme, setTheme } = useContext(RokuContext)
-
-  const toggleTheme = useCallback(() => {
-    if (theme === 'system') {
-      setTheme('dark')
-    } else if (theme === 'dark') {
-      setTheme('light')
-    } else {
-      setTheme('system')
-    }
-  }, [setTheme, theme])
+  const { theme, setTheme: setThemeValue } = useContext(RokuContext)
 
   useEffect(() => {
     if (theme === 'system') document.cookie = 'roku.theme=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
@@ -31,17 +21,64 @@ export function useTheme (key: string = 'roku.theme') {
       document.cookie = `roku.theme.default=${preferred}; path=/;`
     }
   })
-  // set theme
-  useLayoutEffect(() => {
-    if (theme === 'system') {
-      if (preferred) {
-        document.documentElement.setAttribute('data-theme', preferred)
-      }
-    } else {
-      document.documentElement.setAttribute('data-theme', theme)
-    }
-  })
 
+  const setThemeAttributeWithTrueTheme = useCallback((theme: string) => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [])
+
+  const setThemeAttributeWithAnimation = useCallback((theme: string, animation = { x: 0, y: 0 }) => {
+    const { x, y } = animation
+    const endRadius = Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y),
+    )
+    // @ts-expect-error: Transition API
+    const transition = document.startViewTransition(() => {
+      document.documentElement.setAttribute('data-theme', theme)
+    })
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`,
+      ]
+      document.documentElement.animate(
+        {
+          clipPath: theme !== 'dark' ? clipPath : [...clipPath].reverse(),
+        },
+        {
+          duration: 500,
+          easing: 'ease-in',
+          pseudoElement: theme !== 'dark' ? '::view-transition-new(root)' : '::view-transition-old(root)',
+        },
+      )
+    }).catch(() => { })
+  }, [])
+
+  // set theme
+  const setThemeAttribute = useCallback((theme: string, animation: boolean | { x: number, y: number } = false) => {
+    if (theme === 'system') {
+      if (preferred && document.documentElement.getAttribute('data-theme') !== preferred) {
+        if (animation) setThemeAttributeWithAnimation(preferred, typeof animation === 'boolean' ? undefined : animation)
+        else setThemeAttributeWithTrueTheme(preferred)
+      }
+    } else if (document.documentElement.getAttribute('data-theme') !== theme) {
+      if (animation) setThemeAttributeWithAnimation(theme, typeof animation === 'boolean' ? undefined : animation)
+      else setThemeAttributeWithTrueTheme(theme)
+    }
+  }, [preferred, setThemeAttributeWithAnimation, setThemeAttributeWithTrueTheme])
+  const setTheme = useCallback((theme: string, animation: boolean | { x: number, y: number } = false) => {
+    setThemeValue(theme)
+    setThemeAttribute(theme, animation)
+  }, [setThemeAttribute, setThemeValue])
+  const toggleTheme = useCallback((event: React.MouseEvent) => {
+    if (theme === 'system') {
+      setTheme('dark', { x: event.clientX, y: event.clientY })
+    } else if (theme === 'dark') {
+      setTheme('light', { x: event.clientX, y: event.clientY })
+    } else {
+      setTheme('system', { x: event.clientX, y: event.clientY })
+    }
+  }, [setTheme, theme])
   // read from cookies
   useLayoutEffect(() => {
     const cookie = document.cookie
@@ -53,9 +90,29 @@ export function useTheme (key: string = 'roku.theme') {
         // pass
       } else {
         setTheme(value)
+        setThemeAttribute(value)
       }
     }
-  }, [key, preferred, setTheme])
+  }, [key, preferred, setTheme, setThemeAttribute])
+  useEffect(() => {
+    const activeTheme = document.documentElement.getAttribute('data-theme')
+    if (!activeTheme) {
+      // get ${key}.default
+      const defaultCookies = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith(key + '.default='))?.split('=')[1]
+      if (theme !== 'system') {
+        setThemeAttribute(theme)
+      }
+      if (defaultCookies) {
+        setThemeAttribute(defaultCookies)
+      }
+      if (preferred) {
+        setThemeAttribute(preferred)
+      }
+    }
+  }, [key, preferred, setThemeAttribute, theme])
+
   return { theme, setTheme, toggleTheme }
 }
 
