@@ -5,8 +5,8 @@ import {
 } from 'react'
 import { isColor, type Color } from '../../utils/colors'
 import { SvgSpinners90RingWithBg } from '@roku-ui/icons-svg-spinners'
-import { useTrueColor, useHover, useThemeData } from '../../hooks'
-import { Flex, Icon, calculateContrast } from '../..'
+import { useTrueColor, useHover, useThemeData, useColorHex, useContrastFrontgroundColor } from '../../hooks'
+import { Flex, Icon } from '../..'
 import { createPolymorphicComponent } from '../../utils/polymorphic'
 
 type ButtonType = 'fill' | 'text' | 'default' | 'contrast' | 'light'
@@ -122,37 +122,37 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     if (value && value === ctx.value) {
       color = ctx.activeColor
     }
+    if (color === 'default' && !hoverColor) hoverColor = 'frontground'
+    else if (!hoverColor) hoverColor = color
     const trueBtnVariant = getTrueBtnVariant({ fill, text, variant, contrast, light })
-    const colorBG = isColor(color) ? themeData.color[color].base : color
-    // const hColor = (trueBtnVariant !== 'fill' && color === 'default' && !hoverColor) ? 'frontground' : hoverColor ?? color
-    const colorFGBase = useTrueColor(themeData.color.frontground.base)
-    const colorBGBase = useTrueColor(themeData.color.background.base)
+    const colorColorBGHex = isColor(color) ? themeData.color[color].base : color
+    const colorHoverBGHex = useColorHex(hoverColor)
+    const textHoverContrastColor = useContrastFrontgroundColor(colorHoverBGHex)
+    const textColorContrastColor = useContrastFrontgroundColor(colorColorBGHex)
     const textSizeClass = {
       'text-xs !leading-none': size === 'xs',
       'p-2 text-xs !leading-none': size === 'sm',
       'p-2 text-xs': size === 'md',
       'p-2 text-base': size === 'lg',
     }
-    const colorFG = calculateContrast(colorBG, colorFGBase) > calculateContrast(colorBG, colorBGBase) ? 'frontground' : 'background'
     const fgColor = useTrueColor('frontground')
     const bgColor = useTrueColor('background')
     const mainColor = useTrueColor(color)
-    // const mainHoverColor = useTrueColor(hColor, 3)
+    const hColor = useTrueColor(hoverColor ?? color)
     const borderColor = useTrueColor(color, 3)
-    const textContrast = useTrueColor(colorFG)
     const useColorStyle = () => {
       switch (trueBtnVariant) {
         case 'contrast':
           return {
             '--r-text-color': color === 'default' ? fgColor : mainColor,
             '--r-text-hover-color': bgColor,
-            '--r-bg-hover-color': color === 'default' ? fgColor : mainColor,
+            '--r-bg-hover-color': (!hoverColor && color === 'default') ? fgColor : hColor ?? mainColor,
             '--r-border-color': borderColor,
           }
         case 'text':
           return {
             '--r-text-color': color === 'default' ? fgColor : mainColor,
-            '--r-text-hover-color': color === 'default' ? fgColor : mainColor,
+            '--r-text-hover-color': hColor,
             '--r-border-color': borderColor,
             '--r-outline-color': mainColor,
             '--r-bg-color': 'transparent',
@@ -160,10 +160,10 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         case 'fill':
           return {
             '--r-bg-color': mainColor,
-            '--r-bg-hover-color': mainColor,
+            '--r-bg-hover-color': (!hoverColor && color === 'default') ? fgColor : hColor ?? mainColor,
             '--r-border-color': borderColor,
-            '--r-text-color': textContrast,
-            '--r-text-hover-color': textContrast,
+            '--r-text-color': textColorContrastColor,
+            '--r-text-hover-color': textHoverContrastColor,
           }
       }
     }

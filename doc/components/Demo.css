@@ -1,23 +1,21 @@
 .comp-wrapper {
   padding: 16px;
-  border-radius: .5rem .5rem 0rem 0rem;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
   background-color: transparent;
-  background-size: 4px 4px;
+  background-size: 0.25rem 0.25rem;
   background-image: linear-gradient(
       to right,
-      hsl(var(--r-frontground-1), 0.025) 1px,
+      hsl(var(--r-border-3), 1) 1px,
       transparent 1px
     ),
-    linear-gradient(
-      to bottom,
-      hsl(var(--r-frontground-1), 0.025) 1px,
-      transparent 1px
-    );
+    linear-gradient(to bottom, hsl(var(--r-border-3), 1) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--r-border-2), 1) 1px, transparent 1px),
+    linear-gradient(to right, hsl(var(--r-border-2), 1) 1px, transparent 1px);
 }
 
 .comp-wrapper-2 {
   padding: 16px;
-  border-radius: .5rem .5rem 0rem 0rem;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
   background-color: transparent;
   background-size: 0.5rem 0.5rem;
   background: conic-gradient(

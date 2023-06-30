@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useLayoutEffect } from 'react'
 import { usePrefersColorScheme } from './usePrefersColorScheme'
-import { getFullThemeData, themeMap, useRegistTheme } from '../utils/theme/utils'
+import { calculateContrast, getFullThemeData, themeMap, useRegistTheme } from '../utils/theme/utils'
 import { RokuContext } from '../core'
 import { hsl } from 'd3-color'
 import { defaultDark, defaultLight } from '../utils/theme'
@@ -155,6 +155,23 @@ export function useTrueColor (color: string, level: 1 | 2 | 3 = 2, k = 1) {
   if (level === 1) return c.brighter(k).formatHex()
   if (level === 3) return c.darker(k).formatHex()
   return c.formatHex()
+}
+
+export function useContrastFrontgroundColor (bg: string) {
+  const themeData = useThemeData()
+  const colorFGBase = useTrueColor(themeData.color.frontground.base)
+  const colorBGBase = useTrueColor(themeData.color.background.base)
+  return calculateContrast(bg, colorFGBase) > calculateContrast(bg, colorBGBase) ? 'frontground' : 'background'
+}
+
+export function useColorHex (color: string) {
+  const themeData = useThemeData()
+  if (color in themeData.color) {
+    return themeData.color[color]?.base
+  } else {
+    const c = hsl(color)
+    return c.formatHex()
+  }
 }
 
 export function getOpacityColor (color: string, opacity: number) {
