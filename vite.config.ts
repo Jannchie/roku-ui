@@ -78,7 +78,7 @@ export default defineConfig(({ command, mode }) => {
               react(),
               unocss(),
               dts({
-                outputDir: 'dist/types',
+                outDir: 'dist/types',
                 include: ['./src/**/*.ts(x)?'],
               }),
             ],
