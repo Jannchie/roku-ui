@@ -12,9 +12,9 @@ export const Demo = ({ name, prose = false }: {
   const [code, setCode] = useState<string>()
   useEffect(() => {
     try {
-      const Comp = lazy(async () => await import(`../demo/${name}.demo.tsx`))
+      const Comp = lazy(async () => await import(`../demos/${name}.demo.tsx`))
       setComp(<Comp />)
-      void import(`../demo/${name}.demo.tsx?raw`).then((module) => {
+      void import(`../demos/${name}.demo.tsx?raw`).then((module) => {
         setCode(module.default.replace('../../src', 'roku-ui'))
       })
     } catch (err) {

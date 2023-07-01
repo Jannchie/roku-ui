@@ -4,7 +4,7 @@ import {
 import { NavLink, useLocation, useOutlet } from 'react-router-dom'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import {
-  Appbar, Btn, Footer, HolyGrail, Icon, List, Panel, Tag, ThemeToggle, useTrueColor, useOnClickOutside,
+  Appbar, Btn, Footer, HolyGrail, Icon, List, Panel, Tag, ThemeToggle, useTrueColor, useOnClickOutside, ScrollArea,
 } from '../src'
 import useWindowSize, { type WindowSize } from '../src/hooks/useWindowSize'
 import '../src/index.css'
@@ -107,7 +107,7 @@ function DocLayout () {
         minHeight: '100vh',
       }}
       innerLeft={(
-        <div style={{ width: size.width < 640 ? 0 : 280 }}>
+        <div style={{ width: size.width < 640 ? 0 : 245 }}>
           <LeftMenu
             size={size}
             showMenu={showMenu}
@@ -175,9 +175,11 @@ function LeftMenu ({
       <Panel
         className="border-border-2"
         border={false}
-        style={{ borderRadius: 0, borderRightWidth: 1, top: 57, maxHeight: 'calc(100vh - 57px)', position: 'fixed', overflowY: 'auto' }}
+        style={{ borderRadius: 0, borderRightWidth: 1, top: 57, position: 'fixed', overflowY: 'auto' }}
       >
-        <List>
+        <ScrollArea
+          style={{ height: 'calc(100vh - 57px)' }}
+        >
           { router.filter(d => d.path !== 'test').map((route) => (
             <NavLink
               key={route.path}
@@ -187,7 +189,7 @@ function LeftMenu ({
               { getNavItem(route.icon, route.title) }
             </NavLink>
           )) }
-        </List>
+        </ScrollArea>
       </Panel>
     )
     : (

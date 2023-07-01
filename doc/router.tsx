@@ -1,4 +1,4 @@
-import { Tabler123, TablerAnchor, TablerArticle, TablerCircleCheck, TablerColorPicker, TablerCursorText, TablerHome, TablerIcons, TablerInputSearch, TablerLayoutNavbar, TablerList, TablerMessage, TablerMoon, TablerRectangle, TablerRectangleFilled, TablerSquareToggle, TablerStar, TablerTag, TablerTypography, TablerUserCircle, TablerWindow } from '@roku-ui/icons-tabler'
+import { Tabler123, TablerAnchor, TablerArrowsUpDown, TablerArticle, TablerCircleCheck, TablerColorPicker, TablerCursorText, TablerHome, TablerIcons, TablerInputSearch, TablerLayoutNavbar, TablerList, TablerMessage, TablerMoon, TablerRectangle, TablerRectangleFilled, TablerSquareToggle, TablerStar, TablerTag, TablerTypography, TablerUserCircle, TablerWindow } from '@roku-ui/icons-tabler'
 import { MaterialSymbolsArrowRightAlt, MaterialSymbolsArticle, MaterialSymbolsCampaign, MaterialSymbolsDriveFileRenameOutline, MaterialSymbolsExpandMore, MaterialSymbolsLiveHelp, MaterialSymbolsMarkChatUnread, MaterialSymbolsNotifications, MaterialSymbolsRadio, MaterialSymbolsScience, MaterialSymbolsSmartphone, MaterialSymbolsTab, MaterialSymbolsToggleOn, MaterialSymbolsViewDay, MaterialSymbolsWebAsset, MaterialSymbolsWindow } from '@roku-ui/icons-material-symbols'
 import { Page } from './components/Page'
 import HomeMD from './markdown/home.md?raw'
@@ -184,6 +184,11 @@ export const router = [
     path: 'window',
     title: '窗体（Window）',
     icon: <TablerWindow />,
+  },
+  {
+    path: 'scroll-area',
+    title: '滚动区域（Scroll Area）',
+    icon: <TablerArrowsUpDown />,
   },
   {
     path: 'test',
