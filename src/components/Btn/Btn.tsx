@@ -1,4 +1,4 @@
-import classnames from 'classnames'
+import classNames from 'classnames'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   createContext, type CSSProperties, type HTMLAttributes, type ReactNode, useContext, useMemo, forwardRef, useRef,
@@ -122,13 +122,19 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     if (value && value === ctx.value) {
       color = ctx.activeColor
     }
-    if (color === 'default' && !hoverColor) hoverColor = 'frontground'
-    else if (!hoverColor) hoverColor = color
     const trueBtnVariant = getTrueBtnVariant({ fill, text, variant, contrast, light })
+    if (color === 'default' && !hoverColor) {
+      if (trueBtnVariant === 'fill') {
+        hoverColor = 'default'
+      } else {
+        hoverColor = 'frontground'
+      }
+    } else if (!hoverColor) hoverColor = color
     const colorColorBGHex = isColor(color) ? themeData.color[color].base : color
     const colorHoverBGHex = useColorHex(hoverColor)
-    const textHoverContrastColor = useContrastFrontgroundColor(colorHoverBGHex)
-    const textColorContrastColor = useContrastFrontgroundColor(colorColorBGHex)
+    const hoverColorName = useTrueColor(hoverColor)
+    const textHoverContrastColorName = useContrastFrontgroundColor(colorHoverBGHex)
+    const textColorContrastColorName = useContrastFrontgroundColor(colorColorBGHex)
     const textSizeClass = {
       'text-xs !leading-none': size === 'xs',
       'p-2 text-xs !leading-none': size === 'sm',
@@ -137,38 +143,38 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
     }
     const fgColor = useTrueColor('frontground')
     const bgColor = useTrueColor('background')
-    const mainColor = useTrueColor(color)
+    const mainColorName = useTrueColor(color)
     const hColor = useTrueColor(hoverColor ?? color)
-    const borderColor = useTrueColor(color, 3)
+    const borderColorName = useTrueColor(color, 3)
     const useColorStyle = () => {
       switch (trueBtnVariant) {
         case 'contrast':
           return {
-            '--r-text-color': color === 'default' ? fgColor : mainColor,
+            '--r-text-color': color === 'default' ? fgColor : mainColorName,
             '--r-text-hover-color': bgColor,
-            '--r-bg-hover-color': (!hoverColor && color === 'default') ? fgColor : hColor ?? mainColor,
-            '--r-border-color': borderColor,
+            '--r-bg-hover-color': (!hoverColor && color === 'default') ? fgColor : hColor ?? mainColorName,
+            '--r-border-color': borderColorName,
           }
         case 'text':
           return {
-            '--r-text-color': color === 'default' ? fgColor : mainColor,
+            '--r-text-color': color === 'default' ? fgColor : mainColorName,
             '--r-text-hover-color': hColor,
-            '--r-border-color': borderColor,
-            '--r-outline-color': mainColor,
+            '--r-border-color': borderColorName,
+            '--r-outline-color': mainColorName,
             '--r-bg-color': 'transparent',
           }
         case 'fill':
           return {
-            '--r-bg-color': mainColor,
-            '--r-bg-hover-color': (!hoverColor && color === 'default') ? fgColor : hColor ?? mainColor,
-            '--r-border-color': borderColor,
-            '--r-text-color': textColorContrastColor,
-            '--r-text-hover-color': textHoverContrastColor,
+            '--r-bg-color': mainColorName,
+            '--r-bg-hover-color': hoverColorName,
+            '--r-border-color': borderColorName,
+            '--r-text-color': textColorContrastColorName,
+            '--r-text-hover-color': textHoverContrastColorName,
           }
       }
     }
     const colorStyle = useColorStyle()
-    const btnClass = classnames(
+    const btnClass = classNames(
       textSizeClass,
       border,
       'inline-block overflow-visible relative border h-fit text-sm disabled:grayscale disabled:contrast-50 disabled:pointer-events-none rounded',
@@ -187,7 +193,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
     )
     const body = children ?? label
-    const loadingFinalClass = classnames({
+    const loadingFinalClass = classNames({
       'h-3 w-3': size === 'xs',
       'h-4 w-4': size === 'sm',
       'h-5 w-5': size === 'md',
@@ -216,7 +222,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
           {...others}
         >
           <div
-            className={classnames(loadingFinalClass)}
+            className={classNames(loadingFinalClass)}
           >
             { loading
               ? loadingIcon
@@ -235,7 +241,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={clickCallback}
         {...others}
       >
-        <div className={classnames(
+        <div className={classNames(
           'flex items-center relative',
           { 'justify-left': left },
           { 'justify-right': right },
@@ -263,7 +269,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
             }
             <motion.div
               key="body"
-              className="mx-2"
+              className={classNames({ 'ml-2': loading || leadingIcon })}
             >
               { body }
             </motion.div>
@@ -298,7 +304,7 @@ function Group ({
     <BtnGroupCtx.Provider value={ctx}>
       <div className="relative flex">
         <div
-          className={classnames(
+          className={classNames(
             className,
             'border-[hsl(var(--r-main-color))]',
             'flex border rounded-lg transform overflow-hidden',
