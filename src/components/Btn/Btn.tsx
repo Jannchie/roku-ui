@@ -202,18 +202,7 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
         }
       }
     })
-    function getRemBySize (size: 'xs' | 'sm' | 'md' | 'lg') {
-      switch (size) {
-        case 'xs':
-          return '0.5rem'
-        case 'sm':
-          return '0.75rem'
-        case 'md':
-          return '1rem'
-        case 'lg':
-          return '1.25rem'
-      }
-    }
+
     const Element = as || 'button'
     if (icon) {
       return (
@@ -253,48 +242,32 @@ const _BtnRoot = forwardRef<HTMLButtonElement, ButtonProps>(
           { 'justify-center': !left && !right },
         )}
         >
-          { leadingIcon
-            ? (
-              <div
-                className={classnames(loadingFinalClass)}
-                style={{
-                  fontSize: size === 'sm' ? '1rem' : '1.5rem',
-                }}
-              >
-                { loading ? loadingIcon : leadingIcon }
-              </div>
-            )
-            : (
-              <AnimatePresence>
-                { loading && (
-                  <motion.div
-                    layout
-                    animate={{
-                      marginRight: size === 'sm' ? 4 : 8,
-                      width: getRemBySize(size),
-                      height: getRemBySize(size),
-                    }}
-                    className={loadingFinalClass}
-                    exit={{
-                      marginRight: 0,
-                      width: 0,
-                      height: 0,
-                    }}
-                    initial={{
-                      marginRight: 0,
-                      width: 0,
-                      height: 0,
-                    }}
-                    transition={{
-                      bounce: 0,
-                    }}
-                  >
-                    { loadingIcon }
-                  </motion.div>
-                ) }
-              </AnimatePresence>
-            ) }
-          { body }
+          <AnimatePresence>
+            {
+              (loading || leadingIcon) && (
+                <motion.div
+                  key="icon"
+                  layout
+                  animate={{ opacity: 1, width: '1em' }}
+                  exit={{ opacity: 0, width: '0em' }}
+                >
+                  {
+                    loading
+                      ? (
+                        <SvgSpinners90RingWithBg />
+                      )
+                      : leadingIcon
+                  }
+                </motion.div>
+              )
+            }
+            <motion.div
+              key="body"
+              className="mx-2"
+            >
+              { body }
+            </motion.div>
+          </AnimatePresence>
         </div>
       </Element>
     )
